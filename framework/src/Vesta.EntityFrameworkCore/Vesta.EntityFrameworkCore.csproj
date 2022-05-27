@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Vesta.Auditing\Vesta.Auditing.csproj" />
+    <ProjectReference Include="..\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
+    <ProjectReference Include="..\Vesta.Uow\Vesta.Uow.csproj" />
+  </ItemGroup>
+
+</Project>
