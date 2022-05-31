@@ -252,7 +252,7 @@ paket-files/
 *.sln.iml
 
 # ProjectName
-src/Vesta.ProjectName.Api.Host/Logs/*
+src/Vesta.ProjectName.Api.Host/Logs/*.*
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*
