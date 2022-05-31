@@ -2,13 +2,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using Vesta.AutoMapper;
 
-namespace Microsoft.Extensions.DependencyInyection
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class DependencyInjectioncs
+    public static class DependencyInjectionExtensions
     {
 
-        public static ServiceCollection AddVestaAutoMapper(this ServiceCollection services)
+        public static void AddVestaAutoMapper(this IServiceCollection services)
         {
+
+            services.AddVestaCore();
 
             services.AddSingleton<MapperAccessor>(serviceProvider =>
             {
@@ -19,7 +21,6 @@ namespace Microsoft.Extensions.DependencyInyection
 
             services.AddSingleton<IMapperAccessor, MapperAccessor>();
 
-            return services;
         }
     }
 }

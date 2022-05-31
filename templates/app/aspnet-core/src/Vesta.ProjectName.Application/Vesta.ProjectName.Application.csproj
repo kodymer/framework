@@ -1,19 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\common.props"/>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)"  />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Vesta.ProjectName.Domain\Vesta.ProjectName.Domain.csproj" />
     <ProjectReference Include="..\Vesta.ProjectName.EntityFrameworkCore.SqlServer\Vesta.ProjectName.EntityFrameworkCore.SqlServer.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\framework\src\Vesta.Ddd.Application\Vesta.Ddd.Application.csproj" />
   </ItemGroup>
 
 </Project>

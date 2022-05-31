@@ -29,11 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Uow", "src\Vesta.Uow\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.EntityFrameworkCore.SqlServer", "src\Vesta.EntityFrameworkCore.SqlServer\Vesta.EntityFrameworkCore.SqlServer.csproj", "{F88AFCF2-4E54-40F2-AF03-1BD54447E5F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ApplicationInsights.AspNetCore", "src\Vesta.ApplicationInsights.AspNetCore\Vesta.ApplicationInsights.AspNetCore.csproj", "{7DF5082C-E837-45B6-97E5-1E98B27A734C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Serilog", "src\Vesta.Serilog\Vesta.Serilog.csproj", "{CFC00F86-C4A0-46B6-AE99-7548EA0B9191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ApplicationInsights.AspNetCore", "src\Vesta.ApplicationInsights.AspNetCore\Vesta.ApplicationInsights.AspNetCore.csproj", "{7DF5082C-E837-45B6-97E5-1E98B27A734C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.AutoMapper", "src\Vesta.AutoMapper\Vesta.AutoMapper.csproj", "{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.AspNetCore.Mvc", "src\Vesta.AspNetCore.Mvc\Vesta.AspNetCore.Mvc.csproj", "{69A788B2-2E65-433B-BAA4-4754F1B0B137}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,14 +89,14 @@ Global
 		{7DF5082C-E837-45B6-97E5-1E98B27A734C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF5082C-E837-45B6-97E5-1E98B27A734C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DF5082C-E837-45B6-97E5-1E98B27A734C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFC00F86-C4A0-46B6-AE99-7548EA0B9191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFC00F86-C4A0-46B6-AE99-7548EA0B9191}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFC00F86-C4A0-46B6-AE99-7548EA0B9191}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFC00F86-C4A0-46B6-AE99-7548EA0B9191}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A788B2-2E65-433B-BAA4-4754F1B0B137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A788B2-2E65-433B-BAA4-4754F1B0B137}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A788B2-2E65-433B-BAA4-4754F1B0B137}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A788B2-2E65-433B-BAA4-4754F1B0B137}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,8 +114,8 @@ Global
 		{108B9DDC-3CF7-4A45-95C3-E8A09733C12C} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{F88AFCF2-4E54-40F2-AF03-1BD54447E5F4} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{7DF5082C-E837-45B6-97E5-1E98B27A734C} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
-		{CFC00F86-C4A0-46B6-AE99-7548EA0B9191} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{5BDE9C6C-E09B-4EEC-9785-74310F50CE2C} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{69A788B2-2E65-433B-BAA4-4754F1B0B137} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C560E72A-25E8-41E0-A972-0FC1CE007D5F}

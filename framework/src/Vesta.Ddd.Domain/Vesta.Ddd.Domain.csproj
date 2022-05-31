@@ -1,9 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\..\common.props" />
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Vesta.Ddd.Domain</AssemblyName>
+    <PackageId>Vesta.Ddd.Domain</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>

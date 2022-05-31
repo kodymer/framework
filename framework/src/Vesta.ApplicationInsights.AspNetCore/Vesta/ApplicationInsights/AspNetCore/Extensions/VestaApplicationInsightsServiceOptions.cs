@@ -1,6 +1,8 @@
-﻿namespace Vesta.ApplicationInsights.AspNetCore.Extensions
+﻿using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+
+namespace Vesta.ApplicationInsights.AspNetCore.Extensions
 {
-    public class VestaApplicationInsightsServiceOptions
+    public class VestaApplicationInsightsServiceOptions : ApplicationInsightsServiceOptions
     {
         /// <summary>
         /// Gets or sets the role name of component.

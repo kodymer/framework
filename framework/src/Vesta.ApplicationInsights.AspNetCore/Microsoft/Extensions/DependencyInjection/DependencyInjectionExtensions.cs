@@ -1,4 +1,5 @@
-﻿using Microsoft.ApplicationInsights.Extensibility;
+﻿using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.Configuration;
 using Vesta.ApplicationInsights.AspNetCore.Extensions;
 using Vesta.ApplicationInsights.AspNetCore.TelemetryInitializers;
@@ -15,7 +16,30 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddVestaCore();
+
             services.AddApplicationInsightsTelemetry();
+
+            services.Configure((VestaApplicationInsightsServiceOptions options) => AddTelemetryConfiguration(configuration, options));
+            services.AddSingleton<ITelemetryInitializer, DomainNameRoleNameTelemetryInitializer>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddVestaApplicationInsightsTelemetry(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            Action<VestaApplicationInsightsServiceOptions> options = null)
+        {
+            services.AddVestaCore();
+
+            var serviceOptions = new VestaApplicationInsightsServiceOptions();
+            if (!(options is null))
+            {
+                options.Invoke(serviceOptions);
+            }
+
+            services.AddApplicationInsightsTelemetry(serviceOptions);
             services.Configure((VestaApplicationInsightsServiceOptions options) => AddTelemetryConfiguration(configuration, options));
             services.AddSingleton<ITelemetryInitializer, DomainNameRoleNameTelemetryInitializer>();
 

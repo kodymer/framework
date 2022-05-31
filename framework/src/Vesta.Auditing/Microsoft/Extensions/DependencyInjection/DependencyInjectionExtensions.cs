@@ -8,7 +8,9 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaAuditing(this IServiceCollection services)
         {
+            services.AddVestaAuditingAbstracts();
             services.AddVestaSecurity();
+
             services.AddTransient<IAuditPropertySetter, AuditPropertySetter>();
 
         }

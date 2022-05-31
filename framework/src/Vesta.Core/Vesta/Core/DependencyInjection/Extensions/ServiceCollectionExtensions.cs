@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Vesta.Core.DependencyInjection.Extensions
         {
             bool wasReplaced = false;
 
-            if (services.Any(descriptor => descriptor.ServiceType.Equals(typeof(TServiceType))))
+            if (Any<TServiceType>(services))
             {
                 services.Replace(
                     new ServiceDescriptor(typeof(TServiceType), typeof(TImplemententionType), ServiceLifetime.Singleton));
@@ -26,6 +27,12 @@ namespace Vesta.Core.DependencyInjection.Extensions
             }
 
             return wasReplaced;
+        }
+
+        public static bool Any<TServiceType>(this IServiceCollection services)
+            where TServiceType : class
+        {
+            return services.Any(descriptor => descriptor.ServiceType.Equals(typeof(TServiceType)));
         }
     }
 }

@@ -8,6 +8,9 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaAspNetCore(this IServiceCollection services)
         {
+
+            services.AddVestaCore();
+
             services.AddHttpContextAccessor();
 
             if (!services.TryReplace<ICurrentPrincipalAccessor, HttpContextCurrentPrincipalAccessor>())
