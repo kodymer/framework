@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Domain", "src\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{04DBDB01-70F4-4E06-B468-8F87850B22BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Api.Host", "src\Vesta.Banks.Api.Host\Vesta.Banks.Api.Host.csproj", "{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Api", "src\Vesta.Banks.Api\Vesta.Banks.Api.csproj", "{9808CE5E-471C-4992-A7E2-75734A8371FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Application", "src\Vesta.Banks.Application\Vesta.Banks.Application.csproj", "{4EF4B533-000A-4833-8D93-A8E3F1C742A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.EntityFrameworkCore.SqlServer", "src\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj", "{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9808CE5E-471C-4992-A7E2-75734A8371FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9808CE5E-471C-4992-A7E2-75734A8371FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9808CE5E-471C-4992-A7E2-75734A8371FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9808CE5E-471C-4992-A7E2-75734A8371FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF4B533-000A-4833-8D93-A8E3F1C742A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF4B533-000A-4833-8D93-A8E3F1C742A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF4B533-000A-4833-8D93-A8E3F1C742A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF4B533-000A-4833-8D93-A8E3F1C742A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{10FEF487-4BFE-4754-8D60-7CEBC72E1C57} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{9808CE5E-471C-4992-A7E2-75734A8371FF} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{4EF4B533-000A-4833-8D93-A8E3F1C742A2} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
+	EndGlobalSection
+EndGlobal

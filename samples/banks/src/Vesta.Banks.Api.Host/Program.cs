@@ -7,30 +7,23 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ApplicationInsights.Extensibility;
 using System;
 
-namespace Vesta.ProjectName
+namespace Vesta.Banks
 {
     public class Program
     {
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-#if DEBUG
-            .MinimumLevel.Debug()
-#else
             .MinimumLevel.Information()
-#endif
             .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
             .Enrich.FromLogContext()
             .WriteTo.Async(c => c.File("Logs/logs.txt"))
-#if DEBUG
-            .WriteTo.Async(c => c.Console())
-#endif
             .CreateBootstrapLogger();
 
             try
             {
-                Log.Information("Starting Vesta.ProjectName.Api.Host.");
+                Log.Information("Starting Vesta.Banks.Api.Host.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }
@@ -56,9 +49,6 @@ namespace Vesta.ProjectName
                          .ReadFrom.Services(serviceProvider)
                          .Enrich.FromLogContext()
                          .WriteTo.Async(c => c.File("Logs/logs.txt"))
-#if DEBUG
-                         .WriteTo.Async(c => c.Console())
-#endif
                          .WriteTo.Async(c => c.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
 
 
@@ -66,7 +56,7 @@ namespace Vesta.ProjectName
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                        .UseStartup<ProjectNameApiHostStartup>();
+                        .UseStartup<BanksApiHostStartup>();
                 });
     }
 }
