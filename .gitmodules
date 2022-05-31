@@ -1,0 +1,9 @@
+[submodule "app/app/Cases"]
+	path = app/app/Cases
+	url = https://alejandria@dev.azure.com/alejandria/(POL-VES)%20P%C3%B3lizas%20-%20Vesta/_git/Cases
+[submodule "app/Cases"]
+	path = app/Cases
+	url = https://alejandria@dev.azure.com/alejandria/(POL-VES)%20P%C3%B3lizas%20-%20Vesta/_git/Cases
+[submodule "app/Requests"]
+	path = app/Requests
+	url = https://alejandria@dev.azure.com/alejandria/(POL-VES)%20P%C3%B3lizas%20-%20Vesta/_git/Request
