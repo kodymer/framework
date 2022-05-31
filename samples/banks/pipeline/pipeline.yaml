@@ -1,0 +1,77 @@
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: 'Arquitectura - AzureDevops Customizations/pipelines-templates'
+
+trigger: none
+
+variables:
+  - name: ForceDeploy
+    value: true
+  - group: BaseNet5
+
+stages:
+- stage: Build_Push
+  jobs:
+  - job: BuildJob
+    pool:
+      name: 'Arquitecturas Cloud'
+    steps:        
+
+    - template: build/netcore/netcore.docker.base.template.yaml@templates
+      parameters:
+        acrAzureSubscriptionEndpoint: 'Entorno PRUEBAS'
+        acrName: 'acrgeneralpru.azurecr.io'
+        dockerFilePath: $(Pipeline.Workspace)/s/src/Api.Host/Dockerfile
+        dockerImageName: '$(dockerImage)'
+        dockerBuildContext: '$(Pipeline.Workspace)/s/'
+        projectHasTests: false
+        ForceDockerPublish: true
+  
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      inputs:
+        SourceFolder: Deployment
+        Contents: '*.yaml'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+   
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: deploy'
+      inputs:
+        ArtifactName: deploy
+    
+- stage: Deploy_AKS
+  condition: and(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['ForceDeploy'],'true')), succeeded())
+  dependsOn: Build_Push
+  jobs:
+  - deployment: AKS
+    variables:
+      - group: BaseNet5
+    environment: 'PRU'
+    pool:
+      name: 'Arquitecturas Cloud'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - task: ReplaceTokens@1
+              displayName: 'Replace tokens in $(Pipeline.Workspace)/deploy'
+              inputs:
+                sourcePath: '$(Pipeline.Workspace)/deploy'
+                filePattern: '*.yaml'
+
+            - template: deploy/aks/deploy.private.cluster.yaml@templates
+              parameters:
+                aksSubscription: 'Entorno PRUEBAS'
+                azureSubscriptionEndpoint: 'Entorno PRUEBAS'
+                azureResourceGroup: '$(GRUPO_RECURSOS_AKS)'
+                kubernetesCluster: '$(KUBERNETES_CLUSTER)'
+                namespace: '$(NAMESPACE)'
+                configuration: '$(WORKSPACEROUTE)'
+                azureSubscriptionEndpointForSecrets: 'Entorno PRUEBAS'
+                azureContainerRegistry: '$(ACR)'
+                condition: and(succeeded(), not(contains(variables['secretosaks.KubectlOutput'], 'ca-asisa-key-pair')))
+                inlineScript: '$(INLINE_SCRIPT)'

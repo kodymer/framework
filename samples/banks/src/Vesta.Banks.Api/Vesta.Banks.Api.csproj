@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+  <Import Project="..\..\common.props"/>
   
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,11 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.ProjectName.Application\Vesta.ProjectName.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Vesta.Banks.Application\Vesta.Banks.Application.csproj" />
   </ItemGroup>
 
 </Project>

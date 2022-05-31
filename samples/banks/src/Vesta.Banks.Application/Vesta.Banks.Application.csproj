@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props"/>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)"  />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
+    <ProjectReference Include="..\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>
