@@ -11,20 +11,15 @@ namespace Vesta.ProjectName.Bank
 {
     public class BankAppService : ApplicationService, IBankAppService
     {
-        private readonly ILogger<BankAppService> _logger;
-
         private readonly IBankAccountRepository _repository;
         private readonly IBankAccountManager _bankAccountManager;
         private readonly IBankTransferService _bankTransferService;
 
         public BankAppService(
-            ILogger<BankAppService> logger,
             IBankAccountRepository repository,
             IBankAccountManager bankAccountManager,
             IBankTransferService bankTransferService)
         {
-            _logger = logger;
-
             _repository = repository;
             _bankAccountManager = bankAccountManager;
             _bankTransferService = bankTransferService;
@@ -34,27 +29,27 @@ namespace Vesta.ProjectName.Bank
         {
             try
             {
-                _logger.LogInformation(ProjectNameLogEventConsts.GenerateNewBankAccount,
+                Logger.LogInformation(ProjectNameLogEventConsts.GenerateNewBankAccount,
                     "Creating a new bank account with balance {Balance}.", input.Balance);
 
-                _logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
+                Logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
                     "Generating data for the new bank account. ");
 
                 var bankAccount = await _bankAccountManager.CreateAsync(input.Balance);
 
-                _logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
+                Logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
                     "Bank account: {Data}", JsonSerializer.Serialize(bankAccount));
 
-                _logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
+                Logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount,
                     "Saving new bank account.", input.Balance);
 
                 await _repository.InsertAsync(bankAccount, autoSave: true, cancellationToken);
 
-                _logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount, "OK.", input.Balance);
+                Logger.LogDebug(ProjectNameLogEventConsts.GenerateNewBankAccount, "OK.", input.Balance);
             }
             catch (UnfulfilledRequirementException e)
             {
-                _logger.LogError(
+                Logger.LogError(
                     ProjectNameLogEventConsts.GenerateNewBankAccount, e,
                     "Could not create the bank account. See the exception detail for more details.");
 
@@ -62,7 +57,7 @@ namespace Vesta.ProjectName.Bank
             }
             catch (Exception e)
             {
-                _logger.LogError(
+                Logger.LogError(
                    ProjectNameLogEventConsts.GenerateNewBankAccount, e,
                    "Unexpected error.");
 
@@ -74,8 +69,22 @@ namespace Vesta.ProjectName.Bank
         {
             try
             {
+                Logger.LogInformation(ProjectNameLogEventConsts.TransfersBetweenBankAccounts,
+                    "Making a transfer beetween {FromId} and {ToId} bank accounts by €{Amount}", input.BankAccountFromId, input.BankAccountToId, input.Amount);
+
+
+                Logger.LogDebug(ProjectNameLogEventConsts.TransfersBetweenBankAccounts,
+                    "Getting bank account from by ID: {Id}. ", input.BankAccountFromId);
+
                 var bankAccountFrom = await _repository.GetAsync(input.BankAccountFromId);
+
+                Logger.LogDebug(ProjectNameLogEventConsts.TransfersBetweenBankAccounts,
+                    "Getting bank account to by ID: {Id}. ", input.BankAccountToId);
+
                 var bankAccountTo = await _repository.GetAsync(input.BankAccountToId);
+
+                Logger.LogDebug(ProjectNameLogEventConsts.TransfersBetweenBankAccounts,
+                    "Making trasnfer by €{Id}. ", input.Amount);
 
                 _bankTransferService.MakeTransfer(bankAccountFrom, bankAccountTo, input.Amount);
 
@@ -84,16 +93,23 @@ namespace Vesta.ProjectName.Bank
 
                 await CurrentUnitOfWork.SaveChangesAsync(cancellationToken);
 
+                Logger.LogDebug(ProjectNameLogEventConsts.TransfersBetweenBankAccounts,
+                    "Successful transfer correctly. ", input.Amount);
+
             }
-            catch (EntityNotFoundException)
+            catch (EntityNotFoundException e)
             {
-                // Logging error
+                Logger.LogError(
+                    ProjectNameLogEventConsts.TransfersBetweenBankAccounts, e,
+                    "Could not found entity");
 
                 throw;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // Logging error
+                Logger.LogError(
+                   ProjectNameLogEventConsts.TransfersBetweenBankAccounts, e,
+                   "Unexpected error.");
 
                 throw;
             }

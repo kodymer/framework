@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
 
 namespace Vesta.ProjectName
 {
@@ -8,7 +9,6 @@ namespace Vesta.ProjectName
     {
         public static void AddProjectNameApi(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddProjectNameApplication(configuration);
 
             services.AddApiVersioning(options =>
@@ -17,8 +17,11 @@ namespace Vesta.ProjectName
                 options.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
-            services.AddApplicationInsightsTelemetry(configuration);
-
+            services.AddVestaAspNetCoreMvc(jsonConfigure: options =>
+            {
+                options.JsonSerializerOptions.WriteIndented = true;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaSecurity(this IServiceCollection services)
         {
+            services.AddVestaCore();
+
             services.AddSingleton<ICurrentPrincipalAccessor, ThreadCurrentPrincipalAccessor>();
 
         }

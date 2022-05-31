@@ -11,7 +11,8 @@ namespace Vesta.ProjectName.Configuration
 {
     public static class SwaggerConfiguration
     {
-        public static IServiceCollection AddSwagger(
+
+        public static void AddSwagger(
             this IServiceCollection services,
             IConfiguration configuration)
         {
@@ -55,10 +56,7 @@ namespace Vesta.ProjectName.Configuration
                     }
                 });
             });
-
-            return services;
         }
-
 
         public static IApplicationBuilder UseSwagger(
             this IApplicationBuilder app,

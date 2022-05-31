@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using Vesta.Ddd.Domain.Repositories;
+using Vesta.AspNetCore.Mvc;
 using Vesta.ProjectName.Bank;
 using Vesta.ProjectName.Bank.Dtos;
+using Vesta.ProjectName.Domain;
 
 namespace Vesta.ProjectName.Controllers
 {
     [ApiController]
     [Route("api/bank")]
-    public class BankController : Controller
+    public class BankController : VestaController
     {
 
         private readonly IBankAppService _bankAppService;
@@ -25,6 +28,7 @@ namespace Vesta.ProjectName.Controllers
 
             try
             {
+
                 await _bankAppService.CreateBankAccountAsync(input);
 
                 return Ok();

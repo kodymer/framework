@@ -252,14 +252,7 @@ paket-files/
 *.sln.iml
 
 # ProjectName
-src/Vesta.ProjectName.Web/Logs/*
-src/Vesta.ProjectName.Web.Host/Logs/*
-src/Vesta.ProjectName.IdentityServer/Logs/*
-src/Vesta.ProjectName.HttpApi.Host/Logs/*
-src/Vesta.ProjectName.HttpApi.Host/Logs/*
-src/Vesta.ProjectName.DbMigrator/Logs/*
-src/Vesta.ProjectName.Blazor.Server/Logs/*
-src/Vesta.ProjectName.Blazor.Server.Tiered/Logs/*
+src/Vesta.ProjectName.Api.Host/Logs/*
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*

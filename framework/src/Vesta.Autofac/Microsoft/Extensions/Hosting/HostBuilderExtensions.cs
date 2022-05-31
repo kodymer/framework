@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.Extensions.DependencyInjection;
 using Vesta.Autofac;
 
 namespace Microsoft.Extensions.Hosting
@@ -10,6 +11,7 @@ namespace Microsoft.Extensions.Hosting
             var containerBuilder = new ContainerBuilder();
 
             return hostBuilder
+                    .ConfigureServices((hostBuilderContext, services) => services.AddVestaAutofac())
                     .UseServiceProviderFactory(new VestaAutofacServiceProviderFactory(containerBuilder));
         }
     }

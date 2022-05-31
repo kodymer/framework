@@ -35,21 +35,12 @@ namespace Vesta.ProjectName
         /// <param name="services">lista de servicios a agregar</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddProjectNameApi(Configuration); 
-            
-            services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.WriteIndented = true;
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                });
-            
+            services.AddProjectNameApi(Configuration);
+
+            services.AddSwagger(Configuration);
             services.AddApplicationInsights(Configuration);
             services.AddHealthChecks(Configuration);
-            services.AddSwagger(Configuration);
             services.AddAuthentication(Configuration);
-
-            services.AddVestaAspNetCore();
         }
 
         /// <summary>
