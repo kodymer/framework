@@ -11,6 +11,7 @@ namespace Vesta.Banks.Domain.Bank
 {
     public class BankAccountManager : IBankAccountManager
     {
+
         public BankAccountManager()
         {
         }

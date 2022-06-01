@@ -6,6 +6,7 @@ using Vesta.Ddd.Domain.Repositories;
 using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
 using Vesta.Banks.Domain.Bank;
+using Vesta.Banks.Application;
 
 namespace Vesta.Banks.Bank
 {
@@ -23,6 +24,17 @@ namespace Vesta.Banks.Bank
             _repository = repository;
             _bankAccountManager = bankAccountManager;
             _bankTransferService = bankTransferService;
+        }
+
+        public async Task<List<BankAccountDto>> GetAllList()
+        {
+            var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number), includeProperties: new string[]
+            {
+                "Debits",
+                "Credits"
+            });
+
+            return ObjectMapper.Map<List<BankAccountDto>>(entities);
         }
 
         public async Task CreateBankAccountAsync(CreateBankAccountInput input, CancellationToken cancellationToken = default)
@@ -86,9 +98,9 @@ namespace Vesta.Banks.Bank
                 Logger.LogDebug(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Making trasnfer by €{Id}. ", input.Amount);
 
-                _bankTransferService.MakeTransfer(bankAccountFrom, bankAccountTo, input.Amount);
+                var bankTransfer = await _bankTransferService.MakeTransferAsync(bankAccountFrom, bankAccountTo, input.Amount);
 
-                await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken) ;
+                await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken);
                 await _repository.UpdateAsync(bankAccountTo,  cancellationToken: cancellationToken);
 
                 await CurrentUnitOfWork.SaveChangesAsync(cancellationToken);

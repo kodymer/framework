@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Vesta.Ddd.Application.Dtos
 {
-
-    public class EntityDto<TKey> : IEntityDto<TKey>
+    public interface IEntityDto<TKey>
     {
-        public TKey Id { get; set; }
+        TKey Id { get; set; }
     }
 
-    public class EntityDto : IEntityDto<int>
+    public interface IEntityDto : IEntityDto<int>
     {
-        public int Id { get; set; }
+
     }
 }

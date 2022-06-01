@@ -21,6 +21,7 @@ namespace Vesta.Banks.EntityFrameworkCore.Repositories
         {
 
         }
+
     }
 
 }
