@@ -1,8 +1,10 @@
 ﻿using Vesta.Banks.Bank;
 using Vesta.Ddd.Domain.Auditing;
+using Vesta.EventBus;
 
 namespace Vesta.Banks
 {
+
     public class BankAccount : FullAuditedAggregateRoot<Guid>
     {
         public const decimal MinimumOpeningAmount = 100.00m;

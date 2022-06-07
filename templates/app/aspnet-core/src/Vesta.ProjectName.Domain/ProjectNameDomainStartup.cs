@@ -8,7 +8,7 @@ namespace Vesta.ProjectName
     {
         public static void AddProjectNameDomain(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDomainSevices();
+            services.AddProjectNameDomainSevices();
         }
     }
 }

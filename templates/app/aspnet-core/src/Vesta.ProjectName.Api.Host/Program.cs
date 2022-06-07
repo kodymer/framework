@@ -48,8 +48,8 @@ namespace Vesta.ProjectName
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseAutofac()
-                 .UseSerilog((hostBuilderContext, serviceProvider, configureLogger) =>
-                 {
+                .UseSerilog((hostBuilderContext, serviceProvider, configureLogger) =>
+                {
 
                      configureLogger
                          .ReadFrom.Configuration(hostBuilderContext.Configuration)
@@ -62,7 +62,7 @@ namespace Vesta.ProjectName
                          .WriteTo.Async(c => c.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
 
 
-                 })
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder

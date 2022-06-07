@@ -9,8 +9,8 @@ namespace Vesta.Banks.EntityFrameworkCore
         public static void AddBanksEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddDbContext(configuration)
-                .AddRepositories();
+                .AddBanksDbContext(configuration)
+                .AddBanksRepositories();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Vesta.Banks
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
+            .MinimumLevel.Debug()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
             .Enrich.FromLogContext()
@@ -41,18 +41,19 @@ namespace Vesta.Banks
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseAutofac()
-                 .UseSerilog((hostBuilderContext, serviceProvider, configureLogger) =>
-                 {
+                .UseSerilog((hostBuilderContext, serviceProvider, configureLogger) =>
+                {
 
                      configureLogger
-                         .ReadFrom.Configuration(hostBuilderContext.Configuration)
-                         .ReadFrom.Services(serviceProvider)
-                         .Enrich.FromLogContext()
-                         .WriteTo.Async(c => c.File("Logs/logs.txt"))
-                         .WriteTo.Async(c => c.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
+                        .MinimumLevel.Debug()
+                        .ReadFrom.Configuration(hostBuilderContext.Configuration)
+                        .ReadFrom.Services(serviceProvider)
+                        .Enrich.FromLogContext()
+                        .WriteTo.Async(c => c.File("Logs/logs.txt"))
+                        .WriteTo.Async(c => c.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces));
 
 
-                 })
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder

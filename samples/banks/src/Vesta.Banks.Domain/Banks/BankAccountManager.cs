@@ -12,11 +12,6 @@ namespace Vesta.Banks.Domain.Bank
     public class BankAccountManager : IBankAccountManager
     {
 
-        public BankAccountManager()
-        {
-        }
-
-
         public Task<BankAccount> CreateAsync(decimal initialBalance, CancellationToken cancellationToken = default)
         {
             var bankAccountId = Guid.NewGuid();

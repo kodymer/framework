@@ -9,8 +9,8 @@ namespace Vesta.ProjectName.EntityFrameworkCore
         public static void AddProjectNameEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddDbContext(configuration)
-                .AddRepositories();
+                .AddProjectNameDbContext(configuration)
+                .AddProjectNameRepositories();
         }
     }
 }

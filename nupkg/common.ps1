@@ -21,8 +21,13 @@ $projects = (
     "framework/src/Vesta.Core",
     "framework/src/Vesta.Ddd.Application",
     "framework/src/Vesta.Ddd.Domain",
+    "framework/src/Vesta.Ddd.Domain.EventBus",
     "framework/src/Vesta.EntityFrameworkCore",
     "framework/src/Vesta.EntityFrameworkCore.SqlServer",
+    "framework/src/Vesta.EventBus",
+    "framework/src/Vesta.EventBus.Abstracts",
+    "framework/src/Vesta.EventBus.Azure",
+    "framework/src/Vesta.ServiceBus.Azure",
     "framework/src/Vesta.Security",
     "framework/src/Vesta.Uow"
 )

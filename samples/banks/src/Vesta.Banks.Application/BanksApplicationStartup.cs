@@ -12,7 +12,8 @@ namespace Vesta.Banks
             services.AddBanksDomain(configuration);
             services.AddBanksEntityFrameworkCore(configuration);
 
-            services.AddAppSevices();
+            services.AddBanksAppSevices();
+            services.AddBanksEventHandlers();
         }
     }
 }
