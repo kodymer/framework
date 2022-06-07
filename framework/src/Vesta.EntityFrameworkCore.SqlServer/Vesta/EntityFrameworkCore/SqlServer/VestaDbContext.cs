@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
+using Vesta.EntityFrameworkCore.Abstracts;
 
 namespace Vesta.EntityFrameworkCore.SqlServer
 {
@@ -11,6 +12,8 @@ namespace Vesta.EntityFrameworkCore.SqlServer
         public VestaDbContext(DbContextOptions<TDbContext> options)
             : base(options)
         {
+            var conn = Database.GetDbConnection().ConnectionString;
+
             (this as ISupportConnection).ConnectionString = GetConnectionString(options);
         }
 

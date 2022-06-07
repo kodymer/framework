@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\..\common.props" />
 
@@ -9,23 +9,20 @@
     <RootNamespace />
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
-    <AssemblyName>Vesta.EntityFrameworkCore</AssemblyName>
-    <PackageId>Vesta.EntityFrameworkCore</PackageId>
+    <AssemblyName>Vesta.EntityFrameworkCore.Abstracts</AssemblyName>
+    <PackageId>Vesta.EntityFrameworkCore.Abstracts</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
+  </ItemGroup>
   
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Vesta.Auditing\Vesta.Auditing.csproj" />
-    <ProjectReference Include="..\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
-    <ProjectReference Include="..\Vesta.EntityFrameworkCore.Abstracts\Vesta.EntityFrameworkCore.Abstracts.csproj" />
-    <ProjectReference Include="..\Vesta.Uow\Vesta.Uow.csproj" />
-  </ItemGroup>
-
 </Project>

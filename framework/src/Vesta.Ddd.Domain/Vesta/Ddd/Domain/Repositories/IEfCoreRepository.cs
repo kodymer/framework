@@ -3,11 +3,12 @@ using Vesta.Ddd.Domain.Entities;
 
 namespace Vesta.Ddd.Domain.Repositories
 {
+    public interface IEfCoreRepository<TEntity> : IRepository<TEntity, int>
+        where TEntity : IEntity<int>
+    {
+    }
 
-    /// <summary>
-    /// Interfaz ISqlRepository
-    /// </summary>
-    public interface IRepository<TEntity, TKey> 
+    public interface IEfCoreRepository<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : IEntity<TKey>
     {
 
@@ -20,20 +21,15 @@ namespace Vesta.Ddd.Domain.Repositories
         /// <returns>Entities</returns>
         public Task<List<TEntity>> GetListAsync(
                     Expression<Func<TEntity, bool>> predicate = null,
-                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
+                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+                    params string[] includeProperties);
 
-        /// <summary>
-        /// Find a entity that matches the identifier 
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <returns>Entity</returns>
-        ValueTask<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Insert a entity
         /// </summary>
         /// <param name="entity"></param>
-        Task InsertAsync(TEntity entity,  CancellationToken cancellationToken = default);
+        Task InsertAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Removes the entity that matches the identifier 
@@ -41,7 +37,7 @@ namespace Vesta.Ddd.Domain.Repositories
         /// <param name="id">Entity ID</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        Task DeleteAsync(TKey id, CancellationToken cancellationToken = default);
+        Task DeleteAsync(TKey id, bool autoSave, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove a entity 
@@ -49,7 +45,7 @@ namespace Vesta.Ddd.Domain.Repositories
         /// <param name="id">Entity</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task DeleteAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a entity
@@ -57,7 +53,8 @@ namespace Vesta.Ddd.Domain.Repositories
         /// <param name="id">Entity</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task UpdateAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default);
+
     }
 
 }
