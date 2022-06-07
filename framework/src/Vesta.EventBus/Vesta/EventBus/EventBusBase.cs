@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.Json;
 using Vesta.EventBus.Abstracts;
+using Vesta.Ddd.Domain.EventBus;
 
 namespace Vesta.EventBus
 {

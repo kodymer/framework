@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"/>
+  <Import Project="..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -16,6 +16,7 @@
   
     <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\framework\src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj" />
+    <ProjectReference Include="..\Vesta.Banks.Domain.Shared\Vesta.Banks.Domain.Shared.csproj" />
   
   </ItemGroup>
   

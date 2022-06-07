@@ -13,6 +13,10 @@ namespace Vesta.Banks
 
         public static void AddBanksDomain(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddBanksDomainShared(configuration);
+
+            services.AddBanksDomainSevices();
+
             services.AddVestaEventBusAzure(options =>
             {
                 options.ConnectionString = configuration.GetValue<string>(AzureServiceBusConnectionStringConfig);
@@ -20,8 +24,6 @@ namespace Vesta.Banks
                 options.SubscriberName = configuration.GetValue<string>(AzureServiceBusSubscriberNameConfig);
 
             });
-
-            services.AddBanksDomainSevices();
         }
     }
 }

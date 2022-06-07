@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vesta.EventBus
+namespace Vesta.Ddd.Domain.EventBus
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class EventNameAttribute : Attribute

@@ -35,13 +35,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.AutoMapper", "src\Ves
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.AspNetCore.Mvc", "src\Vesta.AspNetCore.Mvc\Vesta.AspNetCore.Mvc.csproj", "{69A788B2-2E65-433B-BAA4-4754F1B0B137}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.EventBus", "src\Vesta.EventBus\Vesta.EventBus.csproj", "{E98A1711-E8EE-4B5C-9AF7-C3495D863181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.EventBus", "src\Vesta.EventBus\Vesta.EventBus.csproj", "{E98A1711-E8EE-4B5C-9AF7-C3495D863181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.EventBus.Abstracts", "src\Vesta.EventBus.Abstracts\Vesta.EventBus.Abstracts.csproj", "{0CEFCA99-0BDA-45DF-99BB-73031BEF04DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.EventBus.Abstracts", "src\Vesta.EventBus.Abstracts\Vesta.EventBus.Abstracts.csproj", "{0CEFCA99-0BDA-45DF-99BB-73031BEF04DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.EventBus.Azure", "src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj", "{B17267E4-A554-405C-9D05-8F96CA836D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.EventBus.Azure", "src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj", "{B17267E4-A554-405C-9D05-8F96CA836D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ServiceBus.Azure", "src\Vesta.ServiceBus.Azure\Vesta.ServiceBus.Azure.csproj", "{94B0407E-7D16-4C9E-81B9-6CD214E4707F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ServiceBus.Azure", "src\Vesta.ServiceBus.Azure\Vesta.ServiceBus.Azure.csproj", "{94B0407E-7D16-4C9E-81B9-6CD214E4707F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Ddd.Domain.EventBus", "src\Vesta.Ddd.Domain.EventBus\Vesta.Ddd.Domain.EventBus.csproj", "{7D7EED4C-F19C-4794-86E6-6075B91ED32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,10 @@ Global
 		{94B0407E-7D16-4C9E-81B9-6CD214E4707F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B0407E-7D16-4C9E-81B9-6CD214E4707F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94B0407E-7D16-4C9E-81B9-6CD214E4707F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D7EED4C-F19C-4794-86E6-6075B91ED32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D7EED4C-F19C-4794-86E6-6075B91ED32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D7EED4C-F19C-4794-86E6-6075B91ED32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D7EED4C-F19C-4794-86E6-6075B91ED32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +150,7 @@ Global
 		{0CEFCA99-0BDA-45DF-99BB-73031BEF04DC} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{B17267E4-A554-405C-9D05-8F96CA836D9E} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{94B0407E-7D16-4C9E-81B9-6CD214E4707F} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{7D7EED4C-F19C-4794-86E6-6075B91ED32E} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C560E72A-25E8-41E0-A972-0FC1CE007D5F}

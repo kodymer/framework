@@ -8,6 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddVestaAutofac();
             services.AddVestaEventBusAbstracts();
+            services.AddVestaDddDomainEventBus();
 
             services.AddSingleton<IEventHandlerInvoker, EventHandlerInvoker>();
         }

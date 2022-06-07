@@ -1,10 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+
+  <Import Project="..\..\..\common.props" />
+  
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>$(netcoreapp)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <RootNamespace />
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Vesta.EventBus.Azure</AssemblyName>
+    <PackageId>Vesta.EventBus.Azure</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>

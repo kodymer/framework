@@ -12,7 +12,7 @@ namespace Vesta.ProjectName
             services.AddProjectNameDomain(configuration);
             services.AddProjectNameEntityFrameworkCore(configuration);
 
-            services.AddAppSevices();
+            services.AddProjectNameAppSevices();
         }
     }
 }

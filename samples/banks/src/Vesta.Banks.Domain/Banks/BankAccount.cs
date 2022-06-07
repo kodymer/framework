@@ -4,7 +4,7 @@ using Vesta.EventBus;
 
 namespace Vesta.Banks
 {
-    //[EventName("Vesta.Banks.Application.BankAccountDto")]
+
     public class BankAccount : FullAuditedAggregateRoot<Guid>
     {
         public const decimal MinimumOpeningAmount = 100.00m;

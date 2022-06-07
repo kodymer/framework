@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>$(netcoreapp)</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace />
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Vesta.Ddd.Domain.EventBus</AssemblyName>
+    <PackageId>Vesta.Ddd.Domain.EventBus</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vesta.AutoMapper\Vesta.AutoMapper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Vesta\Ddd\Domain\EventBus\Etos\" />
+  </ItemGroup>
+
+</Project>
