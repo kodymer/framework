@@ -7,6 +7,7 @@ using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
 using Vesta.Banks.Domain.Bank;
 using Vesta.Banks.Application;
+using Vesta.EventBus.Abstracts;
 
 namespace Vesta.Banks.Bank
 {
@@ -19,7 +20,8 @@ namespace Vesta.Banks.Bank
         public BankAppService(
             IBankAccountRepository repository,
             IBankAccountManager bankAccountManager,
-            IBankTransferService bankTransferService)
+            IBankTransferService bankTransferService,
+            IDistributedEventBus eventBus)
         {
             _repository = repository;
             _bankAccountManager = bankAccountManager;
@@ -28,11 +30,17 @@ namespace Vesta.Banks.Bank
 
         public async Task<List<BankAccountDto>> GetAllList()
         {
+            Logger.LogInformation(BanksLogEventConsts.GetBankAccounts,
+                "Getting all bank accounts.");
+
             var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number), includeProperties: new string[]
             {
                 "Debits",
                 "Credits"
             });
+
+            Logger.LogDebug(BanksLogEventConsts.GetBankAccounts, 
+                "{Count} bank accounts have been obtained.", entities.Count);
 
             return ObjectMapper.Map<List<BankAccountDto>>(entities);
         }
@@ -44,20 +52,15 @@ namespace Vesta.Banks.Bank
                 Logger.LogInformation(BanksLogEventConsts.GenerateNewBankAccount,
                     "Creating a new bank account with balance {Balance}.", input.Balance);
 
-                Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
-                    "Generating data for the new bank account. ");
-
                 var bankAccount = await _bankAccountManager.CreateAsync(input.Balance);
 
                 Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account: {Data}", JsonSerializer.Serialize(bankAccount));
 
-                Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
-                    "Saving new bank account.", input.Balance);
-
                 await _repository.InsertAsync(bankAccount, autoSave: true, cancellationToken);
 
-                Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount, "OK.", input.Balance);
+                Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
+                    "Bank account created!");
             }
             catch (UnfulfilledRequirementException e)
             {

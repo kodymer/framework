@@ -12,7 +12,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    <PackageReference Include="Vesta.AspNetCore.Mvc" Version="$(VestaPackageVersion)" />
+    
+    <!--
+      <PackageReference Include="Vesta.AspNetCore.Mvc" Version="$(VestaPackageVersion)" />
+    -->
+
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.AspNetCore.Mvc\Vesta.AspNetCore.Mvc.csproj" />
+    
   </ItemGroup>
 
   <ItemGroup>

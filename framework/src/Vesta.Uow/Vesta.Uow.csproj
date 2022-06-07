@@ -16,8 +16,9 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace />
   </PropertyGroup>
+  
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.Autofac\Vesta.Autofac.csproj" />
+    <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
   </ItemGroup>
 
 </Project>

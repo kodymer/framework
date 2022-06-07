@@ -13,9 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaCore(this IServiceCollection services)
         {
-            //if(!services.Any<ILoggerFactory>()) {
-            //    services.AddSingleton<ILoggerFactory, LoggerFactory>();
-            //}
+
         }
     }
 }

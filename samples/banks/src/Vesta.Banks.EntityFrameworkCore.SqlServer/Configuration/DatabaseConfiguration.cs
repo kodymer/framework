@@ -7,7 +7,7 @@ namespace Vesta.Banks.Configuration
 {
     public static class DatabaseConfiguration
     {
-        public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddVestaDbContext<BanksDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Default")));

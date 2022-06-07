@@ -11,7 +11,13 @@
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+
+    <!--
     <PackageReference Include="Vesta.EntityFrameworkCore.SqlServer" Version="$(VestaPackageVersion)" />
+    -->
+    
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EntityFrameworkCore.SqlServer\Vesta.EntityFrameworkCore.SqlServer.csproj" />
+    
   </ItemGroup>
 
   <ItemGroup>
@@ -19,3 +25,4 @@
   </ItemGroup>
 
 </Project>
+

@@ -5,7 +5,7 @@ namespace Vesta.Banks.Configuration
 {
     public static class AppServiceConfiguration
     {
-        public static void AddAppSevices(this IServiceCollection services)
+        public static void AddBanksAppSevices(this IServiceCollection services)
         {
             services.AddTransient<IBankAppService, BankAppService>();
         }
