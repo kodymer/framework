@@ -7,16 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    
-    <!--
-    <PackageReference Include="Vesta.Ddd.Domain" Version="$(VestaPackageVersion)" />
-    <PackageReference Include="Vesta.EventBus.Azure" Version="$(VestaPackageVersion)" />
-    -->
-  
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj" />
-    <ProjectReference Include="..\Vesta.Banks.Domain.Shared\Vesta.Banks.Domain.Shared.csproj" />
-  
+    <PackageReference Include="Vesta.Ddd.Domain" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+    <PackageReference Include="Vesta.EventBus.Azure" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
   </ItemGroup>
   
+  <ItemGroup> 
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\Vesta.Banks.Domain.Shared\Vesta.Banks.Domain.Shared.csproj" />
+  </ItemGroup>
 </Project>

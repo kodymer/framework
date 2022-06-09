@@ -7,21 +7,26 @@ namespace Vesta.Banks
 {
     public static class BanksApiStartup
     {
-        public static void AddBanksApi(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksApi(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddBanksApplication(configuration);
+            services
+                .AddBanksApplication(configuration);
 
-            services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-            });
+            services
+                .AddApiVersioning(options =>
+                {
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                });
 
-            services.AddVestaAspNetCoreMvc(jsonConfigure: options =>
-            {
-                options.JsonSerializerOptions.WriteIndented = true;
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+            services
+                .AddVestaAspNetCoreMvc(jsonConfigure: options =>
+                {
+                    options.JsonSerializerOptions.WriteIndented = true;
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
+
+            return services;
         }
     }
 }

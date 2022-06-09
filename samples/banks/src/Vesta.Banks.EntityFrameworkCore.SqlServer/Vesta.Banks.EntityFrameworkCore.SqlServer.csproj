@@ -10,18 +10,11 @@
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-
-    <!--
-    <PackageReference Include="Vesta.EntityFrameworkCore.SqlServer" Version="$(VestaPackageVersion)" />
-    <PackageReference Include="Vesta.Dapper" Version="$(VestaPackageVersion)" />
-    -->
-    
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EntityFrameworkCore.SqlServer\Vesta.EntityFrameworkCore.SqlServer.csproj" />
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper\Vesta.Dapper.csproj" />
-    
+    <PackageReference Include="Vesta.EntityFrameworkCore.SqlServer" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EntityFrameworkCore.SqlServer\Vesta.EntityFrameworkCore.SqlServer.csproj" Condition="$(Debug) == 'True'" />
     <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
   </ItemGroup>
 

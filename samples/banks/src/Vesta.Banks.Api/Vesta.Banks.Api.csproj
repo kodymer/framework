@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props"/>
-  
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
@@ -11,16 +11,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    
-    <!--
-      <PackageReference Include="Vesta.AspNetCore.Mvc" Version="$(VestaPackageVersion)" />
-    -->
-
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.AspNetCore.Mvc\Vesta.AspNetCore.Mvc.csproj" />
-    
+    <PackageReference Include="Vesta.AspNetCore.Mvc" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.AspNetCore.Mvc\Vesta.AspNetCore.Mvc.csproj" Condition="$(Debug) == 'True'"/>
     <ProjectReference Include="..\Vesta.Banks.Application\Vesta.Banks.Application.csproj" />
   </ItemGroup>
 

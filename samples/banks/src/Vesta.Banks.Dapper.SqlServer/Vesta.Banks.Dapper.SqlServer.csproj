@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-
-    <!--
-    <PackageReference Include="Vesta.Dapper.SqlServer" Version="$(VestaPackageVersion)" />
-    -->
-
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj" />
+    <PackageReference Include="Vesta.Dapper.SqlServer" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj" Condition="$(Debug) == 'True'" />
     <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
-
   </ItemGroup>
   
 </Project>

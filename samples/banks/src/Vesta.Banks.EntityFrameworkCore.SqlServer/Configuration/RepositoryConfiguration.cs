@@ -5,9 +5,11 @@ namespace Vesta.Banks.Configuration
 {
     public static class RepositoryConfiguration
     {
-        public static void AddBanksRepositories(this IServiceCollection services)
+        public static IServiceCollection AddBanksRepositories(this IServiceCollection services)
         {
             services.AddTransient<IBankAccountRepository, BankAccountRepository>();
+
+            return services;
         }
     }
 }

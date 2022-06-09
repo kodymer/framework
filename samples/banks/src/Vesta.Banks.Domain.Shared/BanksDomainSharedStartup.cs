@@ -6,9 +6,11 @@ namespace Vesta.Banks
     public static class BanksDomainSharedStartup
     {
 
-        public static void AddBanksDomainShared(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksDomainShared(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddVestaDddDomainEventBus();
+
+            return services;
         }
     }
 }

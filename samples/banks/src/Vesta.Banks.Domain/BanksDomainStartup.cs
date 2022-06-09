@@ -11,19 +11,22 @@ namespace Vesta.Banks
         private const string AzureServiceBusTopicNameConfig = "Azure:EventBus:TopicName";
         private const string AzureServiceBusSubscriberNameConfig = "Azure:EventBus:SubscriberName";
 
-        public static void AddBanksDomain(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksDomain(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddBanksDomainShared(configuration);
+            
+            services
+                .AddBanksDomainShared(configuration)
+                .AddBanksDomainSevices();
 
-            services.AddBanksDomainSevices();
+            services
+                .AddVestaEventBusAzure(options =>
+                {
+                    options.ConnectionString = configuration.GetValue<string>(AzureServiceBusConnectionStringConfig);
+                    options.TopicName = configuration.GetValue<string>(AzureServiceBusTopicNameConfig);
+                    options.SubscriberName = configuration.GetValue<string>(AzureServiceBusSubscriberNameConfig);
+                });
 
-            services.AddVestaEventBusAzure(options =>
-            {
-                options.ConnectionString = configuration.GetValue<string>(AzureServiceBusConnectionStringConfig);
-                options.TopicName = configuration.GetValue<string>(AzureServiceBusTopicNameConfig);
-                options.SubscriberName = configuration.GetValue<string>(AzureServiceBusSubscriberNameConfig);
-
-            });
+            return services;
         }
     }
 }
