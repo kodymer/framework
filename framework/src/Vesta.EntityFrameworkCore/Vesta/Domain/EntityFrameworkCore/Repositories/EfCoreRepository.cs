@@ -1,15 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Ardalis.GuardClauses;
+using Microsoft.EntityFrameworkCore;
+using Nito.AsyncEx;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using Vesta.Ddd.Domain.Entities;
 using Vesta.Ddd.Domain.Repositories;
-using Vesta.EntityFrameworkCore;
+using Vesta.EntityFrameworkCore.Abstracts;
 
 
 namespace Vesta.Domain.EntityFrameworkCore.Repositories
 {
-   
-    public abstract class EfCoreRepository<TDbContext, TEntity>
+
+    public abstract class ReadOnlyEfCoreRepository<TDbContext, TEntity> : IReadOnlyRepository<TEntity>
         where TDbContext : IEfCoreDbContext
         where TEntity : class, IEntity
     {
@@ -20,9 +21,9 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
         /// Constructor
         /// </summary>
         /// <param name="context">DbContext</param>
-        public EfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
+        public ReadOnlyEfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
         {
-            ArgumentNullException.ThrowIfNull(dbContextProvider, nameof(dbContextProvider));
+            Guard.Against.Null(dbContextProvider, nameof(dbContextProvider));
 
             _dbContextProvider = dbContextProvider;
         }
@@ -30,6 +31,11 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
         public Task<TDbContext> GetDbContextAsync()
         {
             return _dbContextProvider.GetDbContextAsync();
+        }
+
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return AsyncContext.Run(async () => await GetDbSetAsync()).AsQueryable();
         }
 
         public async virtual Task<List<TEntity>> GetListAsync(
@@ -50,13 +56,20 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
                 query = query.Include(includeProperty);
             }
 
-            return orderBy is null ? 
+            return orderBy is null ?
                 await query.ToListAsync() :
                 await orderBy(query).ToListAsync();
-            
+
         }
 
-        protected virtual async Task<DbSet<TEntity>> GetDbSetAsync()
+        public Task<List<TEntity>> GetListAsync(
+            Expression<Func<TEntity, bool>> predicate = null, 
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        {
+            return GetListAsync(predicate, orderBy);
+        }
+
+        protected async Task<DbSet<TEntity>> GetDbSetAsync()
         {
             return (await GetDbContextAsync()).Set<TEntity>();
         }
@@ -65,7 +78,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
     /// <summary>
     /// Enttity Framework repository base
     /// </summary>
-    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : EfCoreRepository<TDbContext, TEntity>, IRepository<TEntity, TKey> 
+    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : ReadOnlyEfCoreRepository<TDbContext, TEntity>, IRepository<TEntity, TKey>
         where TDbContext : IEfCoreDbContext
         where TEntity : class, IEntity<TKey>
     {
@@ -112,7 +125,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             var dbContext = await GetDbContextAsync();
             var dbSet = dbContext.Set<TEntity>();
             var entity = await dbSet.FindAsync(new object[] { id }, cancellationToken);
-            if(entity is null)
+            if (entity is null)
             {
                 return;
             }

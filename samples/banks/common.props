@@ -5,10 +5,11 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <RootNamespace>Vesta.Banks</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-     <VestaPackageVersion>1.0.0-2022060702</VestaPackageVersion>
+     <VestaPackageVersion>1.0.0-2022060803</VestaPackageVersion>
   </PropertyGroup>
 
 </Project>

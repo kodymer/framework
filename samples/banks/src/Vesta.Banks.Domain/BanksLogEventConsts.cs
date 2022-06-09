@@ -11,5 +11,6 @@ namespace Vesta.Banks.Domain
         public const int GenerateNewBankAccount = 100;
         public const int TransfersBetweenBankAccounts = 101;
         public const int GetBankAccounts = 102;
+        public const int GetBankTransferHistory = 103;
     }
 }

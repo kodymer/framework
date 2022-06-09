@@ -3,7 +3,7 @@
   <PropertyGroup>
     <netcoreapp>net6.0</netcoreapp>
     <LangVersion>latest</LangVersion>
-    <Version>1.0.0-2022060702</Version>
+    <Version>1.0.0-2022060901</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl></PackageProjectUrl>
@@ -30,5 +30,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="PostClean" AfterTargets="Clean">
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+    <!-- obj -->
+    <RemoveDir Directories="$(BaseOutputPath)" />
+    <!-- bin -->
+  </Target>
 
 </Project>

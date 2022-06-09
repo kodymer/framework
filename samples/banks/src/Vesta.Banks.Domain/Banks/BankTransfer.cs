@@ -1,26 +1,31 @@
-﻿using Ardalis.GuardClauses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vesta.Ddd.Domain.Auditing;
+﻿using Vesta.Ddd.Domain.Auditing;
 
 namespace Vesta.Banks
 {
     public class BankTransfer : CreationAuditedEntity<long>
     {
-        public BankTransfer(Guid bankAccountFromId, Guid bankAccountToId, decimal amount)
-        {
-            Guard.Against.NegativeOrZero(amount, nameof(amount));
+        public const string TableName = "BankTransferHistory";
 
-            BankAccountFromId = bankAccountFromId;
-            BankAccountToId = bankAccountToId;
+        public string BankAccountFromNumber { get; private set; }
+        public string BankAccountToNumber { get; private set; }
+        public decimal Amount { get; private set; }
+
+        public BankTransfer(string bankAccountFromNumber, string bankAccountToNumber, decimal amount)
+        {
+            BankAccountFromNumber = bankAccountFromNumber;
+            BankAccountToNumber = bankAccountToNumber;
             Amount = amount;
+
+            CreationTime = DateTime.Now; // Adding value here because it not work with Entity Framework DbContext
         }
 
-        public Guid BankAccountFromId { get; private set; }
-        public Guid BankAccountToId { get; private set; }
-        public decimal Amount { get; private set; }
+        public BankTransfer(string bankAccountFromNumber, string bankAccountToNumber, decimal amount, DateTime creationTime) // Necesary for Dapper
+        {
+            BankAccountFromNumber = bankAccountFromNumber;
+            BankAccountToNumber = bankAccountToNumber;
+            Amount = amount;
+
+            CreationTime = creationTime;
+        }
     }
 }

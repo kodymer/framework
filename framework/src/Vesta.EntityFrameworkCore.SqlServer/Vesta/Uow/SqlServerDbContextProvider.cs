@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Vesta.EntityFrameworkCore;
+using Vesta.EntityFrameworkCore.Abstracts;
 using Vesta.EntityFrameworkCore.SqlServer;
 
 namespace Vesta.Uow.EntityFrameworkCore.SqlServer

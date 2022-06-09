@@ -3,13 +3,17 @@ using Vesta.Ddd.Domain.Entities;
 
 namespace Vesta.Ddd.Domain.Repositories
 {
-
-    public interface IRepository<TEntity>
+    public interface IReadOnlyRepository<TEntity>
         where TEntity : IEntity
     {
+        /// <summary>
+        /// Get queryable
+        /// </summary>
+        /// <returns>Queryable</returns>
+        IQueryable<TEntity> GetQueryable();
 
         /// <summary>
-        /// Find a entity that matches the identifier 
+        /// Find a entity that matches the identifier. <see cref="TEntity"/>
         /// </summary>
         /// <param name="filter">ID</param>
         /// <param name="orderBy">ID</param>
@@ -19,31 +23,32 @@ namespace Vesta.Ddd.Domain.Repositories
                     Expression<Func<TEntity, bool>> predicate = null,
                     Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                     params string[] includeProperties);
-
     }
 
-    /// <summary>
-    /// Interfaz ISqlRepository
-    /// </summary>
-    public interface IRepository<TEntity, TKey> : IRepository<TEntity>
+    public interface IReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity>
+        where TEntity : IEntity<TKey>
+    {
+        /// <summary>
+        /// Get a entity. <see cref="TEntity"/>
+        /// </summary>
+        /// <param name="id">Entity ID</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Entity</returns>
+        ValueTask<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default);
+    }
+
+    public interface IRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TKey>
         where TEntity : IEntity<TKey>
     {
 
         /// <summary>
-        /// Find a entity that matches the identifier 
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <returns>Entity</returns>
-        ValueTask<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Insert a entity
+        /// Insert a entity. <see cref="TEntity"/>
         /// </summary>
         /// <param name="entity"></param>
         Task InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Removes the entity that matches the identifier 
+        /// Removes the entities that matches the identifier. <see cref="TEntity"/>
         /// </summary>
         /// <param name="id">Entity ID</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
@@ -51,7 +56,7 @@ namespace Vesta.Ddd.Domain.Repositories
         Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Remove a entity 
+        /// Remove a entity. <see cref="TEntity"/> 
         /// </summary>
         /// <param name="id">Entity</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
@@ -59,11 +64,18 @@ namespace Vesta.Ddd.Domain.Repositories
         Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Update a entity
+        /// Update a entity. <see cref="TEntity"/>
         /// </summary>
         /// <param name="id">Entity</param>
         /// <param name="autoSave">True, para save changes. Otherwise, False.</param>
         /// <param name="cancellationToken">Cancellation token</param>
         Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
+
+    }
+
+    public interface IRepository<TEntity> : IRepository<TEntity, int>
+        where TEntity : IEntity<int>
+    {
+
     }
 }

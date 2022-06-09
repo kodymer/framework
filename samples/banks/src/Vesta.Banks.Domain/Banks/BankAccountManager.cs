@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using Vesta.Banks.Bank;
+﻿using System.Text.RegularExpressions;
 
-namespace Vesta.Banks.Domain.Bank
+namespace Vesta.Banks
 {
     public class BankAccountManager : IBankAccountManager
     {

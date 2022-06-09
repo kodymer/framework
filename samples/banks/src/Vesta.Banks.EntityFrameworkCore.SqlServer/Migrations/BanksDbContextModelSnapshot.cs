@@ -22,16 +22,14 @@ namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Vesta.Banks.Bank.BankAccount", b =>
+            modelBuilder.Entity("Vesta.Banks.BankAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Balance")
-                        .ValueGeneratedOnAdd()
                         .HasPrecision(16, 4)
-                        .HasColumnType("decimal(16,4)")
-                        .HasDefaultValue(0m);
+                        .HasColumnType("decimal(16,4)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -77,6 +75,39 @@ namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BankAccounts", (string)null);
+                });
+
+            modelBuilder.Entity("Vesta.Banks.BankTransfer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(16, 4)
+                        .HasColumnType("decimal(16,4)");
+
+                    b.Property<string>("BankAccountFromNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankAccountToNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<string>("CreatorId")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CreatorId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BankTransferHistory", (string)null);
                 });
 #pragma warning restore 612, 618
         }

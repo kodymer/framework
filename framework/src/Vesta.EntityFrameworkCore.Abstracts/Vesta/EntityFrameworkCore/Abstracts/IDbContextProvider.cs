@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vesta.EntityFrameworkCore
+namespace Vesta.EntityFrameworkCore.Abstracts
 {
     public interface IDbContextProvider<TDbContext>
         where TDbContext : IEfCoreDbContext

@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaEntityFrameworkCore(this IServiceCollection services)
         {
+            services.AddVestaEntityFrameworkCoreAbstracts();
             services.AddVestaAuditing();
             services.AddVestaDddDomain();
             services.AddVestaUow();

@@ -20,7 +20,7 @@ namespace Vesta.EntityFrameworkCore
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             ApplyAuditConcepts();
-
+            
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 
             // TODO: publish events
@@ -60,5 +60,9 @@ namespace Vesta.EntityFrameworkCore
             AuditPropertySetter.SetDeletionProperties(entry.Entity);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplySoftDeleteQueryFilterConcept();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Ardalis.GuardClauses;
-using Vesta.EntityFrameworkCore;
+using Vesta.EntityFrameworkCore.Abstracts;
 
 namespace Vesta.Uow.EntityFrameworkCore
 {

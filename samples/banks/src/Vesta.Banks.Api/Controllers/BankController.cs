@@ -40,6 +40,24 @@ namespace Vesta.Banks.Controllers
             }
         }
 
+        [HttpGet("accounts")]
+        public async Task<IActionResult> GetBankAccountsAsync()
+        {
+
+            try
+            {
+
+                var bankAccounts = await _bankAppService.GetAllBankAccountList();
+
+                return Ok(bankAccounts);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
         [HttpPost("transfer")]
         public async Task<IActionResult> TransferAsync([FromBody] BankTransferInput input)
         {
@@ -49,6 +67,23 @@ namespace Vesta.Banks.Controllers
                 await _bankAppService.MakeTransferAsync(input);
 
                 return Ok();
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("transfers")]
+        public async Task<IActionResult> GetTransferHistoryAsync()
+        {
+
+            try
+            {
+                var bankTransferHistory = await _bankAppService.GetAllBankTransferList();
+
+                return Ok(bankTransferHistory);
             }
             catch (Exception)
             {

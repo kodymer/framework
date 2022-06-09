@@ -30,7 +30,7 @@ namespace Vesta.EventBus
 
         protected virtual void Subscribe(Type @event, IoCEventHandlerFactory eventHandlerFactory)
         {
-            var eventName = @event.FullName; // EventNameAttribute.GetOrDefault(@event);  // TODO: review 
+            var eventName = @event.FullName;
 
             Logger.LogInformation("The event has been recorded as {EventName}", eventName);
 

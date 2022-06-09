@@ -7,12 +7,20 @@ namespace Vesta.ProjectName
 {
     public static class ProjectNameApplicationStartup
     {
-        public static void AddProjectNameApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddProjectNameApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddProjectNameDomain(configuration);
-            services.AddProjectNameEntityFrameworkCore(configuration);
+            services
+                .AddProjectNameDomain(configuration)
+                .AddProjectNameEntityFrameworkCore(configuration)
+                .AddProjectNameAppSevices()
+                .AddProjectNameAutoMapper();
 
-            services.AddProjectNameAppSevices();
+            services
+                .AddVestaDddApplication();
+
+            return services;
         }
+
+
     }
 }
