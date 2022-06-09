@@ -5,7 +5,7 @@ using Vesta.Uow.EntityFrameworkCore.SqlServer;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class DependencyInjectionExtensions
+    public static class EntityFrameworkServiceCollectionExtensions
     {
         public static void AddVestaDbContext<TDbContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction = null, ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
             where TDbContext : DbContext, IEfCoreDbContext

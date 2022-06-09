@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vesta.Banks.Domain.Bank
+namespace Vesta.Banks
 {
     public class BusinessException : Exception
     {

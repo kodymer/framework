@@ -12,8 +12,8 @@ namespace Vesta.Banks.Application
     {
         public BankProfile()
         {
-
             CreateMap<BankAccount, BankAccountDto>();
+            CreateMap<BankTransfer, BankTransferOutput>();
         }
     }
 }

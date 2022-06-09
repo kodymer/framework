@@ -1,7 +1,8 @@
-﻿using Vesta.Ddd.Domain.Services;
+﻿using Vesta.Banks;
+using Vesta.Ddd.Domain.Services;
 using Vesta.EventBus.Abstracts;
 
-namespace Vesta.Banks.Bank
+namespace Vesta.Banks
 {
     public class BankTransferService : DomainService, IBankTransferService
     {
@@ -18,13 +19,7 @@ namespace Vesta.Banks.Bank
             accountFrom.Decrease(amount);
             accountTo.Increase(amount);
 
-            var bankTransfer = new BankTransfer(accountFrom.Id, accountTo.Id, amount);
-            accountFrom.Debits.Add(bankTransfer);
-            accountTo.Credits.Add(bankTransfer);
-
-            _eventBus.PublishAsync(accountFrom);
-            _eventBus.PublishAsync(accountTo);
-
+            var bankTransfer = new BankTransfer(accountFrom.Number, accountTo.Number, amount);
             return Task.FromResult(bankTransfer);
         }
     }

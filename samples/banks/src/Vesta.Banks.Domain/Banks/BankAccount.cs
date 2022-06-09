@@ -7,21 +7,18 @@ namespace Vesta.Banks
 
     public class BankAccount : FullAuditedAggregateRoot<Guid>
     {
-        public const decimal MinimumOpeningAmount = 100.00m;
+        public const string TableName = "BankAccounts";
         public const int NameMaxLength = 80;
+        public const decimal MinimumOpeningAmount = 100.00m;
 
 
         public string Number { get; set; }
         public decimal Balance { get; private set; }
 
-        public ICollection<BankTransfer> Debits { get; private set; }
-        public ICollection<BankTransfer> Credits { get; private set; }
-
         public BankAccount(Guid id)
             : base(id)
         {
-            Debits = new HashSet<BankTransfer>();
-            Credits = new HashSet<BankTransfer>();
+
         }
 
         public void AssignOpeningBalance(decimal intialBalance)

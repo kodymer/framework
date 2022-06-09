@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.Bank;
-using Vesta.Banks.Domain.Bank;
 
 namespace Vesta.Banks.Configuration
 {
@@ -10,6 +8,7 @@ namespace Vesta.Banks.Configuration
         {
             services.AddTransient<IBankAccountManager, BankAccountManager>();
             services.AddTransient<IBankTransferService, BankTransferService>();
+            services.AddTransient<IBankAccountPublisher, BankAccountPublisher>();
         }
     }
 }

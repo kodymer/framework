@@ -5,10 +5,11 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <RootNamespace>Vesta.ProjectName</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-     <VestaPackageVersion>1.0.0-2022060702</VestaPackageVersion>
+     <VestaPackageVersion>1.0.0-2022060901</VestaPackageVersion>
   </PropertyGroup>
 
 </Project>

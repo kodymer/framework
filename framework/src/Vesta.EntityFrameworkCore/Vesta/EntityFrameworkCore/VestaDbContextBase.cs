@@ -60,5 +60,9 @@ namespace Vesta.EntityFrameworkCore
             AuditPropertySetter.SetDeletionProperties(entry.Entity);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplySoftDeleteQueryFilterConcept();
+        }
     }
 }

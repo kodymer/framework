@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Vesta.Banks.Bank;
 
-namespace Vesta.Banks.Domain.Bank
+namespace Vesta.Banks
 {
     public interface IBankAccountManager
     {

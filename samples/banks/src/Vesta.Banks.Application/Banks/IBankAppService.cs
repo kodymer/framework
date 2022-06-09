@@ -5,8 +5,11 @@ using Vesta.Banks.Application;
 namespace Vesta.Banks.Bank
 {
     public interface IBankAppService : IApplicationService
-    {
-        Task<List<BankAccountDto>> GetAllList();
+    { 
+
+        Task<List<BankTransferOutput>> GetAllBankTransferList(CancellationToken cancellationToken = default);
+
+        Task<List<BankAccountDto>> GetAllBankAccountList(CancellationToken cancellationToken = default);
 
         Task CreateBankAccountAsync(CreateBankAccountInput input, CancellationToken cancellationToken = default);
 

@@ -15,8 +15,9 @@ namespace Vesta.Ddd.Domain.Services
 
         public IServiceProvider ServiceProvider { get; set; }
 
-        protected ILogger Logger => loggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance;
+        protected ILogger Logger => _logger ??= _loggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance;
 
-        private ILoggerFactory loggerFactory => ServiceProvider.GetService<ILoggerFactory>();
+        private ILogger _logger;
+        private ILoggerFactory _loggerFactory => ServiceProvider.GetService<ILoggerFactory>();
     }
 }

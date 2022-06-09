@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Microsoft.EntityFrameworkCore;
+using Nito.AsyncEx;
 using System.Linq.Expressions;
 using Vesta.Ddd.Domain.Entities;
 using Vesta.Ddd.Domain.Repositories;
@@ -9,7 +10,7 @@ using Vesta.EntityFrameworkCore.Abstracts;
 namespace Vesta.Domain.EntityFrameworkCore.Repositories
 {
 
-    public abstract class EfCoreRepository<TDbContext, TEntity>
+    public abstract class ReadOnlyEfCoreRepository<TDbContext, TEntity> : IReadOnlyRepository<TEntity>
         where TDbContext : IEfCoreDbContext
         where TEntity : class, IEntity
     {
@@ -20,7 +21,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
         /// Constructor
         /// </summary>
         /// <param name="context">DbContext</param>
-        public EfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
+        public ReadOnlyEfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
         {
             Guard.Against.Null(dbContextProvider, nameof(dbContextProvider));
 
@@ -30,6 +31,11 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
         public Task<TDbContext> GetDbContextAsync()
         {
             return _dbContextProvider.GetDbContextAsync();
+        }
+
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return AsyncContext.Run(async () => await GetDbSetAsync()).AsQueryable();
         }
 
         public async virtual Task<List<TEntity>> GetListAsync(
@@ -63,7 +69,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             return GetListAsync(predicate, orderBy);
         }
 
-        protected virtual async Task<DbSet<TEntity>> GetDbSetAsync()
+        protected async Task<DbSet<TEntity>> GetDbSetAsync()
         {
             return (await GetDbContextAsync()).Set<TEntity>();
         }
@@ -72,7 +78,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
     /// <summary>
     /// Enttity Framework repository base
     /// </summary>
-    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : EfCoreRepository<TDbContext, TEntity>, IEfCoreRepository<TEntity, TKey>
+    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : ReadOnlyEfCoreRepository<TDbContext, TEntity>, IRepository<TEntity, TKey>
         where TDbContext : IEfCoreDbContext
         where TEntity : class, IEntity<TKey>
     {
@@ -100,7 +106,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             return entity;
         }
 
-        public virtual async Task InsertAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default)
+        public virtual async Task InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(entity, nameof(entity));
 
@@ -114,7 +120,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             }
         }
 
-        public async virtual Task DeleteAsync(TKey id, bool autoSave, CancellationToken cancellationToken = default)
+        public async virtual Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default)
         {
             var dbContext = await GetDbContextAsync();
             var dbSet = dbContext.Set<TEntity>();
@@ -132,7 +138,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             }
         }
 
-        public async virtual Task DeleteAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default)
+        public async virtual Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(entity, nameof(entity));
 
@@ -153,7 +159,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
 
         }
 
-        public async virtual Task UpdateAsync(TEntity entity, bool autoSave, CancellationToken cancellationToken = default)
+        public async virtual Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(entity, nameof(entity));
 
@@ -167,26 +173,6 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             {
                 await dbContext.SaveChangesAsync(cancellationToken);
             }
-        }
-
-        public Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
-        {
-            return InsertAsync(entity, false, cancellationToken);
-        }
-
-        public Task DeleteAsync(TKey id, CancellationToken cancellationToken = default)
-        {
-            return DeleteAsync(id, false, cancellationToken);
-        }
-
-        public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
-        {
-            return DeleteAsync(entity, false, cancellationToken);
-        }
-
-        public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
-        {
-            return UpdateAsync(entity, false, cancellationToken);
         }
     }
 }

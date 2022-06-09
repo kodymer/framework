@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"/>
+  <Import Project="..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,9 +13,11 @@
 
     <!--
     <PackageReference Include="Vesta.EntityFrameworkCore.SqlServer" Version="$(VestaPackageVersion)" />
+    <PackageReference Include="Vesta.Dapper" Version="$(VestaPackageVersion)" />
     -->
     
     <ProjectReference Include="..\..\..\..\framework\src\Vesta.EntityFrameworkCore.SqlServer\Vesta.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper\Vesta.Dapper.csproj" />
     
   </ItemGroup>
 

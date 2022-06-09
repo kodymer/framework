@@ -9,19 +9,22 @@ namespace Vesta.ProjectName
     {
         public static void AddProjectNameApi(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddProjectNameApplication(configuration);
+            services
+                .AddProjectNameApplication(configuration);
 
-            services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-            });
+            services
+                .AddApiVersioning(options =>
+                {
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                });
 
-            services.AddVestaAspNetCoreMvc(jsonConfigure: options =>
-            {
-                options.JsonSerializerOptions.WriteIndented = true;
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+            services
+                .AddVestaAspNetCoreMvc(jsonConfigure: options =>
+                {
+                    options.JsonSerializerOptions.WriteIndented = true;
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
         }
     }
 }

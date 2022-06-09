@@ -18,11 +18,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.AutoMapper\Vesta.AutoMapper.csproj" />
+    <Folder Include="Vesta\Ddd\Domain\EventBus\Etos\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Vesta\Ddd\Domain\EventBus\Etos\" />
+    <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
   </ItemGroup>
 
 </Project>

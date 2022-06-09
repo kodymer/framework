@@ -1,4 +1,4 @@
-﻿namespace Vesta.Banks.Bank
+﻿namespace Vesta.Banks
 {
     public interface IBankTransferService
     {

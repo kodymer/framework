@@ -1,48 +1,90 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Text.Json;
-using Vesta.Ddd.Application.Services;
-using Vesta.Ddd.Domain.Entities;
-using Vesta.Ddd.Domain.Repositories;
+using Vesta.Banks.Application;
 using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
-using Vesta.Banks.Domain.Bank;
-using Vesta.Banks.Application;
-using Vesta.EventBus.Abstracts;
+using Vesta.Ddd.Application.Services;
+using Vesta.Ddd.Domain.Entities;
 
 namespace Vesta.Banks.Bank
 {
     public class BankAppService : ApplicationService, IBankAppService
     {
         private readonly IBankAccountRepository _repository;
+        private readonly IBankTransferRepository _bankTransferRepository;
         private readonly IBankAccountManager _bankAccountManager;
         private readonly IBankTransferService _bankTransferService;
+        private readonly IBankAccountPublisher _bankAccountPublisher;
 
         public BankAppService(
             IBankAccountRepository repository,
+            IBankTransferRepository bankTransferRepository,
             IBankAccountManager bankAccountManager,
             IBankTransferService bankTransferService,
-            IDistributedEventBus eventBus)
+            IBankAccountPublisher bankAccountPublisher)
         {
             _repository = repository;
+            _bankTransferRepository = bankTransferRepository;
             _bankAccountManager = bankAccountManager;
             _bankTransferService = bankTransferService;
+            _bankAccountPublisher = bankAccountPublisher;
         }
 
-        public async Task<List<BankAccountDto>> GetAllList()
+
+        public async Task<List<BankTransferOutput>> GetAllBankTransferList(CancellationToken cancellationToken = default)
         {
-            Logger.LogInformation(BanksLogEventConsts.GetBankAccounts,
+            List<BankTransferOutput> dtos = null;
+
+            try
+            {
+                Logger.LogInformation(BanksLogEventConsts.GetBankTransferHistory,
+                    "Getting all bank transfers.");
+
+                var entities = (await _bankTransferRepository.GelAllAsync(cancellationToken)).ToList();
+
+                Logger.LogDebug(BanksLogEventConsts.GetBankTransferHistory,
+                    "{Count} bank transfers have been obtained.", entities.Count());
+
+                dtos = ObjectMapper.Map<List<BankTransferOutput>>(entities);
+            }
+            catch (Exception e)
+            {
+
+                Logger.LogError(BanksLogEventConsts.GetBankTransferHistory, e,
+                    "Could not get the bank transfers. See the exception detail for more details.");
+
+                throw;
+            }
+
+            return dtos;
+        }
+
+        public async Task<List<BankAccountDto>> GetAllBankAccountList(CancellationToken cancellationToken = default)
+        {
+            List<BankAccountDto> dtos = null;
+
+            try
+            {
+                Logger.LogInformation(BanksLogEventConsts.GetBankAccounts,
                 "Getting all bank accounts.");
 
-            var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number), includeProperties: new string[]
+                var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number));
+
+                Logger.LogDebug(BanksLogEventConsts.GetBankAccounts,
+                    "{Count} bank accounts have been obtained.", entities.Count);
+
+                dtos = ObjectMapper.Map<List<BankAccountDto>>(entities);
+            }
+            catch (Exception e)
             {
-                "Debits",
-                "Credits"
-            });
 
-            Logger.LogDebug(BanksLogEventConsts.GetBankAccounts, 
-                "{Count} bank accounts have been obtained.", entities.Count);
+                Logger.LogError(BanksLogEventConsts.GetBankAccounts, e,
+                    "Could not get the bank accounts. See the exception detail for more details.");
 
-            return ObjectMapper.Map<List<BankAccountDto>>(entities);
+                throw;
+            }
+
+            return dtos;
         }
 
         public async Task CreateBankAccountAsync(CreateBankAccountInput input, CancellationToken cancellationToken = default)
@@ -57,9 +99,9 @@ namespace Vesta.Banks.Bank
                 Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account: {Data}", JsonSerializer.Serialize(bankAccount));
 
-                await _repository.InsertAsync(bankAccount, autoSave: true, cancellationToken);
+                await _repository.InsertAsync(bankAccount, true, cancellationToken);
 
-                Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
+                Logger.LogInformation(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account created!");
             }
             catch (UnfulfilledRequirementException e)
@@ -91,25 +133,31 @@ namespace Vesta.Banks.Bank
                 Logger.LogDebug(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Getting bank account from by ID: {Id}. ", input.BankAccountFromId);
 
-                var bankAccountFrom = await _repository.GetAsync(input.BankAccountFromId);
+                var bankAccountFrom = await _repository.GetAsync(input.BankAccountFromId, cancellationToken);
 
                 Logger.LogDebug(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Getting bank account to by ID: {Id}. ", input.BankAccountToId);
 
-                var bankAccountTo = await _repository.GetAsync(input.BankAccountToId);
+                var bankAccountTo = await _repository.GetAsync(input.BankAccountToId, cancellationToken);
 
                 Logger.LogDebug(BanksLogEventConsts.TransfersBetweenBankAccounts,
-                    "Making trasnfer by €{Id}. ", input.Amount);
+                    "Making trasnfer by €{Amount}. ", input.Amount);
 
                 var bankTransfer = await _bankTransferService.MakeTransferAsync(bankAccountFrom, bankAccountTo, input.Amount);
 
                 await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken);
-                await _repository.UpdateAsync(bankAccountTo,  cancellationToken: cancellationToken);
+                await _repository.UpdateAsync(bankAccountTo, cancellationToken: cancellationToken);
 
-                await CurrentUnitOfWork.SaveChangesAsync(cancellationToken);
+                await CurrentUnitOfWork.SaveChangesAsync(cancellationToken); // Not affect Dapper Repository
 
-                Logger.LogDebug(BanksLogEventConsts.TransfersBetweenBankAccounts,
+                Logger.LogInformation(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Successful transfer correctly. ", input.Amount);
+
+
+                await _bankTransferRepository.InsertAsync(bankTransfer, cancellationToken); // Dapper repository not support Unit of Work pattern
+
+                await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
+                await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
 
             }
             catch (EntityNotFoundException e)

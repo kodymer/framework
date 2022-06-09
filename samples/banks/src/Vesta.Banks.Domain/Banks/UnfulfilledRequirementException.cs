@@ -1,8 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Vesta.Banks.Domain.Bank;
-
-namespace Vesta.Banks.Bank
+﻿namespace Vesta.Banks
 {
     [Serializable]
     public class UnfulfilledRequirementException : BusinessException

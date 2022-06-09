@@ -17,13 +17,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.EntityFrameworkCore.SqlServer", "src\Vesta.ProjectName.EntityFrameworkCore.SqlServer\Vesta.ProjectName.EntityFrameworkCore.SqlServer.csproj", "{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests", "test\Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests\Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests.csproj", "{E39A1F28-085A-49A9-915E-5DA305D0148E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests", "test\Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests\Vesta.ProjectName.EntityFrameworkCore.SqlServer.Tests.csproj", "{E39A1F28-085A-49A9-915E-5DA305D0148E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ProjectName.Api.Tests", "test\Vesta.ProjectName.Api.Tests\Vesta.ProjectName.Api.Tests.csproj", "{66FD1305-960D-4D2F-80A5-81F9C95E4860}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.Api.Tests", "test\Vesta.ProjectName.Api.Tests\Vesta.ProjectName.Api.Tests.csproj", "{66FD1305-960D-4D2F-80A5-81F9C95E4860}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.Domain.Tests", "test\Vesta.ProjectName.Domain.Tests\Vesta.ProjectName.Domain.Tests.csproj", "{0D0BC463-121E-4594-B712-65575A999998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ProjectName.Application.Tests", "test\Vesta.ProjectName.Application.Tests\Vesta.ProjectName.Application.Tests.csproj", "{622564E0-8D94-4949-9B22-1D31D73540A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ProjectName.Application.Tests", "test\Vesta.ProjectName.Application.Tests\Vesta.ProjectName.Application.Tests.csproj", "{622564E0-8D94-4949-9B22-1D31D73540A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2B9C8D34-8D23-476D-949F-7E9B964A48E6}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

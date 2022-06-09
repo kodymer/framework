@@ -20,12 +20,11 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Dapper.SqlBuilder" Version="2.0.78" />
-    <PackageReference Include="DapperExtensions" Version="1.7.0" />
+    <PackageReference Include="Dapper.Rainbow" Version="2.0.78" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
-    <ProjectReference Include="..\Vesta.EntityFrameworkCore.Abstracts\Vesta.EntityFrameworkCore.Abstracts.csproj" />
   </ItemGroup>
 
 </Project>
