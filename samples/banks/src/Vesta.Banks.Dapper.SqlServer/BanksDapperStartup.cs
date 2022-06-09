@@ -6,13 +6,14 @@ namespace Vesta.Banks.Dapper
 {
     public static class BanksDapperStartup
     {
-        public static void AddBanksDapper(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksDapper(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddBanksDomain(configuration);
-
             services
+                .AddBanksDomain(configuration)
                 .AddBanksDatabase(configuration)
                 .AddBanksRepositories();
+
+            return services;
         }
     }
 }

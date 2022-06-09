@@ -6,15 +6,12 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
-
   <ItemGroup>
+    <PackageReference Include="Vesta.Ddd.Domain.EventBus" Version="$(VestaPackageVersion)" />
 
     <!--
-    <PackageReference Include="Vesta.Ddd.Domain.EventBus" Version="$(VestaPackageVersion)" />
-    -->
-
     <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain.EventBus\Vesta.Ddd.Domain.EventBus.csproj" />
-
+    -->
   </ItemGroup>
   
 </Project>

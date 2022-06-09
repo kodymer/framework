@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)" />
     
     <!--
-    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)" />
-    -->
-    
     <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Application\Vesta.Ddd.Application.csproj" />    
-    
+    -->
   </ItemGroup>
 
   <ItemGroup>

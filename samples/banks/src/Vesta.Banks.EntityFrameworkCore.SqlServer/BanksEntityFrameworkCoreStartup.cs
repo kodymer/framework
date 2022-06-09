@@ -6,13 +6,14 @@ namespace Vesta.Banks.EntityFrameworkCore
 {
     public static class BanksEntityFrameworkCoreStartup
     {
-        public static void AddBanksEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddBanksDomain(configuration);
-
             services
+                .AddBanksDomain(configuration)
                 .AddBanksDbContext(configuration)
                 .AddBanksRepositories();
+
+            return services;
         }
     }
 }

@@ -9,17 +9,21 @@ namespace Vesta.Banks
 {
     public static class BanksApplicationStartup
     {
-        public static void AddBanksApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBanksApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddVestaDddApplication();
 
-            services.AddBanksDomain(configuration);
-            services.AddBanksEntityFrameworkCore(configuration);
-            services.AddBanksDapper(configuration);
+            services
+                .AddBanksDomain(configuration)
+                .AddBanksEntityFrameworkCore(configuration)
+                .AddBanksDapper(configuration)
+                .AddBanksAppSevices()
+                .AddBanksEventHandlers()
+                .AddBanksAutoMapper();
 
-            services.AddBanksAppSevices();
-            services.AddBanksEventHandlers();
-            services.AddBanksAutoMapper();
+            services
+                .AddVestaDddApplication();
+
+            return services;
         }
     }
 }
