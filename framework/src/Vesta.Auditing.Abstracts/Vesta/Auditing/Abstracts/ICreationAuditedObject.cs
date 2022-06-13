@@ -4,6 +4,6 @@
     {
         DateTime CreationTime { get; set; }
 
-        string CreatorId { get; set; }
+        Guid? CreatorId { get; set; }
     }
 }

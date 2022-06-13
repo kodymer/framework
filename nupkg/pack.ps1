@@ -20,11 +20,6 @@ foreach($project in $projects) {
      
     ###########################################################################################################
 
-    # Clean previous build and compile newly
-    if(-Not(Test-Path -Path (Join-Path $projectFolder "bin/Release"))){
-        Remove-Item -Recurse (Join-Path $projectFolder "bin/Release")
-    }
-
     dotnet msbuild -property:Configuration=Release -property:SourceLinkCreate=false
     & dotnet pack -c Release --no-build --include-symbols
     

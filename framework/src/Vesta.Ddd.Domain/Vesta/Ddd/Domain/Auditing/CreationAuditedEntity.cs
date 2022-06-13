@@ -11,7 +11,7 @@ namespace Vesta.Ddd.Domain.Auditing
     {
         public virtual DateTime CreationTime { get; set; }
 
-        public virtual string CreatorId { get; set; }
+        public virtual Guid? CreatorId { get; set; }
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace Vesta.Ddd.Domain.Auditing
     {
         public virtual DateTime CreationTime { get; set; }
 
-        public virtual string CreatorId { get; set; }
+        public virtual Guid? CreatorId { get; set; }
 
         protected CreationAuditedEntity()
         {

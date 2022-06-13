@@ -14,25 +14,15 @@ namespace Vesta.ProjectName
     /// </summary>
     public class ProjectNameApiHostStartup
     {
-        /// <summary>
-        /// Constructor por defecto
-        /// </summary>
-        /// <param name="configuration"></param>
+
         public ProjectNameApiHostStartup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        /// <summary>
-        /// Inyecci�n de la configuraci�n
-        /// </summary>
         public IConfiguration Configuration { get; }
 
 
-        /// <summary>
-        /// M�todo llamado en tiempo de ejecuci�n.  Utilizado para agregar servicios al contenedor.
-        /// </summary>
-        /// <param name="services">lista de servicios a agregar</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddProjectNameApi(Configuration);
@@ -43,9 +33,7 @@ namespace Vesta.ProjectName
             services.AddAuthentication(Configuration);
         }
 
-        /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        /// </summary>
+ 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -57,21 +45,26 @@ namespace Vesta.ProjectName
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
-            app.UseSwagger(Configuration);
 
-            app.UseAuthentication();
+            app.UseSwagger(Configuration);
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapHealthChecks();
-                endpoints.MapDefaultControllerRoute();
+                endpoints
+                    .MapControllers()
+                    .RequireAuthorization(); // <- Comment, if you don't want protection
+
+                endpoints
+                    .MapHealthChecks();
+
+                endpoints
+                    .MapDefaultControllerRoute();
             });
         }
     }

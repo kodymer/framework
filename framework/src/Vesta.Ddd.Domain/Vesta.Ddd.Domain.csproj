@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Vesta.Auditing.Abstracts\Vesta.Auditing.Abstracts.csproj" />
     <ProjectReference Include="..\Vesta.Ddd.Domain.EventBus\Vesta.Ddd.Domain.EventBus.csproj" />
+    <ProjectReference Include="..\Vesta.Security\Vesta.Security.csproj" />
   </ItemGroup>
 
 </Project>

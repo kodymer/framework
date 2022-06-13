@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vesta.Banks.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using Vesta.Banks.EntityFrameworkCore;
 namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
 {
     [DbContext(typeof(BanksDbContext))]
-    partial class BanksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220613175756_Update_Autit_User_Id_Type")]
+    partial class Update_Autit_User_Id_Type
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Vesta.Core.DependencyInjection;
+using Vesta.Security.Users;
 
 namespace Vesta.Ddd.Domain.Services
 {
@@ -14,6 +10,8 @@ namespace Vesta.Ddd.Domain.Services
     {
 
         public IServiceProvider ServiceProvider { get; set; }
+
+        protected ICurrentUser CurrenUser => ServiceProvider.GetService<ICurrentUser>();
 
         protected ILogger Logger => _logger ??= _loggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance;
 

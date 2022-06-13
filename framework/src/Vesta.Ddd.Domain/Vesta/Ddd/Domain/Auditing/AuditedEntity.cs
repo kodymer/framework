@@ -10,7 +10,7 @@ namespace Vesta.Ddd.Domain.Auditing
     {
         public virtual DateTime? LastModificationTime { get; set; }
 
-        public virtual string LastModifierId { get; set; }
+        public virtual Guid? LastModifierId { get; set; }
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace Vesta.Ddd.Domain.Auditing
     {
         public virtual DateTime? LastModificationTime { get; set; }
 
-        public virtual string LastModifierId { get; set; }
+        public virtual Guid? LastModifierId { get; set; }
 
         protected AuditedEntity()
         {

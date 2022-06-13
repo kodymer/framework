@@ -6,6 +6,6 @@ namespace Vesta.Auditing.Abstracts
     {
         DateTime? DeletionTime { get; set; }
 
-        string DeleterId { get; set; }
+        Guid? DeleterId { get; set; }
     }
 }

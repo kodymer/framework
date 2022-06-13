@@ -57,19 +57,20 @@ namespace Vesta.Banks
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
-            app.UseSwagger(Configuration);
 
-            app.UseAuthentication();
+            app.UseSwagger(Configuration);
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             
+
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers()
+                    .RequireAuthorization();
                 endpoints.MapHealthChecks();
                 endpoints.MapDefaultControllerRoute();
             });
