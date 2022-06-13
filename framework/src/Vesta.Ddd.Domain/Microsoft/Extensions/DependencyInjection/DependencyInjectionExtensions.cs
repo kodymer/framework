@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddVestaAuditingAbstracts();             
             services.AddVestaDddDomainEventBus();             
+            services.AddVestaSecurity();             
         }
     }
 }

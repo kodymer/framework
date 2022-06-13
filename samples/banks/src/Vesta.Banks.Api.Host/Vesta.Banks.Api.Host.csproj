@@ -35,4 +35,8 @@
     <ProjectReference Include="..\Vesta.Banks.Api\Vesta.Banks.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\libs\" />
+  </ItemGroup>
+
 </Project>

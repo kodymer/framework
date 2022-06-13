@@ -29,7 +29,7 @@ namespace Vesta.Banks.EntityFrameworkCore
                 b.ToTable(BankTransfer.TableName);
                 b.HasKey(p => p.Id);
 
-                //b.ConfigureCreationAudited();
+                b.ConfigureCreationAudited();
 
                 b.Property(p => p.BankAccountFromNumber).IsRequired();
                 b.Property(p => p.BankAccountToNumber).IsRequired();

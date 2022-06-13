@@ -12,7 +12,7 @@ namespace Vesta.Ddd.Domain.Auditing
 
         public virtual DateTime? DeletionTime { get; set; }
 
-        public virtual string DeleterId { get; set; }
+        public virtual Guid? DeleterId { get; set; }
 
     }
 
@@ -28,7 +28,7 @@ namespace Vesta.Ddd.Domain.Auditing
 
         public virtual DateTime? DeletionTime { get; set; }
 
-        public virtual string DeleterId { get; set; }
+        public virtual Guid? DeleterId { get; set; }
 
         protected FullAuditedEntity()
         {

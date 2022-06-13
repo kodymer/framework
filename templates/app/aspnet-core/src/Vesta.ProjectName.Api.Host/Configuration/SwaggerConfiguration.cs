@@ -19,7 +19,12 @@ namespace Vesta.ProjectName.Configuration
             var authenticationOptions = configuration.GetSection(AuthenticationOptions.SectionName)
                 .Get<AuthenticationOptions>();
 
-            //Servicio de Swagger
+            var scopes = new Dictionary<string, string>();
+            foreach(var scope in authenticationOptions.Scope.Split(" "))
+            {
+                scopes.TryAdd(scope, scope);
+            }
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "[Asisa][Vesta][ProjectName] API", Version = "v1" });
@@ -34,13 +39,12 @@ namespace Vesta.ProjectName.Configuration
                         {
                             AuthorizationUrl = new Uri($"{authenticationOptions.Authority}/connect/authorize"),
                             TokenUrl = new Uri($"{authenticationOptions.Authority}/connect/token"),
-                            Scopes = new Dictionary<string, string>
-                            {
-                                { authenticationOptions.Scope, "Base net6 API" }
-                            }
+                            Scopes = scopes
                         }
-                    }
+                    },
+                    In = ParameterLocation.Header
                 });
+
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -81,8 +85,9 @@ namespace Vesta.ProjectName.Configuration
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"{applicationOptions.PathPrefix}/swagger/v1/swagger.json", "[Asisa][Vesta][ProjectName] API v1");
-                c.OAuthClientId(authenticationOptions.SwaggerClientId);
-                c.OAuthAppName("Base API");
+
+                c.OAuthClientId(authenticationOptions.Audience);
+                c.OAuthAppName("Asisa Vesta ProjectName API");
                 c.OAuthUsePkce();
             });
 

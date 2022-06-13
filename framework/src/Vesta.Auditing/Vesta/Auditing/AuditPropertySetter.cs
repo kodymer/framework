@@ -1,17 +1,18 @@
 ﻿using System.Security.Principal;
 using Vesta.Auditing.Abstracts;
 using Vesta.Security.Claims;
+using Vesta.Security.Users;
 
 namespace Vesta.Auditing
 {
     public class AuditPropertySetter : IAuditPropertySetter
     {
 
-        private readonly IPrincipal _principal;
+        private readonly ICurrentUser _user;
 
-        public AuditPropertySetter(ICurrentPrincipalAccessor principalAccessor)
+        public AuditPropertySetter(ICurrentUser user)
         {
-            _principal = principalAccessor.Principal;
+            _user = user;
         }
 
         public void SetCreationProperties(object targetObject)
@@ -30,7 +31,7 @@ namespace Vesta.Auditing
 
         private void SetCreationUser(ICreationAuditedObject auditableEntity)
         {
-            auditableEntity.CreatorId = _principal?.Identity?.Name;
+            auditableEntity.CreatorId = _user.Id;
         }
 
         public void SetModificationProperties(object targetObject)
@@ -49,7 +50,7 @@ namespace Vesta.Auditing
 
         private void SetModificationUser(IModificationAuditedObject auditableEntity)
         {
-            auditableEntity.LastModifierId = _principal?.Identity?.Name;
+            auditableEntity.LastModifierId = _user.Id;
         }
 
         public void SetDeletionProperties(object targetObject)
@@ -69,7 +70,7 @@ namespace Vesta.Auditing
 
         private void SetDeletionUser(IDeletionAuditedObject auditableEntity)
         {
-            auditableEntity.DeleterId = _principal?.Identity?.Name;
+            auditableEntity.DeleterId = _user.Id;
         }
     }
 }

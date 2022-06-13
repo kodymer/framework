@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Vesta.Core.DependencyInjection;
+using Vesta.Security.Users;
 using Vesta.Uow;
 
 namespace Vesta.Ddd.Application.Services
@@ -15,6 +16,8 @@ namespace Vesta.Ddd.Application.Services
         protected IUnitOfWork CurrentUnitOfWork => ServiceProvider.GetRequiredService<IUnitOfWork>();
 
         protected IMapper ObjectMapper => ServiceProvider.GetService<IMapper>();
+
+        protected ICurrentUser CurrenUser =>  ServiceProvider.GetService<ICurrentUser>();
 
         protected ILogger Logger => _logger ??= _loggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance;
 

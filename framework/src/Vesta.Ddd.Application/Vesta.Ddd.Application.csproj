@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vesta.AutoMapper\Vesta.AutoMapper.csproj" />
+    <ProjectReference Include="..\Vesta.Security\Vesta.Security.csproj" />
     <ProjectReference Include="..\Vesta.Uow\Vesta.Uow.csproj" />
   </ItemGroup>
 

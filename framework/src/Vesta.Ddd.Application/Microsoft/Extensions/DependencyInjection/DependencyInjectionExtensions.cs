@@ -4,6 +4,7 @@
     {
         public static void AddVestaDddApplication(this IServiceCollection services)
         {
+            services.AddVestaSecurity();
             services.AddVestaUow();
         }
     }

@@ -4,7 +4,7 @@
     {
         DateTime? LastModificationTime { get; set; }
 
-        string LastModifierId { get; set; }
+        Guid? LastModifierId { get; set; }
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Vesta.ProjectName.Options;
 
 namespace Vesta.ProjectName.Configuration
@@ -11,16 +12,29 @@ namespace Vesta.ProjectName.Configuration
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            var authenticationOptions = configuration
+                    .GetSection(AuthenticationOptions.SectionName)
+                    .Get<AuthenticationOptions>();
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    var authenticationOptions = configuration
-                        .GetSection(AuthenticationOptions.SectionName)
-                        .Get<AuthenticationOptions>();
-
                     options.Authority = authenticationOptions.Authority;
                     options.Audience = authenticationOptions.Audience;
-                    
+
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateAudience = true,
+                        ValidAudience = authenticationOptions.Audience,
+
+                        ValidateIssuer = true,
+                        ValidIssuer = authenticationOptions.Authority
+
+                    };
+
+                    options.Validate();
+
                 });
 
             return services;

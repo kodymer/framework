@@ -23,7 +23,7 @@ namespace Vesta.EntityFrameworkCore
             
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 
-            // TODO: publish events
+            // TODO: prepare for publish events
         }
 
         private void ApplyAuditConcepts()
