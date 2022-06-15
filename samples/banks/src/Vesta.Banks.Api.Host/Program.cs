@@ -54,6 +54,7 @@ namespace Vesta.Banks
 
 
                 })
+                .UseEventBus()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
