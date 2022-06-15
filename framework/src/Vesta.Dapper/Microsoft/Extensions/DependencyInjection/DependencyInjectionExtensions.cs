@@ -4,7 +4,7 @@
     {
         public static void AddVestaDapper(this IServiceCollection services)
         {
-
+            services.AddVestaDddDomain();
         }
     }
 }

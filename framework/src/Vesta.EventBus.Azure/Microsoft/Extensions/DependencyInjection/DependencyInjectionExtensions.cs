@@ -31,7 +31,6 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
             services.AddSingleton<IAzureServiceBusMessageConsumer, AzureServiceBusMessageConsumer>();
-
         }
     }
 }

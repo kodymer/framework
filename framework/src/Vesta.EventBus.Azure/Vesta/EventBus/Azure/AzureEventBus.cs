@@ -34,7 +34,7 @@ namespace Vesta.EventBus.Azure
             _publisherPool = publisherPool;
         }
 
-        public void Initialize()
+        internal protected override void Initialize()
         {
             Logger.LogInformation($"Initializing event bus service.");
 
