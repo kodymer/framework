@@ -9,7 +9,7 @@ $v = "$($version)".Trim(' ')
 foreach($project in $projects) {
     $projectName = $project.Substring($project.LastIndexOf("/") + 1)
     # Write-host "$($projectName).$($v).nupkg"
-    & dotnet nuget push "$($projectName).$($v).nupkg"--source "HLA.Viena.Feed" --api-key az --skip-duplicate --interactive
+    & dotnet nuget push "$($projectName).$($v).nupkg"--source "Vesta.Feed" --api-key az --skip-duplicate --interactive
 }
 
 # Go back to the pack folder

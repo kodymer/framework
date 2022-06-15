@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <netcoreapp>net6.0</netcoreapp>
+    <NetCoreApp>net6.0</NetCoreApp>
     <LangVersion>latest</LangVersion>
     <Version>1.0.0-2022061301</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -21,6 +21,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Deterministic>true</Deterministic>
+
+    <MicrosoftPackageVersion>6.0.0</MicrosoftPackageVersion>
 
   </PropertyGroup>
 
