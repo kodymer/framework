@@ -28,6 +28,8 @@ namespace Vesta.EventBus
             _serviceProvider = serviceProvider;
         }
 
+        internal protected abstract void Initialize();
+
         protected virtual void Subscribe(Type @event, IoCEventHandlerFactory eventHandlerFactory)
         {
             var eventName = @event.FullName;
