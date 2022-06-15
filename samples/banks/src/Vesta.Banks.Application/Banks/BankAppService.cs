@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using Vesta.Banks.Application;
 using Vesta.Banks.Bank.Dtos;
@@ -10,6 +11,7 @@ namespace Vesta.Banks.Bank
 {
     public class BankAppService : ApplicationService, IBankAppService
     {
+        private readonly IDistributedCache _cache;
         private readonly IBankAccountRepository _repository;
         private readonly IBankTransferRepository _bankTransferRepository;
         private readonly IBankAccountManager _bankAccountManager;
@@ -17,12 +19,15 @@ namespace Vesta.Banks.Bank
         private readonly IBankAccountPublisher _bankAccountPublisher;
 
         public BankAppService(
+            IDistributedCache cache,
             IBankAccountRepository repository,
             IBankTransferRepository bankTransferRepository,
             IBankAccountManager bankAccountManager,
             IBankTransferService bankTransferService,
             IBankAccountPublisher bankAccountPublisher)
         {
+            _cache = cache;
+            
             _repository = repository;
             _bankTransferRepository = bankTransferRepository;
             _bankAccountManager = bankAccountManager;
