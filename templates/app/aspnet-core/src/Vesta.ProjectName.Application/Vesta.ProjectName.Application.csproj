@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)"  />
+    <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(VestaPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
