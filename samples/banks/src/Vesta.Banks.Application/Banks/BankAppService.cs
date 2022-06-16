@@ -6,6 +6,7 @@ using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
 using Vesta.Ddd.Application.Services;
 using Vesta.Ddd.Domain.Entities;
+using Vesta.Caching;
 
 namespace Vesta.Banks.Bank
 {
@@ -73,7 +74,9 @@ namespace Vesta.Banks.Bank
                 Logger.LogInformation(BanksLogEventConsts.GetBankAccounts,
                 "Getting all bank accounts.");
 
-                var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number));
+                var entities = await _cache.GetOrAddAsync(
+                    "GetAllBankAccountList",
+                    async () => await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number)));
 
                 Logger.LogDebug(BanksLogEventConsts.GetBankAccounts,
                     "{Count} bank accounts have been obtained.", entities.Count);
@@ -163,6 +166,8 @@ namespace Vesta.Banks.Bank
 
                 await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
                 await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
+
+                await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
 
             }
             catch (EntityNotFoundException e)

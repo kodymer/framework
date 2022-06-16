@@ -10,6 +10,9 @@ namespace Vesta.Banks
 {
     public static class BanksApplicationStartup
     {
+
+        public const string RedisConfigurationConfig = "Redis:Configuration";
+
         public static IServiceCollection AddBanksApplication(this IServiceCollection services, IConfiguration configuration)
         {
 
@@ -26,8 +29,8 @@ namespace Vesta.Banks
             services
                 .AddVestaCachingStackExchangeRedis(options =>
                 {
-                    options.Configuration = configuration.GetConnectionString("RedisCache");
-                    options.InstanceName = "Vesta.Banks";
+                    options.Configuration = configuration.GetValue<string>(RedisConfigurationConfig);
+                    options.InstanceName = "Vesta.Banks.";  //<--  Prefix key: Vesta.Banks.{Key}
                 });
 
             services

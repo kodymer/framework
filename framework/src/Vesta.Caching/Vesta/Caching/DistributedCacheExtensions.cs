@@ -1,11 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Vesta.Caching
 {
@@ -14,31 +8,88 @@ namespace Vesta.Caching
         public static async Task<T> GetOrAddAsync<T>(this IDistributedCache cache, string key, T value, CancellationToken cancellationToken = default)
         {
             var storedValue = await cache.GetAsync(key, cancellationToken);
-            if (!(storedValue is null))
+            if (storedValue is not null)
             {
-                // TODO: move to Vesta.Json package
-                using (var memoryStream = new MemoryStream(storedValue))
-                {
-                    value = (T)await JsonSerializer.DeserializeAsync(memoryStream, typeof(T), cancellationToken: cancellationToken);
-                }
+                value = await GetSpecificTypeAsync<T>(cache, key, cancellationToken);
             }
             else
             {
-                // TODO: move to Vesta.Json package
-                using (var memoryStream = new MemoryStream())
-                {
-                    await JsonSerializer.SerializeAsync(memoryStream, value, typeof(T), cancellationToken: cancellationToken);
-
-                    await cache.SetAsync(key, memoryStream.ToArray(), cancellationToken);
-                }
+                await SetSpecificTypeAsync(cache, key, value, cancellationToken);
             }
 
             return value;
         }
 
-        public static Task<T> GetOrAddAsync<T>(this IDistributedCache cache, string key, Func<T> value, CancellationToken cancellationToken = default)
+        public static async Task<T> GetOrAddAsync<T>(this IDistributedCache cache, string key, Func<T> factory, CancellationToken cancellationToken = default)
         {
-            return GetOrAddAsync<T>(cache, key, value.Invoke(), cancellationToken);
+            object value = null;
+
+            var storedValue = await cache.GetAsync(key, cancellationToken);
+            if (storedValue is not null)
+            {
+                value = await GetSpecificTypeAsync<T>(cache, key, cancellationToken);
+            }
+            else
+            {
+                value = factory();
+
+                await SetSpecificTypeAsync(cache, key, value, cancellationToken);
+            }
+
+            return (T)value;
+        }
+
+        public static async Task<T> GetOrAddAsync<T>(this IDistributedCache cache, string key, Func<Task<T>> factory, CancellationToken cancellationToken = default)
+        {
+            object value = null;
+
+            var storedValue = await cache.GetAsync(key, cancellationToken);
+            if (storedValue is not null)
+            {
+                value = await GetSpecificTypeAsync<T>(cache, key, cancellationToken);
+            }
+            else
+            {
+                value = await factory();
+
+                await SetSpecificTypeAsync(cache, key, value, cancellationToken);
+            }
+
+            return (T)value;
+        }
+
+        public static async Task<T> GetSpecificTypeAsync<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default)
+        {
+            object value = null;
+
+            var storedValue = await cache.GetAsync(key, cancellationToken);
+            if (storedValue is not null)
+            {
+                // TODO: move to Vesta.Json package
+                using (var memoryStream = new MemoryStream(storedValue))
+                {
+                    value = await JsonSerializer.DeserializeAsync(memoryStream, typeof(T), cancellationToken: cancellationToken);
+                }
+            }
+
+            return (T)value;
+        }
+
+        public static async Task<T> SetSpecificTypeAsync<T>(this IDistributedCache cache, string key, T value, CancellationToken cancellationToken = default)
+        {
+            byte[] storedValue = null;
+
+            // TODO: move to Vesta.Json package
+            using (var memoryStream = new MemoryStream())
+            {
+                await JsonSerializer.SerializeAsync(memoryStream, value, typeof(T), cancellationToken: cancellationToken);
+
+                storedValue = memoryStream.ToArray();
+            }
+ 
+            await cache.SetAsync(key, storedValue, cancellationToken);
+
+            return value;
         }
     }
 }
