@@ -1,15 +1,18 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using Vesta.Banks.Application;
 using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
 using Vesta.Ddd.Application.Services;
 using Vesta.Ddd.Domain.Entities;
+using Vesta.Caching;
 
 namespace Vesta.Banks.Bank
 {
     public class BankAppService : ApplicationService, IBankAppService
     {
+        private readonly IDistributedCache _cache;
         private readonly IBankAccountRepository _repository;
         private readonly IBankTransferRepository _bankTransferRepository;
         private readonly IBankAccountManager _bankAccountManager;
@@ -17,12 +20,15 @@ namespace Vesta.Banks.Bank
         private readonly IBankAccountPublisher _bankAccountPublisher;
 
         public BankAppService(
+            IDistributedCache cache,
             IBankAccountRepository repository,
             IBankTransferRepository bankTransferRepository,
             IBankAccountManager bankAccountManager,
             IBankTransferService bankTransferService,
             IBankAccountPublisher bankAccountPublisher)
         {
+            _cache = cache;
+            
             _repository = repository;
             _bankTransferRepository = bankTransferRepository;
             _bankAccountManager = bankAccountManager;
@@ -68,7 +74,9 @@ namespace Vesta.Banks.Bank
                 Logger.LogInformation(BanksLogEventConsts.GetBankAccounts,
                 "Getting all bank accounts.");
 
-                var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number));
+                var entities = await _cache.GetOrAddAsync(
+                    "GetAllBankAccountList",
+                    async () => await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number)));
 
                 Logger.LogDebug(BanksLogEventConsts.GetBankAccounts,
                     "{Count} bank accounts have been obtained.", entities.Count);
@@ -158,6 +166,8 @@ namespace Vesta.Banks.Bank
 
                 await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
                 await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
+
+                await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
 
             }
             catch (EntityNotFoundException e)

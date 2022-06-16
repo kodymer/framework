@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BaseNetCore6": {
+    "Vesta.Banks.Api.Host": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

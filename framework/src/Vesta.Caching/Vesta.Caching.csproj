@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\..\common.props" />
 
@@ -6,11 +6,11 @@
     <TargetFramework>$(NetCoreApp)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <IsPackable>true</IsPackable>
-    <AssemblyName>Vesta.AspNetCore</AssemblyName>
-    <PackageId>Vesta.AspNetCore</PackageId>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>Vesta.Caching</AssemblyName>
+    <PackageId>Vesta.Caching</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -18,8 +18,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="$(MicrosoftPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
-    <ProjectReference Include="..\Vesta.Security\Vesta.Security.csproj" />
   </ItemGroup>
 
 </Project>

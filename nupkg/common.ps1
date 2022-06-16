@@ -18,6 +18,8 @@ $projects = (
     "framework/src/Vesta.Auditing.Abstracts",
     "framework/src/Vesta.Autofac",
     "framework/src/Vesta.AutoMapper",
+    "framework/src/Vesta.Caching",
+    "framework/src/Vesta.Caching.StackExchangeRedis",
     "framework/src/Vesta.Core",
     "framework/src/Vesta.Dapper",
     "framework/src/Vesta.Dapper.SqlServer",
