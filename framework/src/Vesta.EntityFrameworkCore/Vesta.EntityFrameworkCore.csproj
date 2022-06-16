@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vesta.Auditing\Vesta.Auditing.csproj" />
+    <ProjectReference Include="..\Vesta.Data\Vesta.Data.csproj" />
     <ProjectReference Include="..\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
     <ProjectReference Include="..\Vesta.EntityFrameworkCore.Abstracts\Vesta.EntityFrameworkCore.Abstracts.csproj" />
     <ProjectReference Include="..\Vesta.Uow\Vesta.Uow.csproj" />

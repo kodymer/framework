@@ -9,14 +9,11 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddVestaAspNetCore(this IServiceCollection services)
         {
 
-            services.AddVestaCore();
+            services.AddVestaSecurity();
 
             services.AddHttpContextAccessor();
 
-            if (!services.TryReplace<ICurrentPrincipalAccessor, HttpContextCurrentPrincipalAccessor>())
-            {
-                services.AddSingleton<ICurrentPrincipalAccessor, HttpContextCurrentPrincipalAccessor>();
-            }
+            services.Replace<ICurrentPrincipalAccessor, HttpContextCurrentPrincipalAccessor>(ServiceLifetime.Singleton);
         }
     }
 }

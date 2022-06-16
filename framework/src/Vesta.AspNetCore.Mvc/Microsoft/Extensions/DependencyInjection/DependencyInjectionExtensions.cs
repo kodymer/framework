@@ -16,8 +16,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddControllers(mvcConfigure)
                 .AddControllersAsServices()
                 .AddJsonOptions(jsonConfigure);
-
-            services.Replace<ICurrentPrincipalAccessor, HttpContextCurrentPrincipalAccessor>(ServiceLifetime.Singleton);
         }
     }
 }

@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Vesta.Data\Vesta.Data.csproj" />
     <ProjectReference Include="..\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" />
   </ItemGroup>
 

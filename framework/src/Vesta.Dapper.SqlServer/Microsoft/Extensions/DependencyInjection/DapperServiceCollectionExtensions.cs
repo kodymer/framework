@@ -24,5 +24,18 @@ namespace Microsoft.Extensions.DependencyInjection
                 return database;
             });
         }
+
+        public static void AddVestaDatabase<TDatabase>(this IServiceCollection services)
+            where TDatabase : VestaDatabase<TDatabase>, new()
+        {
+            services.AddVestaDapper();
+
+            services.AddTransient<TDatabase>(serviceProvider =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptionsFactory<DatabaseOptions>>().Create(null);
+                var database = VestaDatabase<TDatabase>.Init(new SqlConnection(options.ConnectionString), options.CommandTimeout);
+                return database;
+            });
+        }
     }
 }

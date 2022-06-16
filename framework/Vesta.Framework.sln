@@ -56,9 +56,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Dapper.SqlServer", "src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj", "{8B0DB38F-C11E-4E2E-B2F1-E44B75193E35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Caching", "src\Vesta.Caching\Vesta.Caching.csproj", "{C2935AC2-3C0F-4390-A18C-45C8EB78AB68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Caching", "src\Vesta.Caching\Vesta.Caching.csproj", "{C2935AC2-3C0F-4390-A18C-45C8EB78AB68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Caching.StackExchangeRedis", "src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj", "{6D47AD4A-1F85-4271-86E1-B809FD337233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Caching.StackExchangeRedis", "src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj", "{6D47AD4A-1F85-4271-86E1-B809FD337233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Data", "src\Vesta.Data\Vesta.Data.csproj", "{44E513DF-D1B9-4010-B530-07C0421713B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,6 +164,10 @@ Global
 		{6D47AD4A-1F85-4271-86E1-B809FD337233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D47AD4A-1F85-4271-86E1-B809FD337233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D47AD4A-1F85-4271-86E1-B809FD337233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E513DF-D1B9-4010-B530-07C0421713B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E513DF-D1B9-4010-B530-07C0421713B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E513DF-D1B9-4010-B530-07C0421713B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E513DF-D1B9-4010-B530-07C0421713B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +197,7 @@ Global
 		{8B0DB38F-C11E-4E2E-B2F1-E44B75193E35} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{C2935AC2-3C0F-4390-A18C-45C8EB78AB68} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{6D47AD4A-1F85-4271-86E1-B809FD337233} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{44E513DF-D1B9-4010-B530-07C0421713B9} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C560E72A-25E8-41E0-A972-0FC1CE007D5F}

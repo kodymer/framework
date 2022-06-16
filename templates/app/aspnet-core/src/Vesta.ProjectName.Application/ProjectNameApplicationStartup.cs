@@ -19,13 +19,7 @@ namespace Vesta.ProjectName
                 .AddVestaDddApplication();
 
             services
-                .AddVestaCachingStackExchangeRedis(options =>
-                {
-                    options.Configuration = configuration.GetValue<string>(RedisConfigurationConfig);
-
-                    // Delete, if you want to share the data between microservices 
-                    options.InstanceName = "Vesta.ProjectName.";  //<--  Prefix key: Vesta.Banks.{Key}
-                });
+                .AddVestaCachingStackExchangeRedis();
 
             services
                 .AddVestaAutoMapper(Assembly.GetExecutingAssembly());

@@ -9,8 +9,7 @@ namespace Vesta.ProjectName.Configuration
     {
         public static IServiceCollection AddProjectNameDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddVestaDbContext<ProjectNameDbContext>(
-                options => options.UseSqlServer(configuration.GetConnectionString("Default")));
+            services.AddVestaDbContext<ProjectNameDbContext>();
 
             return services;
         }

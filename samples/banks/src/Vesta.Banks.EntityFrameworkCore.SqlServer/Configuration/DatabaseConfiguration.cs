@@ -9,8 +9,7 @@ namespace Vesta.Banks.Configuration
     {
         public static IServiceCollection AddBanksDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddVestaDbContext<BanksDbContext>(
-                builder => builder.UseSqlServer(configuration.GetConnectionString("Default")));
+            services.AddVestaDbContext<BanksDbContext>();
 
             return services;
         }

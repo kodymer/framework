@@ -10,7 +10,7 @@
 
   <PropertyGroup>
      <Debug>True</Debug>
-     <VestaPackageVersion>1.0.0-2022061301</VestaPackageVersion>
+     <VestaPackageVersion>1.0.0-2022061601</VestaPackageVersion>
   </PropertyGroup>
 
 </Project>

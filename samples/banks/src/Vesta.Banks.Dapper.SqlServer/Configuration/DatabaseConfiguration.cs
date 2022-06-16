@@ -9,11 +9,7 @@ namespace Vesta.Banks.Configuration
     {
         public static IServiceCollection AddBanksDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddVestaDatabase<BanksDatabase>(
-                builder => {
-                    builder.Options.CommandTimeout = 3600;
-                    builder.UseSqlServer(configuration.GetConnectionString("Default"));
-                });
+            services.AddVestaDatabase<BanksDatabase>();
 
             return services;
         }

@@ -27,11 +27,7 @@ namespace Vesta.Banks
                 .AddVestaDddApplication();
 
             services
-                .AddVestaCachingStackExchangeRedis(options =>
-                {
-                    options.Configuration = configuration.GetValue<string>(RedisConfigurationConfig);
-                    options.InstanceName = "Vesta.Banks.";  //<--  Prefix key: Vesta.Banks.{Key}
-                });
+                .AddVestaCachingStackExchangeRedis();
 
             services
                 .AddVestaAutoMapper(Assembly.GetExecutingAssembly());

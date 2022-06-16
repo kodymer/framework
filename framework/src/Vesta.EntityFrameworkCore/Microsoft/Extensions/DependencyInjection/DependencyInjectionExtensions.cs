@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaAuditing();
             services.AddVestaDddDomain();
             services.AddVestaUow();
+            services.AddVestaData();
         }
     }
 }

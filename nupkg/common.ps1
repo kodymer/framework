@@ -23,6 +23,7 @@ $projects = (
     "framework/src/Vesta.Core",
     "framework/src/Vesta.Dapper",
     "framework/src/Vesta.Dapper.SqlServer",
+    "framework/src/Vesta.Data",
     "framework/src/Vesta.Ddd.Application",
     "framework/src/Vesta.Ddd.Domain",
     "framework/src/Vesta.Ddd.Domain.EventBus",
