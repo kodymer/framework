@@ -52,6 +52,11 @@ namespace Vesta.ProjectName
                 {
 
                      configureLogger
+#if DEBUG
+                         .MinimumLevel.Debug()
+#else
+                         .MinimumLevel.Information()
+#endif
                          .ReadFrom.Configuration(hostBuilderContext.Configuration)
                          .ReadFrom.Services(serviceProvider)
                          .Enrich.FromLogContext()

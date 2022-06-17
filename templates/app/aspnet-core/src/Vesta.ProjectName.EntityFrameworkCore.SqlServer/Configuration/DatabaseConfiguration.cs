@@ -7,7 +7,7 @@ namespace Vesta.ProjectName.Configuration
 {
     public static class DatabaseConfiguration
     {
-        public static IServiceCollection AddProjectNameDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddProjectNameDbContext(this IServiceCollection services)
         {
             services.AddVestaDbContext<ProjectNameDbContext>();
 

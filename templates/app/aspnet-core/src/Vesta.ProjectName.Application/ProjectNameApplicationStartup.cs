@@ -8,11 +8,11 @@ namespace Vesta.ProjectName
 {
     public static class ProjectNameApplicationStartup
     {
-        public static IServiceCollection AddProjectNameApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddProjectNameApplication(this IServiceCollection services)
         {
             services
-                .AddProjectNameDomain(configuration)
-                .AddProjectNameEntityFrameworkCore(configuration)
+                .AddProjectNameDomain()
+                .AddProjectNameEntityFrameworkCore()
                 .AddProjectNameAppSevices();
 
             services
