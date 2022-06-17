@@ -60,7 +60,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Caching", "src\Vesta.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Caching.StackExchangeRedis", "src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj", "{6D47AD4A-1F85-4271-86E1-B809FD337233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Data", "src\Vesta.Data\Vesta.Data.csproj", "{44E513DF-D1B9-4010-B530-07C0421713B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Data", "src\Vesta.Data\Vesta.Data.csproj", "{44E513DF-D1B9-4010-B530-07C0421713B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.TestBase", "src\Vesta.TestBase\Vesta.TestBase.csproj", "{722000D2-B356-4BBC-9F79-4781470E1574}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Auditing.Tests", "test\Vesta.Auditing.Tests\Vesta.Auditing.Tests.csproj", "{A1E1F10E-963A-424A-8156-01C2412F4FDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -168,6 +172,14 @@ Global
 		{44E513DF-D1B9-4010-B530-07C0421713B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E513DF-D1B9-4010-B530-07C0421713B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44E513DF-D1B9-4010-B530-07C0421713B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722000D2-B356-4BBC-9F79-4781470E1574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722000D2-B356-4BBC-9F79-4781470E1574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722000D2-B356-4BBC-9F79-4781470E1574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722000D2-B356-4BBC-9F79-4781470E1574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E1F10E-963A-424A-8156-01C2412F4FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E1F10E-963A-424A-8156-01C2412F4FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E1F10E-963A-424A-8156-01C2412F4FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E1F10E-963A-424A-8156-01C2412F4FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,6 +210,8 @@ Global
 		{C2935AC2-3C0F-4390-A18C-45C8EB78AB68} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{6D47AD4A-1F85-4271-86E1-B809FD337233} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{44E513DF-D1B9-4010-B530-07C0421713B9} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{722000D2-B356-4BBC-9F79-4781470E1574} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{A1E1F10E-963A-424A-8156-01C2412F4FDA} = {2877C45A-0C74-4BFB-8A33-718204386E2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C560E72A-25E8-41E0-A972-0FC1CE007D5F}
