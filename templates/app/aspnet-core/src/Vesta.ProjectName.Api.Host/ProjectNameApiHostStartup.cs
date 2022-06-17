@@ -25,7 +25,7 @@ namespace Vesta.ProjectName
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddProjectNameApi(Configuration);
+            services.AddProjectNameApi();
 
             services.AddSwagger(Configuration);
             services.AddApplicationInsights(Configuration);

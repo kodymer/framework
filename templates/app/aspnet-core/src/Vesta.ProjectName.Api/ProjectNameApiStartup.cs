@@ -7,10 +7,10 @@ namespace Vesta.ProjectName
 {
     public static class ProjectNameApiStartup
     {
-        public static void AddProjectNameApi(this IServiceCollection services, IConfiguration configuration)
+        public static void AddProjectNameApi(this IServiceCollection services)
         {
             services
-                .AddProjectNameApplication(configuration);
+                .AddProjectNameApplication();
 
             services
                 .AddApiVersioning(options =>

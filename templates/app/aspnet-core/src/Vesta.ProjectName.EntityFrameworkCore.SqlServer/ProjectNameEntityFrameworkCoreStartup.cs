@@ -6,11 +6,11 @@ namespace Vesta.ProjectName.EntityFrameworkCore
 {
     public static class ProjectNameEntityFrameworkCoreStartup
     {
-        public static IServiceCollection AddProjectNameEntityFrameworkCore(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddProjectNameEntityFrameworkCore(this IServiceCollection services)
         {
             services
-                .AddProjectNameDomain(configuration)
-                .AddProjectNameDbContext(configuration)
+                .AddProjectNameDomain()
+                .AddProjectNameDbContext()
                 .AddProjectNameRepositories();
 
             return services;
