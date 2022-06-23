@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Vesta.Caching;
+using Vesta.Caching.StackExchangeRedis;
 using static Microsoft.Extensions.Options.Options;
 
 namespace Microsoft.Extensions.DependencyInjection

@@ -1,9 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--<Import Project="..\..\..\common.props" />-->
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>.net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
+    <RootNamespace />
+    <!--<OutputType>Library</OutputType>-->
+    <IsPackable>false</IsPackable>
+    <AssemblyName>Vesta.TestBase</AssemblyName>
+    <!--<PackageId>Vesta.TestBase</PackageId>-->
+    <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>-->
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +24,11 @@
     <PackageReference Include="Moq" Version="4.18.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vesta.Autofac\Vesta.Autofac.csproj" />
+    <ProjectReference Include="..\Vesta.EntityFrameworkCore\Vesta.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

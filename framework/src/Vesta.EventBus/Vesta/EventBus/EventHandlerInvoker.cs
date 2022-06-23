@@ -1,4 +1,5 @@
-﻿using Vesta.EventBus.Abstracts;
+﻿using Ardalis.GuardClauses;
+using Vesta.EventBus.Abstracts;
 
 namespace Vesta.EventBus
 {
@@ -6,6 +7,8 @@ namespace Vesta.EventBus
     {
         public Task InvokeAsync(IEventHandler eventHandler, Type @event, object eventData)
         {
+            Guard.Against.Null(eventHandler, nameof(eventHandler));
+
             if (typeof(IDistributedEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
             {
                 var eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(DistributedEventHandlerExecutor<>).MakeGenericType(@event));

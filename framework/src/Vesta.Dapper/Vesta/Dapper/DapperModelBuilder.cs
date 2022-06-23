@@ -1,4 +1,7 @@
-﻿using Vesta.Dapper.Metadata;
+﻿using System.Runtime.CompilerServices;
+using Vesta.Dapper.Metadata;
+
+[assembly: InternalsVisibleTo("Vesta.Dapper.Tests")]
 
 namespace Vesta.Dapper
 {
@@ -13,7 +16,8 @@ namespace Vesta.Dapper
             _entityTypeBuilders = new Dictionary<Type, object>();
         }
 
-        public DapperModelBuilder Entity<TEntity>(Action<DapperEntityTypeBuilder<TEntity>> buildAction) where TEntity : class
+        public DapperModelBuilder Entity<TEntity>(Action<DapperEntityTypeBuilder<TEntity>> buildAction) 
+            where TEntity : class
         {
             if (!_entityTypeBuilders.ContainsKey(typeof(TEntity)))
             {

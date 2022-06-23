@@ -9,7 +9,7 @@ namespace Vesta.ServiceBus.Azure
     public abstract class PoolBase<T> : IServiceProviderAccessor
         where T : class, IAsyncDisposable
     {
-        public IServiceProvider ServiceProvider { get; set; }
+        public virtual IServiceProvider ServiceProvider { get; set; }
 
         protected  ConcurrentDictionary<string, Lazy<T>> Elements { get; }
         protected ILogger Logger => LoggerFactory.CreateLogger(GetType().Name);
@@ -22,9 +22,9 @@ namespace Vesta.ServiceBus.Azure
             Elements = new ConcurrentDictionary<string, Lazy<T>>();
         }
 
-        protected Lazy<T> GetOrAdd(string key, Lazy<T> element)
+        protected virtual Lazy<T> GetOrAdd(string key, Lazy<T> element)
         {
-            Logger.LogInformation($"Creating {element.Value.GetType().Name} element ({key}).");
+            Logger.LogInformation($"Creating {typeof(T).Name} element ({key}).");
 
             return Elements.GetOrAdd(key, element);
         }

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Extensions.Azure;
 using Vesta.ServiceBus.Azure;
 
 namespace Microsoft.Extensions.DependencyInjection

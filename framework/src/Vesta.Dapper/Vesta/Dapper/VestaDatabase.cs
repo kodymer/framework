@@ -36,7 +36,7 @@ namespace Vesta.Dapper
             return new Table<TEntity, TKey>(this, typeof(TEntity).Name);
         }
 
-        new public static TDatabase Init(DbConnection connection, int commandTimeout)
+        new public static TDatabase Init(DbConnection connection, int commandTimeout = DatabaseOptions.DefaultCommandTimeout)
         {
             var database = Database<TDatabase>.Init(connection, commandTimeout);
 
