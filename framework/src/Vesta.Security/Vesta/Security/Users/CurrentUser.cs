@@ -9,11 +9,11 @@ namespace Vesta.Security.Users
     {
         private readonly ICurrentPrincipalAccessor _currentPrincipal;
 
-        public Guid? Id => _currentPrincipal.Principal?.FindUserId();
+        public virtual Guid? Id => _currentPrincipal.Principal?.FindUserId();
 
-        public string Name => GetValue(ClaimTypes.Name);
+        public virtual string Name => GetValue(ClaimTypes.Name);
 
-        public string Email => GetValue(ClaimTypes.Email);
+        public virtual string Email => GetValue(ClaimTypes.Email);
 
         public CurrentUser(ICurrentPrincipalAccessor currentPrincipal)
         {

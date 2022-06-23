@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vesta.Caching
+namespace Vesta.Caching.StackExchangeRedis
 {
     public class RedisCacheOptionsFactory : IOptionsFactory<RedisCacheOptions>
     {

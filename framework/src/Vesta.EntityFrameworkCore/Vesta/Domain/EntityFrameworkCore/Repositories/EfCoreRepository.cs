@@ -10,9 +10,9 @@ using Vesta.EntityFrameworkCore.Abstracts;
 namespace Vesta.Domain.EntityFrameworkCore.Repositories
 {
 
-    public abstract class ReadOnlyEfCoreRepository<TDbContext, TEntity> : IReadOnlyRepository<TEntity>
+    public abstract class ReadOnlyEfCoreRepository<TDbContext, TEntity, TKey> : IReadOnlyRepository<TEntity, TKey>
         where TDbContext : IEfCoreDbContext
-        where TEntity : class, IEntity
+        where TEntity : class, IEntity<TKey>
     {
 
         protected IDbContextProvider<TDbContext> _dbContextProvider;
@@ -28,12 +28,12 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             _dbContextProvider = dbContextProvider;
         }
 
-        public Task<TDbContext> GetDbContextAsync()
+        public virtual Task<TDbContext> GetDbContextAsync()
         {
             return _dbContextProvider.GetDbContextAsync();
         }
 
-        public IQueryable<TEntity> GetQueryable()
+        public virtual IQueryable<TEntity> GetQueryable()
         {
             return AsyncContext.Run(async () => await GetDbSetAsync()).AsQueryable();
         }
@@ -62,35 +62,11 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
 
         }
 
-        public Task<List<TEntity>> GetListAsync(
+        public virtual Task<List<TEntity>> GetListAsync(
             Expression<Func<TEntity, bool>> predicate = null, 
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
             return GetListAsync(predicate, orderBy);
-        }
-
-        protected async Task<DbSet<TEntity>> GetDbSetAsync()
-        {
-            return (await GetDbContextAsync()).Set<TEntity>();
-        }
-    }
-
-    /// <summary>
-    /// Enttity Framework repository base
-    /// </summary>
-    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : ReadOnlyEfCoreRepository<TDbContext, TEntity>, IRepository<TEntity, TKey>
-        where TDbContext : IEfCoreDbContext
-        where TEntity : class, IEntity<TKey>
-    {
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context">DbContext</param>
-        public EfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
-            : base(dbContextProvider)
-        {
-
         }
 
         public async virtual ValueTask<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
@@ -106,9 +82,33 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
             return entity;
         }
 
+        protected async Task<DbSet<TEntity>> GetDbSetAsync()
+        {
+            return (await GetDbContextAsync()).Set<TEntity>();
+        }
+    }
+
+    /// <summary>
+    /// Enttity Framework repository base
+    /// </summary>
+    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : ReadOnlyEfCoreRepository<TDbContext, TEntity, TKey>, IRepository<TEntity, TKey>
+        where TDbContext : IEfCoreDbContext
+        where TEntity : class, IEntity<TKey>
+    {
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">DbContext</param>
+        public EfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
+            : base(dbContextProvider)
+        {
+
+        }
+
         public virtual async Task InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+            Guard.Against.Null(entity, nameof(entity));
 
             var dbContext = await GetDbContextAsync();
             var dbSet = dbContext.Set<TEntity>();
@@ -122,25 +122,15 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
 
         public async virtual Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default)
         {
-            var dbContext = await GetDbContextAsync();
-            var dbSet = dbContext.Set<TEntity>();
-            var entity = await dbSet.FindAsync(new object[] { id }, cancellationToken);
-            if (entity is null)
-            {
-                return;
-            }
+            var entity = await GetAsync(id , cancellationToken);
 
-            await DeleteAsync(entity, cancellationToken: cancellationToken);
+            await DeleteAsync(entity, autoSave, cancellationToken);
 
-            if (autoSave)
-            {
-                await dbContext.SaveChangesAsync(cancellationToken);
-            }
         }
 
         public async virtual Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+            Guard.Against.Null(entity, nameof(entity));
 
             var dbContext = await GetDbContextAsync();
             var dbSet = dbContext.Set<TEntity>();
@@ -161,7 +151,7 @@ namespace Vesta.Domain.EntityFrameworkCore.Repositories
 
         public async virtual Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+            Guard.Against.Null(entity, nameof(entity));
 
             var dbContext = await GetDbContextAsync();
             var dbSet = dbContext.Set<TEntity>();

@@ -31,7 +31,7 @@ namespace Vesta.Auditing
 
         private void SetCreationUser(ICreationAuditedObject auditableEntity)
         {
-            auditableEntity.CreatorId = _user.Id;
+            auditableEntity.CreatorId = _user?.Id;
         }
 
         public void SetModificationProperties(object targetObject)
@@ -50,7 +50,7 @@ namespace Vesta.Auditing
 
         private void SetModificationUser(IModificationAuditedObject auditableEntity)
         {
-            auditableEntity.LastModifierId = _user.Id;
+            auditableEntity.LastModifierId = _user?.Id;
         }
 
         public void SetDeletionProperties(object targetObject)
@@ -70,7 +70,7 @@ namespace Vesta.Auditing
 
         private void SetDeletionUser(IDeletionAuditedObject auditableEntity)
         {
-            auditableEntity.DeleterId = _user.Id;
+            auditableEntity.DeleterId = _user?.Id;
         }
     }
 }

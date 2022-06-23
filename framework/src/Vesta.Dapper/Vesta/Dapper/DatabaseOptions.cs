@@ -2,7 +2,7 @@
 {
     public class DatabaseOptions
     {
-        private const int DefaultCommandTimeout = 3600;
+        public const int DefaultCommandTimeout = 3600;
 
         public string ConnectionString { get; set; }
 

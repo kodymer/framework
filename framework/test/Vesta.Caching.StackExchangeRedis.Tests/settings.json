@@ -1,0 +1,6 @@
+{
+  "Redis": {
+    "Configuration": "***configuration***",
+    "InstanceName":  "***instance***"
+  }
+}

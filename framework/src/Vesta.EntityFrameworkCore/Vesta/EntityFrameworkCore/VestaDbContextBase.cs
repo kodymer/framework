@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Vesta.Auditing;
+using Vesta.EntityFrameworkCore.Abstracts;
 
 namespace Vesta.EntityFrameworkCore
 {
-    public abstract class VestaDbContextBase<TDbContext> : DbContext
+    public abstract class VestaDbContextBase<TDbContext> : DbContext, IEfCoreDbContext
         where TDbContext : DbContext
     {
 
@@ -45,17 +47,17 @@ namespace Vesta.EntityFrameworkCore
             }
         }
 
-        public void ApplyAuditConceptsForAddedEntity(EntityEntry entry)
+        private void ApplyAuditConceptsForAddedEntity(EntityEntry entry)
         {
             AuditPropertySetter.SetCreationProperties(entry.Entity);
         }
 
-        public void ApplyAuditConceptsForModifiedEntity(EntityEntry entry)
+        private void ApplyAuditConceptsForModifiedEntity(EntityEntry entry)
         {
             AuditPropertySetter.SetModificationProperties(entry.Entity);
         }
 
-        public void ApplyAuditConceptsForDeletedEntity(EntityEntry entry)
+        private void ApplyAuditConceptsForDeletedEntity(EntityEntry entry)
         {
             AuditPropertySetter.SetDeletionProperties(entry.Entity);
         }
@@ -64,5 +66,7 @@ namespace Vesta.EntityFrameworkCore
         {
             modelBuilder.ApplySoftDeleteQueryFilterConcept();
         }
+
+        protected abstract string GetConnectionString(DbContextOptions<TDbContext> options);
     }
 }
