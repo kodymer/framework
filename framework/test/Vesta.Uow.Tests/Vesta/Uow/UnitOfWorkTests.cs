@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
 using System.Threading.Tasks;
+using Vesta.Data.Fixtures;
 using Vesta.EntityFrameworkCore;
 using Vesta.TestBase;
 using Vesta.TestBase.Fixtures;
@@ -13,7 +14,7 @@ using Xunit;
 namespace Vesta.Uow.Tests
 {
     [TestCaseOrderer("Vesta.TestBase.Orderers.PriorityOrderer", "Vesta.TestBase")]
-    [Collection(nameof(ContextCollection))]
+    [Collection(nameof(DataContextCollection))]
     public class UnitOfWorkTests : IClassFixture<ServiceRegistrarFixture>, IClassFixture<InMemoryDbContextFixture>
     {
         private readonly Mock<UnitOfWork> _unitOfWorkStub;

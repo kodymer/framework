@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vesta.Banks.Bank;
+using Vesta.Banks.Dtos;
 
-namespace Vesta.Banks.Application
+namespace Vesta.Banks.AutoMapper
 {
     public class BankProfile : Profile
     {

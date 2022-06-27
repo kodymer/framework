@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
-using Vesta.Banks.Application;
-using Vesta.Banks.Bank.Dtos;
 using Vesta.Banks.Domain;
+using Vesta.Banks.Dtos;
+using Vesta.Caching;
 using Vesta.Ddd.Application.Services;
 using Vesta.Ddd.Domain.Entities;
-using Vesta.Caching;
 
-namespace Vesta.Banks.Bank
+namespace Vesta.Banks
 {
     public class BankAppService : ApplicationService, IBankAppService
     {
@@ -28,7 +27,7 @@ namespace Vesta.Banks.Bank
             IBankAccountPublisher bankAccountPublisher)
         {
             _cache = cache;
-            
+
             _repository = repository;
             _bankTransferRepository = bankTransferRepository;
             _bankAccountManager = bankAccountManager;
@@ -37,7 +36,7 @@ namespace Vesta.Banks.Bank
         }
 
 
-        public async Task<List<BankTransferOutput>> GetAllBankTransferList(CancellationToken cancellationToken = default)
+        public async Task<List<BankTransferOutput>> GetAllBankTransferListAsync(CancellationToken cancellationToken = default)
         {
             List<BankTransferOutput> dtos = null;
 
@@ -65,7 +64,7 @@ namespace Vesta.Banks.Bank
             return dtos;
         }
 
-        public async Task<List<BankAccountDto>> GetAllBankAccountList(CancellationToken cancellationToken = default)
+        public async Task<List<BankAccountDto>> GetAllBankAccountListAsync(CancellationToken cancellationToken = default)
         {
             List<BankAccountDto> dtos = null;
 

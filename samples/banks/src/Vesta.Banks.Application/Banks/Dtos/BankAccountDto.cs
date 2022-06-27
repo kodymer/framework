@@ -1,6 +1,6 @@
 ﻿using Vesta.Ddd.Application.Dtos;
 
-namespace Vesta.Banks.Application
+namespace Vesta.Banks.Dtos
 {
     // [Create][EntityName][Dto]     - Cuando el DTO expone las mismas propiedades que la entidad de negocio
     // [Update][EntityName][Input]   - Cuando el DTO de entrada se construye bajo demanda del negocio

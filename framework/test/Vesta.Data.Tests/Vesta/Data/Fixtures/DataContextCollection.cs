@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vesta.TestBase.Fixtures;
 using Xunit;
 
-namespace Vesta.TestBase.Fixtures
+namespace Vesta.Data.Fixtures
 {
-    [CollectionDefinition(nameof(ContextCollection))]
-    public class ContextCollection :
+    [CollectionDefinition(nameof(DataContextCollection))]
+    public class DataContextCollection :
         ICollectionFixture<InMemoryDbContextFixture>,
         ICollectionFixture<ServiceRegistrarFixture>
     {

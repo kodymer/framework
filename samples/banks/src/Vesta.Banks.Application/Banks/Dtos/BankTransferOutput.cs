@@ -1,6 +1,6 @@
 ﻿using Vesta.Ddd.Application.Dtos;
 
-namespace Vesta.Banks
+namespace Vesta.Banks.Dtos
 {
     public class BankTransferOutput
     {

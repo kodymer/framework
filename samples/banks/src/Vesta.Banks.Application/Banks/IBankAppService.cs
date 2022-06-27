@@ -1,15 +1,14 @@
-﻿using Vesta.Ddd.Application.Services;
-using Vesta.Banks.Bank.Dtos;
-using Vesta.Banks.Application;
+﻿using Vesta.Banks.Dtos;
+using Vesta.Ddd.Application.Services;
 
-namespace Vesta.Banks.Bank
+namespace Vesta.Banks
 {
     public interface IBankAppService : IApplicationService
-    { 
+    {
 
-        Task<List<BankTransferOutput>> GetAllBankTransferList(CancellationToken cancellationToken = default);
+        Task<List<BankTransferOutput>> GetAllBankTransferListAsync(CancellationToken cancellationToken = default);
 
-        Task<List<BankAccountDto>> GetAllBankAccountList(CancellationToken cancellationToken = default);
+        Task<List<BankAccountDto>> GetAllBankAccountListAsync(CancellationToken cancellationToken = default);
 
         Task CreateBankAccountAsync(CreateBankAccountInput input, CancellationToken cancellationToken = default);
 
