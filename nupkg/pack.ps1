@@ -37,6 +37,7 @@ foreach($project in $projects) {
     $projectPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.nupkg")
     Move-Item $projectPackPath $packFolder
     
+    Seperator
 }
 
 # Go back to the pack folder
