@@ -26,6 +26,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Dapper.SqlServer", "src\Vesta.Banks.Dapper.SqlServer\Vesta.Banks.Dapper.SqlServer.csproj", "{688877F0-C70C-4FBC-9DBE-3F7917850C04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Banks.EntityFrameworkCore.SqlServer.Tests", "test\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests.csproj", "{C39CE64B-AE94-409B-8009-722DA4089131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Banks.Domain.Tests", "test\Vesta.Banks.Domain.Tests\Vesta.Banks.Domain.Tests.csproj", "{460C4954-5000-4E13-854C-D32142ACEF7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Banks.Application.Tests", "test\Vesta.Banks.Application.Tests\Vesta.Banks.Application.Tests.csproj", "{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.Banks.Api.Tests", "test\Vesta.Banks.Api.Tests\Vesta.Banks.Api.Tests.csproj", "{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +68,22 @@ Global
 		{688877F0-C70C-4FBC-9DBE-3F7917850C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{688877F0-C70C-4FBC-9DBE-3F7917850C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{688877F0-C70C-4FBC-9DBE-3F7917850C04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39CE64B-AE94-409B-8009-722DA4089131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39CE64B-AE94-409B-8009-722DA4089131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39CE64B-AE94-409B-8009-722DA4089131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39CE64B-AE94-409B-8009-722DA4089131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460C4954-5000-4E13-854C-D32142ACEF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460C4954-5000-4E13-854C-D32142ACEF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460C4954-5000-4E13-854C-D32142ACEF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460C4954-5000-4E13-854C-D32142ACEF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +96,10 @@ Global
 		{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{B813831A-A796-4D09-9158-5C9C589F7D79} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{688877F0-C70C-4FBC-9DBE-3F7917850C04} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{C39CE64B-AE94-409B-8009-722DA4089131} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
+		{460C4954-5000-4E13-854C-D32142ACEF7C} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
+		{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
+		{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

@@ -21,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.EntityFrameworkCore\Vesta.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\src\Vesta.TestBase\Vesta.TestBase.csproj" />
     <ProjectReference Include="..\..\src\Vesta.Uow\Vesta.Uow.csproj" />
+    <ProjectReference Include="..\Vesta.Data.Tests\Vesta.Data.Tests.csproj" />
   </ItemGroup>
 
 </Project>

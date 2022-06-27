@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nito.AsyncEx;
+using System;
+using System.Threading.Tasks;
 using Vesta.Ddd.Domain.Entities;
 using Vesta.EntityFrameworkCore;
 using Vesta.EntityFrameworkCore.Abstracts;
 
-namespace Vesta.TestBase.Fixtures
+namespace Vesta.Data.Fixtures
 {
     public class InMemoryDbContextFixture : IDisposable
     {

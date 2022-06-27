@@ -8,6 +8,8 @@ foreach($solution in $solutions) {
     & dotnet restore
 }
 
+# Delete old packages
+Remove-Item *.nupkg
 
 # Create all packages
 foreach($project in $projects) {
@@ -17,7 +19,6 @@ foreach($project in $projects) {
     # Create nuget pack
     Set-Location $projectFolder
     
-     
     ###########################################################################################################
 
     dotnet msbuild -property:Configuration=Release -property:SourceLinkCreate=false
@@ -36,10 +37,7 @@ foreach($project in $projects) {
     $projectPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.nupkg")
     Move-Item $projectPackPath $packFolder
     
-    $projectSymbolPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.snupkg")
-    Move-Item $projectSymbolPackPath $packFolder
-
-    ###########################################################################################################
+    Seperator
 }
 
 # Go back to the pack folder

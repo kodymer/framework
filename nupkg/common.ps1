@@ -34,6 +34,7 @@ $projects = (
     "framework/src/Vesta.EventBus.Abstracts",
     "framework/src/Vesta.EventBus.Azure",
     "framework/src/Vesta.ServiceBus.Azure",
+    "framework/src/Vesta.TestBase",
     "framework/src/Vesta.Security",
     "framework/src/Vesta.Uow"
 )

@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props"/>
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -21,8 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.EntityFrameworkCore\Vesta.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Vesta.Data.Tests\Vesta.Data.Tests.csproj" />
+    <PackageReference Include="Vesta.TestBase" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.TestBase\Vesta.TestBase.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\..\src\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

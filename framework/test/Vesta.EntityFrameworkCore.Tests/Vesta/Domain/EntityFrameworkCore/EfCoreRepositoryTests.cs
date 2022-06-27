@@ -2,10 +2,10 @@ using FluentAssertions;
 using Moq;
 using System;
 using System.Threading.Tasks;
+using Vesta.Data.Fixtures;
 using Vesta.Ddd.Domain.Entities;
 using Vesta.Domain.EntityFrameworkCore.Repositories;
 using Vesta.TestBase;
-using Vesta.TestBase.Fixtures;
 using Vesta.TestBase.Orderers;
 using Xunit;
 

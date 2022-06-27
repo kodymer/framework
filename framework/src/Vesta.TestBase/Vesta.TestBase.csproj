@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <!--<Import Project="..\..\..\common.props" />-->
+  <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>.net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <RootNamespace />
-    <!--<OutputType>Library</OutputType>-->
-    <IsPackable>false</IsPackable>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
     <AssemblyName>Vesta.TestBase</AssemblyName>
-    <!--<PackageId>Vesta.TestBase</PackageId>-->
-    <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>-->
+    <PackageId>Vesta.TestBase</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

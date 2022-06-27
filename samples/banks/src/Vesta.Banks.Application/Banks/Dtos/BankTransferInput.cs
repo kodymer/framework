@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Vesta.Banks.Bank.Dtos
+namespace Vesta.Banks.Dtos
 {
 
     public class BankTransferInput

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vesta.Banks.Bank
+namespace Vesta.Banks.Dtos
 {
     public class CreateBankAccountInput
     {
