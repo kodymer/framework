@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LazyProxy.ServiceProvider;
+using Vesta.Uow;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,6 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaDddDomain();
             services.AddVestaUow();
             services.AddVestaData();
+
+            services.AddLazyScoped<IUnitOfWorkEventRecordRegistrar, UnitOfWorkEventRecordRegistrar>();
         }
     }
 }
