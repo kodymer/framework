@@ -32,7 +32,8 @@ namespace Vesta.Uow
             var allPublishing = _store.Get();
             if (allPublishing.Any())
             {
-                for (int i = 0; i < allPublishing.Count(); i++)
+                var count = allPublishing.Count();
+                for (int i = 0; i <= count - 1; i++)
                 {
                     var publishing = await _store.PopAsync();
                     await publishing.SendAsync();

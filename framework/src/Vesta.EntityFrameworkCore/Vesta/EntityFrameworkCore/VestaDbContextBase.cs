@@ -76,7 +76,7 @@ namespace Vesta.EntityFrameworkCore
 
         private DispatchReport PrepareDispatchReport()
         {
-            return UnitOfWorkEventRecordRegistrar.Prepare(ChangeTracker.Entries());
+            return UnitOfWorkEventRecordRegistrar.PrepareReport(ChangeTracker.Entries());
         }
 
         private async Task RegisterDispatchReport(DispatchReport dispatchEventReport, CancellationToken cancellationToken = default)

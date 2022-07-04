@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Domain.EventBus" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+    <PackageReference Include="Vesta.Ddd.Domain.EventBus" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'" />
   </ItemGroup>
   
   <ItemGroup>

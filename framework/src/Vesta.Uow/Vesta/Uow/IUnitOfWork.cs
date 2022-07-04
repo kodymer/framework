@@ -10,6 +10,18 @@ namespace Vesta.Uow
 {
     public interface IUnitOfWork : IDisposable, IDatabaseApiContainer, IServiceProviderAccessor
     {
+        event EventHandler Completed;
+
+        event EventHandler Completing;
+
+        event EventHandler Failed;
+
+        event EventHandler Disposing;
+
+        bool IsCompleting { get; }
+
+        bool IsCompleted { get; }
+
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
 
         Task CompleteAsync(CancellationToken cancellationToken = default);

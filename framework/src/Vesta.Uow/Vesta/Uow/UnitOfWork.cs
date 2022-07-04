@@ -16,25 +16,25 @@ namespace Vesta.Uow
         public event EventHandler Completing;
         public event EventHandler Failed;
         public event EventHandler Disposing;
+        public bool IsCompleting { get; private set; }
+        public bool IsCompleted { get; private set; }
 
-        private IUnitOfWorkEventPublishingManager _eventPublishingManager;
+    private IUnitOfWorkEventPublishingManager _eventPublishingManager;
         private IDictionary<string, IDatabaseApi> _databaseApis;
-        private bool _isCompleting;
-        private bool _isCompleted;
         private Exception _exception;
         private bool _isDisposed;
 
         public UnitOfWork(
-            ServiceProvider serviceProvider, 
+            IServiceProvider serviceProvider, 
             IUnitOfWorkEventPublishingManager eventPublishingManager)
         {
-            _isCompleting = false;
-            _isCompleted = false;
+            IsCompleting = false;
+            IsCompleted = false;
+            ServiceProvider = serviceProvider;
+
             _databaseApis = new Dictionary<string, IDatabaseApi>();
 
             _eventPublishingManager = eventPublishingManager;
-
-            ServiceProvider = serviceProvider;
         }
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -59,7 +59,7 @@ namespace Vesta.Uow
 
         public async Task CompleteAsync(CancellationToken cancellationToken = default)
         {
-            if(_isCompleting || _isCompleted)
+            if(IsCompleting || IsCompleted)
             {
                 throw new InvalidOperationException("Complete is called before!");
             }
@@ -67,17 +67,17 @@ namespace Vesta.Uow
             try
             {
 
-                _isCompleting = true;
+                IsCompleting = true;
 
-                Completing.Invoke(this, EventArgs.Empty);
+                OnCompleting();               
 
                 await SaveChangesAsync(cancellationToken);
 
                 await _eventPublishingManager.PublishAllAsync();
 
-                _isCompleted = true;
+                IsCompleted = true;
 
-                Completed?.Invoke(this, EventArgs.Empty);
+                OnCompleted();
 
             }
             catch (Exception exception)
@@ -144,19 +144,38 @@ namespace Vesta.Uow
 
                 _isDisposed = true;
 
-                if (!_isCompleted || _exception != null)
+                if (!IsCompleted || _exception != null)
                 {
-                    Failed?.Invoke(this, new UnitOfWorkFailedEventArgs(_exception));
+                    OnFailed();
                 }
             }
 
-            Disposing?.Invoke(this, EventArgs.Empty);
+            OnDisposing();
         }
 
         public void Dispose()
         {
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
+        }
+
+        private void OnCompleting()
+        {
+            Completing?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnCompleted()
+        {
+            Completed?.Invoke(this, EventArgs.Empty);
+        }
+        private void OnFailed()
+        {
+            var args = new UnitOfWorkFailedEventArgs(_exception);
+            Failed?.Invoke(this, args);
+        }
+        private void OnDisposing()
+        {
+            Disposing?.Invoke(this, EventArgs.Empty);
         }
     }
 }

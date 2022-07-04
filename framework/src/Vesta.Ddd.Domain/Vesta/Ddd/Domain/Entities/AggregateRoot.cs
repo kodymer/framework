@@ -8,21 +8,23 @@ namespace Vesta.Ddd.Domain.Entities
 
     [Serializable]
     public abstract class AggregateRoot : Entity,
-        IHasConcurrencyStamp, IGenerateIntegrationEvents
+        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents
     {
 
         public virtual string ConcurrencyStamp { get; set; }
 
+        private ICollection<EventRecord> _localEvents;
         private ICollection<EventRecord> _distributedEvents;
 
         protected AggregateRoot()
         {
+            _localEvents = new Collection<EventRecord>();
             _distributedEvents = new Collection<EventRecord>();
 
             ConcurrencyStamp = Guid.NewGuid().ToString("N");
         }
 
-        public virtual ImmutableList<EventRecord> GetDistributedEvents()
+        ImmutableList<EventRecord> IGenerateIntegrationEvents.GetDistributedEvents()
         {
             return _distributedEvents.ToImmutableList();
         }
@@ -36,26 +38,44 @@ namespace Vesta.Ddd.Domain.Entities
         {
             _distributedEvents.Add(new EventRecord(this, @event, EventRecordOrderGenerator.GetNext()));
         }
+
+        ImmutableList<EventRecord> IGenerateDomainEvents.GetLocalEvents()
+        {
+            return _localEvents.ToImmutableList();
+        }
+
+        public virtual void ClearLocalEvents()
+        {
+            _localEvents.Clear();
+        }
+        public virtual void AddLocalEvent(object @event)
+        {
+            _localEvents.Add(new EventRecord(this, @event, EventRecordOrderGenerator.GetNext()));
+        }
+
     }
 
     [Serializable]
     public abstract class AggregateRoot<TKey> : Entity<TKey>,
-        IHasConcurrencyStamp, IGenerateIntegrationEvents
+        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents
     {
 
         public virtual string ConcurrencyStamp { get; set; }
 
+        private ICollection<EventRecord> _localEvents;
         private ICollection<EventRecord> _distributedEvents;
 
         protected AggregateRoot()
+            : base()
         {
+            _localEvents = new Collection<EventRecord>();
             _distributedEvents = new Collection<EventRecord>();
 
             ConcurrencyStamp = Guid.NewGuid().ToString("N");
         }
 
         protected AggregateRoot(TKey id)
-            : base()
+            : this()
 
         {
             Id = id;
@@ -74,6 +94,20 @@ namespace Vesta.Ddd.Domain.Entities
         public virtual void AddDistributedEvent(object @event)
         {
             _distributedEvents.Add(new EventRecord(this, @event, EventRecordOrderGenerator.GetNext()));
+        }
+
+        ImmutableList<EventRecord> IGenerateDomainEvents.GetLocalEvents()
+        {
+            return _localEvents.ToImmutableList();
+        }
+
+        public virtual void ClearLocalEvents()
+        {
+            _localEvents.Clear();
+        }
+        public virtual void AddLocalEvent(object @event)
+        {
+            _localEvents.Add(new EventRecord(this, @event, EventRecordOrderGenerator.GetNext()));
         }
     }
 }

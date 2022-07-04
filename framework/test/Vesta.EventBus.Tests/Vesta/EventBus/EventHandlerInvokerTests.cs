@@ -74,7 +74,7 @@ namespace Vesta.EventBus
 
         }
 
-        private class VestaHandler : IDistributedEventHandler<VestaEto>
+        private class VestaHandler : IIntegrationEventHandler<VestaEto>
         {
             public Task HandleEventAsync(VestaEto args)
             {

@@ -1,11 +1,11 @@
 ﻿using Vesta.Banks.Bank;
+using Vesta.Banks.Etos;
 using Vesta.Ddd.Domain.Auditing;
 using Vesta.Ddd.Domain.EventBus;
-using Vesta.EventBus;
 
 namespace Vesta.Banks
 {
-    [EventName("Vesta.Banks.BankAccountEto")]
+    [EventName("Vesta.Banks.Etos.BankAccountChangedEto")]
     public class BankAccount : FullAuditedAggregateRoot<Guid>
     {
         public const string TableName = "BankAccounts";
@@ -31,11 +31,27 @@ namespace Vesta.Banks
             }
 
             Balance = intialBalance;
+
+            AddDistributedEvent(new BankAccountCreatedEto()
+            {
+                Id = Id,
+                Number = Number,
+                InitialBalance = intialBalance,
+            });
         }
 
         public void Increase(decimal amount)
         {
             Balance += amount;
+
+            AddDistributedEvent(this);
+            AddLocalEvent(new BankAccountBalanceIncreasedEto()
+            {
+                Id = Id,
+                Number = Number,
+                AddedAmount = amount,
+                Balance = Balance
+            });
         }
 
         public void Decrease(decimal amount)
@@ -46,6 +62,15 @@ namespace Vesta.Banks
             }
 
             Balance -= amount;
+
+            AddDistributedEvent(this);
+            AddLocalEvent(new BankAccountBalanceDecreasedEto()
+            {
+                Id = Id,
+                Number = Number,
+                SubtractedAmount = amount,
+                Balance = Balance
+            });
         }
     }
 }

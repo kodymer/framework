@@ -9,17 +9,28 @@ namespace Vesta.EventBus
         {
             Guard.Against.Null(eventHandler, nameof(eventHandler));
 
-            if (typeof(IDistributedEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
+            IEventHandlerExecutor eventHandlerExecutor = null;
+
+            if (typeof(IIntegrationEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
             {
-                var eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(DistributedEventHandlerExecutor<>).MakeGenericType(@event));
-                eventHandlerExecutor.ExecutorAsync(eventHandler, eventData);
-            }
-            else
-            {
-                throw new NotSupportedException("The event handler is not supported!");
+                eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(EventHandlerExecutor<,>)
+                    .MakeGenericType(@event, typeof(IIntegrationEventHandler<>).MakeGenericType(@event)));
             }
 
-            return Task.CompletedTask;
+            if (typeof(IDomainEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
+            {
+                eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(EventHandlerExecutor<,>)
+                    .MakeGenericType(@event, typeof(IDomainEventHandler<>).MakeGenericType(@event)));
+            }
+
+            if (eventHandlerExecutor is not null)
+            {
+                eventHandlerExecutor.ExecutorAsync(eventHandler, eventData);
+
+                return Task.CompletedTask;
+            }
+            else
+                throw new NotSupportedException("The event handler is not supported!");
         }
     }
 }

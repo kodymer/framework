@@ -1,4 +1,5 @@
-﻿using Vesta.EventBus.Abstracts;
+﻿using Ardalis.GuardClauses;
+using Vesta.EventBus.Abstracts;
 
 namespace Vesta.EventBus
 {
@@ -21,6 +22,10 @@ namespace Vesta.EventBus
 
         public EventHandlerOptions Add(Type eventHandler)
         {
+            Guard.Against.InvalidInput(
+                eventHandler, nameof(eventHandler), 
+                argument => argument.GetInterfaces().Any(@interface => @interface == typeof(IEventHandler)));
+
             if (!_handlers.ContainsKey(eventHandler.FullName))
             {
                 _handlers.Add(eventHandler.FullName, eventHandler);
@@ -29,10 +34,9 @@ namespace Vesta.EventBus
             return this;
         }
 
-        internal List<Type> GetAll()
+        internal IEnumerable<Type> GetAll()
         {
-            return _handlers.Values.ToList();
+            return _handlers.Values;
         }
-
     }
 }

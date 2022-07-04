@@ -5,7 +5,7 @@ namespace Vesta.Uow
 {
     public interface IUnitOfWorkEventRecordRegistrar
     {
-        DispatchReport Prepare(IEnumerable<EntityEntry> entries);
+        DispatchReport PrepareReport(IEnumerable<EntityEntry> entries);
 
         Task RegisterAsync(DispatchReport dispatchReport, CancellationToken cancellationToken = default);
     }
