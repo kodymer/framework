@@ -19,14 +19,17 @@ namespace Vesta.EventBus.Azure
         public AzureServiceBusMessageConsumerTests()
         {
             var processorStub = new Mock<IProcessorPool>();
-            consumer = new Mock<AzureServiceBusMessageConsumer>(processorStub.Object);
+            consumer = new Mock<AzureServiceBusMessageConsumer>(processorStub.Object)
+            {
+                CallBase = true
+            };
         }
 
         [Trait("Category", VestaUnitTestCategories.EventBus)]
         [Trait("Class", nameof(AzureServiceBusMessageConsumer))]
         [Trait("Method", nameof(AzureServiceBusMessageConsumer.Initialize))]
         [Fact]
-        public void Given_ConnectionStringTopicNameAndSubscriberName_When_Initialized_Then_Initialize()
+        public void Given_ConnectionStringTopicNameAndSubscriberName_When_Initialize_Then_Initialized()
         {
             const string topicName = "***topic-name***";
             const string subscriberName = "***subscriber-name***";
@@ -41,7 +44,7 @@ namespace Vesta.EventBus.Azure
         [Trait("Class", nameof(AzureServiceBusMessageConsumer))]
         [Trait("Method", nameof(AzureServiceBusMessageConsumer.Initialize))]
         [Fact]
-        public void Given_ConnectionStringAndTopicName_When_Initialized_Then_ThrowArgumentError()
+        public void Given_ConnectionStringAndTopicName_When_Initialize_Then_ThrowArgumentError()
         {
 
             const string topicName = "***topic-name***";
@@ -56,7 +59,7 @@ namespace Vesta.EventBus.Azure
         [Trait("Class", nameof(AzureServiceBusMessageConsumer))]
         [Trait("Method", nameof(AzureServiceBusMessageConsumer.Initialize))]
         [Fact]
-        public void Given_ConnectionString_When_Initialized_Then_ThrowArgumentError()
+        public void Given_ConnectionString_When_Initialize_Then_ThrowArgumentError()
         {
             const string connectionString = "***connection-string***";
 

@@ -8,6 +8,6 @@
 
         event Func<ProcessErrorEventArgs, Task> ProcessErrorAsync;
 
-        Task StartProcessingAsync();
+        Task StartProcessingAsync(CancellationToken cancellationToken = default);
     }
 }

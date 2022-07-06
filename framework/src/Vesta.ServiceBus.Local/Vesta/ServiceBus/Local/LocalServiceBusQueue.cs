@@ -20,7 +20,7 @@ namespace Vesta.ServiceBus.Local
             _queue = new ConcurrentQueue<LocalServiceBusMessage>();
         }
 
-        public void Enqueue(LocalServiceBusMessage message)
+        public virtual void Enqueue(LocalServiceBusMessage message)
         {
             int oldTotalMessajeNumber = _queue.Count();
 
@@ -32,7 +32,7 @@ namespace Vesta.ServiceBus.Local
 
         }
 
-        public bool TryDequeue(out LocalServiceBusMessage message)
+        public virtual bool TryDequeue(out LocalServiceBusMessage message)
         {
             int oldTotalMessajeNumber = _queue.Count();
 

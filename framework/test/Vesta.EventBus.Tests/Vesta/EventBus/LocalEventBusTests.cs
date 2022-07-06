@@ -1,46 +1,40 @@
 ﻿using Microsoft.Extensions.Options;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Vesta.ServiceBus.Azure;
+using Vesta.ServiceBus.Local;
 using Vesta.TestBase;
 using Vesta.TestBase.Fixtures;
 using Xunit;
 
 namespace Vesta.EventBus.Azure
 {
-    public class AzureEventBusTests : IClassFixture<ServiceRegistrarFixture>
+    public class LocalEventBusTests : IClassFixture<ServiceRegistrarFixture>
     {
         private readonly ServiceRegistrarFixture _fixture;
 
-        public AzureEventBusTests(ServiceRegistrarFixture fixture)
+        public LocalEventBusTests(ServiceRegistrarFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Trait("Category", VestaUnitTestCategories.EventBus)]
-        [Trait("Class", nameof(AzureEventBus))]
-        [Trait("Method", nameof(AzureEventBus.PublishAsync))]
+        [Trait("Class", nameof(LocalEventBus))]
+        [Trait("Method", nameof(LocalEventBus.PublishAsync))]
         [Fact]
         public async Task Given_EventTransferObject_When_MessageIsPosted_Then_ItIsPostedSuccessfully()
         {
 
-            var azureEventBusOptions = Options.Create(new AzureEventBusOptions());
             var eventHandlerOptions = Options.Create(new EventHandlerOptions());
-            var eventHandlerTypeProvider = new Mock<IntegrationEventHandlerTypeProvider>(eventHandlerOptions);
-            var consumer = new Mock<IAzureServiceBusMessageConsumer>();
-            var publisher = new Mock<IPublisherPool>();
+            var eventHandlerTypeProvider = new Mock<DomainEventHandlerTypeProvider>(eventHandlerOptions);
+            var consumer = new Mock<ILocalServiceBusMessageConsumer>();
+            var publisher = new Mock<ILocalServiceBusSender>();
             var eventHandlerInvoker = new Mock<IEventHandlerInvoker>();
 
-            var eventBusStub = new Mock<AzureEventBus>(
-                _fixture.ServiceProvider, azureEventBusOptions, eventHandlerTypeProvider.Object,
+            var eventBusStub = new Mock<LocalEventBus>(
+                _fixture.ServiceProvider, eventHandlerTypeProvider.Object,
                 consumer.Object, publisher.Object, eventHandlerInvoker.Object);
 
             await eventBusStub.Object.PublishAsync(new VestaEto());
-
         }
 
         private class VestaEto

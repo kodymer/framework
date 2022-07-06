@@ -8,6 +8,8 @@ namespace Vesta.EventBus
         public Task InvokeAsync(IEventHandler eventHandler, Type @event, object eventData)
         {
             Guard.Against.Null(eventHandler, nameof(eventHandler));
+            Guard.Against.Null(@event, nameof(@event));
+            Guard.Against.Null(eventData, nameof(eventData));
 
             IEventHandlerExecutor eventHandlerExecutor = null;
 

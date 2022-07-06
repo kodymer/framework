@@ -14,7 +14,7 @@ namespace Vesta.Uow
 
         event EventHandler Completing;
 
-        event EventHandler Failed;
+        event EventHandler<UnitOfWorkFailedEventArgs> Failed;
 
         event EventHandler Disposing;
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.Uow\Vesta.Uow.csproj" />
-    <ProjectReference Include="..\Vesta.Data.Tests\Vesta.Data.Tests.csproj" />
-    <ProjectReference Include="..\Vesta.EventBus.Azure.Tests\Vesta.EventBus.Azure.Tests.csproj" />
+    <ProjectReference Include="..\..\src\Vesta.ServiceBus.Local\Vesta.ServiceBus.Local.csproj" />
+    <ProjectReference Include="..\..\src\Vesta.TestBase\Vesta.TestBase.csproj" />
   </ItemGroup>
 
 </Project>

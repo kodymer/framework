@@ -1,4 +1,5 @@
-﻿using Vesta.EventBus;
+﻿using Vesta.Core;
+using Vesta.EventBus;
 using Vesta.EventBus.Abstracts;
 using Vesta.EventBus.Azure;
 using Vesta.ServiceBus.Local;
@@ -13,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaEventBusAbstracts();
             services.AddVestaDddDomainEventBus();
             services.AddVestaServiceBusLocal();
+            services.AddVestaEventHandlers(Actions.Empty);
 
             services.AddSingleton<DomainEventHandlerTypeProvider>();
             services.AddSingleton<IntegrationEventHandlerTypeProvider>();

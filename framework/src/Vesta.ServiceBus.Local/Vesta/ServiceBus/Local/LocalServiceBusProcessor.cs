@@ -16,12 +16,14 @@ namespace Vesta.ServiceBus.Local
         public event Func<ProcessMessageEventArgs, Task> ProcessMessageAsync;
         public event Func<ProcessErrorEventArgs, Task> ProcessErrorAsync;
 
+        private bool _isStoped;
+
         public LocalServiceBusProcessor(LocalServiceBusQueue queue)
         {
             _queue = queue;
         }
 
-        public async Task StartProcessingAsync()
+        public async Task StartProcessingAsync(CancellationToken cancellationToken = default)
         {
             IsProcessing = true;
 
@@ -29,17 +31,21 @@ namespace Vesta.ServiceBus.Local
             {
                 while (true)
                 {
-                    if (_queue.TryDequeue(out var message))
+                    try
                     {
-
-                        try
+                        if (_queue.TryDequeue(out var message))
                         {
                             await OnProcessMessage(message);
                         }
-                        catch (Exception exception)
-                        {
-                            await OnProcessError(exception);
-                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        await OnProcessError(exception);
+                    }
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        break;
                     }
 
                     Thread.Sleep(1000);
@@ -50,7 +56,7 @@ namespace Vesta.ServiceBus.Local
 
         private async Task OnProcessMessage(LocalServiceBusMessage message)
         {
-            if (ProcessErrorAsync is not null)
+            if (ProcessMessageAsync is not null)
             {
                 var args = new ProcessMessageEventArgs(message);
                 await ProcessMessageAsync(args);

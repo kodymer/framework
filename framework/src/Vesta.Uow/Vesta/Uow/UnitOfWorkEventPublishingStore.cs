@@ -16,14 +16,14 @@ namespace Vesta.Uow
             _repository = new PriorityQueue<UnitOfWorkEventPublishing, long>();
         }
 
-        public Task PushAsync(UnitOfWorkEventPublishing publishing)
+        public Task PushAsync(UnitOfWorkEventPublishing publishing, CancellationToken cancellationToken = default)
         {
             _repository.Enqueue(publishing, publishing.Priority);
 
             return Task.CompletedTask;
         }
 
-        public Task<UnitOfWorkEventPublishing> PopAsync()
+        public Task<UnitOfWorkEventPublishing> PopAsync(CancellationToken cancellationToken = default)
         {
             var publishing = _repository.Dequeue();
 

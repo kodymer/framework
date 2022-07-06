@@ -40,10 +40,18 @@ namespace Vesta.EventBus.Azure
         {
             var message = CreateMessage(eventName, body, eventId);
 
-            var sender = _publisherPool.GetSender(_eventBusOptions.ConnectionString, _eventBusOptions.TopicName);
-            await sender.SendMessageAsync(message);
+            try
+            {
+                var sender = _publisherPool.GetSender(_eventBusOptions.ConnectionString, _eventBusOptions.TopicName);
+                await sender.SendMessageAsync(message);
 
-            Logger.LogInformation("Published message: {Message}.", JsonSerializer.Serialize(message));
+                Logger.LogInformation("Published message: {Message}.", JsonSerializer.Serialize(message));
+            }
+            catch (Exception exception)
+            {
+                Logger.LogError(exception, "Could not publish message.({MessageId}).", message.MessageId);
+                throw;
+            }
         }
     }
 }

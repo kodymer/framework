@@ -35,9 +35,18 @@ namespace Vesta.EventBus
         {
             var message = CreateMessage(eventName, body, eventId);
 
-            await _publisher.SendMessageAsync(message);
+            try
+            {
 
-            Logger.LogInformation("Published message: {Message}.", JsonSerializer.Serialize(message));
+                await _publisher.SendMessageAsync(message);
+
+                Logger.LogInformation("Published message: {Message}.", JsonSerializer.Serialize(message));
+            }
+            catch (Exception exception)
+            {
+                Logger.LogError(exception, "Could not publish message.({MessageId}).", message.MessageId);
+                throw;
+            }
         }
     }
 }

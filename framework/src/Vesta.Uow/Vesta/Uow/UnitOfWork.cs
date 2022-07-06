@@ -5,19 +5,29 @@ using System.Runtime.CompilerServices;
 using Vesta.Core.DependencyInjection;
 using Vesta.EventBus.Abstracts;
 
-[assembly: InternalsVisibleTo("Vesta.EntityFrameworkCore")]
+[assembly: 
+    InternalsVisibleTo("Vesta.EntityFrameworkCore"),
+    InternalsVisibleTo("Vesta.Uow.Tests"),
+    InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace Vesta.Uow
 {
+    /*
+     * TODO: Make transactional. 
+     * See https://docs.microsoft.com/en-us/ef/core/saving/transactions#using-systemtransactions
+     * 
+     * TODO: Provide rollback.
+     * 
+     */
     public class UnitOfWork : IUnitOfWork
     {
         public IServiceProvider ServiceProvider { get; }
         public event EventHandler Completed;
         public event EventHandler Completing;
-        public event EventHandler Failed;
+        public event EventHandler<UnitOfWorkFailedEventArgs> Failed;
         public event EventHandler Disposing;
-        public bool IsCompleting { get; private set; }
-        public bool IsCompleted { get; private set; }
+        public virtual bool IsCompleting { get; private set; }
+        public virtual bool IsCompleted { get; private set; }
 
     private IUnitOfWorkEventPublishingManager _eventPublishingManager;
         private IDictionary<string, IDatabaseApi> _databaseApis;
@@ -127,8 +137,7 @@ namespace Vesta.Uow
             Guard.Against.Null(unitOfWorkEventRecord, nameof(unitOfWorkEventRecord));
 
             var publisher = ServiceProvider.GetRequiredService<TPublisher>();
-            var publishing = new UnitOfWorkEventPublishing(publisher, unitOfWorkEventRecord, priority);
-            await _eventPublishingManager.CreateAsync(publishing);
+            await _eventPublishingManager.CreateAndInsertAsync(publisher, unitOfWorkEventRecord, priority);
         }
 
         protected virtual void Dispose(bool disposing)
