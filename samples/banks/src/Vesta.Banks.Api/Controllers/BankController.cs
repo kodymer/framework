@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 using Vesta.AspNetCore.Mvc;
-using Vesta.Banks.Bank;
-using Vesta.Banks.Bank.Dtos;
-using Vesta.Banks.Domain;
+using Vesta.Banks.Dtos;
 
 namespace Vesta.Banks.Controllers
 {
@@ -47,7 +41,7 @@ namespace Vesta.Banks.Controllers
             try
             {
 
-                var bankAccounts = await _bankAppService.GetAllBankAccountList();
+                var bankAccounts = await _bankAppService.GetAllBankAccountListAsync();
 
                 return Ok(bankAccounts);
             }
@@ -81,13 +75,12 @@ namespace Vesta.Banks.Controllers
 
             try
             {
-                var bankTransferHistory = await _bankAppService.GetAllBankTransferList();
+                var bankTransferHistory = await _bankAppService.GetAllBankTransferListAsync();
 
                 return Ok(bankTransferHistory);
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
         }

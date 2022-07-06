@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Vesta.EventBus.Abstracts
 {
-    public interface IDistributedEventHandler<TArgs> : IEventHandler
-        where TArgs : class
+    public interface IEventHandlerTypeProvider
     {
-        Task HandleEventAsync(TArgs args);
+        IEnumerable<Type> GetAll();
     }
 }

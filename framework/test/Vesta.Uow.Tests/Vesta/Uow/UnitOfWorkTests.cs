@@ -2,34 +2,46 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Vesta.Data.Fixtures;
 using Vesta.EntityFrameworkCore;
+using Vesta.EventBus.Abstracts;
 using Vesta.TestBase;
 using Vesta.TestBase.Fixtures;
 using Vesta.TestBase.Orderers;
 using Vesta.Uow.EntityFrameworkCore;
+using Vesta.Uow.Fixtures;
 using Xunit;
 
 namespace Vesta.Uow.Tests
 {
     [TestCaseOrderer("Vesta.TestBase.Orderers.PriorityOrderer", "Vesta.TestBase")]
-    [Collection(nameof(DataContextCollection))]
-    public class UnitOfWorkTests : IClassFixture<ServiceRegistrarFixture>, IClassFixture<InMemoryDbContextFixture>
+    [Collection(nameof(UnitOfWorkCollectionFixture))]
+    public class UnitOfWorkTests : IClassFixture<UnitOfWorkServiceRegistrarFixture>, IClassFixture<InMemoryDbContextFixture>
     {
         private readonly Mock<UnitOfWork> _unitOfWorkStub;
+        private readonly Mock<IUnitOfWorkEventPublishingManager> _unitOfWorkeventPublishingManagerStub;
+
         private readonly ServiceRegistrarFixture _serviceRegistrarFixture;
         private readonly InMemoryDbContextFixture _inMemoryDbContextFixture;
 
         public UnitOfWorkTests(
-            ServiceRegistrarFixture serviceRegistrarFixture,
+            UnitOfWorkServiceRegistrarFixture serviceRegistrarFixture,
             InMemoryDbContextFixture inMemoryDbContextFixture
             )
         {
             _serviceRegistrarFixture = serviceRegistrarFixture;
             _inMemoryDbContextFixture = inMemoryDbContextFixture;
 
-            _unitOfWorkStub = new Mock<UnitOfWork>(_serviceRegistrarFixture.ServiceProvider);
+            _unitOfWorkeventPublishingManagerStub = new Mock<IUnitOfWorkEventPublishingManager>();
+
+            _unitOfWorkStub = new Mock<UnitOfWork>(
+                _serviceRegistrarFixture.ServiceProvider,
+                _unitOfWorkeventPublishingManagerStub.Object)
+            {
+                CallBase = true
+            };
         }
 
         private void AddDatabaseApi(out string key)
@@ -113,6 +125,117 @@ namespace Vesta.Uow.Tests
             AddDatabaseApi(out string key);
 
             await _unitOfWorkStub.Object.SaveChangesAsync();
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.CompleteAsync))]
+        [Fact, Order(6)]
+        public async Task When_Complete_Then_Successful()
+        {
+            AddDatabaseApi(out string key);
+
+            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+
+            await _unitOfWorkStub.Object.CompleteAsync();
+
+            _unitOfWorkStub.Object.IsCompleted.Should().BeTrue();
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.CompleteAsync))]
+        [Fact, Order(6)]
+        public async Task When_ItIsCompleted_Then_ThrowCompletedEvent()
+        {
+            AddDatabaseApi(out string key);
+
+            _unitOfWorkStub.Object.Completed += UnitOfWorkCompletedEventHandler; ;
+
+            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+
+            await _unitOfWorkStub.Object.CompleteAsync();
+
+            void UnitOfWorkCompletedEventHandler(object sender, EventArgs args)
+            {
+                sender.Should().NotBeNull();
+                args.Should().BeSameAs(EventArgs.Empty);
+            }
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.CompleteAsync))]
+        [Fact, Order(6)]
+        public async Task When_ItIsCompleting_Then_ThrowCompletingEvent()
+        {
+            AddDatabaseApi(out string key);
+
+            _unitOfWorkStub.Object.Completing += UnitOfWorkCompletingEventHandler; ;
+
+            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+
+            await _unitOfWorkStub.Object.CompleteAsync();
+
+            void UnitOfWorkCompletingEventHandler(object sender, EventArgs args)
+            {
+                sender.Should().NotBeNull();
+                args.Should().BeSameAs(EventArgs.Empty);
+            }
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.CompleteAsync))]
+        [Fact, Order(6)]
+        public void When_CompletingAndTryCompleteAgain_Then_ThrowInvalidOperationError()
+        {
+
+            _unitOfWorkStub.SetupGet(u => u.IsCompleting).Returns(true);
+
+            var action = async () => await _unitOfWorkStub.Object.CompleteAsync();
+
+            action.Should().ThrowExactlyAsync<InvalidOperationException>();
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.CompleteAsync))]
+        [Fact, Order(6)]
+        public void When_CompletedAndTryCompleteAgain_Then_ThrowInvalidOperationError()
+        {
+
+            _unitOfWorkStub.SetupGet(u => u.IsCompleted).Returns(true);
+
+            var action = async () => await _unitOfWorkStub.Object.CompleteAsync();
+
+            action.Should().ThrowExactlyAsync<InvalidOperationException>();
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.AddEventRecordAsync))]
+        [Fact, Order(6)]
+        public async Task Given_EventRecord_When_AddEventRecordToQueue_Then_Successful()
+        {
+            var unitOrWorkEventRecord = new UnitOfWorkEventRecord(new(), new());
+
+            _unitOfWorkeventPublishingManagerStub
+                .Setup(p => p.CreateAndInsertAsync(It.IsAny<IEventBus>(), It.IsAny<UnitOfWorkEventRecord>(), It.IsAny<long>(), It.IsAny<CancellationToken>()));
+
+            await _unitOfWorkStub.Object.AddEventRecordAsync<IDistributedEventBus>(unitOrWorkEventRecord, 1, It.IsAny<CancellationToken>());
+        }
+
+        [Trait("Category", VestaUnitTestCategories.Data)]
+        [Trait("Class", nameof(UnitOfWork))]
+        [Trait("Method", nameof(UnitOfWork.AddEventRecordAsync))]
+        [Fact, Order(6)]
+        public void Given_Null_When_AddEventRecord_Then_ThrowArgumentError()
+        {
+
+            var action = async () => await _unitOfWorkStub.Object.AddEventRecordAsync<IDistributedEventBus>(null, 1, It.IsAny<CancellationToken>());
+
+            action.Should().ThrowExactlyAsync<ArgumentNullException>();
         }
     }
 }

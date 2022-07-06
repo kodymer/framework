@@ -2,13 +2,8 @@
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Vesta.ServiceBus.Azure;
 
 namespace Vesta.EventBus.Azure
@@ -21,14 +16,14 @@ namespace Vesta.EventBus.Azure
         private string _subscriberName;
         private string _connectionString;
 
-        private readonly ConcurrentBag<Func<ServiceBusReceivedMessage, Task>> _callbacks;
+        private readonly ConcurrentBag<Func<AzureServiceBusReceivedMessage, Task>> _callbacks;
         private readonly IProcessorPool _processorPool;
 
         public AzureServiceBusMessageConsumer(IProcessorPool processorPool)
         {
             Logger = NullLogger<AzureServiceBusMessageConsumer>.Instance;
 
-            _callbacks = new ConcurrentBag<Func<ServiceBusReceivedMessage, Task>>();
+            _callbacks = new ConcurrentBag<Func<AzureServiceBusReceivedMessage, Task>>();
             _processorPool = processorPool;
         }
 
@@ -46,12 +41,12 @@ namespace Vesta.EventBus.Azure
             StartProcessing();
         }
 
-        public void OnMessageReceived(Func<ServiceBusReceivedMessage, Task> processEventAsync)
+        public void OnMessageReceived(Func<AzureServiceBusReceivedMessage, Task> processEventAsync)
         {
             _callbacks.Add(processEventAsync);
         }
 
-        protected  virtual void StartProcessing()
+        protected virtual void StartProcessing()
         {
             Task.Factory.StartNew(function: async () =>
             {
@@ -82,7 +77,7 @@ namespace Vesta.EventBus.Azure
                 {
                     Logger.LogDebug($"Executing callback.");
 
-                    await callbacks(args.Message);
+                    await callbacks(new AzureServiceBusReceivedMessage(args.Message));
                 }
 
                 Logger.LogInformation($"Message delivery: {JsonSerializer.Serialize(args.Message)}.");
@@ -92,7 +87,7 @@ namespace Vesta.EventBus.Azure
                 Logger.LogDebug($"The message has already been completed.");
             }
             catch (Exception exception)
-            {                
+            {
                 HandlerError(exception);
             }
         }

@@ -8,7 +8,10 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddVestaUow(this IServiceCollection services)
         {
-            services.AddLazyScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddLazyScoped<IUnitOfWorkEventPublishingManager, UnitOfWorkEventPublishingManager>();
+            services.AddScoped<IUnitOfWorkEventPublishingStore, UnitOfWorkEventPublishingStore>();
         }
     }
 }

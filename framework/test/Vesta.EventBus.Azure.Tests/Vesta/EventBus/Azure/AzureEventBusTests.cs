@@ -30,12 +30,13 @@ namespace Vesta.EventBus.Azure
 
             var azureEventBusOptions = Options.Create(new AzureEventBusOptions());
             var eventHandlerOptions = Options.Create(new EventHandlerOptions());
+            var eventHandlerTypeProvider = new Mock<IntegrationEventHandlerTypeProvider>(eventHandlerOptions);
             var consumer = new Mock<IAzureServiceBusMessageConsumer>();
             var publisher = new Mock<IPublisherPool>();
             var eventHandlerInvoker = new Mock<IEventHandlerInvoker>();
 
             var eventBusStub = new Mock<AzureEventBus>(
-                _fixture.ServiceProvider, azureEventBusOptions, eventHandlerOptions, 
+                _fixture.ServiceProvider, azureEventBusOptions, eventHandlerTypeProvider.Object,
                 consumer.Object, publisher.Object, eventHandlerInvoker.Object);
 
             await eventBusStub.Object.PublishAsync(new VestaEto());

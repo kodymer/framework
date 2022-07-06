@@ -29,7 +29,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<AzureEventBus>();
             services.AddSingleton<IDistributedEventBus, AzureEventBus>(serviceProvider =>
             {
-
                 var eventBus = serviceProvider.GetRequiredService<AzureEventBus>();
                 eventBus.Initialize();
                 return eventBus;

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 using Vesta.Auditing;
+using Vesta.Ddd.Domain.EventBus;
 using Vesta.EntityFrameworkCore.Abstracts;
+using Vesta.Uow;
 
 namespace Vesta.EntityFrameworkCore
 {
@@ -11,21 +11,33 @@ namespace Vesta.EntityFrameworkCore
         where TDbContext : DbContext
     {
 
+        public IServiceProvider ServiceProvider { get; set; }
+
         public IAuditPropertySetter AuditPropertySetter { get; set; }
+
+        public IUnitOfWorkEventRecordRegistrar UnitOfWorkEventRecordRegistrar { get; set; }
 
         protected VestaDbContextBase(DbContextOptions<TDbContext> options)
             : base(options)
         {
             AuditPropertySetter = NullAuditPropertySetter.Instance;
+            UnitOfWorkEventRecordRegistrar = NullUnitOfWorkEventRecordRegistrar.Instance;
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             ApplyAuditConcepts();
-            
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 
-            // TODO: prepare for publish events
+            var eventReport = PrepareDispatchReport();
+
+            var entriesWrittenToDatabase = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+
+            if (entriesWrittenToDatabase > 0)
+            {
+                await RegisterDispatchReport(eventReport, cancellationToken);
+            }
+
+            return entriesWrittenToDatabase;
         }
 
         private void ApplyAuditConcepts()
@@ -60,6 +72,16 @@ namespace Vesta.EntityFrameworkCore
         private void ApplyAuditConceptsForDeletedEntity(EntityEntry entry)
         {
             AuditPropertySetter.SetDeletionProperties(entry.Entity);
+        }
+
+        private DispatchReport PrepareDispatchReport()
+        {
+            return UnitOfWorkEventRecordRegistrar.PrepareReport(ChangeTracker.Entries());
+        }
+
+        private async Task RegisterDispatchReport(DispatchReport dispatchEventReport, CancellationToken cancellationToken = default)
+        {
+            await UnitOfWorkEventRecordRegistrar.RegisterAsync(dispatchEventReport, cancellationToken);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

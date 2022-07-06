@@ -10,18 +10,40 @@ namespace Vesta.EventBus
 {
     public class EventHandlerInvokerTests
     {
+        private readonly Mock<EventHandlerInvoker> _invoker;
+
+        public EventHandlerInvokerTests()
+        {
+            _invoker = new Mock<EventHandlerInvoker>()
+            {
+                CallBase = true
+            };
+        }
+
         [Trait("Category", VestaUnitTestCategories.EventBus)]
         [Trait("Class", nameof(EventHandlerInvoker))]
         [Trait("Method", nameof(EventHandlerInvoker.InvokeAsync))]
         [Fact]
-        public async Task Given_HandlerEventTypeAndEventData_When_HandlerInvoked_Then_ExecuteHandler()
+        public async Task Given_IntegrationEventHandlerAndEventTypeAndEventData_When_HandlerInvoked_Then_ExecuteHandler()
         {
-            var handler = new VestaHandler();
+            var handler = new VestaIntegrationEventHandler();
             var eventType = typeof(VestaEto);
             var eventData = new VestaEto();
 
-            var invoker = new Mock<EventHandlerInvoker>();
-            await invoker.Object.InvokeAsync(handler, eventType, eventData);
+            await _invoker.Object.InvokeAsync(handler, eventType, eventData);
+        }
+
+        [Trait("Category", VestaUnitTestCategories.EventBus)]
+        [Trait("Class", nameof(EventHandlerInvoker))]
+        [Trait("Method", nameof(EventHandlerInvoker.InvokeAsync))]
+        [Fact]
+        public async Task Given_DomainEventHandlerAndEventTypeAndEventData_When_HandlerInvoked_Then_ExecuteHandler()
+        {
+            var handler = new VestaDomainEventHandler();
+            var eventType = typeof(VestaEto);
+            var eventData = new VestaEto();
+
+            await _invoker.Object.InvokeAsync(handler, eventType, eventData);
 
         }
 
@@ -29,28 +51,26 @@ namespace Vesta.EventBus
         [Trait("Class", nameof(EventHandlerInvoker))]
         [Trait("Method", nameof(EventHandlerInvoker.InvokeAsync))]
         [Fact]
-        public void Given_HandlerEventTypeAndEventData_When_HandlerInvoked_Then_ThrowNotSupportError()
+        public void Given_IntegrationEventHandlerAndEventTypeAndEventData_When_HandlerInvoked_Then_ThrowNotSupportError()
         {
-            var handler = new VestaHandler();
+            var handler = new BadImplVestaHandler();
             var eventType = typeof(VestaEto);
             var eventData = new VestaEto();
 
-            var invoker = new Mock<EventHandlerInvoker>();
-            var action = async () => await invoker.Object.InvokeAsync(handler, eventType, eventData);
+            var action = async () => await _invoker.Object.InvokeAsync(handler, eventType, eventData);
 
-            action.Should().ThrowExactlyAsync<ArgumentNullException>();
+            action.Should().ThrowExactlyAsync<NotSupportedException>();
         }
 
         [Trait("Category", VestaUnitTestCategories.EventBus)]
         [Trait("Class", nameof(EventHandlerInvoker))]
         [Trait("Method", nameof(EventHandlerInvoker.InvokeAsync))]
         [Fact]
-        public void Given_Handler_When_HandlerInvoked_Then_ThrowArgumentError()
+        public void Given_IntegrationEventHandler_When_HandlerInvoked_Then_ThrowArgumentError()
         {
-            var handler = new VestaHandler();
+            var handler = new VestaIntegrationEventHandler();
 
-            var invoker = new Mock<EventHandlerInvoker>();
-            var action = async () => await invoker.Object.InvokeAsync(handler, null, null);
+            var action = async () => await _invoker.Object.InvokeAsync(handler, null, null);
 
             action.Should().ThrowExactlyAsync<ArgumentNullException>();
 
@@ -63,7 +83,7 @@ namespace Vesta.EventBus
         public void When_HandlerInvoked_Then_ThrowArgumentError()
         {
             var invoker = new Mock<EventHandlerInvoker>();
-            var action = async () => await invoker.Object.InvokeAsync(null, null, null);
+            var action = async () => await _invoker.Object.InvokeAsync(null, null, null);
 
             action.Should().ThrowExactlyAsync<ArgumentNullException>();
         }
@@ -74,7 +94,15 @@ namespace Vesta.EventBus
 
         }
 
-        private class VestaHandler : IDistributedEventHandler<VestaEto>
+        private class VestaIntegrationEventHandler : IIntegrationEventHandler<VestaEto>
+        {
+            public Task HandleEventAsync(VestaEto args)
+            {
+                return Task.CompletedTask;
+            }
+        }
+
+        private class VestaDomainEventHandler : IDomainEventHandler<VestaEto>
         {
             public Task HandleEventAsync(VestaEto args)
             {
