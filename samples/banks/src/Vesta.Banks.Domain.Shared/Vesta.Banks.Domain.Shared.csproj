@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Vesta.Ddd.Domain.EventBus" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain.EventBus\Vesta.Ddd.Domain.EventBus.csproj" Condition="$(Debug) == 'True'" />
+  </ItemGroup> 
+</Project>

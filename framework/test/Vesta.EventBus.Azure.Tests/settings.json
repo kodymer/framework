@@ -1,0 +1,15 @@
+{
+  "Azure": {
+    "ServiceBus": {
+      "Connections": {
+        "Default": {
+          "ConnectionString": "***connection-string***"
+        }
+      }
+    },
+    "EventBus": {
+      "TopicName": "***topic-name***",
+      "SubscriberName": "***subscriber-name***"
+    }
+  }
+}

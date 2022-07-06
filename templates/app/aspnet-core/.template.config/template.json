@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "NTT DATA",
+    "classifications": [
+      "Asisa",
+      "Microservices",
+      "net6.0"
+    ],
+    "identity": "Vesta.Microservice.CSharp.NET6.ASPNET.WebApi.Abp",
+    "name": "Vesta Microservice",
+    "shortName": "vesta-microservice",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    },
+    "symbols": {
+      "name": {
+        "type": "parameter",
+        "dataType": "string",
+        "replaces": "ProjectName",
+        "fileRename": "ProjectName",
+        "isRequired": true
+      }
+    }
+  }
