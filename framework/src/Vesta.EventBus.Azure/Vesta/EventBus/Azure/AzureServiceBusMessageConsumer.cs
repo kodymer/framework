@@ -15,7 +15,6 @@ namespace Vesta.EventBus.Azure
         private string _topicName;
         private string _subscriberName;
         private string _connectionString;
-
         private readonly ConcurrentBag<Func<AzureServiceBusReceivedMessage, Task>> _callbacks;
         private readonly IProcessorPool _processorPool;
 
@@ -103,6 +102,15 @@ namespace Vesta.EventBus.Azure
         {
 
             Logger.LogError(exception, "There was a problem trying to process the message.");
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _processorPool.DisposeAsync().ConfigureAwait(false);
+
+            _callbacks.Clear();
+
+            GC.SuppressFinalize(this);
         }
     }
 }

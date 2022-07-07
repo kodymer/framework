@@ -3,7 +3,7 @@ using Vesta.ServiceBus.Azure;
 
 namespace Vesta.EventBus.Azure
 {
-    public interface IAzureServiceBusMessageConsumer
+    public interface IAzureServiceBusMessageConsumer : IAsyncDisposable
     {
         void Initialize(string topicName, string subscriberName, string connectionString);
 

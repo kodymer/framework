@@ -16,7 +16,7 @@ namespace Vesta.ServiceBus.Local
         public event Func<ProcessMessageEventArgs, Task> ProcessMessageAsync;
         public event Func<ProcessErrorEventArgs, Task> ProcessErrorAsync;
 
-        private bool _isStoped;
+        private bool _isDisposed;
 
         public LocalServiceBusProcessor(LocalServiceBusQueue queue)
         {
@@ -69,6 +69,28 @@ namespace Vesta.ServiceBus.Local
                 var args = new ProcessErrorEventArgs(exception);
                 await ProcessErrorAsync(args);
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _queue.Dispose();
+                }
+
+                ProcessMessageAsync = null;
+                ProcessErrorAsync = null;
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

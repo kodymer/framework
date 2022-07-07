@@ -1,6 +1,6 @@
 ﻿namespace Vesta.ServiceBus.Local
 {
-    public interface ILocalServiceBusProcessor
+    public interface ILocalServiceBusProcessor : IDisposable
     {
         bool IsProcessing { get; }
 
