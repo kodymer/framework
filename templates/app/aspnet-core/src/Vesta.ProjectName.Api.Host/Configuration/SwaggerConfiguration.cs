@@ -84,7 +84,7 @@ namespace Vesta.ProjectName.Configuration
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"{applicationOptions.PathPrefix}/swagger/v1/swagger.json", "[Asisa][Vesta][ProjectName] API v1");
+                c.SwaggerEndpoint($"./v1/swagger.json", "ProjectName API v1");
 
                 c.OAuthClientId(authenticationOptions.Audience);
                 c.OAuthAppName("Asisa Vesta ProjectName API");
