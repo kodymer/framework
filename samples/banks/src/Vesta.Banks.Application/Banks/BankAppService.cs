@@ -35,7 +35,6 @@ namespace Vesta.Banks
             _bankAccountPublisher = bankAccountPublisher;
         }
 
-
         public async Task<List<BankTransferOutput>> GetAllBankTransferListAsync(CancellationToken cancellationToken = default)
         {
             List<BankTransferOutput> dtos = null;
@@ -155,7 +154,7 @@ namespace Vesta.Banks
                 await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken);
                 await _repository.UpdateAsync(bankAccountTo, cancellationToken: cancellationToken);
 
-                await CurrentUnitOfWork.SaveChangesAsync(cancellationToken); // Not affect Dapper Repository
+                await CurrentUnitOfWork.CompleteAsync(cancellationToken); // Not affect Dapper Repository
 
                 Logger.LogInformation(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Successful transfer correctly. ", input.Amount);
@@ -163,8 +162,8 @@ namespace Vesta.Banks
 
                 await _bankTransferRepository.InsertAsync(bankTransfer, cancellationToken); // Dapper repository not support Unit of Work pattern
 
-                await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
-                await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
+                //await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
+                //await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
 
                 await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
 

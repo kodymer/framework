@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Vesta.Ddd.Domain.EventBus\Vesta.Ddd.Domain.EventBus.csproj" />
     <ProjectReference Include="..\Vesta.EventBus.Abstracts\Vesta.EventBus.Abstracts.csproj" />
     <ProjectReference Include="..\Vesta.Autofac\Vesta.Autofac.csproj" />
+    <ProjectReference Include="..\Vesta.ServiceBus.Local\Vesta.ServiceBus.Local.csproj" />
   </ItemGroup>
 
   <ItemGroup>

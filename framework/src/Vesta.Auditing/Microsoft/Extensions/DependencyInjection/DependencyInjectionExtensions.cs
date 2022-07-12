@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LazyProxy.ServiceProvider;
 using Vesta.Auditing;
-using Vesta.Security.Claims;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -11,7 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaAuditingAbstracts();
             services.AddVestaSecurity();
 
-            services.AddTransient<IAuditPropertySetter, AuditPropertySetter>();
+            services.AddLazyScoped<IAuditPropertySetter, AuditPropertySetter>();
 
         }
     }

@@ -70,7 +70,7 @@ namespace Vesta.Banks
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers()
-                    .RequireAuthorization();
+                    /*.RequireAuthorization()*/;
                 endpoints.MapHealthChecks();
                 endpoints.MapDefaultControllerRoute();
             });

@@ -19,12 +19,17 @@ namespace Vesta.EventBus.Hosting
         {
             var logger = _serviceProvider.GetRequiredService<ILoggerFactory>().CreateLogger<EventBusInitializer>();
 
-            if (_serviceProvider.GetService<IDistributedEventBus>() is null)
+            if (_serviceProvider.GetService<ILocalEventBus>() is null)
             {
-                logger.LogWarning("Could not initialize event bus service. You must check the configuration.");
+                logger.LogWarning("Could not initialize local event bus service. You must check the configuration.");
             };
 
-            logger.LogInformation("Event bus service started!");
+            if (_serviceProvider.GetService<IDistributedEventBus>() is null)
+            {
+                logger.LogWarning("Could not initialize distribute event bus service. You must check the configuration.");
+            };
+
+            logger.LogInformation("Event bus services started!");
 
             return Task.CompletedTask;
         }
