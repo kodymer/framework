@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace Vesta.ServiceBus.Local
 {
-    public class LocalServiceBusQueue
+    public class LocalServiceBusQueue : IDisposable
     {
         private ConcurrentQueue<LocalServiceBusMessage> _queue;
 
         public EventHandler<MessageReceivedEventArgs> MessageReceived;
         public EventHandler<ChangedEventArgs> Changed;
         public EventHandler<MessageSentEventArgs> MessageSent;
+
+        private bool _isDisposed;
 
         public LocalServiceBusQueue()
         {
@@ -62,6 +64,28 @@ namespace Vesta.ServiceBus.Local
         private void OnChanged(int oldTotalMessajeNumber, int currentTotalMessajeNumber)
         {
             Changed?.Invoke(this, new ChangedEventArgs(oldTotalMessajeNumber, currentTotalMessajeNumber));
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+
+                MessageReceived = null;
+                Changed= null;
+                MessageSent = null;
+
+                _queue.Clear();
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // No cambie este código. Coloque el código de limpieza en el método "Dispose(bool disposing)".
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

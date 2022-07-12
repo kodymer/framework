@@ -12,6 +12,7 @@ namespace Vesta.EventBus.Azure
 
         private readonly ConcurrentBag<Func<LocalServiceBusMessage, Task>> _callbacks;
         private readonly ILocalServiceBusProcessor _processor;
+        private bool _isDisposed;
 
         public LocalServiceBusMessageConsumer(ILocalServiceBusProcessor processor)
         {
@@ -84,6 +85,27 @@ namespace Vesta.EventBus.Azure
         {
 
             Logger.LogError(exception, "There was a problem trying to process the message.");
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _processor.Dispose();
+                }
+
+                _callbacks.Clear();
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Vesta.ServiceBus.Azure
 {
-    public interface IProcessorPool
+    public interface IProcessorPool : IAsyncDisposable
     {
         ServiceBusProcessor GetProcessor(string connectionString, string topicName, string subscriberName);
     }

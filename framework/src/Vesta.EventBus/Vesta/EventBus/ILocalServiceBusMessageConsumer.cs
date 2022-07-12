@@ -2,7 +2,7 @@
 
 namespace Vesta.EventBus
 {
-    public interface ILocalServiceBusMessageConsumer
+    public interface ILocalServiceBusMessageConsumer : IDisposable
     {
         void Initialize();
 
