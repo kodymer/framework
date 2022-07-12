@@ -1,0 +1,22 @@
+/* stylelint-disable */
+
+////
+/// Box sizing
+///
+/// You do not need no to care about this
+////
+@if $include__box-sizing == true {
+    html {
+        box-sizing: border-box;
+    }
+
+    * {
+        &,
+        &:before,
+        &:after {
+            box-sizing: inherit;
+        }
+    }
+}
+
+/* stylelint-enable */

@@ -1,0 +1,65 @@
+{
+  "validations": {
+    "required": "Campo requerido",
+    "minLength": "Mínimo {min} caracteres",
+    "checked": "Campo requerido (checkbox)",
+    "anyChecked": "Campo requerido (checkboxgroup)"
+  },
+  "primevue": {
+    "dayNames": [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
+    ],
+    "dayNamesShort": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+    "dayNamesMin": ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+    "monthNames": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    "monthNamesShort": [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic"
+    ],
+    "today": "Hoy"
+  },
+  "tmp": {
+    "name": "Nombre",
+    "nationality": "Nacionalidad",
+    "user_type": "Tipo de usuario",
+    "accept_terms": "Acepto los términos de uso",
+    "entry_date": "Fecha de alta",
+    "notifications": "Notificaciones"
+  },
+  "login": {
+    "username": "Usuario",
+    "enter_username": "Introduce tu usuario",
+    "password": "Contraseña",
+    "enter_password": "Introduce tu contraseña",
+    "enter": "Entrar"
+  }
+}
