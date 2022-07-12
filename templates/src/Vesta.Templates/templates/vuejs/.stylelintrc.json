@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-standard-vue/scss"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "indentation": null,
+    "function-parentheses-newline-inside": null,
+    "no-missing-end-of-source-newline": null
+  }
+}

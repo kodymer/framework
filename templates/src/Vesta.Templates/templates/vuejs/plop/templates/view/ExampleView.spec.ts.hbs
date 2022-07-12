@@ -1,0 +1,10 @@
+import { mount } from "@vue/test-utils";
+import { test, expect } from "vitest";
+import {{ ViewName name }} from "./{{ ViewName name }}.vue";
+
+test("test view", async () => {
+  expect({{ ViewName name }}).toBeTruthy();
+
+  const wrapper = mount({{ ViewName name }});
+  expect(wrapper.attributes("data-test-id")).toBe("{{ appPrefix }}-{{ name }}-view");
+});

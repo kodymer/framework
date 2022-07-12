@@ -5,11 +5,15 @@
 $version = $commonPropsXml.Project.PropertyGroup.Version
 
 $v = "$($version)".Trim(' ')
+
+foreach($solution in $solutions) {
+
 # Publish all packages
-foreach($project in $projects) {
-    $projectName = $project.Substring($project.LastIndexOf("/") + 1)
-    # Write-host "$($projectName).$($v).nupkg"
-    & dotnet nuget push "$($projectName).$($v).nupkg"--source "Vesta.Feed" --api-key az --skip-duplicate --interactive
+    foreach($project in $solution.Projects) {
+        $projectName = ($project -split '/')[-1]
+
+        dotnet nuget push "$($projectName).$($v).nupkg"--source "Vesta.Feed" --api-key az --skip-duplicate --interactive
+    }
 }
 
 # Go back to the pack folder
