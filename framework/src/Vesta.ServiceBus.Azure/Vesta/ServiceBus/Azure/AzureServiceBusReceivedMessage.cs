@@ -3,6 +3,7 @@ using Azure.Messaging.ServiceBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Vesta.ServiceBus.Abstracts;
@@ -11,6 +12,7 @@ namespace Vesta.ServiceBus.Azure
 {
     public class AzureServiceBusReceivedMessage : IServiceBusReceivedMessage
     {
+
         private readonly ServiceBusReceivedMessage _message;
 
         public AzureServiceBusReceivedMessage(ServiceBusReceivedMessage message)
@@ -23,5 +25,8 @@ namespace Vesta.ServiceBus.Azure
         public string MessageId => _message.MessageId;
 
         public BinaryData Body => _message.Body;
+
+        public IReadOnlyDictionary<string, object> ApplicationProperties => _message.ApplicationProperties;
+
     }
 }

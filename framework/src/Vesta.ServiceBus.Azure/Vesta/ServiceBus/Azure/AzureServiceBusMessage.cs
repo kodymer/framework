@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Vesta.ServiceBus.Abstracts;
@@ -10,6 +11,7 @@ namespace Vesta.ServiceBus.Azure
 {
     public class AzureServiceBusMessage : ServiceBusMessage, IServiceBusMessage
     {
+
         public AzureServiceBusMessage()
         {
 

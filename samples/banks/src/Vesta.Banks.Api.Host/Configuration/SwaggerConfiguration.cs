@@ -27,7 +27,7 @@ namespace Vesta.Banks.Configuration
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "[Asisa][Vesta][Banks] API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Banks API", Version = "v1" });
                 options.DescribeAllParametersInCamelCase();
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
@@ -84,7 +84,7 @@ namespace Vesta.Banks.Configuration
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"{applicationOptions.PathPrefix}/swagger/v1/swagger.json", "[Asisa][Vesta][Banks] API v1");
+                c.SwaggerEndpoint($"./v1/swagger.json", "Banks API v1");
 
                 c.OAuthClientId(authenticationOptions.Audience);
                 c.OAuthAppName("Asisa Vesta Banks API");

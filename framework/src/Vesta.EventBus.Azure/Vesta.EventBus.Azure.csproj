@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vesta.EventBus\Vesta.EventBus.csproj" />
+    <ProjectReference Include="..\Vesta.Security\Vesta.Security.csproj" />
     <ProjectReference Include="..\Vesta.ServiceBus.Azure\Vesta.ServiceBus.Azure.csproj" />
   </ItemGroup>
 
