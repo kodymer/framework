@@ -22,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddVestaEventBusAzure(this IServiceCollection services, Action<AzureEventBusOptions> configureOptions)
         {
             services.AddVestaEventBus();
+            services.AddVestaSecurity();
             services.AddVestaSeviceBusAzure();
 
             services.Configure(configureOptions);
@@ -40,6 +41,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddVestaEventBusAzure(this IServiceCollection services)
         {
             services.AddVestaEventBus();
+            services.AddVestaSecurity();
             services.AddVestaSeviceBusAzure();
 
             services.AddSingleton<IOptionsFactory<AzureEventBusOptions>, AzureEventBusOptionsFactory>();

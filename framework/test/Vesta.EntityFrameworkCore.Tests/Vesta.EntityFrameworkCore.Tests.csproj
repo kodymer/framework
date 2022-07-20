@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
+  <Import Project="..\..\..\common.props" />
 
+  <PropertyGroup>
+    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
+    <Nullable>disable</Nullable>
+    <RootNamespace />
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
