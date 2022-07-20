@@ -1,19 +1,13 @@
 <Project>
 
   <PropertyGroup>
-    <NetCoreApp>net6.0</NetCoreApp>
-    <LangVersion>latest</LangVersion>
-    <Version>1.2.1</Version>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
     <Authors>NTT DATA Contributors</Authors>
     <Company>NTT DATA</Company>
-
+    <Version>1.3.0-rc</Version>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworkVersion>net6.0</TargetFrameworkVersion>
     <MicrosoftPackageVersion>6.0.0</MicrosoftPackageVersion>
-
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
