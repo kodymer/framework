@@ -1,0 +1,21 @@
+////
+/// REM tool
+///
+/// Converts pixels to rem
+/// @access public
+/// @author Dfront Specialist Team
+/// @example scss font-size : rem(16);
+///    // root base font size = 16px
+///    font-size : 1rem;
+/// @example scss font-size : rem(30, 10);
+///    font-size : 3rem;
+/// @group Tools
+/// @name rem
+/// @param {String} $pixels - Value in pixels we want
+/// @param {Number} $context [$ns-font-size] - The root font-size base
+/// @since version 1.0.0
+/// @return {String} new 'em' value
+////
+@function rem($pixels, $context: $ns-font-size) {
+    @return #{$pixels / $context}rem;
+}

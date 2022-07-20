@@ -1,0 +1,10 @@
+{
+  "./src/**/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
+    "prettier --ignore-unknown --write",
+    "eslint --fix --max-warnings 0"
+  ],
+  "./src/**/*.{vue,css,scss}": [
+    "stylelint --fix"
+  ],
+  "*.md": "prettier --write"
+}

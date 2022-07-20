@@ -1,0 +1,79 @@
+/* stylelint-disable */
+
+///*-------------------------------------------------------------------------
+//   # FRONT MODULES CONFIG
+//--------------------------------------------------------------------------*/
+//	CONTENT THIS FILE:
+//		# IMPORT FILE CONFIG SCSS
+//      # SETTINGS
+//		# TOOLS
+//      # GENERIC
+//		# BASE
+//		# OBJETCS
+//      # COMPONENTS
+//*--------------------------------------------------------
+//    # SETTINGS
+//----------------------------------------------------------*/
+@import "scss/00-settings/_settings__basics";
+@import "scss/00-settings/_settings__colors";
+@import "scss/00-settings/_settings__responsive";
+@import "scss/00-settings/_settings__includes";
+
+//*----------------------------------------------------------
+//    # TOOLS
+//----------------------------------------------------------*/
+// @import "scss/01-tools/_tools__border-radius";
+// @import "scss/01-tools/_tools__box-shadow";
+@import "scss/01-tools/_tools__colors";
+@import "scss/01-tools/_tools__fonts";
+@import "scss/01-tools/_tools__pixel-to-rem";
+@import "scss/01-tools/_tools__responsive";
+// @import "scss/01-tools/_tools__transform";
+// @import "scss/01-tools/_tools__transition";
+// @import "scss/01-tools/_tools__truncate";
+@import "scss/01-tools/_tools__z-index";
+//*----------------------------------------------------------
+//     # GENERIC
+// ----------------------------------------------------------*/
+@import "scss/02-generic/_generic__display";
+@import "scss/02-generic/_generic__box-sizing";
+@import "scss/02-generic/_generic__fonts";
+@import "scss/02-generic/_generic__reset";
+// @import "scss/02-generic/_generic__reset-elements"; ------- Important
+// @import "scss/02-generic/_generic__global-text"; ---------- Important
+// @import "scss/02-generic/_generic__text-class";
+//*----------------------------------------------------------
+//     # BASE
+// ----------------------------------------------------------*/
+@import "scss/03-elements/_elements__body";
+@import "scss/03-elements/_elements__html";
+// /*----------------------------------------------------------
+//     # TEMPLATES
+// ----------------------------------------------------------*/
+@import "scss/04-templates/_templates__buttons";
+@import "scss/04-templates/_templates__forms";
+@import "scss/04-templates/_templates__grid";
+@import "scss/04-templates/_templates__misc";
+@import "scss/04-templates/_templates__modal";
+@import "scss/04-templates/_templates__tables";
+@import "scss/04-templates/_templates__text";
+
+// /*----------------------------------------------------------
+//     # COMPONENTS
+// ----------------------------------------------------------*/
+@import "scss/05-components/_components__case-detail";
+@import "scss/05-components/_components__case-search";
+@import "scss/05-components/_components__case-select";
+// @import "scss/05-components/_components__example";
+@import "scss/05-components/_components__footer";
+@import "scss/05-components/_components__header";
+@import "scss/05-components/_components__insured-search";
+@import "scss/05-components/_components__new-case";
+@import "scss/05-components/_components__portal";
+@import "scss/05-components/_components__sidebar";
+// /*----------------------------------------------------------
+//     # OFFTOPIC
+// ----------------------------------------------------------*/
+@import "base";
+
+/* stylelint-enable */

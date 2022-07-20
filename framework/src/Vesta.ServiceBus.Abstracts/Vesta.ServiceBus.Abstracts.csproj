@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\common.props" />
+  
+  <Import Project="..\..\..\dependency-common.props" />
 
   <PropertyGroup>
     <TargetFramework>$(NetCoreApp)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <RootNamespace />
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
     <AssemblyName>Vesta.ServiceBus.Abstracts</AssemblyName>
@@ -15,6 +15,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
