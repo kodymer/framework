@@ -3,7 +3,7 @@
   <Import Project="..\..\..\common.props" />
   
   <PropertyGroup>
-    <TargetFramework>$(NetCoreApp)</TargetFramework>
+    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
     <IsPackable>true</IsPackable>
     <PackageId>Vesta.Templates</PackageId>
     <PackageType>Template</PackageType>

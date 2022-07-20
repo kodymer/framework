@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vesta.Security.Claims;
 using Vesta.ServiceBus.Azure;
 using Vesta.TestBase;
 using Vesta.TestBase.Fixtures;
@@ -29,6 +30,7 @@ namespace Vesta.EventBus.Azure
         {
 
             var azureEventBusOptions = Options.Create(new AzureEventBusOptions());
+            var currentPrincipalAccessor = new Mock<ICurrentPrincipalAccessor>();
             var eventHandlerOptions = Options.Create(new EventHandlerOptions());
             var eventHandlerTypeProvider = new Mock<IntegrationEventHandlerTypeProvider>(eventHandlerOptions);
             var consumer = new Mock<IAzureServiceBusMessageConsumer>();
@@ -36,7 +38,7 @@ namespace Vesta.EventBus.Azure
             var eventHandlerInvoker = new Mock<IEventHandlerInvoker>();
 
             var eventBusStub = new Mock<AzureEventBus>(
-                _fixture.ServiceProvider, azureEventBusOptions, eventHandlerTypeProvider.Object,
+                _fixture.ServiceProvider, currentPrincipalAccessor.Object, azureEventBusOptions, eventHandlerTypeProvider.Object,
                 consumer.Object, publisher.Object, eventHandlerInvoker.Object);
 
             await eventBusStub.Object.PublishAsync(new VestaEto());

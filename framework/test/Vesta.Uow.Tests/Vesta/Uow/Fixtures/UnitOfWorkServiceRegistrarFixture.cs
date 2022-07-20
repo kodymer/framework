@@ -16,6 +16,7 @@ namespace Vesta.Uow.Fixtures
             base.ConfigureServices(services);
 
             services.AddSingleton<IConfiguration>(new ConfigurationBuilder().Build());
+
             services.AddVestaEventBusAzure();
         }
     }

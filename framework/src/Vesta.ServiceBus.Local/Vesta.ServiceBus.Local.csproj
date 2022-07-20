@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   
-  <Import Project="..\..\..\dependency-common.props" />
+  <Import Project="..\..\..\package-common.props" />
 
   <PropertyGroup>
-    <TargetFramework>$(NetCoreApp)</TargetFramework>
+    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
