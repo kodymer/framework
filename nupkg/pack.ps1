@@ -1,53 +1,42 @@
 . ".\common.ps1"
 
+# Rebuild all solutions
+foreach($solution in $solutions) {
+    $solutionFolder = Join-Path $rootFolder $solution
+    Set-Location $solutionFolder
+    & dotnet clean
+    & dotnet restore
+}
+
 # Delete old packages
 Remove-Item *.nupkg
 
-# Count
+# Create all packages
+foreach($project in $projects) {
+    
+    $projectFolder = Join-Path $rootFolder $project
+   
+    # Create nuget pack
+    Set-Location $projectFolder
+    
+    ###########################################################################################################
 
+    dotnet msbuild -property:Configuration=Release -property:SourceLinkCreate=false
+    & dotnet pack -c Release --no-build --include-symbols
+    
+    ###########################################################################################################
 
-# Rebuild all solutions
-foreach($solution in $solutions) {
-
-    Write-Host $solution.BasePath
-
-    if(-Not ($null -eq $solution.Solution )) {
-        $solutionFolder = Join-Path $rootFolder $solution.BasePath
-        Set-Location $solutionFolder
-        & dotnet restore
+    if (-Not $?) {
+        Write-Host ("Packaging failed for the project: " + $projectFolder)
+        exit $LASTEXITCODE
     }
     
-    $i = 0;
-    $projectsCount = $solution.Projects.Count
+    # Copy nuget package
+    $projectName = $project.Substring($project.LastIndexOf("/") + 1)
 
-    # Create all packages
-    foreach($project in $solution.Projects) {
-        
-        $i += 1;
+    $projectPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.nupkg")
+    Move-Item $projectPackPath $packFolder
 
-        $projectFolder = Join-Path $rootFolder $solution.BasePath $project
-        $projectName = ($project -split '/')[-1]
-        
-        Write-Host $projectFolder 
-
-        # Create nuget pack
-        Write-Host "[$i / $projectsCount] - Packing project: $projectName"
-        Set-Location $projectFolder
-        
-        dotnet clean -c Release
-        dotnet build -c Release
-        dotnet pack -c Release --no-build --no-restore
-
-        if (-Not $?) {
-            Write-Host ("Packaging failed for the project: " + $projectFolder)
-            exit $LASTEXITCODE
-        }
-    
-        # Copy nuget package        
-        $projectPackPath = Join-Path $projectFolder ("/bin/Release/" + $projectName + ".*.nupkg")
-        Move-Item $projectPackPath $packFolder
-        
-    }
 }
 
 # Go back to the pack folder

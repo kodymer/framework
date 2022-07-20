@@ -2,52 +2,41 @@
 $packFolder = (Get-Item -Path "./" -Verbose).FullName
 $rootFolder = Join-Path $packFolder "../"
 
-$framework = [PSCustomObject]@{
-    BasePath = "framework"
-    Solution = "Vesta.Framework"
-    Projects = (
-        "src/Vesta.ApplicationInsights.AspNetCore",
-        "src/Vesta.AspNetCore",
-        "src/Vesta.AspNetCore.Mvc",
-        "src/Vesta.Auditing",
-        "src/Vesta.Auditing.Abstracts",
-        "src/Vesta.Autofac",
-        "src/Vesta.AutoMapper",
-        "src/Vesta.Caching",
-        "src/Vesta.Caching.StackExchangeRedis",
-        "src/Vesta.Core",
-        "src/Vesta.Dapper",
-        "src/Vesta.Dapper.SqlServer",
-        "src/Vesta.Data",
-        "src/Vesta.Ddd.Application",
-        "src/Vesta.Ddd.Domain",
-        "src/Vesta.Ddd.Domain.EventBus",
-        "src/Vesta.EntityFrameworkCore",
-        "src/Vesta.EntityFrameworkCore.Abstracts",
-        "src/Vesta.EntityFrameworkCore.SqlServer",
-        "src/Vesta.EventBus",
-        "src/Vesta.EventBus.Abstracts",
-        "src/Vesta.EventBus.Azure",
-        "src/Vesta.Security",
-        "src/Vesta.ServiceBus.Abstracts",
-        "src/Vesta.ServiceBus.Azure",
-        "src/Vesta.ServiceBus.Local",
-        "src/Vesta.TestBase",
-        "src/Vesta.Uow"
-    )
-  }
-
-$templates = [PSCustomObject]@{
-    BasePath = "templates"
-    Solution = $null
-    Projects = (
-        "src/Vesta.Templates"
-    )
-  }
-
-
 # List of solutions
 $solutions = (
-    $framework,
-    $templates
+    "framework"
+)
+
+# List of projects
+$projects = (
+
+    # framework
+    "framework/src/Vesta.ApplicationInsights.AspNetCore",
+    "framework/src/Vesta.AspNetCore",
+    "framework/src/Vesta.AspNetCore.Mvc",
+    "framework/src/Vesta.Auditing",
+    "framework/src/Vesta.Auditing.Abstracts",
+    "framework/src/Vesta.Autofac",
+    "framework/src/Vesta.AutoMapper",
+    "framework/src/Vesta.Caching",
+    "framework/src/Vesta.Caching.StackExchangeRedis",
+    "framework/src/Vesta.Core",
+    "framework/src/Vesta.Dapper",
+    "framework/src/Vesta.Dapper.SqlServer",
+    "framework/src/Vesta.Data",
+    "framework/src/Vesta.Ddd.Application",
+    "framework/src/Vesta.Ddd.Domain",
+    "framework/src/Vesta.Ddd.Domain.EventBus",
+    "framework/src/Vesta.EntityFrameworkCore",
+    "framework/src/Vesta.EntityFrameworkCore.Abstracts",
+    "framework/src/Vesta.EntityFrameworkCore.SqlServer",
+    "framework/src/Vesta.EventBus",
+    "framework/src/Vesta.EventBus.Abstracts",
+    "framework/src/Vesta.EventBus.Azure",
+    "framework/src/Vesta.Security",
+    "framework/src/Vesta.ServiceBus.Abstracts",
+    "framework/src/Vesta.ServiceBus.Azure",
+    "framework/src/Vesta.ServiceBus.Local",
+    "framework/src/Vesta.TestBase",
+    "framework/src/Vesta.Uow"
 )
