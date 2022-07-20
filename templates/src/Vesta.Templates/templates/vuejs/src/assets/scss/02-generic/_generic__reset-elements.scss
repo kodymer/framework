@@ -1,0 +1,102 @@
+/* stylelint-disable */
+
+////
+/// CSS Element Reset
+///
+/// Used to reset generic HTML elements
+/// and remove default styles.
+///
+////
+@if $include__reset-elements == true {
+    @mixin reset-button {
+        border: unset;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        width: unset;
+        overflow: unset;
+        background: unset;
+        text-align: flex-start;
+        color: inherit;
+        font: inherit;
+        line-height: inherit;
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+        -webkit-appearance: none;
+        &::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+    }
+
+    @mixin reset-text {
+        font-size: 100%;
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+    }
+
+    @mixin reset-a {
+        font-size: 100%;
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        color: initial;
+        text-decoration: none;
+    }
+
+    @mixin reset-fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        min-width: 0;
+    }
+
+    @mixin reset-ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @mixin reset-ul {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @mixin reset-dl {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        dd {
+            scroll-margin-inline-start: 0;
+        }
+    }
+
+    @mixin reset-figure {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font: inherit;
+        font-size: 100%;
+        vertical-align: baseline;
+    }
+
+    @mixin reset-input {
+        &[type="checkbox"] {
+            -webkit-appearance: none;
+        }
+    }
+
+    @mixin reset-radioButton {
+        &[type="radio"] {
+            -webkit-appearance: none;
+        }
+    }
+}
+
+/* stylelint-enable */
