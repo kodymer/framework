@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\dependency-common.props" />
+  <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>$(NetCoreApp)</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <RootNamespace />
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
     <AssemblyName>Vesta.EntityFrameworkCore.Abstracts</AssemblyName>
@@ -14,7 +15,6 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>

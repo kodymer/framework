@@ -1,8 +1,9 @@
 <Project>
 
   <PropertyGroup>
+    <NetCoreApp>net6.0</NetCoreApp>
     <LangVersion>latest</LangVersion>
-    <Version>1.2.0-rc</Version>
+    <Version>1.1.0</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl></PackageProjectUrl>
@@ -10,9 +11,27 @@
     <RepositoryType>git</RepositoryType>
     <Authors>NTT DATA Contributors</Authors>
     <Company>NTT DATA</Company>
-    <NetCoreApp>net6.0</NetCoreApp>
+
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <Deterministic>true</Deterministic>
+
     <MicrosoftPackageVersion>6.0.0</MicrosoftPackageVersion>
+
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="1.1.1" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <Target Name="PostClean" AfterTargets="Clean">
     <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
