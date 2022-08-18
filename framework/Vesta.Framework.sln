@@ -52,6 +52,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBBF1516-BAAB-4AF2-890B-366F826C11B2}"
 	ProjectSection(SolutionItems) = preProject
 		..\common.props = ..\common.props
+		..\package-common.props = ..\package-common.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Dapper.SqlServer", "src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj", "{8B0DB38F-C11E-4E2E-B2F1-E44B75193E35}"
@@ -88,7 +89,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ServiceBus.Abstracts"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ServiceBus.Local", "src\Vesta.ServiceBus.Local\Vesta.ServiceBus.Local.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesta.ServiceBus.Local.Tests", "test\Vesta.ServiceBus.Local.Tests\Vesta.ServiceBus.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.ServiceBus.Local.Tests", "test\Vesta.ServiceBus.Local.Tests\Vesta.ServiceBus.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
