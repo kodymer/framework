@@ -17,6 +17,7 @@
     <RootNamespace />
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Vesta.AspNetCore' " />
   <ItemGroup>
     <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
     <ProjectReference Include="..\Vesta.Security\Vesta.Security.csproj" />
