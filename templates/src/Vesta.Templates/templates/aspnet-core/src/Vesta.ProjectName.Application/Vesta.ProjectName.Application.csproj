@@ -1,11 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"/>
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)"  />
     <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(VestaPackageVersion)" />

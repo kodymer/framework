@@ -105,7 +105,19 @@ namespace Vesta.Banks
                 Logger.LogDebug(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account: {Data}", JsonSerializer.Serialize(bankAccount));
 
+
+                /*
+                 * No send event message to Service Bus. It only save changes to the database.
+                 */
                 await _repository.InsertAsync(bankAccount, true, cancellationToken);
+
+                /*
+                 * Send event messsage to Service Bus and save changes to the database.
+                 *
+                 * await _repository.InsertAsync(bankAccount, cancellationToken: cancellationToken);
+                 * 
+                 * CurrentUnitOfWork.CompleteAsync(cancellationToken);
+                 */
 
                 Logger.LogInformation(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account created!");

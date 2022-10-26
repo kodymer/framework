@@ -1,0 +1,15 @@
+<Project>
+
+    <Import Project="dependencies.props" />
+  
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Version>0.0.0</Version>
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>Vesta.ProjectName</RootNamespace>
+    </PropertyGroup>
+
+</Project>

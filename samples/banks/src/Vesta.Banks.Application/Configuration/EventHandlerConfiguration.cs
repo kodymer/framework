@@ -8,6 +8,7 @@ namespace Vesta.Banks.Configuration
         {
             services.AddVestaEventHandlers(options =>
             {
+                options.Add<BankAccountCreatedEventHandler>();
                 options.Add<BankAccountChangedEventHandler>();
                 options.Add<BankAccountBalanceDecreasedEventHandler>();
                 options.Add<BankAccountBalanceIncreasedEventHandler>();

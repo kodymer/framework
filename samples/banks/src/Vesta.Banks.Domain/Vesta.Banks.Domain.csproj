@@ -1,19 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
-
-  <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Domain" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
-    <PackageReference Include="Vesta.EventBus.Azure" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+    <PackageReference Include="Vesta.Ddd.Domain" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="Vesta.EventBus.Azure" Version="$(Version)" Condition="!$(Debug)"/>
   </ItemGroup>
   
   <ItemGroup> 
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" Condition="$(Debug) == 'True'" />
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Domain\Vesta.Ddd.Domain.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.EventBus.Azure\Vesta.EventBus.Azure.csproj" Condition="$(Debug)" />
     <ProjectReference Include="..\Vesta.Banks.Domain.Shared\Vesta.Banks.Domain.Shared.csproj" />
   </ItemGroup>
 </Project>

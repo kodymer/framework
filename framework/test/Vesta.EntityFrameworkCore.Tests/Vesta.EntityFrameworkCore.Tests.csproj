@@ -1,12 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\common.props" />
+  <Import Project="..\..\..\dependencies.props" />
 
   <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
     <Nullable>disable</Nullable>
-    <RootNamespace />
     <IsPackable>false</IsPackable>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
