@@ -1,7 +1,7 @@
 . ".\common.ps1"
 
 # Get the version
-[xml]$commonPropsXml = Get-Content (Join-Path $rootFolder "common.props")
+[xml]$commonPropsXml = Get-Content (Join-Path $rootFolder "Directory.Build.props")
 $version = $commonPropsXml.Project.PropertyGroup.Version
 
 $v = "$($version)".Trim(' ')
