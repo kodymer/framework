@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"/>
-
   <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   
@@ -21,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vesta.TestBase" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+    <PackageReference Include="Vesta.TestBase" Version="$(Version)" Condition="!$(Debug)"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.TestBase\Vesta.TestBase.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.TestBase\Vesta.TestBase.csproj" Condition="$(Debug)" />
     <ProjectReference Include="..\..\src\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 

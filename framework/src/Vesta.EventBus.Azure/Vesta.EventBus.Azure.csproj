@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 
-  <Import Project="..\..\..\package-common.props" />
+  <Import Project="..\..\..\packages.props" />
   
-  <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
+  <PropertyGroup>   
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
@@ -15,7 +14,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace />
+    <RootNamespace />  
   </PropertyGroup>
 
   <ItemGroup>

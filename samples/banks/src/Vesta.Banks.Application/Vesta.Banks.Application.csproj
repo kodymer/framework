@@ -1,19 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
-
-  <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
-    <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'"/>
+    <PackageReference Include="Vesta.Ddd.Application" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(Version)" Condition="!$(Debug)"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Application\Vesta.Ddd.Application.csproj" Condition="$(Debug) == 'True'" />    
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj" Condition="$(Debug) == 'True'" /> 
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Application\Vesta.Ddd.Application.csproj" Condition="$(Debug)" />    
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj" Condition="$(Debug)" /> 
     <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
     <ProjectReference Include="..\Vesta.Banks.Dapper.SqlServer\Vesta.Banks.Dapper.SqlServer.csproj" />
     <ProjectReference Include="..\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj" />

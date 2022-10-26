@@ -6,17 +6,20 @@ namespace Vesta.EventBus
     public class IoCEventHandlerFactory
     {
         private readonly Type _eventHandlerType;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        public IoCEventHandlerFactory(IServiceProvider serviceProvider, Type eventHandlerType)
+        public IoCEventHandlerFactory(IServiceScopeFactory serviceScopeFactory, Type eventHandlerType)
         {
             _eventHandlerType = eventHandlerType;
-            _serviceProvider = serviceProvider;
+            _serviceScopeFactory = serviceScopeFactory;
         }
 
         public IEventHandler CreateEventHandler()
         {
-            return _serviceProvider.GetRequiredService(_eventHandlerType) as IEventHandler;
+            using(var scope = _serviceScopeFactory.CreateScope())
+            {
+                return scope.ServiceProvider.GetRequiredService(_eventHandlerType) as IEventHandler;
+            }
         }
     }
 }

@@ -1,17 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
-  
-  <PropertyGroup>
-    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Vesta.Dapper.SqlServer" Version="$(VestaPackageVersion)" Condition="$(Debug) != 'True'" />
+    <PackageReference Include="Vesta.Dapper.SqlServer" Version="$(Version)" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj" Condition="$(Debug) == 'True'" />
+    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj" Condition="$(Debug)" />
     <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
   </ItemGroup>
   

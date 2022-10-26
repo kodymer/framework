@@ -51,8 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.EntityFrameworkCore.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBBF1516-BAAB-4AF2-890B-366F826C11B2}"
 	ProjectSection(SolutionItems) = preProject
-		..\common.props = ..\common.props
-		..\package-common.props = ..\package-common.props
+		..\dependencies.props = ..\dependencies.props
+		..\Directory.Build.props = ..\Directory.Build.props
+		..\packages.props = ..\packages.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Dapper.SqlServer", "src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj", "{8B0DB38F-C11E-4E2E-B2F1-E44B75193E35}"

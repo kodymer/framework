@@ -133,7 +133,9 @@ namespace Vesta.EventBus
                 {
                     Logger.LogDebug($"Found event type: {@event.Name}.");
 
-                    Subscribe(@event, new IoCEventHandlerFactory(ServiceProvider, @interface));
+                    Subscribe(@event,
+                        new IoCEventHandlerFactory(
+                            ServiceProvider.GetRequiredService<IServiceScopeFactory>(), @interface));
                 }
             }
         }

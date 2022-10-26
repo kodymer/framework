@@ -82,13 +82,14 @@ namespace Vesta.Banks.Configuration
                 });
             });
 
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                c.SwaggerEndpoint($"./v1/swagger.json", "Banks API v1");
-
-                c.OAuthClientId(authenticationOptions.Audience);
-                c.OAuthAppName("Asisa Vesta Banks API");
-                c.OAuthUsePkce();
+                options.DocumentTitle = "My Swagger UI";
+                options.SwaggerEndpoint($"./v1/swagger.json", "Banks API v1");
+                
+                options.OAuthClientId(authenticationOptions.Audience);
+                options.OAuthAppName("Asisa Vesta Banks API");
+                options.OAuthUsePkce();
             });
 
             var option = new RewriteOptions();
