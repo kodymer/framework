@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
@@ -104,11 +105,23 @@ namespace Vesta.EventBus
 
             if (EventHandlerFactories.TryGetValue(@event, out var factory))
             {
-                var eventHandler = factory.CreateEventHandler();
+                using (var eventHandlerWrapper = factory.CreateEventHandler())
+                {
+                    Logger.LogDebug($"Invoking event handler: {eventHandlerWrapper.EventHandler.GetType().Name}.");
 
-                Logger.LogDebug($"Invoking event handler: {eventHandler.GetType().Name}.");
-
-                await EventHandlerInvoker.InvokeAsync(eventHandler, @event, eventData);
+                    try
+                    {
+                        await EventHandlerInvoker.InvokeAsync(eventHandlerWrapper.EventHandler, @event, eventData);
+                    }
+                    catch (TargetInvocationException e)
+                    {
+                        Logger.LogError(e.InnerException, "Error has occurred while triggering the event: {EventType}", @event);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError(e, "Error has occurred while triggering the event: {EventType}", @event);
+                    }
+                }
             }
         }
 

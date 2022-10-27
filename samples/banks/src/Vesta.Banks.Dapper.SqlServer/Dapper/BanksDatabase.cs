@@ -5,7 +5,6 @@ namespace Vesta.Banks.Dapper
     public class BanksDatabase : VestaDatabase<BanksDatabase>
     {
         public BanksDatabase()
-            : base()
         {
 
         }

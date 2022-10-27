@@ -2,7 +2,7 @@
 
 namespace Vesta.EventBus
 {
-    internal class EventHandlerExecutor<TEvent, TEventHandler> : IEventHandlerExecutor
+    internal class EventHandlerMethodExecutor<TEvent, TEventHandler> : IEventHandlerMethodExecutor
         where TEvent : class
         where TEventHandler : class, IEventHandler<TEvent>
     {

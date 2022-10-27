@@ -5,31 +5,29 @@ namespace Vesta.EventBus
 {
     public class EventHandlerInvoker : IEventHandlerInvoker
     {
-        public Task InvokeAsync(IEventHandler eventHandler, Type @event, object eventData)
+        public async Task InvokeAsync(IEventHandler eventHandler, Type @event, object eventData)
         {
             Guard.Against.Null(eventHandler, nameof(eventHandler));
             Guard.Against.Null(@event, nameof(@event));
             Guard.Against.Null(eventData, nameof(eventData));
 
-            IEventHandlerExecutor eventHandlerExecutor = null;
+            IEventHandlerMethodExecutor eventHandlerExecutor = null;
 
             if (typeof(IIntegrationEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
             {
-                eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(EventHandlerExecutor<,>)
+                eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
                     .MakeGenericType(@event, typeof(IIntegrationEventHandler<>).MakeGenericType(@event)));
             }
 
             if (typeof(IDomainEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
             {
-                eventHandlerExecutor = (IEventHandlerExecutor)Activator.CreateInstance(typeof(EventHandlerExecutor<,>)
+                eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
                     .MakeGenericType(@event, typeof(IDomainEventHandler<>).MakeGenericType(@event)));
             }
 
             if (eventHandlerExecutor is not null)
             {
-                eventHandlerExecutor.ExecutorAsync(eventHandler, eventData);
-
-                return Task.CompletedTask;
+                await eventHandlerExecutor.ExecutorAsync(eventHandler, eventData);
             }
             else
                 throw new NotSupportedException("The event handler is not supported!");

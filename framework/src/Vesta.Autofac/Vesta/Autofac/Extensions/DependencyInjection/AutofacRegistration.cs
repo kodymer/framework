@@ -207,8 +207,8 @@ namespace Vesta.Autofac.Extensions.DependencyInjection
                         var serviceProvider = context.Resolve<IServiceProvider>();
                         return descriptor.ImplementationFactory(serviceProvider);
                     })
-                        .ConfigureLifecycle(descriptor.Lifetime, lifetimeScopeTagForSingletons)
-                        .CreateRegistration();
+                    .ConfigureLifecycle(descriptor.Lifetime, lifetimeScopeTagForSingletons)
+                    .CreateRegistration();
 
                     builder.RegisterComponent(registration);
                 }
