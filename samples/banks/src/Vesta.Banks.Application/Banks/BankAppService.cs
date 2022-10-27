@@ -108,7 +108,9 @@ namespace Vesta.Banks
 
                 /*
                  * No send event message to Service Bus. It only save changes to the database.
+                 * 
                  */
+                 
                 await _repository.InsertAsync(bankAccount, true, cancellationToken);
 
                 /*
@@ -116,8 +118,10 @@ namespace Vesta.Banks
                  *
                  * await _repository.InsertAsync(bankAccount, cancellationToken: cancellationToken);
                  * 
-                 * CurrentUnitOfWork.CompleteAsync(cancellationToken);
+                 * await CurrentUnitOfWork.CompleteAsync(cancellationToken);
+                 * 
                  */
+                 
 
                 Logger.LogInformation(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account created!");
@@ -174,8 +178,13 @@ namespace Vesta.Banks
 
                 await _bankTransferRepository.InsertAsync(bankTransfer, cancellationToken); // Dapper repository not support Unit of Work pattern
 
-                //await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
-                //await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
+                /*
+                 * Publish event messages.
+                 * 
+                 * await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
+                 * await _bankAccountPublisher.PublishAsync(bankAccountTo, cancellationToken);
+                 * 
+                 */
 
                 await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
 

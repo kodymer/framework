@@ -45,7 +45,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaCore();
 
             services.AddSingleton<MapperAccessor>();
-            services.AddSingleton<IMapperAccessor, MapperAccessor>();
+            services.AddSingleton<IMapperAccessor>(serviceProvider => serviceProvider.GetRequiredService<MapperAccessor>());
         }
     }
 }

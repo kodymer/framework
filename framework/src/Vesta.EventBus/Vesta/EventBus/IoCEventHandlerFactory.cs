@@ -14,12 +14,14 @@ namespace Vesta.EventBus
             _serviceScopeFactory = serviceScopeFactory;
         }
 
-        public IEventHandler CreateEventHandler()
+        public EventHandlerDisposeWrapper CreateEventHandler()
         {
-            using(var scope = _serviceScopeFactory.CreateScope())
-            {
-                return scope.ServiceProvider.GetRequiredService(_eventHandlerType) as IEventHandler;
-            }
+            var scope = _serviceScopeFactory.CreateScope();
+            
+            return new EventHandlerDisposeWrapper(
+                scope.ServiceProvider.GetRequiredService(_eventHandlerType) as IEventHandler, 
+                () => scope.Dispose());
+            
         }
     }
 }

@@ -8,22 +8,35 @@ namespace Vesta.Banks
 {
     public class BankAccountCreatedEventHandler : IIntegrationEventHandler<BankAccountCreatedEto>
     {
+        private readonly IBankAppService _bankAppService;
+
         public ILogger<BankAccountCreatedEventHandler> Logger { get; set; }
 
 
-        public BankAccountCreatedEventHandler()
+        public BankAccountCreatedEventHandler(IBankAppService bankAppService)
         {
             // Inject repositories or applications API
+
+            _bankAppService = bankAppService;
 
             Logger = NullLogger<BankAccountCreatedEventHandler>.Instance;
         }
 
 
-        public Task HandleEventAsync(BankAccountCreatedEto args)
+        public async Task HandleEventAsync(BankAccountCreatedEto args)
         {
             Logger.LogInformation("Message received: {Message}:", JsonSerializer.Serialize(args));
 
-            return Task.CompletedTask;
+            try
+            {
+               var bankAccounts = await _bankAppService.GetAllBankAccountListAsync();
+            }
+            catch (Exception e)
+            {
+
+                Logger.LogError(e, "Error");
+            }
+            //return Task.CompletedTask;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Vesta.AutoMapper;
 using Vesta.Core.DependencyInjection;
 using Vesta.Security.Users;
 using Vesta.Uow;
@@ -15,7 +16,7 @@ namespace Vesta.Ddd.Application.Services
 
         protected IUnitOfWork CurrentUnitOfWork => ServiceProvider.GetRequiredService<IUnitOfWork>();
 
-        protected IMapper ObjectMapper => ServiceProvider.GetService<IMapper>();
+        protected IMapper ObjectMapper => ServiceProvider.GetService<IMapperAccessor>().Mapper;
 
         protected ICurrentUser CurrenUser =>  ServiceProvider.GetService<ICurrentUser>();
 
