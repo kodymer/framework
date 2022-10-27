@@ -6,7 +6,7 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <Company>ASISA</Company>
     <Authors>NTT DATA Contributors</Authors>
-    <Version>1.3.1-2022102601</Version>
+    <Version>1.3.1</Version>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://alejandria@dev.azure.com/alejandria/(POL-VES)%20P%C3%B3lizas%20-%20Vesta/_git/Roots</RepositoryUrl> 
   </PropertyGroup>
