@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Domain" Version="$(Version)" Condition="!$(Debug)"/>
-    <PackageReference Include="Vesta.EventBus.Azure" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="Vesta.Ddd.Domain" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="Vesta.EventBus.Azure" Version="$(Version)" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup> 

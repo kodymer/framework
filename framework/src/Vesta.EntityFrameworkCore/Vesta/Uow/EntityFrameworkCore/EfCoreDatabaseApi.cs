@@ -1,4 +1,6 @@
 ﻿using Ardalis.GuardClauses;
+using Microsoft.EntityFrameworkCore;
+using Vesta.EntityFrameworkCore;
 using Vesta.EntityFrameworkCore.Abstracts;
 
 namespace Vesta.Uow.EntityFrameworkCore
@@ -17,6 +19,11 @@ namespace Vesta.Uow.EntityFrameworkCore
         public Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             return DbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        internal static string GetKey(IEfCoreDbContext dbContext)
+        {
+            return  $"{dbContext.GetType().FullName}_{dbContext.GetConnectionString()}";
         }
 
     }

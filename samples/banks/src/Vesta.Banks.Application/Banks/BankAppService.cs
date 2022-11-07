@@ -1,19 +1,25 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Autofac.Extras.DynamicProxy;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System.Data;
 using System.Text.Json;
 using Vesta.Banks.Domain;
 using Vesta.Banks.Dtos;
+using Vesta.Banks.Traceability;
 using Vesta.Caching;
 using Vesta.Ddd.Application.Services;
 using Vesta.Ddd.Domain.Entities;
+using Vesta.Uow;
 
 namespace Vesta.Banks
 {
+    [Intercept(typeof(UnitOfWorkInterceptor))]
     public class BankAppService : ApplicationService, IBankAppService
     {
         private readonly IDistributedCache _cache;
         private readonly IBankAccountRepository _repository;
         private readonly IBankTransferRepository _bankTransferRepository;
+        private readonly IErrorRepository _errorRepository;
         private readonly IBankAccountManager _bankAccountManager;
         private readonly IBankTransferService _bankTransferService;
         private readonly IBankAccountPublisher _bankAccountPublisher;
@@ -22,6 +28,7 @@ namespace Vesta.Banks
             IDistributedCache cache,
             IBankAccountRepository repository,
             IBankTransferRepository bankTransferRepository,
+            IErrorRepository errorRepository,
             IBankAccountManager bankAccountManager,
             IBankTransferService bankTransferService,
             IBankAccountPublisher bankAccountPublisher)
@@ -30,6 +37,7 @@ namespace Vesta.Banks
 
             _repository = repository;
             _bankTransferRepository = bankTransferRepository;
+            _errorRepository = errorRepository;
             _bankAccountManager = bankAccountManager;
             _bankTransferService = bankTransferService;
             _bankAccountPublisher = bankAccountPublisher;
@@ -76,6 +84,13 @@ namespace Vesta.Banks
                     "GetAllBankAccountList",
                     async () => await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number)));
 
+                /*
+                 * Without cache.
+                 * 
+                 * var entities = await _repository.GetListAsync(orderBy: q => q.OrderBy(b => b.Number));
+                 */
+
+
                 Logger.LogDebug(BanksLogEventConsts.GetBankAccounts,
                     "{Count} bank accounts have been obtained.", entities.Count);
 
@@ -110,7 +125,7 @@ namespace Vesta.Banks
                  * No send event message to Service Bus. It only save changes to the database.
                  * 
                  */
-                 
+
                 await _repository.InsertAsync(bankAccount, true, cancellationToken);
 
                 /*
@@ -121,7 +136,7 @@ namespace Vesta.Banks
                  * await CurrentUnitOfWork.CompleteAsync(cancellationToken);
                  * 
                  */
-                 
+
 
                 Logger.LogInformation(BanksLogEventConsts.GenerateNewBankAccount,
                     "Bank account created!");
@@ -144,6 +159,7 @@ namespace Vesta.Banks
             }
         }
 
+        [UnitOfWork(true, IsolationLevel.ReadCommitted, 3600)]
         public async Task MakeTransferAsync(BankTransferInput input, CancellationToken cancellationToken = default)
         {
             try
@@ -170,15 +186,17 @@ namespace Vesta.Banks
                 await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken);
                 await _repository.UpdateAsync(bankAccountTo, cancellationToken: cancellationToken);
 
+                throw new Exception("Prueba Rollback");
+
                 await CurrentUnitOfWork.CompleteAsync(cancellationToken); // Not affect Dapper Repository
 
                 Logger.LogInformation(BanksLogEventConsts.TransfersBetweenBankAccounts,
                     "Successful transfer correctly. ", input.Amount);
 
-
-                await _bankTransferRepository.InsertAsync(bankTransfer, cancellationToken); // Dapper repository not support Unit of Work pattern
-
                 /*
+                 * await _bankTransferRepository.InsertAsync(bankTransfer, cancellationToken); // Dapper repository not support Unit of Work pattern
+                 * 
+                 * 
                  * Publish event messages.
                  * 
                  * await _bankAccountPublisher.PublishAsync(bankAccountFrom, cancellationToken);
@@ -186,7 +204,7 @@ namespace Vesta.Banks
                  * 
                  */
 
-                await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
+                //await _cache.RemoveAsync("GetAllBankAccountList", cancellationToken);
 
             }
             catch (EntityNotFoundException e)
@@ -195,6 +213,10 @@ namespace Vesta.Banks
                     BanksLogEventConsts.TransfersBetweenBankAccounts, e,
                     "Could not found entity");
 
+                await CurrentUnitOfWork.RollbackAsync(cancellationToken);
+
+                await _errorRepository.InsertAsync(Error.Create(e), true, cancellationToken: cancellationToken);
+
                 throw;
             }
             catch (Exception e)
@@ -202,6 +224,10 @@ namespace Vesta.Banks
                 Logger.LogError(
                    BanksLogEventConsts.TransfersBetweenBankAccounts, e,
                    "Unexpected error.");
+
+                await CurrentUnitOfWork.RollbackAsync(cancellationToken);
+
+                await _errorRepository.InsertAsync(Error.Create(e), true, cancellationToken: cancellationToken);
 
                 throw;
             }

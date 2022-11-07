@@ -10,6 +10,7 @@ namespace Vesta.Banks.Configuration
         public static IServiceCollection AddBanksDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddVestaDbContext<BanksDbContext>();
+            services.AddVestaDbContext<TraceabilityDbContext>();
 
             return services;
         }

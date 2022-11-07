@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nito.AsyncEx;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Vesta.Ddd.Domain.Entities;
 using Vesta.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace Vesta.Data.Fixtures
 
     public class InMemoryVestaDbContextProvider : IDbContextProvider<InMemoryVestaDbContext>
     {
-        public Task<InMemoryVestaDbContext> GetDbContextAsync()
+        public Task<InMemoryVestaDbContext> GetDbContextAsync(CancellationToken cancellationToken = default)
         {
             var options = new DbContextOptionsBuilder<InMemoryVestaDbContext>()
                .UseInMemoryDatabase(databaseName: "Test")
@@ -44,11 +45,6 @@ namespace Vesta.Data.Fixtures
         public InMemoryVestaDbContext(DbContextOptions<InMemoryVestaDbContext> options)
             : base(options)
         {
-        }
-
-        protected override string GetConnectionString(DbContextOptions<InMemoryVestaDbContext> options)
-        {
-            return string.Empty;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

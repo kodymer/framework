@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddVestaData();
 
             services.AddLazyScoped<IUnitOfWorkEventRecordRegistrar, UnitOfWorkEventRecordRegistrar>();
+            services.AddLazyScoped<IUnitOfWorkEventRecordRegistrar, UnitOfWorkEventRecordRegistrar>();
         }
     }
 }

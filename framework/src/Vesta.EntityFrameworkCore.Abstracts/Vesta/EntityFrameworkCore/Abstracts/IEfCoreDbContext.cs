@@ -20,7 +20,7 @@ namespace Vesta.EntityFrameworkCore.Abstracts
 
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken));
 
-
+        string GetConnectionString();
     }
 #pragma warning restore EF1001 // Internal EF Core API usage.
 }

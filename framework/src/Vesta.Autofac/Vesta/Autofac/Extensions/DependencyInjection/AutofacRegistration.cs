@@ -27,7 +27,9 @@ using System.Reflection;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Extensions.DependencyInjection;
+using Autofac.Extras.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
+using Vesta.Autofac.Builder;
 
 namespace Vesta.Autofac.Extensions.DependencyInjection
 {
@@ -185,20 +187,23 @@ namespace Vesta.Autofac.Extensions.DependencyInjection
                     var serviceTypeInfo = descriptor.ServiceType.GetTypeInfo();
                     if (serviceTypeInfo.IsGenericTypeDefinition)
                     {
-                        builder
+                        var registrationBuilder = builder
                             .RegisterGeneric(descriptor.ImplementationType)
                             .As(descriptor.ServiceType)
                             .ConfigureLifecycle(descriptor.Lifetime, lifetimeScopeTagForSingletons)
-                            .PropertiesAutowired();
+                            .ConfigureConventions();
+ 
+
                     }
                     else
                     {
-                        builder
+                        var registrationBuilder = builder
                             .RegisterType(descriptor.ImplementationType)
                             .As(descriptor.ServiceType)
                             .ConfigureLifecycle(descriptor.Lifetime, lifetimeScopeTagForSingletons)
-                            .PropertiesAutowired();
-                    }
+                            .ConfigureConventions();
+
+                    }        
                 }
                 else if (descriptor.ImplementationFactory != null)
                 {

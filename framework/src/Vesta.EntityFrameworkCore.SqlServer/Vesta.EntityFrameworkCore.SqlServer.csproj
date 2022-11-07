@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Vesta.EntityFrameworkCore\Vesta.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Vesta\EntityFrameworkCore\SqlServer\" />
+  </ItemGroup>
+
 </Project>

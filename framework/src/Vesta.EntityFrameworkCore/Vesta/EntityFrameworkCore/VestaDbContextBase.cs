@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Options;
 using Vesta.Auditing;
 using Vesta.Ddd.Domain.EventBus;
 using Vesta.EntityFrameworkCore.Abstracts;
@@ -7,9 +9,10 @@ using Vesta.Uow;
 
 namespace Vesta.EntityFrameworkCore
 {
-    public abstract class VestaDbContextBase<TDbContext> : DbContext, IEfCoreDbContext
+    public abstract class VestaDbContextBase<TDbContext> : DbContext, IStartableEfCoreDbContext
         where TDbContext : DbContext
     {
+        internal protected DbContextOptions Options { get; }
 
         public IServiceProvider ServiceProvider { get; set; }
 
@@ -17,11 +20,22 @@ namespace Vesta.EntityFrameworkCore
 
         public IUnitOfWorkEventRecordRegistrar UnitOfWorkEventRecordRegistrar { get; set; }
 
-        protected VestaDbContextBase(DbContextOptions<TDbContext> options)
+        public VestaDbContextBase(DbContextOptions<TDbContext> options)
             : base(options)
         {
+            Options = options;
             AuditPropertySetter = NullAuditPropertySetter.Instance;
             UnitOfWorkEventRecordRegistrar = NullUnitOfWorkEventRecordRegistrar.Instance;
+        }
+
+        void IStartableEfCoreDbContext.Initialize(EfCoreDbContextInitianlizationContext initializationContext)
+        {
+            if(initializationContext.UnitOfWork.Options.Timeout.HasValue && 
+                Database.IsRelational()  && 
+                !Database.GetCommandTimeout().HasValue)
+            {
+                Database.SetCommandTimeout(TimeSpan.FromMilliseconds(initializationContext.UnitOfWork.Options.Timeout.Value));
+            }
         }
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
@@ -89,6 +103,9 @@ namespace Vesta.EntityFrameworkCore
             modelBuilder.ApplySoftDeleteQueryFilterConcept();
         }
 
-        protected abstract string GetConnectionString(DbContextOptions<TDbContext> options);
+        public virtual string GetConnectionString()
+        {
+            return string.Empty;
+        }
     }
 }

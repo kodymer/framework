@@ -17,7 +17,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.Core\Vesta.Core.csproj" />
+    <ProjectReference Include="..\Vesta.Autofac\Vesta.Autofac.csproj" />
     <ProjectReference Include="..\Vesta.EventBus.Abstracts\Vesta.EventBus.Abstracts.csproj" />
   </ItemGroup>
 

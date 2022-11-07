@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -9,6 +10,8 @@ using Vesta.Uow;
 
 namespace Vesta.Ddd.Application.Services
 {
+
+    [Intercept(typeof(UnitOfWorkInterceptor))]
     public abstract class ApplicationService : IApplicationService, IServiceProviderAccessor
     {
 
