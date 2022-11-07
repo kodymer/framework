@@ -19,7 +19,7 @@ namespace Vesta.Ddd.Application.Services
 
         protected IUnitOfWork CurrentUnitOfWork => ServiceProvider.GetRequiredService<IUnitOfWork>();
 
-        protected IMapper ObjectMapper => ServiceProvider.GetService<IMapperAccessor>().Mapper;
+        protected IMapper ObjectMapper => ServiceProvider.GetService<IMapperAccessor>()?.Mapper;
 
         protected ICurrentUser CurrenUser =>  ServiceProvider.GetService<ICurrentUser>();
 
