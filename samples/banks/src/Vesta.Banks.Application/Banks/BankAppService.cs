@@ -13,7 +13,7 @@ using Vesta.Uow;
 
 namespace Vesta.Banks
 {
-    [Intercept(typeof(UnitOfWorkInterceptor))]
+
     public class BankAppService : ApplicationService, IBankAppService
     {
         private readonly IDistributedCache _cache;
@@ -185,8 +185,6 @@ namespace Vesta.Banks
 
                 await _repository.UpdateAsync(bankAccountFrom, cancellationToken: cancellationToken);
                 await _repository.UpdateAsync(bankAccountTo, cancellationToken: cancellationToken);
-
-                throw new Exception("Prueba Rollback");
 
                 await CurrentUnitOfWork.CompleteAsync(cancellationToken); // Not affect Dapper Repository
 
