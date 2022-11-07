@@ -13,7 +13,7 @@ namespace Vesta.Banks.Fixtures
 
         public override void ConfigureServices(ServiceCollection services)
         {
-            services.AddAutoMapper(typeof(BanksApplicationStartup).Assembly);
+            services.AddVestaAutoMapper(typeof(BanksApplicationStartup).Assembly);
         }
     }
 }

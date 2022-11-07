@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Moq;
 using Vesta.Banks.Dtos;
 using Vesta.Banks.Fixtures;
+using Vesta.Banks.Traceability;
 using Vesta.TestBase.Fixtures;
 using Xunit;
 
@@ -14,6 +15,7 @@ namespace Vesta.Banks.Application
         private readonly Mock<IDistributedCache> _distributedCacheStub;
         private readonly Mock<IBankAccountRepository> _bankAccountRepositoryStub;
         private readonly Mock<IBankTransferRepository> _bankTransferRepositoryStub;
+        private readonly Mock<IErrorRepository> _errorRepositoryStub;
         private readonly Mock<IBankAccountManager> _bankAccountManagerStub;
         private readonly Mock<IBankTransferService> _bankTransferServiceStub;
         private readonly Mock<IBankAccountPublisher> _bankAccountPublisherStub;
@@ -24,6 +26,7 @@ namespace Vesta.Banks.Application
             _distributedCacheStub = new Mock<IDistributedCache>();
             _bankAccountRepositoryStub = new Mock<IBankAccountRepository>();
             _bankTransferRepositoryStub = new Mock<IBankTransferRepository>();
+            _errorRepositoryStub = new Mock<IErrorRepository>();
             _bankAccountManagerStub = new Mock<IBankAccountManager>();
             _bankTransferServiceStub = new Mock<IBankTransferService>();
             _bankAccountPublisherStub = new Mock<IBankAccountPublisher>();
@@ -32,6 +35,7 @@ namespace Vesta.Banks.Application
                 _distributedCacheStub.Object,
                 _bankAccountRepositoryStub.Object,
                 _bankTransferRepositoryStub.Object,
+                _errorRepositoryStub.Object,
                 _bankAccountManagerStub.Object,
                 _bankTransferServiceStub.Object,
                 _bankAccountPublisherStub.Object);
