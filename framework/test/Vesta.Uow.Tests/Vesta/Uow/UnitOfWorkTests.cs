@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Moq;
 using System;
 using System.Threading;
@@ -36,9 +37,12 @@ namespace Vesta.Uow.Tests
 
             _unitOfWorkeventPublishingManagerStub = new Mock<IUnitOfWorkEventPublishingManager>();
 
+            var options = Options.Create<UnitOfWorkDefaultOptions>(new UnitOfWorkDefaultOptions());
+
             _unitOfWorkStub = new Mock<UnitOfWork>(
                 _serviceRegistrarFixture.ServiceProvider,
-                _unitOfWorkeventPublishingManagerStub.Object)
+                _unitOfWorkeventPublishingManagerStub.Object,
+                options)
             {
                 CallBase = true
             };
