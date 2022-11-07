@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Vesta.Banks.Traceability;
 using Vesta.EntityFrameworkCore;
 
 namespace Vesta.Banks.EntityFrameworkCore
 {
-
-    public class BanksDbContext : VestaDbContext<BanksDbContext>
+    public class TraceabilityDbContext : VestaDbContext<TraceabilityDbContext>
     {
 
         // Create DbSets
-        public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<Error> Errors { get; set; }
 
         /// <summary>
         /// Default constructors
         /// </summary>
-        public BanksDbContext(DbContextOptions<BanksDbContext> options)
+        public TraceabilityDbContext(DbContextOptions<TraceabilityDbContext> options)
             : base(options)
         {
 
@@ -21,7 +21,7 @@ namespace Vesta.Banks.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ConfigureBanks();
+            modelBuilder.ConfigureTraceability();
         }
     }
 }

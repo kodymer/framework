@@ -9,6 +9,6 @@ namespace Vesta.EntityFrameworkCore.Abstracts
     public interface IDbContextProvider<TDbContext>
         where TDbContext : IEfCoreDbContext
     {
-        Task<TDbContext> GetDbContextAsync();
+        Task<TDbContext> GetDbContextAsync(CancellationToken cancellationToken = default);
     }
 }

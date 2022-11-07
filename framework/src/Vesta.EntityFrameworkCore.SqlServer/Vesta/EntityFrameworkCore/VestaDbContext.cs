@@ -2,25 +2,22 @@
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Vesta.EntityFrameworkCore.SqlServer
+namespace Vesta.EntityFrameworkCore
 {
-    public abstract class VestaDbContext<TDbContext> : VestaDbContextBase<TDbContext>, ISupportConnection
+    public abstract class VestaDbContext<TDbContext> : VestaDbContextBase<TDbContext>
         where TDbContext : DbContext
     {
-        string ISupportConnection.ConnectionString { get; set; }
 
         public VestaDbContext(DbContextOptions<TDbContext> options)
             : base(options)
         {
-            var conn = Database.GetDbConnection().ConnectionString;
-
-            (this as ISupportConnection).ConnectionString = GetConnectionString(options);
+            
         }
 
         [SuppressMessage("Usage", "EF1001:Internal EF Core API usage.", Justification = "<pendiente>")]
-        protected override string GetConnectionString(DbContextOptions<TDbContext> options)
+        public override string GetConnectionString()
         {
-            var extension = options.Extensions.First(e => e is SqlServerOptionsExtension);
+            var extension = Options.Extensions.First(e => e is SqlServerOptionsExtension);
             var sqlServerOptionsExtension = (SqlServerOptionsExtension)extension;
             return sqlServerOptionsExtension.Connection?.ConnectionString ??
                 sqlServerOptionsExtension.ConnectionString;
