@@ -16,7 +16,7 @@ namespace Vesta.Uow
 
         event EventHandler<UnitOfWorkFailedEventArgs> Failed;
 
-        event EventHandler Disposing;
+        event EventHandler Disposed;
 
         event EventHandler Rollbacked;
 

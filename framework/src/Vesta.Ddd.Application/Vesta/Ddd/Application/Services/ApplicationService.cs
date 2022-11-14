@@ -17,13 +17,17 @@ namespace Vesta.Ddd.Application.Services
 
         public IServiceProvider ServiceProvider { get; set; }
 
-        protected IUnitOfWork CurrentUnitOfWork => ServiceProvider.GetRequiredService<IUnitOfWork>();
+        protected IUnitOfWorkManager UnitOfWorkManager => ServiceProvider.GetRequiredService<IUnitOfWorkManager>();
+
+        protected IUnitOfWork CurrentUnitOfWork => _currentUnitOfWork ??= UnitOfWorkManager.Create();
 
         protected IMapper ObjectMapper => ServiceProvider.GetService<IMapperAccessor>()?.Mapper;
 
         protected ICurrentUser CurrenUser =>  ServiceProvider.GetService<ICurrentUser>();
 
         protected ILogger Logger => _logger ??= _loggerFactory?.CreateLogger(GetType().FullName) ?? NullLogger.Instance;
+
+        private IUnitOfWork _currentUnitOfWork;
 
         private ILogger _logger;
         private ILoggerFactory _loggerFactory => ServiceProvider.GetService<ILoggerFactory>();
