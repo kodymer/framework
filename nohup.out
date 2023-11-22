@@ -1,0 +1,136 @@
+2023-05-24 12:54:06.85 Server      Setup step is FORCE copying system data file 'C:\templatedata\model_replicatedmaster.mdf' to '/var/opt/mssql/data/model_replicatedmaster.mdf'.
+2023-05-24 12:54:07.05 Server      Setup step is FORCE copying system data file 'C:\templatedata\model_replicatedmaster.ldf' to '/var/opt/mssql/data/model_replicatedmaster.ldf'.
+2023-05-24 12:54:07.15 Server      Setup step is FORCE copying system data file 'C:\templatedata\model_msdbdata.mdf' to '/var/opt/mssql/data/model_msdbdata.mdf'.
+2023-05-24 12:54:07.26 Server      Setup step is FORCE copying system data file 'C:\templatedata\model_msdblog.ldf' to '/var/opt/mssql/data/model_msdblog.ldf'.
+2023-05-24 12:54:09.06 Server      Microsoft SQL Server 2019 (RTM-CU14) (KB5007182) - 15.0.4188.2 (X64) 
+	Nov  3 2021 19:19:51 
+	Copyright (C) 2019 Microsoft Corporation
+	Developer Edition (64-bit) on Linux (Ubuntu 20.04.3 LTS) <X64>
+2023-05-24 12:54:09.10 Server      UTC adjustment: 2:00
+2023-05-24 12:54:09.11 Server      (c) Microsoft Corporation.
+2023-05-24 12:54:09.12 Server      All rights reserved.
+2023-05-24 12:54:09.13 Server      Server process ID is 392.
+2023-05-24 12:54:09.14 Server      Logging SQL Server messages in file '/var/opt/mssql/log/errorlog'.
+2023-05-24 12:54:09.16 Server      Registry startup parameters: 
+	 -d /var/opt/mssql/data/master.mdf
+	 -l /var/opt/mssql/data/mastlog.ldf
+	 -e /var/opt/mssql/log/errorlog
+2023-05-24 12:54:09.20 Server      SQL Server detected 1 sockets with 4 cores per socket and 8 logical processors per socket, 8 total logical processors; using 8 logical processors based on SQL Server licensing. This is an informational message; no user action is required.
+2023-05-24 12:54:09.24 Server      SQL Server is starting at normal priority base (=7). This is an informational message only. No user action is required.
+2023-05-24 12:54:09.27 Server      Detected 4747 MB of RAM. This is an informational message; no user action is required.
+2023-05-24 12:54:09.28 Server      Using conventional memory in the memory manager.
+2023-05-24 12:54:09.30 Server      Page exclusion bitmap is enabled.
+2023-05-24 12:54:09.34 Server      Buffer pool extension is not supported on Linux platform.
+2023-05-24 12:54:09.36 Server      Buffer Pool: Allocating 1048576 bytes for 678286 hashPages.
+2023-05-24 12:54:09.52 Server      Buffer pool extension is already disabled. No action is necessary.
+2023-05-24 12:54:09.89 Server      Successfully initialized the TLS configuration. Allowed TLS protocol versions are ['1.0 1.1 1.2']. Allowed TLS ciphers are ['ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-GCM-SHA256:!DHE-RSA-AES256-SHA:!DHE-RSA-AES128-SHA'].
+2023-05-24 12:54:10.00 Server      Query Store settings initialized with enabled = 1, 
+2023-05-24 12:54:10.03 Server      The maximum number of dedicated administrator connections for this instance is '1'
+2023-05-24 12:54:10.03 Server      Node configuration: node 0: CPU mask: 0x00000000000000ff:0 Active CPU mask: 0x00000000000000ff:0. This message provides a description of the NUMA configuration for this computer. This is an informational message only. No user action is required.
+2023-05-24 12:54:10.10 Server      Using dynamic lock allocation.  Initial allocation of 2500 Lock blocks and 5000 Lock Owner blocks per node.  This is an informational message only.  No user action is required.
+2023-05-24 12:54:10.15 Server      In-Memory OLTP initialized on lowend machine.
+2023-05-24 12:54:10.20 Server      CLR version v4.0.30319 loaded.
+2023-05-24 12:54:10.38 Server      [INFO] Created Extended Events session 'hkenginexesession'
+2023-05-24 12:54:10.41 Server      Database Instant File Initialization: enabled. For security and performance considerations see the topic 'Database Instant File Initialization' in SQL Server Books Online. This is an informational message only. No user action is required.
+ForceFlush is enabled for this instance. 
+2023-05-24 12:54:10.49 Server      Total Log Writer threads: 2. This is an informational message; no user action is required.
+2023-05-24 12:54:10.52 Server      clflushopt is selected for pmem flush operation.
+2023-05-24 12:54:10.53 spid9s      [1]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:10.54 Server      Software Usage Metrics is disabled.
+2023-05-24 12:54:10.56 spid9s      Starting up database 'master'.
+2023-05-24 12:54:10.69 Server      Common language runtime (CLR) functionality initialized.
+ForceFlush feature is enabled for log durability.
+2023-05-24 12:54:10.76 spid9s      69 transactions rolled forward in database 'master' (1:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:10.82 spid9s      0 transactions rolled back in database 'master' (1:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:10.85 spid9s      Recovery is writing a checkpoint in database 'master' (1). This is an informational message only. No user action is required.
+2023-05-24 12:54:11.09 spid9s      Resource governor reconfiguration succeeded.
+2023-05-24 12:54:11.11 spid9s      SQL Server Audit is starting the audits. This is an informational message. No user action is required.
+2023-05-24 12:54:11.14 spid9s      SQL Server Audit has started the audits. This is an informational message. No user action is required.
+2023-05-24 12:54:11.31 spid9s      SQL Trace ID 1 was started by login "sa".
+2023-05-24 12:54:11.38 spid9s      Server name is 'BCN-3XWRVT2'. This is an informational message only. No user action is required.
+2023-05-24 12:54:11.42 spid30s     Always On: The availability replica manager is starting. This is an informational message only. No user action is required.
+2023-05-24 12:54:11.42 spid11s     [32767]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid35s     [7]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid34s     [5]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid37s     [8]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid36s     [9]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid33s     [4]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.43 spid32s     [6]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.46 spid39s     [10]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.48 spid40s     [11]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.52 spid41s     [13]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:11.60 spid29s     A self-generated certificate was successfully loaded for encryption.
+2023-05-24 12:54:11.61 spid30s     Always On: The availability replica manager is waiting for the instance of SQL Server to allow client connections. This is an informational message only. No user action is required.
+2023-05-24 12:54:11.63 spid35s     Starting up database 'UVPDB'.
+2023-05-24 12:54:11.63 spid11s     Starting up database 'mssqlsystemresource'.
+2023-05-24 12:54:11.64 spid34s     Starting up database 'Vesta.RequestsDb'.
+2023-05-24 12:54:11.64 spid37s     Starting up database 'Solvia.IdentityServer'.
+2023-05-24 12:54:11.64 spid36s     Starting up database 'IdentityApiDb'.
+2023-05-24 12:54:11.64 spid33s     Starting up database 'msdb'.
+2023-05-24 12:54:11.64 spid32s     Starting up database 'BarManager.BaristaDb'.
+2023-05-24 12:54:11.69 spid39s     Starting up database 'Vesta.CasesDb'.
+2023-05-24 12:54:11.72 spid40s     Starting up database 'Hangfire'.
+2023-05-24 12:54:11.73 spid41s     Starting up database 'Vesta.BanksDb'.
+2023-05-24 12:54:11.73 spid29s     Server is listening on [ 'any' <ipv6> 1433].
+2023-05-24 12:54:11.75 spid35s     Failed to get the volume information, -1073741772
+2023-05-24 12:54:11.82 spid11s     The resource database build version is 15.00.4188. This is an informational message only. No user action is required.
+2023-05-24 12:54:11.87 spid29s     Server is listening on [ 'any' <ipv4> 1433].
+2023-05-24 12:54:11.90 spid33s     1 transactions rolled forward in database 'msdb' (4:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.00 spid11s     [3]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:12.00 Server      Server is listening on [ ::1 <ipv6> 1434].
+2023-05-24 12:54:12.01 spid34s     Parallel redo is started for database 'Vesta.RequestsDb' with worker pool size [4].
+2023-05-24 12:54:12.05 spid36s     Parallel redo is started for database 'IdentityApiDb' with worker pool size [4].
+2023-05-24 12:54:12.05 spid39s     Parallel redo is started for database 'Vesta.CasesDb' with worker pool size [4].
+2023-05-24 12:54:12.05 spid35s     Failed to get the volume information, -1073741772
+2023-05-24 12:54:12.07 spid11s     Starting up database 'model'.
+2023-05-24 12:54:12.09 Server      Server is listening on [ 127.0.0.1 <ipv4> 1434].
+2023-05-24 12:54:12.14 spid34s     1 transactions rolled forward in database 'Vesta.RequestsDb' (5:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.15 spid9s      0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.17 spid36s     1 transactions rolled forward in database 'IdentityApiDb' (9:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.19 spid39s     1 transactions rolled forward in database 'Vesta.CasesDb' (10:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.20 spid35s     Error: 17204, Severity: 16, State: 1.
+2023-05-24 12:54:12.20 spid35s     FCB::Open failed: Could not open file /mnt/d/projects/onu/data\UVPDB.mdf for file number 1.  OS error: 2(The system cannot find the file specified.).
+2023-05-24 12:54:12.22 Server      Dedicated admin connection support was established for listening locally on port 1434.
+2023-05-24 12:54:12.35 spid41s     Parallel redo is started for database 'Vesta.BanksDb' with worker pool size [4].
+2023-05-24 12:54:12.38 spid11s     Clearing tempdb database.
+2023-05-24 12:54:12.40 spid9s      0 transactions rolled back in database 'Vesta.RequestsDb' (5:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.46 spid33s     0 transactions rolled back in database 'IdentityApiDb' (9:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.47 spid35s     Error: 5120, Severity: 16, State: 101.
+2023-05-24 12:54:12.47 spid35s     Unable to open the physical file "/mnt/d/projects/onu/data\UVPDB.mdf". Operating system error 2: "2(The system cannot find the file specified.)".
+2023-05-24 12:54:12.51 spid29s     Server is listening on [ ::1 <ipv6> 1431].
+2023-05-24 12:54:12.52 spid39s     0 transactions rolled back in database 'Vesta.CasesDb' (10:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:12.60 spid9s      Parallel redo is shutdown for database 'Vesta.RequestsDb' with worker pool size [4].
+2023-05-24 12:54:12.62 spid41s     Parallel redo is shutdown for database 'Vesta.BanksDb' with worker pool size [4].
+2023-05-24 12:54:12.64 spid33s     Parallel redo is shutdown for database 'IdentityApiDb' with worker pool size [4].
+2023-05-24 12:54:12.79 spid39s     Parallel redo is shutdown for database 'Vesta.CasesDb' with worker pool size [4].
+2023-05-24 12:54:12.80 spid35s     Failed to get the volume information, -1073741772
+2023-05-24 12:54:12.86 spid29s     Server is listening on [ 127.0.0.1 <ipv4> 1431].
+2023-05-24 12:54:12.98 spid29s     SQL Server is now ready for client connections. This is an informational message; no user action is required.
+2023-05-24 12:54:13.08 spid35s     Failed to get the volume information, -1073741772
+2023-05-24 12:54:13.10 spid35s     Error: 17207, Severity: 16, State: 1.
+2023-05-24 12:54:13.10 spid35s     FileMgr::StartLogFiles: Operating system error 2(The system cannot find the file specified.) occurred while creating or opening file '/mnt/d/projects/onu/data\UVPDB.ldf'. Diagnose and correct the operating system error, and retry the operation.
+2023-05-24 12:54:13.20 spid35s     File activation failure. The physical file name "/mnt/d/projects/onu/data\UVPDB.ldf" may be incorrect.
+2023-05-24 12:54:13.25 spid11s     [2]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
+2023-05-24 12:54:13.28 spid11s     Starting up database 'tempdb'.
+2023-05-24 12:54:13.59 spid40s     Parallel redo is started for database 'Hangfire' with worker pool size [4].
+2023-05-24 12:54:13.71 spid40s     250 transactions rolled forward in database 'Hangfire' (11:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:13.85 spid9s      0 transactions rolled back in database 'Hangfire' (11:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:13.89 spid9s      Parallel redo is shutdown for database 'Hangfire' with worker pool size [4].
+2023-05-24 12:54:14.00 spid37s     Parallel redo is started for database 'Solvia.IdentityServer' with worker pool size [4].
+2023-05-24 12:54:14.05 spid37s     1 transactions rolled forward in database 'Solvia.IdentityServer' (8:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:14.15 spid9s      0 transactions rolled back in database 'Solvia.IdentityServer' (8:0). This is an informational message only. No user action is required.
+2023-05-24 12:54:14.18 spid9s      Parallel redo is shutdown for database 'Solvia.IdentityServer' with worker pool size [4].
+2023-05-24 12:54:14.43 spid11s     The tempdb database has 8 data file(s).
+2023-05-24 12:54:14.47 spid30s     The Service Broker endpoint is in disabled or stopped state.
+2023-05-24 12:54:14.49 spid30s     The Database Mirroring endpoint is in disabled or stopped state.
+2023-05-24 12:54:14.53 spid30s     Service Broker manager has started.
+2023-05-24 12:54:14.92 spid32s     Parallel redo is started for database 'BarManager.BaristaDb' with worker pool size [4].
+2023-05-24 12:54:15.11 spid32s     Parallel redo is shutdown for database 'BarManager.BaristaDb' with worker pool size [4].
+2023-05-24 12:54:15.15 spid9s      Recovery is complete. This is an informational message only. No user action is required.
+2023-05-24 12:54:22.09 spid51      Attempting to load library 'xplog70.dll' into memory. This is an informational message only. No user action is required.
+2023-05-24 12:54:22.13 spid51      Using 'xplog70.dll' version '2019.150.4188' to execute extended stored procedure 'xp_msver'. This is an informational message only; no user action is required.
+2023-05-24 12:54:22.72 spid54      Attempting to load library 'xpsqlbot.dll' into memory. This is an informational message only. No user action is required.
+2023-05-24 12:54:22.75 spid54      Using 'xpsqlbot.dll' version '2019.150.4188' to execute extended stored procedure 'xp_qv'. This is an informational message only; no user action is required.
+2023-05-24 12:54:40.94 spid54      Attempting to load library 'xpstar.dll' into memory. This is an informational message only. No user action is required.
+2023-05-24 12:54:41.00 spid54      Using 'xpstar.dll' version '2019.150.4188' to execute extended stored procedure 'xp_instance_regread'. This is an informational message only; no user action is required.
+

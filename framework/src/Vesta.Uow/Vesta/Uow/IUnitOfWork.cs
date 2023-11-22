@@ -8,7 +8,7 @@ using Vesta.EventBus.Abstracts;
 
 namespace Vesta.Uow
 {
-    public interface IUnitOfWork : IDisposable, IDatabaseApiContainer, ITransacionApiContainer, IServiceProviderAccessor
+    public interface IUnitOfWork : IDisposable, IDatabaseApiContainer, ITransactionApiContainer, IServiceProviderAccessor
     {
         event EventHandler Completed;
 

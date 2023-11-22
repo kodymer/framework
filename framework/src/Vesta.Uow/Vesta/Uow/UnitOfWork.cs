@@ -172,6 +172,7 @@ namespace Vesta.Uow
         {
             return _databaseApis.Values.ToImmutableList();
         }
+
         protected IReadOnlyList<ITransactionApi> GetAllActiveTransactionApis()
         {
             return _transactionApis.Values.ToImmutableList();

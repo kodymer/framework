@@ -1,6 +1,6 @@
 ﻿namespace Vesta.Uow
 {
-    public interface ITransacionApiContainer
+    public interface ITransactionApiContainer
     {
         void AddTransactionApi(string key, ITransactionApi api);
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Vesta.Uow
 
         public IUnitOfWork Begin(UnitOfWorkOptions options)
         {
-           var unitOfWork = (this as IUnitOfWorkManager).Create();
+            var unitOfWork = (this as IUnitOfWorkManager).Create();
             unitOfWork.As<UnitOfWork>().Initialize(options);
 
             return unitOfWork;
@@ -33,7 +34,9 @@ namespace Vesta.Uow
             {
                 scope = _serviceScopeFactory.CreateScope();
 
-                unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+                var eventPublishingManager = scope.ServiceProvider.GetRequiredService<IUnitOfWorkEventPublishingManager>();
+                var options = scope.ServiceProvider.GetRequiredService<IOptions<UnitOfWorkDefaultOptions>>();
+                unitOfWork = new UnitOfWork(scope.ServiceProvider, eventPublishingManager, options);
 
                 unitOfWork.Disposed += (object sender, EventArgs e) =>
                 {

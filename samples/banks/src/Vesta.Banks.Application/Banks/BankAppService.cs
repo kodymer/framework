@@ -159,7 +159,7 @@ namespace Vesta.Banks
             }
         }
 
-        [UnitOfWork(true, IsolationLevel.ReadCommitted, 3600)]
+        //[UnitOfWork(true, IsolationLevel.ReadCommitted, 3600)]
         public async Task MakeTransferAsync(BankTransferInput input, CancellationToken cancellationToken = default)
         {
             try
