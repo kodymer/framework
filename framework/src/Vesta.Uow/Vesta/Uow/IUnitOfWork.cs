@@ -8,7 +8,7 @@ using Vesta.EventBus.Abstracts;
 
 namespace Vesta.Uow
 {
-    public interface IUnitOfWork : IDisposable, IDatabaseApiContainer, ITransacionApiContainer, IServiceProviderAccessor
+    public interface IUnitOfWork : IDisposable, IDatabaseApiContainer, ITransactionApiContainer, IServiceProviderAccessor
     {
         event EventHandler Completed;
 
@@ -16,7 +16,7 @@ namespace Vesta.Uow
 
         event EventHandler<UnitOfWorkFailedEventArgs> Failed;
 
-        event EventHandler Disposing;
+        event EventHandler Disposed;
 
         event EventHandler Rollbacked;
 

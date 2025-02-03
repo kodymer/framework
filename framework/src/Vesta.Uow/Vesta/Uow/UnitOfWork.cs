@@ -13,20 +13,14 @@ using Vesta.EventBus.Abstracts;
 
 namespace Vesta.Uow
 {
-    /*
-     * TODO: Make transactional. 
-     * See https://docs.microsoft.com/en-us/ef/core/saving/transactions#using-systemtransactions
-     * 
-     * TODO: Provide rollback.
-     * 
-     */
+
     public class UnitOfWork : IUnitOfWork
     {
         public IServiceProvider ServiceProvider { get; }
         public event EventHandler Completed;
         public event EventHandler Completing;
         public event EventHandler<UnitOfWorkFailedEventArgs> Failed;
-        public event EventHandler Disposing;
+        public event EventHandler Disposed;
         public event EventHandler Rollbacked;
 
         public virtual bool IsCompleting { get; private set; }
@@ -49,6 +43,7 @@ namespace Vesta.Uow
         {
             IsCompleting = false;
             IsCompleted = false;
+            IsReversed = false;
             ServiceProvider = serviceProvider;
             Options = options.Value;
 
@@ -177,6 +172,7 @@ namespace Vesta.Uow
         {
             return _databaseApis.Values.ToImmutableList();
         }
+
         protected IReadOnlyList<ITransactionApi> GetAllActiveTransactionApis()
         {
             return _transactionApis.Values.ToImmutableList();
@@ -247,6 +243,8 @@ namespace Vesta.Uow
 
                 _databaseApis.Clear();
 
+                DisposeTransactions();
+
                 _isDisposed = true;
 
                 if (!IsCompleted || _exception != null)
@@ -255,7 +253,21 @@ namespace Vesta.Uow
                 }
             }
 
-            OnDisposing();
+            OnDisposed();
+        }
+
+        private void DisposeTransactions()
+        {
+            foreach (var transactionApi in GetAllActiveTransactionApis())
+            {
+                try
+                {
+                    transactionApi.Dispose();
+                }
+                catch
+                {
+                }
+            }
         }
 
         public void Dispose()
@@ -285,9 +297,9 @@ namespace Vesta.Uow
             Rollbacked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnDisposing()
+        private void OnDisposed()
         {
-            Disposing?.Invoke(this, EventArgs.Empty);
+            Disposed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

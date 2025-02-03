@@ -17,15 +17,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Vesta\EntityFrameworkCore\SqlServer\**" />
+    <EmbeddedResource Remove="Vesta\EntityFrameworkCore\SqlServer\**" />
+    <None Remove="Vesta\EntityFrameworkCore\SqlServer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Vesta.EntityFrameworkCore\Vesta.EntityFrameworkCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Vesta\EntityFrameworkCore\SqlServer\" />
   </ItemGroup>
 
 </Project>
