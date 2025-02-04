@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class ReportingBankAccountException : BusinessException
     {

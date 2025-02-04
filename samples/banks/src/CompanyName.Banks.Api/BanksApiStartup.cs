@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public static class BanksApiStartup
     {
@@ -20,7 +20,7 @@ namespace Vesta.Banks
                 });
 
             services
-                .AddVestaAspNetCoreMvc(jsonConfigure: options =>
+                .AddCompanyNameAspNetCoreMvc(jsonConfigure: options =>
                 {
                     options.JsonSerializerOptions.WriteIndented = true;
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());

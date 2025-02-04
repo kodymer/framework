@@ -1,8 +1,8 @@
-﻿using Vesta.Banks;
-using Vesta.Ddd.Domain.Services;
-using Vesta.EventBus.Abstracts;
+﻿using CompanyName.Banks;
+using CompanyName.Ddd.Domain.Services;
+using CompanyName.EventBus.Abstracts;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BankTransferService : DomainService, IBankTransferService
     {

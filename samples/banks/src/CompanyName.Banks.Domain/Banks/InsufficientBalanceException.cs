@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Vesta.Banks.Bank
+namespace CompanyName.Banks.Bank
 {
     [Serializable]
     internal class InsufficientBalanceException : Exception

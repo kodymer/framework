@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vesta.TestBase" Version="$(VestaPackageVersion)" />
+    <PackageReference Include="CompanyName.TestBase" Version="$(CompanyNamePackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.ProjectName.EntityFrameworkCore.SqlServer\Vesta.ProjectName.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\..\src\CompanyName.ProjectName.EntityFrameworkCore.SqlServer\CompanyName.ProjectName.EntityFrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

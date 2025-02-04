@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Vesta.ProjectName.Configuration;
-using Vesta.ProjectName.EntityFrameworkCore;
+using CompanyName.ProjectName.Configuration;
+using CompanyName.ProjectName.EntityFrameworkCore;
 
-namespace Vesta.ProjectName
+namespace CompanyName.ProjectName
 {
     public static class ProjectNameApplicationStartup
     {
@@ -16,13 +16,13 @@ namespace Vesta.ProjectName
                 .AddProjectNameAppSevices();
 
             services
-                .AddVestaDddApplication();
+                .AddCompanyNameDddApplication();
 
             services
-                .AddVestaCachingStackExchangeRedis();
+                .AddCompanyNameCachingStackExchangeRedis();
 
             services
-                .AddVestaAutoMapper(Assembly.GetExecutingAssembly());
+                .AddCompanyNameAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }

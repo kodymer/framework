@@ -13,8 +13,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
-    <ProjectReference Include="..\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests.csproj" />
+    <ProjectReference Include="..\..\src\CompanyName.Banks.Domain\CompanyName.Banks.Domain.csproj" />
+    <ProjectReference Include="..\CompanyName.Banks.EntityFrameworkCore.SqlServer.Tests\CompanyName.Banks.EntityFrameworkCore.SqlServer.Tests.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class HealthChecksConfiguration
     {

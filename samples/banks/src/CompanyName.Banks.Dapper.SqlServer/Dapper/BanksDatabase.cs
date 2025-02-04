@@ -1,8 +1,8 @@
-﻿using Vesta.Dapper;
+﻿using CompanyName.Dapper;
 
-namespace Vesta.Banks.Dapper
+namespace CompanyName.Banks.Dapper
 {
-    public class BanksDatabase : VestaDatabase<BanksDatabase>
+    public class BanksDatabase : CompanyNameDatabase<BanksDatabase>
     {
         public BanksDatabase()
         {

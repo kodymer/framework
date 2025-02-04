@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <MicrosoftPackageVersion>6.0.0</MicrosoftPackageVersion>
+    <MicrosoftPackageVersion>8.0.0</MicrosoftPackageVersion>
   </PropertyGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BankAccountManager : IBankAccountManager
     {

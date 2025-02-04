@@ -1,6 +1,6 @@
-﻿using Vesta.Dapper;
+﻿using CompanyName.Dapper;
 
-namespace Vesta.Banks.Dapper
+namespace CompanyName.Banks.Dapper
 {
     public static class BanksModelBuilderExtensions
     {

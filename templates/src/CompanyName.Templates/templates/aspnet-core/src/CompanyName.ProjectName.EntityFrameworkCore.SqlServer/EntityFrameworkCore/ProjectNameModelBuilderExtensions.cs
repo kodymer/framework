@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vesta.EntityFrameworkCore.Modeling;
+using CompanyName.EntityFrameworkCore.Modeling;
 
-namespace Vesta.ProjectName.EntityFrameworkCore
+namespace CompanyName.ProjectName.EntityFrameworkCore
 {
     public static class ProjectNameModelBuilderExtensions 
     {

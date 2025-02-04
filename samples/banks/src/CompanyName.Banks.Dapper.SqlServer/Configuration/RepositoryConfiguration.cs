@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.Dapper.Repositories;
+using CompanyName.Banks.Dapper.Repositories;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class RepositoryConfiguration
     {

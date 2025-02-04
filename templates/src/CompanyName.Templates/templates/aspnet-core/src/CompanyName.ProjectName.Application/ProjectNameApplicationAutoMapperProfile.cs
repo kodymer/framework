@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Vesta.ProjectName
+namespace CompanyName.ProjectName
 {
     public class ProjectNameApplicationAutoMapperProfile : Profile
     {

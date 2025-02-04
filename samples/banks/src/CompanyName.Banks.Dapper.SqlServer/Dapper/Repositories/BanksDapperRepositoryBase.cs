@@ -1,7 +1,7 @@
-﻿using Vesta.Dapper.Domain.Repositories;
-using Vesta.Ddd.Domain.Entities;
+﻿using CompanyName.Dapper.Domain.Repositories;
+using CompanyName.Ddd.Domain.Entities;
 
-namespace Vesta.Banks.Dapper.Repositories
+namespace CompanyName.Banks.Dapper.Repositories
 {
     public abstract class BanksDapperRepositoryBase<TEntity, TKey> : DapperRepository<BanksDatabase, TEntity, TKey>
         where TEntity : class, IEntity<TKey>

@@ -1,4 +1,4 @@
-﻿namespace Vesta.Banks.Etos
+﻿namespace CompanyName.Banks.Etos
 {
     public class BankAccountChangedEto
     {

@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Application" Version="$(VestaPackageVersion)"  />
-    <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(VestaPackageVersion)" />
+    <PackageReference Include="CompanyName.Ddd.Application" Version="$(CompanyNamePackageVersion)"  />
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Version="$(CompanyNamePackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.ProjectName.Domain\Vesta.ProjectName.Domain.csproj" />
-    <ProjectReference Include="..\Vesta.ProjectName.EntityFrameworkCore.SqlServer\Vesta.ProjectName.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\CompanyName.ProjectName.Domain\CompanyName.ProjectName.Domain.csproj" />
+    <ProjectReference Include="..\CompanyName.ProjectName.EntityFrameworkCore.SqlServer\CompanyName.ProjectName.EntityFrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

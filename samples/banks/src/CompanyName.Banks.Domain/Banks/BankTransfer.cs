@@ -1,6 +1,6 @@
-﻿using Vesta.Ddd.Domain.Auditing;
+﻿using CompanyName.Ddd.Domain.Auditing;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BankTransfer : CreationAuditedEntity<long>
     {

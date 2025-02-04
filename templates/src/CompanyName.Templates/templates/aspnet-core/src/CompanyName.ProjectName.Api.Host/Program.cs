@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ApplicationInsights.Extensibility;
 using System;
 
-namespace Vesta.ProjectName
+namespace CompanyName.ProjectName
 {
     public class Program
     {
@@ -30,7 +30,7 @@ namespace Vesta.ProjectName
 
             try
             {
-                Log.Information("Starting Vesta.ProjectName.Api.Host.");
+                Log.Information("Starting CompanyName.ProjectName.Api.Host.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }

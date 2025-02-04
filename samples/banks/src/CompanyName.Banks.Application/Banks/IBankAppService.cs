@@ -1,7 +1,7 @@
-﻿using Vesta.Banks.Dtos;
-using Vesta.Ddd.Application.Services;
+﻿using CompanyName.Banks.Dtos;
+using CompanyName.Ddd.Application.Services;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public interface IBankAppService : IApplicationService
     {

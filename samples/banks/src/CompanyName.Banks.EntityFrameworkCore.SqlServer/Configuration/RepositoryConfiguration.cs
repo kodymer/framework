@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.EntityFrameworkCore.Repositories;
-using Vesta.Banks.Traceability;
+using CompanyName.Banks.EntityFrameworkCore.Repositories;
+using CompanyName.Banks.Traceability;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class RepositoryConfiguration
     {

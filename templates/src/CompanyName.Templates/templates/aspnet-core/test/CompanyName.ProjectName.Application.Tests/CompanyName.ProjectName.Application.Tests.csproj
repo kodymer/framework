@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Vesta.ProjectName.Application\Vesta.ProjectName.Application.csproj" />
-    <ProjectReference Include="..\Vesta.ProjectName.Domain.Tests\Vesta.ProjectName.Domain.Tests.csproj" />
+    <ProjectReference Include="..\..\src\CompanyName.ProjectName.Application\CompanyName.ProjectName.Application.csproj" />
+    <ProjectReference Include="..\CompanyName.ProjectName.Domain.Tests\CompanyName.ProjectName.Domain.Tests.csproj" />
   </ItemGroup>
 
 </Project>

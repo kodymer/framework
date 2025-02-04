@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.Configuration;
+using CompanyName.Banks.Configuration;
 
-namespace Vesta.Banks.Dapper
+namespace CompanyName.Banks.Dapper
 {
     public static class BanksDapperStartup
     {

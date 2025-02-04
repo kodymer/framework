@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Vesta.ProjectName.Configuration;
+using CompanyName.ProjectName.Configuration;
 
-namespace Vesta.ProjectName.EntityFrameworkCore
+namespace CompanyName.ProjectName.EntityFrameworkCore
 {
     public static class ProjectNameEntityFrameworkCoreStartup
     {

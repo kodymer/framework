@@ -1,4 +1,4 @@
-﻿namespace Vesta.ProjectName.Options
+﻿namespace CompanyName.ProjectName.Options
 {
     public class AuthenticationOptions
     {

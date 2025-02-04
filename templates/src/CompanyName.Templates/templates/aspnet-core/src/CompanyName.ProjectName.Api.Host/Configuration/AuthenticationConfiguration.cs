@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Vesta.ProjectName.Options;
+using CompanyName.ProjectName.Options;
 
-namespace Vesta.ProjectName.Configuration
+namespace CompanyName.ProjectName.Configuration
 {
     public static class AuthenticationConfiguration
     {

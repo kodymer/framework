@@ -1,11 +1,11 @@
-﻿using Vesta.Banks.Bank;
-using Vesta.Banks.Etos;
-using Vesta.Ddd.Domain.Auditing;
-using Vesta.Ddd.Domain.EventBus;
+﻿using CompanyName.Banks.Bank;
+using CompanyName.Banks.Etos;
+using CompanyName.Ddd.Domain.Auditing;
+using CompanyName.Ddd.Domain.EventBus;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
-    [EventName("Vesta.Banks.Etos.BankAccountChangedEto")]
+    [EventName("CompanyName.Banks.Etos.BankAccountChangedEto")]
     public class BankAccount : FullAuditedAggregateRoot<Guid>
     {
         public const string TableName = "BankAccounts";

@@ -1,7 +1,7 @@
 ﻿using System;
-using Vesta.Ddd.Domain.Repositories;
+using CompanyName.Ddd.Domain.Repositories;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public interface IBankAccountRepository : IRepository<BankAccount, Guid>
     {

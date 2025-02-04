@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class DomainServiceConfiguration
     {

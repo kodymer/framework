@@ -1,19 +1,18 @@
 {
     "$schema": "http://json.schemastore.org/template",
-    "author": "NTT DATA",
+    "author": "",
     "classifications": [
-      "microservice",
-      "net6.0"
+      "Web", "WebAPI"
     ],
-    "identity": "Vesta.AspNetCore.WebApi.Net6.Csharp.App",
-    "name": "Vesta Microservice",
-    "shortName": "vesta-microservice",
+    "identity": "CompanyName.AspNetCore.WebApi.App",
+    "name": "CompanyName Web API",
+    "shortName": "CompanyNameLower-webapi",
     "tags": {
       "language": "C#",
       "type": "project"
     },
     "symbols": {
-      "name": {
+      "Name": {
         "type": "parameter",
         "dataType": "string",
         "replaces": "ProjectName",

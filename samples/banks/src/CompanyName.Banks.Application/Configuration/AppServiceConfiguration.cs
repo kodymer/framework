@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.Bank;
+using CompanyName.Banks.Bank;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class AppServiceConfiguration
     {

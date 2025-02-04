@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vesta.Banks.Traceability;
-using Vesta.EntityFrameworkCore;
+using CompanyName.Banks.Traceability;
+using CompanyName.EntityFrameworkCore;
 
-namespace Vesta.Banks.EntityFrameworkCore
+namespace CompanyName.Banks.EntityFrameworkCore
 {
-    public class TraceabilityDbContext : VestaDbContext<TraceabilityDbContext>
+    public class TraceabilityDbContext : CompanyNameDbContext<TraceabilityDbContext>
     {
 
         // Create DbSets

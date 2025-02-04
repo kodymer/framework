@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vesta.EntityFrameworkCore;
+using CompanyName.EntityFrameworkCore;
 
-namespace Vesta.Banks.EntityFrameworkCore
+namespace CompanyName.Banks.EntityFrameworkCore
 {
 
-    public class BanksDbContext : VestaDbContext<BanksDbContext>
+    public class BanksDbContext : CompanyNameDbContext<BanksDbContext>
     {
 
         // Create DbSets

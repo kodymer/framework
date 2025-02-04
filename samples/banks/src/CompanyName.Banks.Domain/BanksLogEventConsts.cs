@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vesta.Banks.Domain
+namespace CompanyName.Banks.Domain
 {
     public static class BanksLogEventConsts
     {

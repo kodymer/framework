@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class EventHandlerConfiguration
     {
         public static IServiceCollection AddBanksEventHandlers(this IServiceCollection services)
         {
-            services.AddVestaEventHandlers(options =>
+            services.AddCompanyNameEventHandlers(options =>
             {
                 options.Add<BankAccountCreatedEventHandler>();
                 options.Add<BankAccountChangedEventHandler>();

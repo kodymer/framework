@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
+namespace CompanyName.Banks.EntityFrameworkCore.SqlServer.Migrations
 {
     public partial class Add_BankAccount : Migration
     {

@@ -6,22 +6,22 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["NuGet.Config", "."]
-COPY ["src/Vesta.Banks.EntityFrameworkCore.SqlServer/Vesta.Banks.EntityFrameworkCore.SqlServer.csproj", "src/Vesta.Banks.EntityFrameworkCore.SqlServer/"]
-COPY ["src/Vesta.Banks.Dapper.SqlServer/Vesta.Banks.Dapper.SqlServer.csproj", "src/Vesta.Banks.Dapper.SqlServer/"]
-COPY ["src/Vesta.Banks.Domain/Vesta.Banks.Domain.csproj", "src/Vesta.Banks.Domain/"]
-COPY ["src/Vesta.Banks.Domain/Vesta.Banks.Domain.Shared.csproj", "src/Vesta.Banks.Domain.Shared/"]
-COPY ["src/Vesta.Banks.Application/Vesta.Banks.Application.csproj", "src/Vesta.Banks.Application/"]
-COPY ["src/Vesta.Banks.Api/Vesta.Banks.Api.csproj", "src/Vesta.Banks.Api/"]
-COPY ["src/Vesta.Banks.Api.Host/Vesta.Banks.Api.Host.csproj", "src/Vesta.Banks.Api.Host/"]
-RUN dotnet restore "src/Vesta.Banks.Api.Host/Vesta.Banks.Api.Host.csproj"
+COPY ["src/CompanyName.Banks.EntityFrameworkCore.SqlServer/CompanyName.Banks.EntityFrameworkCore.SqlServer.csproj", "src/CompanyName.Banks.EntityFrameworkCore.SqlServer/"]
+COPY ["src/CompanyName.Banks.Dapper.SqlServer/CompanyName.Banks.Dapper.SqlServer.csproj", "src/CompanyName.Banks.Dapper.SqlServer/"]
+COPY ["src/CompanyName.Banks.Domain/CompanyName.Banks.Domain.csproj", "src/CompanyName.Banks.Domain/"]
+COPY ["src/CompanyName.Banks.Domain/CompanyName.Banks.Domain.Shared.csproj", "src/CompanyName.Banks.Domain.Shared/"]
+COPY ["src/CompanyName.Banks.Application/CompanyName.Banks.Application.csproj", "src/CompanyName.Banks.Application/"]
+COPY ["src/CompanyName.Banks.Api/CompanyName.Banks.Api.csproj", "src/CompanyName.Banks.Api/"]
+COPY ["src/CompanyName.Banks.Api.Host/CompanyName.Banks.Api.Host.csproj", "src/CompanyName.Banks.Api.Host/"]
+RUN dotnet restore "src/CompanyName.Banks.Api.Host/CompanyName.Banks.Api.Host.csproj"
 COPY . .
-WORKDIR "/src/src/Vesta.Banks.Api.Host"
-RUN dotnet build "Vesta.Banks.Api.Host.csproj" -c Release -o /app/build
+WORKDIR "/src/src/CompanyName.Banks.Api.Host"
+RUN dotnet build "CompanyName.Banks.Api.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Vesta.Banks.Api.Host.csproj" -c Release -o /app/publish
+RUN dotnet publish "CompanyName.Banks.Api.Host.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Vesta.Banks.Api.Host.dll"]
+ENTRYPOINT ["dotnet", "CompanyName.Banks.Api.Host.dll"]

@@ -22,14 +22,14 @@
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Vesta.Autofac" Version="$(Version)" Condition="!$(Debug)" />
-    <PackageReference Include="Vesta.ApplicationInsights.AspNetCore" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Autofac" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.ApplicationInsights.AspNetCore" Version="$(Version)" Condition="!$(Debug)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Autofac\Vesta.Autofac.csproj" Condition="$(Debug)" />
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.ApplicationInsights.AspNetCore\Vesta.ApplicationInsights.AspNetCore.csproj" Condition="$(Debug)" />  
-    <ProjectReference Include="..\Vesta.Banks.Api\Vesta.Banks.Api.csproj" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Autofac\CompanyName.Autofac.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.ApplicationInsights.AspNetCore\CompanyName.ApplicationInsights.AspNetCore.csproj" Condition="$(Debug)" />  
+    <ProjectReference Include="..\CompanyName.Banks.Api\CompanyName.Banks.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Dapper.SqlServer" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Dapper.SqlServer" Version="$(Version)" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Dapper.SqlServer\Vesta.Dapper.SqlServer.csproj" Condition="$(Debug)" />
-    <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Dapper.SqlServer\CompanyName.Dapper.SqlServer.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\CompanyName.Banks.Domain\CompanyName.Banks.Domain.csproj" />
   </ItemGroup>
   
 </Project>

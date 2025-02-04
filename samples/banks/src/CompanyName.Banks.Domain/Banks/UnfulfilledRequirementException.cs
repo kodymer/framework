@@ -1,4 +1,4 @@
-﻿namespace Vesta.Banks
+﻿namespace CompanyName.Banks
 {
     [Serializable]
     public class UnfulfilledRequirementException : BusinessException

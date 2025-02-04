@@ -251,8 +251,8 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Banks
-src/Vesta.Banks.Api.Host/Logs/*
+# ProjectName
+**/Logs/*
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*

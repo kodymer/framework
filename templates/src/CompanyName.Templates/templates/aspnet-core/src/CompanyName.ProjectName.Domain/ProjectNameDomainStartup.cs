@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Vesta.ProjectName.Configuration;
+using CompanyName.ProjectName.Configuration;
 
-namespace Vesta.ProjectName
+namespace CompanyName.ProjectName
 {
     public static class ProjectNameDomainStartup
     {

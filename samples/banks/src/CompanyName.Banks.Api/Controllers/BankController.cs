@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Vesta.AspNetCore.Mvc;
-using Vesta.Banks.Dtos;
+using CompanyName.AspNetCore.Mvc;
+using CompanyName.Banks.Dtos;
 
-namespace Vesta.Banks.Controllers
+namespace CompanyName.Banks.Controllers
 {
     [ApiController]
     [Route("api/bank")]
-    public class BankController : VestaController
+    public class BankController : CompanyNameController
     {
 
         private readonly IBankAppService _bankAppService;

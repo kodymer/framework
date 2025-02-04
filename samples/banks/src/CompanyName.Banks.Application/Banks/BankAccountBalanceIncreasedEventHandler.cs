@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Text.Json;
-using Vesta.Banks.Etos;
-using Vesta.EventBus.Abstracts;
+using CompanyName.Banks.Etos;
+using CompanyName.EventBus.Abstracts;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BankAccountBalanceIncreasedEventHandler : IDomainEventHandler<BankAccountBalanceIncreasedEto>
     {

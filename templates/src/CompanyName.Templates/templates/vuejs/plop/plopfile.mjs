@@ -2,7 +2,7 @@ const importFlag = "// --- plop:import";
 const routesFlag = "// --- plop:routes";
 
 export default function (plop) {
-  plop.setWelcomeMessage("ASISA VESTA: Please choose an option:");
+  plop.setWelcomeMessage("ASISA CompanyName: Please choose an option:");
 
   // TODO: chequear con env
   plop.setHelper("appPrefix", () => "asisa");

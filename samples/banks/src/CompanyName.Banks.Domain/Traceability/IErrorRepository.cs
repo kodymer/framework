@@ -1,6 +1,6 @@
-﻿using Vesta.Ddd.Domain.Repositories;
+﻿using CompanyName.Ddd.Domain.Repositories;
 
-namespace Vesta.Banks.Traceability
+namespace CompanyName.Banks.Traceability
 {
     public interface IErrorRepository : IRepository<Error, Guid>
     {

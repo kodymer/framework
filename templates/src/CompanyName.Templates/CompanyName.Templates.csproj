@@ -4,12 +4,12 @@
   
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageId>Vesta.Templates</PackageId>
+    <PackageId>CompanyName.Templates</PackageId>
     <PackageType>Template</PackageType>
     <PackageTags>dotnet-new;templates;</PackageTags>
-    <Title>Vesta Templates</Title>
-    <Authors>NTT DATA</Authors>
-    <Description>Templates to use when creating an application for Asisa.</Description>
+    <Title>CompanyName Templates</Title>
+    <Authors></Authors>
+    <Description>Templates to use when creating an application for CompanyName.</Description>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>

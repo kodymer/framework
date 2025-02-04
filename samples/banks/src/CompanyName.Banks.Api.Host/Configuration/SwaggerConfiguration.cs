@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using Vesta.Banks.Options;
+using CompanyName.Banks.Options;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class SwaggerConfiguration
     {
@@ -88,7 +88,7 @@ namespace Vesta.Banks.Configuration
                 options.SwaggerEndpoint($"./v1/swagger.json", "Banks API v1");
                 
                 options.OAuthClientId(authenticationOptions.Audience);
-                options.OAuthAppName("Asisa Vesta Banks API");
+                options.OAuthAppName("Asisa CompanyName Banks API");
                 options.OAuthUsePkce();
             });
 

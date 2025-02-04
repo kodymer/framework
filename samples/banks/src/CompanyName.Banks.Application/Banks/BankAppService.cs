@@ -3,15 +3,15 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System.Data;
 using System.Text.Json;
-using Vesta.Banks.Domain;
-using Vesta.Banks.Dtos;
-using Vesta.Banks.Traceability;
-using Vesta.Caching;
-using Vesta.Ddd.Application.Services;
-using Vesta.Ddd.Domain.Entities;
-using Vesta.Uow;
+using CompanyName.Banks.Domain;
+using CompanyName.Banks.Dtos;
+using CompanyName.Banks.Traceability;
+using CompanyName.Caching;
+using CompanyName.Ddd.Application.Services;
+using CompanyName.Ddd.Domain.Entities;
+using CompanyName.Uow;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
 
     public class BankAppService : ApplicationService, IBankAppService

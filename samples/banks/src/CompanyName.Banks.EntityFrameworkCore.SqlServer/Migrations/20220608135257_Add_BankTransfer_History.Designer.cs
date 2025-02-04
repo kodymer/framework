@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Vesta.Banks.EntityFrameworkCore;
+using CompanyName.Banks.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
+namespace CompanyName.Banks.EntityFrameworkCore.SqlServer.Migrations
 {
     [DbContext(typeof(BanksDbContext))]
     [Migration("20220608135257_Add_BankTransfer_History")]
@@ -24,7 +24,7 @@ namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Vesta.Banks.BankAccount", b =>
+            modelBuilder.Entity("CompanyName.Banks.BankAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -79,7 +79,7 @@ namespace Vesta.Banks.EntityFrameworkCore.SqlServer.Migrations
                     b.ToTable("BankAccounts", (string)null);
                 });
 
-            modelBuilder.Entity("Vesta.Banks.BankTransfer", b =>
+            modelBuilder.Entity("CompanyName.Banks.BankTransfer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

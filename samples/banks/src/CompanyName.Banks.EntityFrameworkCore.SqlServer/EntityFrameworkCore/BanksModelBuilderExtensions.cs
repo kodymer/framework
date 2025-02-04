@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vesta.EntityFrameworkCore.Modeling;
-using Vesta.Banks.Bank;
+using CompanyName.EntityFrameworkCore.Modeling;
+using CompanyName.Banks.Bank;
 using System.Reflection.Emit;
-using Vesta.Banks.Traceability;
+using CompanyName.Banks.Traceability;
 
-namespace Vesta.Banks.EntityFrameworkCore
+namespace CompanyName.Banks.EntityFrameworkCore
 {
     public static class BanksModelBuilderExtensions 
     {

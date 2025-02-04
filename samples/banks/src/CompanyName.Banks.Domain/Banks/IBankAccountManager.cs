@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Vesta.Banks.Bank;
+using CompanyName.Banks.Bank;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public interface IBankAccountManager
     {

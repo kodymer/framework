@@ -1,6 +1,6 @@
 ﻿using Dapper;
 
-namespace Vesta.Banks.Dapper.Repositories
+namespace CompanyName.Banks.Dapper.Repositories
 {
     public class BankTransferRepository : BanksDapperRepositoryBase<BankTransfer, long>, IBankTransferRepository
     {

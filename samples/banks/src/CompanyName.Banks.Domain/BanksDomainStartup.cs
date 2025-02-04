@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Vesta.Banks.Configuration;
+using CompanyName.Banks.Configuration;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public static class BanksDomainStartup
     {
@@ -15,7 +15,7 @@ namespace Vesta.Banks
                 .AddBanksDomainSevices();
 
             services
-                .AddVestaEventBusAzure();
+                .AddCompanyNameEventBusAzure();
 
             return services;
         }

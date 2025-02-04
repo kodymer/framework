@@ -1,4 +1,4 @@
-﻿namespace Vesta.Banks.Options
+﻿namespace CompanyName.Banks.Options
 {
     public class ApplicationOptions
     {

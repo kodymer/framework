@@ -16,7 +16,6 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'CompanyName.AspNetCore' " />
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.Core\CompanyName.Core.csproj" />
     <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />

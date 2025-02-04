@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Application" Version="$(Version)" Condition="!$(Debug)"/>
-    <PackageReference Include="Vesta.Caching.StackExchangeRedis" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="CompanyName.Ddd.Application" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Version="$(Version)" Condition="!$(Debug)"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Ddd.Application\Vesta.Ddd.Application.csproj" Condition="$(Debug)" />    
-    <ProjectReference Include="..\..\..\..\framework\src\Vesta.Caching.StackExchangeRedis\Vesta.Caching.StackExchangeRedis.csproj" Condition="$(Debug)" /> 
-    <ProjectReference Include="..\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj" />
-    <ProjectReference Include="..\Vesta.Banks.Dapper.SqlServer\Vesta.Banks.Dapper.SqlServer.csproj" />
-    <ProjectReference Include="..\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Ddd.Application\CompanyName.Ddd.Application.csproj" Condition="$(Debug)" />    
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Caching.StackExchangeRedis\CompanyName.Caching.StackExchangeRedis.csproj" Condition="$(Debug)" /> 
+    <ProjectReference Include="..\CompanyName.Banks.Domain\CompanyName.Banks.Domain.csproj" />
+    <ProjectReference Include="..\CompanyName.Banks.Dapper.SqlServer\CompanyName.Banks.Dapper.SqlServer.csproj" />
+    <ProjectReference Include="..\CompanyName.Banks.EntityFrameworkCore.SqlServer\CompanyName.Banks.EntityFrameworkCore.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

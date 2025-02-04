@@ -1,0 +1,107 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://json.schemastore.org/template.json",
+    "identity": "framework",
+    "author": "Kodymer Tech S.L. 24",
+    "classifications": [
+        "Code"
+    ],
+    "name": "Modular and scalable framework source code",
+    "shortName": "fwk",
+    "tags": {
+        "language": "C#",
+        "type": "item"
+    },
+    "sources": [
+        {
+            "exclude": [
+                "**/[Bb]in/**",
+                "**/[Oo]bj/**",
+                "**/*.filelist",
+                "**/*.user",
+                "**/*.lock.json"
+            ],
+            "modifiers": [
+                {
+                    "exclude": [
+                        "**/.git/**/*",
+                        ".template.config/**/*"
+                    ]
+                }
+            ]
+        }
+    ],
+    "symbols": {
+        "owner-name": {
+            "type": "parameter",
+            "dataType": "string",
+            "isEnabled": true,
+            "isRequired": true,
+            "description": "The owner name of framework",
+            "replaces": "CompanyName",
+            "fileRename": "CompanyName"
+        },
+        "target-framework": {
+            "type": "parameter",
+            "description": "The target framework for the template projects.",
+            "datatype": "choice",
+            "isEnabled": true,
+            "isRequired": false,
+            "enableQuotelessLiterals": true,
+            "allowMultipleValues": false,
+            "choices": [
+                {
+                    "choice": "net8.0",
+                    "description": ".NET 8.0 (LTS)"
+                },
+                {
+                    "choice": "net9.0",
+                    "description": ".NET 9.0 (STS)"
+                }
+            ],
+            "replaces": "NetVersion",
+            "defaultValue": "net8.0"
+        },
+        "source-link": {
+            "type": "parameter",
+            "description": "The target framework for the template projects.",
+            "datatype": "choice",
+            "isEnabled": true,
+            "isRequired": false,
+            "enableQuotelessLiterals": true,
+            "allowMultipleValues": false,
+            "choices": [
+                {
+                    "choice": "GitHub",
+                    "description": "GitHub"
+                },
+                {
+                    "choice": "AzureRepos.Git",
+                    "description": "Azure Repos"
+                }
+            ],
+            "replaces": "SourceLinkName",
+            "defaultValue": "GitHub"
+        },
+        "nuget-source": {
+            "type": "parameter",
+            "description": "The NuGet source URL to use",
+            "datatype": "string",
+            "isEnabled": true,
+            "isRequired": false,
+            "replaces": "NugetSource",
+            "fileRename": "NugetSource",
+            "defaultValue": ""
+        },
+        "owner-nameLower": {
+            "type": "generated",
+            "generator": "casing",
+            "parameters": {
+                "source": "owner-name",
+                "toLower": true
+            },
+            "replaces": "CompanyNameLower",
+            "fileRename": "CompanyNameLower"
+        }
+    }
+}

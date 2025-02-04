@@ -253,10 +253,10 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Vesta
+# CompanyName
 docs/*.*
 app/*.*
-templates/aspnet-core/src/Vesta.ProjectName.Api.Host/Logs/*.*
+**/Logs/*.*
 
 
 # macOS

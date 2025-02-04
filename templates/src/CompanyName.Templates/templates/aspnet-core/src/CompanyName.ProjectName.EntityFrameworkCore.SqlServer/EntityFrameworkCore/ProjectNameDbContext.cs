@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using System.Linq;
-using Vesta.EntityFrameworkCore.SqlServer;
+using CompanyName.EntityFrameworkCore.SqlServer;
 
-namespace Vesta.ProjectName.EntityFrameworkCore
+namespace CompanyName.ProjectName.EntityFrameworkCore
 {
 
-    public class ProjectNameDbContext : VestaDbContext<ProjectNameDbContext>
+    public class ProjectNameDbContext : CompanyNameDbContext<ProjectNameDbContext>
     {
 
         // Create DbSets here

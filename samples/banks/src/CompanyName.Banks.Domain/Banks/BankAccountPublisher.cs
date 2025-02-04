@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Vesta.Ddd.Domain.Services;
-using Vesta.EventBus.Abstracts;
+using CompanyName.Ddd.Domain.Services;
+using CompanyName.EventBus.Abstracts;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BankAccountPublisher : DomainService, IBankAccountPublisher
     {

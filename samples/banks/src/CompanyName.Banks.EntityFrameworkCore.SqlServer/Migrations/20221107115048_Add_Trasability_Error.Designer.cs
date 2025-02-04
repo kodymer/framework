@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Vesta.Banks.EntityFrameworkCore;
+using CompanyName.Banks.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Vesta.Banks.Migrations
+namespace CompanyName.Banks.Migrations
 {
     [DbContext(typeof(TraceabilityDbContext))]
     [Migration("20221107115048_Add_Trasability_Error")]
@@ -24,7 +24,7 @@ namespace Vesta.Banks.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Vesta.Banks.Traceability.Error", b =>
+            modelBuilder.Entity("CompanyName.Banks.Traceability.Error", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");

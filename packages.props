@@ -5,6 +5,7 @@
   <PropertyGroup>    
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EnableSourceLink>true</EnableSourceLink> 
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
@@ -12,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="1.1.1"  PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.SourceLinkName" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

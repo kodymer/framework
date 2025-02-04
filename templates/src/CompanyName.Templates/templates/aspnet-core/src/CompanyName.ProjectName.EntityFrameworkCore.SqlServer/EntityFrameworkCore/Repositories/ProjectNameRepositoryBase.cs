@@ -1,8 +1,8 @@
-﻿using Vesta.Ddd.Domain.Entities;
-using Vesta.Domain.EntityFrameworkCore.Repositories;
-using Vesta.EntityFrameworkCore.Abstracts;
+﻿using CompanyName.Ddd.Domain.Entities;
+using CompanyName.Domain.EntityFrameworkCore.Repositories;
+using CompanyName.EntityFrameworkCore.Abstracts;
 
-namespace Vesta.ProjectName.EntityFrameworkCore.Repositories
+namespace CompanyName.ProjectName.EntityFrameworkCore.Repositories
 {
     public abstract class ProjectNameRepositoryBase<TEntity, TKey> : EfCoreRepository<ProjectNameDbContext, TEntity, TKey>
         where TEntity : class, IEntity<TKey>

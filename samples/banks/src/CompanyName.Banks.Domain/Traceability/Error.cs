@@ -1,8 +1,8 @@
 ﻿using Ardalis.GuardClauses;
 using System.Runtime.InteropServices;
-using Vesta.Ddd.Domain.Auditing;
+using CompanyName.Ddd.Domain.Auditing;
 
-namespace Vesta.Banks.Traceability
+namespace CompanyName.Banks.Traceability
 {
     public class Error : CreationAuditedAggregateRoot<Guid>
     {

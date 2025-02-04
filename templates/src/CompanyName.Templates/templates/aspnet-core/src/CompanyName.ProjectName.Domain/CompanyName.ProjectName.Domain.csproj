@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Vesta.Ddd.Domain" Version="$(VestaPackageVersion)" />
+    <PackageReference Include="CompanyName.Ddd.Domain" Version="$(CompanyNamePackageVersion)" />
   </ItemGroup>
 
 </Project>

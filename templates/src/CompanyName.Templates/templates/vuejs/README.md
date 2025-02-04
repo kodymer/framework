@@ -1,8 +1,8 @@
-# vesta-frontend
+# CompanyName-frontend
 
 ## Description
 
-App Asisa Vesta is the new application for retentions and cancellations. The purpose of this app is to save all the intentions of retentions and contract cancellations in the company no matter the affected department and to decide if retention is applicable relying on defined rules.
+App Asisa CompanyName is the new application for retentions and cancellations. The purpose of this app is to save all the intentions of retentions and contract cancellations in the company no matter the affected department and to decide if retention is applicable relying on defined rules.
 
 This repository contains the frontend of the application. It is being developed in VueJS.
 

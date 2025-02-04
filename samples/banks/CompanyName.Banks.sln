@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Domain", "src\Vesta.Banks.Domain\Vesta.Banks.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Domain", "src\CompanyName.Banks.Domain\CompanyName.Banks.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{04DBDB01-70F4-4E06-B468-8F87850B22BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Api.Host", "src\Vesta.Banks.Api.Host\Vesta.Banks.Api.Host.csproj", "{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Api.Host", "src\CompanyName.Banks.Api.Host\CompanyName.Banks.Api.Host.csproj", "{10FEF487-4BFE-4754-8D60-7CEBC72E1C57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Api", "src\Vesta.Banks.Api\Vesta.Banks.Api.csproj", "{9808CE5E-471C-4992-A7E2-75734A8371FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Api", "src\CompanyName.Banks.Api\CompanyName.Banks.Api.csproj", "{9808CE5E-471C-4992-A7E2-75734A8371FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Application", "src\Vesta.Banks.Application\Vesta.Banks.Application.csproj", "{4EF4B533-000A-4833-8D93-A8E3F1C742A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Application", "src\CompanyName.Banks.Application\CompanyName.Banks.Application.csproj", "{4EF4B533-000A-4833-8D93-A8E3F1C742A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.EntityFrameworkCore.SqlServer", "src\Vesta.Banks.EntityFrameworkCore.SqlServer\Vesta.Banks.EntityFrameworkCore.SqlServer.csproj", "{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.EntityFrameworkCore.SqlServer", "src\CompanyName.Banks.EntityFrameworkCore.SqlServer\CompanyName.Banks.EntityFrameworkCore.SqlServer.csproj", "{B2C2CEBE-88D9-450B-A8F2-F394DBEE7324}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Domain.Shared", "src\Vesta.Banks.Domain.Shared\Vesta.Banks.Domain.Shared.csproj", "{B813831A-A796-4D09-9158-5C9C589F7D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Domain.Shared", "src\CompanyName.Banks.Domain.Shared\CompanyName.Banks.Domain.Shared.csproj", "{B813831A-A796-4D09-9158-5C9C589F7D79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1C8732C-0F70-427B-B755-030BBEA567E3}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,15 +25,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Dapper.SqlServer", "src\Vesta.Banks.Dapper.SqlServer\Vesta.Banks.Dapper.SqlServer.csproj", "{688877F0-C70C-4FBC-9DBE-3F7917850C04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Dapper.SqlServer", "src\CompanyName.Banks.Dapper.SqlServer\CompanyName.Banks.Dapper.SqlServer.csproj", "{688877F0-C70C-4FBC-9DBE-3F7917850C04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.EntityFrameworkCore.SqlServer.Tests", "test\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests\Vesta.Banks.EntityFrameworkCore.SqlServer.Tests.csproj", "{C39CE64B-AE94-409B-8009-722DA4089131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.EntityFrameworkCore.SqlServer.Tests", "test\CompanyName.Banks.EntityFrameworkCore.SqlServer.Tests\CompanyName.Banks.EntityFrameworkCore.SqlServer.Tests.csproj", "{C39CE64B-AE94-409B-8009-722DA4089131}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Domain.Tests", "test\Vesta.Banks.Domain.Tests\Vesta.Banks.Domain.Tests.csproj", "{460C4954-5000-4E13-854C-D32142ACEF7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Domain.Tests", "test\CompanyName.Banks.Domain.Tests\CompanyName.Banks.Domain.Tests.csproj", "{460C4954-5000-4E13-854C-D32142ACEF7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Application.Tests", "test\Vesta.Banks.Application.Tests\Vesta.Banks.Application.Tests.csproj", "{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Application.Tests", "test\CompanyName.Banks.Application.Tests\CompanyName.Banks.Application.Tests.csproj", "{89FC0CCD-3328-4C26-B7EE-AE9C6D03EC22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vesta.Banks.Api.Tests", "test\Vesta.Banks.Api.Tests\Vesta.Banks.Api.Tests.csproj", "{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Banks.Api.Tests", "test\CompanyName.Banks.Api.Tests\CompanyName.Banks.Api.Tests.csproj", "{3B436A91-60DB-4C99-9C7C-B8D54BBB2C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

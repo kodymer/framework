@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Vesta.Banks.Configuration;
-using Vesta.Banks.Dapper;
-using Vesta.Banks.EntityFrameworkCore;
+using CompanyName.Banks.Configuration;
+using CompanyName.Banks.Dapper;
+using CompanyName.Banks.EntityFrameworkCore;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public static class BanksApplicationStartup
     {
@@ -24,13 +24,13 @@ namespace Vesta.Banks
                 .AddBanksEventHandlers();
 
             services
-                .AddVestaDddApplication();
+                .AddCompanyNameDddApplication();
 
             services
-                .AddVestaCachingStackExchangeRedis();
+                .AddCompanyNameCachingStackExchangeRedis();
 
             services
-                .AddVestaAutoMapper(Assembly.GetExecutingAssembly());
+                .AddCompanyNameAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }

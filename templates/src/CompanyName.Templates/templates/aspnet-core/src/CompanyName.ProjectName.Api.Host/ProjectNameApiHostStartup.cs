@@ -4,10 +4,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
-using Vesta.ProjectName.Configuration;
+using CompanyName.ProjectName.Configuration;
 using System.Text.Json;
 
-namespace Vesta.ProjectName
+namespace CompanyName.ProjectName
 {
     /// <summary>
     /// Clase de inicio

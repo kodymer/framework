@@ -1,13 +1,13 @@
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Distributed;
 using Moq;
-using Vesta.Banks.Dtos;
-using Vesta.Banks.Fixtures;
-using Vesta.Banks.Traceability;
-using Vesta.TestBase.Fixtures;
+using CompanyName.Banks.Dtos;
+using CompanyName.Banks.Fixtures;
+using CompanyName.Banks.Traceability;
+using CompanyName.TestBase.Fixtures;
 using Xunit;
 
-namespace Vesta.Banks.Application
+namespace CompanyName.Banks.Application
 {
     public class BankAppServiceTests : IClassFixture<ApplicationServiceRegistrarFixture>
     {

@@ -23,12 +23,12 @@
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Vesta.Autofac" Version="$(VestaPackageVersion)" />
-    <PackageReference Include="Vesta.ApplicationInsights.AspNetCore" Version="$(VestaPackageVersion)" />
+    <PackageReference Include="CompanyName.Autofac" Version="$(CompanyNamePackageVersion)" />
+    <PackageReference Include="CompanyName.ApplicationInsights.AspNetCore" Version="$(CompanyNamePackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vesta.ProjectName.Api\Vesta.ProjectName.Api.csproj" />
+    <ProjectReference Include="..\CompanyName.ProjectName.Api\CompanyName.ProjectName.Api.csproj" />
   </ItemGroup>
 
 </Project>

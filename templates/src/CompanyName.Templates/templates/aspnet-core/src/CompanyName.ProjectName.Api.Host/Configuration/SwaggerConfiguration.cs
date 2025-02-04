@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using Vesta.ProjectName.Options;
+using CompanyName.ProjectName.Options;
 
-namespace Vesta.ProjectName.Configuration
+namespace CompanyName.ProjectName.Configuration
 {
     public static class SwaggerConfiguration
     {
@@ -27,7 +27,7 @@ namespace Vesta.ProjectName.Configuration
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "[Asisa][Vesta][ProjectName] API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "[Asisa][CompanyName][ProjectName] API", Version = "v1" });
                 options.DescribeAllParametersInCamelCase();
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
@@ -87,7 +87,7 @@ namespace Vesta.ProjectName.Configuration
                 c.SwaggerEndpoint($"./v1/swagger.json", "ProjectName API v1");
 
                 c.OAuthClientId(authenticationOptions.Audience);
-                c.OAuthAppName("Asisa Vesta ProjectName API");
+                c.OAuthAppName("Asisa CompanyName ProjectName API");
                 c.OAuthUsePkce();
             });
 

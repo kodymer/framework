@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Vesta.ProjectName.Configuration
+namespace CompanyName.ProjectName.Configuration
 {
     public static class RepositoryConfiguration
     {

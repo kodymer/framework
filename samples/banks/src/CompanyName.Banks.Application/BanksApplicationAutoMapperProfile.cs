@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class BanksApplicationAutoMapperProfile : Profile
     {

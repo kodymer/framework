@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Vesta.Banks.Migrations
+namespace CompanyName.Banks.Migrations
 {
     public partial class Add_Trasability_Error : Migration
     {

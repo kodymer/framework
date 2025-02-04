@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Vesta.Banks.Configuration
+namespace CompanyName.Banks.Configuration
 {
     public static class ApplicationInsightsConfiguration
     {
@@ -10,7 +10,7 @@ namespace Vesta.Banks.Configuration
         {
 
             services.AddApplicationInsightsKubernetesEnricher();
-            services.AddVestaApplicationInsightsTelemetry(configuration, options =>
+            services.AddCompanyNameApplicationInsightsTelemetry(configuration, options =>
             {
                 options.EnableEventCounterCollectionModule = false;
                 options.EnablePerformanceCounterCollectionModule = false;

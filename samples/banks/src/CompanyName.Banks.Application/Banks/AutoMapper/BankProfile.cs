@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vesta.Banks.Bank;
-using Vesta.Banks.Dtos;
+using CompanyName.Banks.Bank;
+using CompanyName.Banks.Dtos;
 
-namespace Vesta.Banks.AutoMapper
+namespace CompanyName.Banks.AutoMapper
 {
     public class BankProfile : Profile
     {

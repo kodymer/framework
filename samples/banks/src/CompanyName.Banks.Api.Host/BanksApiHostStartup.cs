@@ -4,10 +4,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
-using Vesta.Banks.Configuration;
+using CompanyName.Banks.Configuration;
 using System.Text.Json;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     /// <summary>
     /// Clase de inicio

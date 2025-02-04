@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ApplicationInsights.Extensibility;
 using System;
 
-namespace Vesta.Banks
+namespace CompanyName.Banks
 {
     public class Program
     {
@@ -30,7 +30,7 @@ namespace Vesta.Banks
 
             try
             {
-                Log.Information("Starting Vesta.Banks.Api.Host.");
+                Log.Information("Starting CompanyName.Banks.Api.Host.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }

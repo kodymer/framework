@@ -1,8 +1,8 @@
-﻿using Vesta.Banks.Traceability;
-using Vesta.Domain.EntityFrameworkCore.Repositories;
-using Vesta.EntityFrameworkCore.Abstracts;
+﻿using CompanyName.Banks.Traceability;
+using CompanyName.Domain.EntityFrameworkCore.Repositories;
+using CompanyName.EntityFrameworkCore.Abstracts;
 
-namespace Vesta.Banks.EntityFrameworkCore.Repositories
+namespace CompanyName.Banks.EntityFrameworkCore.Repositories
 {
     public class ErrorRepository : EfCoreRepository<TraceabilityDbContext, Error, Guid>, IErrorRepository
     {

@@ -1,8 +1,8 @@
-﻿using Vesta.Banks.Bank;
-using Vesta.Banks.EntityFrameworkCore;
-using Vesta.EntityFrameworkCore.Abstracts;
+﻿using CompanyName.Banks.Bank;
+using CompanyName.Banks.EntityFrameworkCore;
+using CompanyName.EntityFrameworkCore.Abstracts;
 
-namespace Vesta.Banks.EntityFrameworkCore.Repositories
+namespace CompanyName.Banks.EntityFrameworkCore.Repositories
 {
     public class BankAccountRepository : BanksEfCoreRepositoryBase<BankAccount, Guid>, IBankAccountRepository
     {

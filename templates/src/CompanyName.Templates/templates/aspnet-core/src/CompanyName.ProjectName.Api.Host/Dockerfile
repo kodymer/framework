@@ -10,4 +10,4 @@ COPY ./bin/${buildConfiguration}/net6.0/ /app
 
 EXPOSE 80
 
-ENTRYPOINT ["dotnet", "Vesta.ProjectName.Api.Host.dll"]
+ENTRYPOINT ["dotnet", "CompanyName.ProjectName.Api.Host.dll"]
