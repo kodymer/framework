@@ -12,7 +12,7 @@ foreach($solution in $solutions) {
     foreach($project in $solution.Projects) {
         $projectName = ($project -split '/')[-1]
 
-        dotnet nuget push "$($projectName).$($v).nupkg"--source "Vesta.Feed" --api-key az --skip-duplicate --interactive
+        dotnet nuget push "$($projectName).$($v).nupkg"--source "CompanyName.Feed" --api-key az --skip-duplicate --interactive
     }
 }
 

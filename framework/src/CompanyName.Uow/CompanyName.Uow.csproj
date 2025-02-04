@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="..\..\..\packages.props" />
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>CompanyName.Uow</AssemblyName>
+    <PackageId>CompanyName.Uow</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace /> 
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyName.Autofac\CompanyName.Autofac.csproj" />
+    <ProjectReference Include="..\CompanyName.EventBus.Abstracts\CompanyName.EventBus.Abstracts.csproj" />
+  </ItemGroup>
+
+</Project>

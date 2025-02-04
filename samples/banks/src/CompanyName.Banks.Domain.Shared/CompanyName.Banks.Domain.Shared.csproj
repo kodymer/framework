@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="CompanyName.Ddd.Domain.EventBus" Version="$(Version)" Condition="!$(Debug)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" Condition="$(Debug)" />
+  </ItemGroup> 
+</Project>

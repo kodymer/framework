@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\packages.props" />
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>CompanyName.EntityFrameworkCore</AssemblyName>
+    <PackageId>CompanyName.EntityFrameworkCore</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace />
+    
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyName.Auditing\CompanyName.Auditing.csproj" />
+    <ProjectReference Include="..\CompanyName.Data\CompanyName.Data.csproj" />
+    <ProjectReference Include="..\CompanyName.Ddd.Domain\CompanyName.Ddd.Domain.csproj" />
+    <ProjectReference Include="..\CompanyName.EntityFrameworkCore.Abstracts\CompanyName.EntityFrameworkCore.Abstracts.csproj" />
+    <ProjectReference Include="..\CompanyName.Uow\CompanyName.Uow.csproj" />
+  </ItemGroup>
+
+</Project>

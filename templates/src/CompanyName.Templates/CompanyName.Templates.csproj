@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\dependencies.props" />
+  
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>CompanyName.Templates</PackageId>
+    <PackageType>Template</PackageType>
+    <PackageTags>dotnet-new;templates;</PackageTags>
+    <Title>CompanyName Templates</Title>
+    <Authors></Authors>
+    <Description>Templates to use when creating an application for CompanyName.</Description>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\dist\**;templates\**\node_modules\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
