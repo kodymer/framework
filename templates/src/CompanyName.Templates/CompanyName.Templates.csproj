@@ -1,7 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\dependencies.props" />
-  
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>CompanyName.Templates</PackageId>
@@ -19,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\dist\**;templates\**\node_modules\**" />
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\dist\**;templates\**\node_modules\**;templates\**\.vs\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
 

@@ -1,9 +1,5 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyName.Uow
 {
@@ -14,8 +10,8 @@ namespace CompanyName.Uow
 
         public UnitOfWorkEventRecord(object source, object data)
         {
-            Guard.Against.Null(source, nameof(source));
-            Guard.Against.Null(data, nameof(data));
+            Guard.IsNotNull(source);
+            Guard.IsNotNull(data);
 
             Source = source;
             Data = data;

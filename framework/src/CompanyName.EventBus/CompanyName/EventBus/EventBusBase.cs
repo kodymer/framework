@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CompanyName.Ddd.Domain.EventBus;
+using CompanyName.EventBus.Abstractions;
+using CompanyName.ServiceBus.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Microsoft.Extensions.Options;
+using System.Collection.Generic;
 using System.Collections.Concurrent;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using CompanyName.Ddd.Domain.EventBus;
-using CompanyName.EventBus.Abstracts;
-using CompanyName.ServiceBus.Abstracts;
 
 [assembly: InternalsVisibleTo("CompanyName.Ddd.Application.EventBus")]
 

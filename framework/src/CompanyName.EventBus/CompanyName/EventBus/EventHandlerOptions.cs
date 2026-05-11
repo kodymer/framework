@@ -1,5 +1,5 @@
-﻿using Ardalis.GuardClauses;
-using CompanyName.EventBus.Abstracts;
+﻿using CommunityToolkit.Diagnostics;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.EventBus
 {
@@ -20,15 +20,13 @@ namespace CompanyName.EventBus
             return this;
         }
 
-        public EventHandlerOptions Add(Type eventHandler)
+        public EventHandlerOptions Add(Type eventHandlerType)
         {
-            Guard.Against.InvalidInput(
-                eventHandler, nameof(eventHandler), 
-                argument => argument.GetInterfaces().Any(@interface => @interface == typeof(IEventHandler)));
+            Guard.IsTrue(eventHandlerType.GetInterfaces().Any(@interface => @interface == typeof(IEventHandler)));
 
-            if (!_handlers.ContainsKey(eventHandler.FullName))
+            if (!_handlers.ContainsKey(eventHandlerType.FullName))
             {
-                _handlers.Add(eventHandler.FullName, eventHandler);
+                _handlers.Add(eventHandlerType.FullName, eventHandlerType);
             }
 
             return this;

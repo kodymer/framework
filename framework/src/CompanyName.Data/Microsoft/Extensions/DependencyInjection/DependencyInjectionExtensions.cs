@@ -2,9 +2,12 @@
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameData(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameData(this IServiceCollection services)
         {
-            services.AddCompanyNameCore();
+            services
+                .AddCompanyNameCore();
+
+            return services;
         }
     }
 }

@@ -1,34 +1,71 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using CompanyName.Data;
-using CompanyName.EntityFrameworkCore.Abstracts;
+﻿using CompanyName.Data;
+using CompanyName.EntityFrameworkCore;
+using CompanyName.EntityFrameworkCore.Abstractions;
 using CompanyName.Uow;
-using CompanyName.Uow.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class EntityFrameworkServiceCollectionExtensions
     {
-        public static void AddCompanyNameDbContext<TDbContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
-            where TDbContext : DbContext, IEfCoreDbContext
+        public static IServiceCollection AddCompanyNameDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction = null , ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
+            where TContext : CompanyNameDbContextBase<TContext>
         {
-            services.AddCompanyNameUow();
-            services.AddCompanyNameEntityFrameworkCore();
+            services
+                .AddCompanyNameUow()
+                .AddCompanyNameEntityFrameworkCore();
 
-            services.AddDbContext<TDbContext>(optionsAction, contextLifetime, optionsLifetime);
-            services.AddScoped<IDbContextProvider<TDbContext>, EfCoreDbContextProvider<TDbContext>>();
-            services.AddScoped<IUnitOfWorkApiFactory<TDbContext>, EfCoreUnitOfWorkApiFactory<TDbContext>>();
+            (
+                optionsAction is not null ?
+                    services.AddDbContext<TContext>(optionsAction, contextLifetime, optionsLifetime) :
+                    services.AddDbContext<TContext>(contextLifetime, optionsLifetime)
+            )
+            .AddCompanyNameDbContextProvider<TContext>();
+
+            return services;
         }
 
-        public static void AddCompanyNameDbContext<TDbContext>(this IServiceCollection services, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
-            where TDbContext : DbContext, IEfCoreDbContext
+        public static IServiceCollection AddCompanyNameDbContext<TContext>(this IServiceCollection services, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction = null, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
+            where TContext : CompanyNameDbContextBase<TContext>
         {
-            services.AddCompanyNameUow();
-            services.AddCompanyNameEntityFrameworkCore();
+            services
+                .AddCompanyNameUow()
+                .AddCompanyNameEntityFrameworkCore();
 
-            services.AddDbContext<TDbContext>(optionsAction, contextLifetime, optionsLifetime);
-            services.AddScoped<IDbContextProvider<TDbContext>, EfCoreDbContextProvider<TDbContext>>();
-            services.AddScoped<IUnitOfWorkApiFactory<TDbContext>, EfCoreUnitOfWorkApiFactory<TDbContext>>();
+                (
+                    optionsAction is not null ?
+                        services.AddDbContext<TContext>(optionsAction, contextLifetime, optionsLifetime) :
+                        services.AddDbContext<TContext>(contextLifetime, optionsLifetime)
+                )
+                .AddCompanyNameDbContextProvider<TContext>();
+
+            return services;
         }
+
+        public static IServiceCollection AddCompanyNameDbContext<TContext>(this IServiceCollection services, ServiceLifetime contextLifetime, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
+           where TContext : CompanyNameDbContextBase<TContext>
+        {
+            services
+                .AddCompanyNameUow()
+                .AddCompanyNameEntityFrameworkCore();
+
+
+             services
+                .AddDbContext<TContext>(contextLifetime, optionsLifetime)
+                .AddCompanyNameDbContextProvider<TContext>();
+
+            return services;
+        }
+
+        internal static IServiceCollection AddCompanyNameDbContextProvider<TContext>(this IServiceCollection services)
+            where TContext : CompanyNameDbContextBase<TContext>
+        {
+            services
+                .AddScoped<IDbContextProvider<TContext>, DbContextProvider<TContext>>()
+                .AddScoped<IUnitOfWorkApiFactory<TContext>, UnitOfWorkApiFactory<TContext>>();
+
+            return services;
+        }
+
     }
 }

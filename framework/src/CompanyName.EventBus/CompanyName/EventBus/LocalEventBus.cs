@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using CompanyName.ServiceBus.Local;
 
 namespace CompanyName.EventBus

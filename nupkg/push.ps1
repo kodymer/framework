@@ -1,4 +1,14 @@
+param(
+    [switch]$template
+)
+
 . ".\common.ps1"
+
+if ($template) {
+    $solutions = @($templates)
+} else {
+    $solutions = @($framework, $modules)
+}
 
 # Get the version
 [xml]$commonPropsXml = Get-Content (Join-Path $rootFolder "Directory.Build.props")
@@ -12,9 +22,11 @@ foreach($solution in $solutions) {
     foreach($project in $solution.Projects) {
         $projectName = ($project -split '/')[-1]
 
-        dotnet nuget push "$($projectName).$($v).nupkg"--source "CompanyName.Feed" --api-key az --skip-duplicate --interactive
+        dotnet nuget push "$($projectName).$($v).nupkg"--source "donte.pkgs.dev.azure.com" --api-key az --skip-duplicate --interactive
     }
 }
 
 # Go back to the pack folder
 Set-Location $packFolder
+
+

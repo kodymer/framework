@@ -9,7 +9,7 @@ using Xunit;
 namespace CompanyName.Uow.Fixtures
 {
     [CollectionDefinition(nameof(UnitOfWorkCollectionFixture))]
-    internal class UnitOfWorkCollectionFixture : 
+    public class UnitOfWorkCollectionFixture : 
         ICollectionFixture<InMemoryDbContextFixture>,
         ICollectionFixture<UnitOfWorkServiceRegistrarFixture>
     {

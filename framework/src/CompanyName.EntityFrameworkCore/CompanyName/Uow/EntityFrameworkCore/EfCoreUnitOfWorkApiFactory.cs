@@ -1,48 +1,50 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
+using CompanyName.EntityFrameworkCore;
+using CompanyName.EntityFrameworkCore.Abstractions;
+using CompanyName.Uow.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using CompanyName.EntityFrameworkCore;
-using CompanyName.EntityFrameworkCore.Abstracts;
 
-namespace CompanyName.Uow.EntityFrameworkCore
+namespace CompanyName.Uow
 {
-    public class EfCoreUnitOfWorkApiFactory<TDbContext> : IUnitOfWorkApiFactory<TDbContext>
-        where TDbContext : IEfCoreDbContext
+    public class UnitOfWorkApiFactory<TContext> : IUnitOfWorkApiFactory<TContext>
+        where TContext : IExtendedDbContext
     {
-
-        private const string TransactionsNotSupportedErrorMessage = @"Current database does not support
-                                                                      transactions. Your database may
-                                                                      remain in an inconsistent state 
-                                                                      in an error case.";
         public ILogger Logger { get; set; }
 
-        public TDbContext DbContext
+        public TContext DbContext
         {
             get
             {
-                return _dbContext ??= UnitOfWork.ServiceProvider.GetRequiredService<TDbContext>();
+                return _dbContext ??= UnitOfWork.ServiceProvider.GetRequiredService<TContext>();
             }
         }
 
         public IUnitOfWork UnitOfWork { get; }
 
-        private TDbContext _dbContext;
-
-
-        public EfCoreUnitOfWorkApiFactory(IUnitOfWork unitOfWork)
+        public UnitOfWorkApiFactory(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
 
-            Logger = NullLogger<EfCoreUnitOfWorkApiFactory<TDbContext>>.Instance;
+            Logger = NullLogger<UnitOfWorkApiFactory<TContext>>.Instance;
+        }
+
+        public IDatabaseApi GetDatabaseApi(CancellationToken cancellationToken = default)
+        {
+            var databaseApiKey = EfCoreDatabaseApi.GetKey(DbContext);
+            var databaseApi = UnitOfWork.FindDatabaseApi(databaseApiKey) ??
+                CreateDatabaseApi(databaseApiKey, cancellationToken);
+
+            return databaseApi;
         }
 
         public async Task<IDatabaseApi> GetDatabaseApiAsync(CancellationToken cancellationToken = default)
         {
             var databaseApiKey = EfCoreDatabaseApi.GetKey(DbContext);
-            var databaseApi = UnitOfWork.FindDatabaseApi(databaseApiKey) ?? 
+            var databaseApi = UnitOfWork.FindDatabaseApi(databaseApiKey) ??
                 await CreateDatabaseApiAsync(databaseApiKey, cancellationToken);
 
             return databaseApi;
@@ -90,11 +92,11 @@ namespace CompanyName.Uow.EntityFrameworkCore
 
                             if (UnitOfWork.Options.IsolationLevel.HasValue)
                             {
-                                DbContext.Database.BeginTransaction(UnitOfWork.Options.IsolationLevel.Value);
+                                await DbContext.Database.BeginTransactionAsync(UnitOfWork.Options.IsolationLevel.Value);
                             }
                             else
                             {
-                                DbContext.Database.BeginTransaction();
+                                await DbContext.Database.BeginTransactionAsync();
                             }
                         }
                         catch (Exception e) when (e is InvalidOperationException || e is NotSupportedException)
@@ -114,7 +116,7 @@ namespace CompanyName.Uow.EntityFrameworkCore
                          * since EfCoreTransactionApi will handle the commit/rollback over the DbContext instance.
                          */
 
-                        DbContext.Database.BeginTransaction();
+                        await DbContext.Database.BeginTransactionAsync();
                     }
                     catch (Exception e) when (e is InvalidOperationException || e is NotSupportedException)
                     {
@@ -130,12 +132,25 @@ namespace CompanyName.Uow.EntityFrameworkCore
             return transactionApi;
         }
 
+        public IDatabaseApi CreateDatabaseApi(string key, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNullOrEmpty(key);
+
+            DbContext.As<IInitializableDbContext>()?.Initialize(
+                new DbContextInitializationContext(UnitOfWork));
+
+            var databaseApi = new EfCoreDatabaseApi(DbContext);
+            UnitOfWork.AddDatabaseApi(key, databaseApi);
+
+            return databaseApi;
+        }
+
         public Task<IDatabaseApi> CreateDatabaseApiAsync(string key, CancellationToken cancellationToken = default)
         {
-            Guard.Against.NullOrEmpty(key, nameof(key));
+            Guard.IsNotNullOrEmpty(key);
 
-            DbContext.As<IStartableEfCoreDbContext>()?.Initialize(
-                new EfCoreDbContextInitianlizationContext(UnitOfWork));
+            DbContext.As<IInitializableDbContext>()?.Initialize(
+                new DbContextInitializationContext(UnitOfWork));
 
             var databaseApi = new EfCoreDatabaseApi(DbContext);
             UnitOfWork.AddDatabaseApi(key, databaseApi);
@@ -145,7 +160,7 @@ namespace CompanyName.Uow.EntityFrameworkCore
 
         public async Task<ITransactionApi> CreateTransactionApiAsync(string key, CancellationToken cancellationToken = default)
         {
-            Guard.Against.NullOrEmpty(key, nameof(key));
+            Guard.IsNotNullOrEmpty(key);
 
             var dbContextTransaction = UnitOfWork.Options.IsolationLevel.HasValue ?
                 await DbContext.Database.BeginTransactionAsync(UnitOfWork.Options.IsolationLevel.Value, cancellationToken) :
@@ -156,5 +171,13 @@ namespace CompanyName.Uow.EntityFrameworkCore
 
             return transactionApi;
         }
+
+
+        private const string TransactionsNotSupportedErrorMessage = @"Current database does not support
+                                                                      transactions. Your database may
+                                                                      remain in an inconsistent state 
+                                                                      in an error case.";
+
+        private TContext _dbContext;
     }
 }

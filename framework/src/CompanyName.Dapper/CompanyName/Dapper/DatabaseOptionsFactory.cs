@@ -13,22 +13,31 @@ namespace CompanyName.Dapper
     {
         private readonly IConfiguration _configuration;
 
+        private string ConnectionStringName { get; set; } 
+
         public DatabaseOptionsFactory(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            ConnectionStringName = ConnectionStrings.DefaultNameConfig;
         }
 
         public DatabaseOptions Create(string name)
         {
             var options = new DatabaseOptions();
 
-            var connectionString = _configuration.GetConnectionString(ConnectionStrings.DefaultNameConfig);
+            var connectionString = _configuration.GetConnectionString(ConnectionStringName);
             if(!string.IsNullOrWhiteSpace(connectionString))
             {
                 options.ConnectionString = connectionString;
             }
 
             return options;
+        }
+
+        internal void SetConnectionStringName(string connectionStringName = ConnectionStrings.DefaultNameConfig)
+        {
+            ConnectionStringName = connectionStringName;
         }
     }
 }

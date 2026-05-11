@@ -1,4 +1,4 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -29,9 +29,9 @@ namespace CompanyName.EventBus.Azure
         public void Initialize(string connectionString, string topicName, string subscriberName)
         {
 
-            Guard.Against.NullOrEmpty(topicName, nameof(topicName));
-            Guard.Against.NullOrEmpty(subscriberName, nameof(subscriberName));
-            Guard.Against.NullOrEmpty(connectionString, nameof(connectionString));
+            Guard.IsNotNullOrEmpty(topicName, nameof(topicName));
+            Guard.IsNotNullOrEmpty(subscriberName, nameof(subscriberName));
+            Guard.IsNotNullOrEmpty(connectionString, nameof(connectionString));
 
             _topicName = topicName;
             _subscriberName = subscriberName;

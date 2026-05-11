@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CompanyName.Data.Fixtures;
 using CompanyName.EntityFrameworkCore;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using CompanyName.TestBase.Orderers;
@@ -22,7 +22,7 @@ namespace CompanyName.Uow.Tests
     public class UnitOfWorkTests : IClassFixture<UnitOfWorkServiceRegistrarFixture>, IClassFixture<InMemoryDbContextFixture>
     {
         private readonly Mock<UnitOfWork> _unitOfWorkStub;
-        private readonly Mock<IUnitOfWorkEventPublishingManager> _unitOfWorkeventPublishingManagerStub;
+        private readonly Mock<IEventDispatcher> _eventDispatcherStub;
 
         private readonly ServiceRegistrarFixture _serviceRegistrarFixture;
         private readonly InMemoryDbContextFixture _inMemoryDbContextFixture;
@@ -35,13 +35,13 @@ namespace CompanyName.Uow.Tests
             _serviceRegistrarFixture = serviceRegistrarFixture;
             _inMemoryDbContextFixture = inMemoryDbContextFixture;
 
-            _unitOfWorkeventPublishingManagerStub = new Mock<IUnitOfWorkEventPublishingManager>();
+            _eventDispatcherStub = new Mock<IEventDispatcher>();
 
             var options = Options.Create(new UnitOfWorkDefaultOptions());
 
             _unitOfWorkStub = new Mock<UnitOfWork>(
                 _serviceRegistrarFixture.ServiceProvider,
-                _unitOfWorkeventPublishingManagerStub.Object,
+                _eventDispatcherStub.Object,
                 options)
             {
                 CallBase = true
@@ -51,7 +51,7 @@ namespace CompanyName.Uow.Tests
         private void AddDatabaseApi(out string key)
         {
             key = "***key***";
-            var databaseApi = new EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
+            var databaseApi = new EntityFrameworkCore.EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
 
             _unitOfWorkStub.Object.AddDatabaseApi(key, databaseApi);
         }
@@ -84,7 +84,7 @@ namespace CompanyName.Uow.Tests
         [Fact, Order(3)]
         public void Given_KeyAndDatabaseApi_When_RegistrarDatabaseApiAlreadyRegistered_Then_ThrowInvalidOperationError()
         {
-            var databaseApiDuplicated = new EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
+            var databaseApiDuplicated = new EntityFrameworkCore.EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
 
             AddDatabaseApi(out string key);
 
@@ -99,7 +99,7 @@ namespace CompanyName.Uow.Tests
         [Fact, Order(4)]
         public void Given_DatabaseApi_When_RegistrarDatabaseApi_Then_ThrowArgumentError()
         {
-            var databaseApi = new EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
+            var databaseApi = new EntityFrameworkCore.EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
 
             var action = () => _unitOfWorkStub.Object.AddDatabaseApi(null, databaseApi);
 
@@ -113,7 +113,7 @@ namespace CompanyName.Uow.Tests
         public void Given_Key_When_RegistrarDatabaseApi_Then_ThrowArgumentError()
         {
             var key = "***key***";
-            var databaseApi = new EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
+            var databaseApi = new EntityFrameworkCore.EfCoreDatabaseApi(_inMemoryDbContextFixture.DbContext);
 
             var action = () => _unitOfWorkStub.Object.AddDatabaseApi(key, null);
 
@@ -139,7 +139,7 @@ namespace CompanyName.Uow.Tests
         {
             AddDatabaseApi(out string key);
 
-            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+            _eventDispatcherStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
 
             await _unitOfWorkStub.Object.CompleteAsync();
 
@@ -156,7 +156,7 @@ namespace CompanyName.Uow.Tests
 
             _unitOfWorkStub.Object.Completed += UnitOfWorkCompletedEventHandler; ;
 
-            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+            _eventDispatcherStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
 
             await _unitOfWorkStub.Object.CompleteAsync();
 
@@ -177,7 +177,7 @@ namespace CompanyName.Uow.Tests
 
             _unitOfWorkStub.Object.Completing += UnitOfWorkCompletingEventHandler; ;
 
-            _unitOfWorkeventPublishingManagerStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
+            _eventDispatcherStub.Setup(p => p.PublishAllAsync(It.IsAny<CancellationToken>()));
 
             await _unitOfWorkStub.Object.CompleteAsync();
 
@@ -224,7 +224,7 @@ namespace CompanyName.Uow.Tests
         {
             var unitOrWorkEventRecord = new UnitOfWorkEventRecord(new(), new());
 
-            _unitOfWorkeventPublishingManagerStub
+            _eventDispatcherStub
                 .Setup(p => p.CreateAndInsertAsync(It.IsAny<IEventBus>(), It.IsAny<UnitOfWorkEventRecord>(), It.IsAny<long>(), It.IsAny<CancellationToken>()));
 
             await _unitOfWorkStub.Object.AddEventRecordAsync<IDistributedEventBus>(unitOrWorkEventRecord, 1, It.IsAny<CancellationToken>());

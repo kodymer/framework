@@ -8,13 +8,13 @@ namespace CompanyName.Ddd.Application.Dtos
 {
 
     [Serializable]
-    public class EntityDto<TKey> : IEntityDto<TKey>
+    public record class EntityDto<TKey> : IEntityDto<TKey>
     {
         public TKey Id { get; set; }
     }
 
     [Serializable]
-    public class EntityDto : IEntityDto<int>
+    public record class EntityDto : IEntityDto<int>
     {
         public int Id { get; set; }
     }

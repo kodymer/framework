@@ -1,41 +1,47 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using CompanyName.Dapper;
+using CompanyName.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using CompanyName.Dapper;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DapperServiceCollectionExtensions
     {
 
-        public static void AddCompanyNameDatabase<TDatabase>(this IServiceCollection services, Action<DatabaseOptionsBuilder> optionsBuilder)
+        public static IServiceCollection AddCompanyNameDatabase<TDatabase>(this IServiceCollection services, Action<DatabaseOptionsBuilder> optionsBuilder)
             where TDatabase : CompanyNameDatabase<TDatabase>, new()
         {
-            services.AddCompanyNameDapper();
+            services
+                .AddCompanyNameDapper()
+                .Configure<DatabaseOptions>(options => {
+                    var builder = new DatabaseOptionsBuilder(options);
+                    optionsBuilder.Invoke(builder);
+                })
+                .AddTransient<TDatabase>(serviceProvider => {
+                    var options = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>().Value;
+                    var database = CompanyNameDatabase<TDatabase>.Init(new SqlConnection(options.ConnectionString), options.CommandTimeout);
+                    return database;
+                });
 
-            services.Configure<DatabaseOptions>(options => {
-                var builder = new DatabaseOptionsBuilder(options);
-                optionsBuilder.Invoke(builder);
-            });
-
-            services.AddTransient<TDatabase>(serviceProvider =>
-            {
-                var options = serviceProvider.GetRequiredService<IOptions<DatabaseOptions>>().Value;
-                var database = CompanyNameDatabase<TDatabase>.Init(new SqlConnection(options.ConnectionString), options.CommandTimeout);
-                return database;
-            });
+            return services;
         }
 
-        public static void AddCompanyNameDatabase<TDatabase>(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameDatabase<TDatabase>(this IServiceCollection services, string connectionStringName = ConnectionStrings.DefaultNameConfig)
             where TDatabase : CompanyNameDatabase<TDatabase>, new()
         {
-            services.AddCompanyNameDapper();
+            services
+                .AddCompanyNameDapper()
+                .AddTransient<TDatabase>(serviceProvider =>
+                {
+                    var factory = serviceProvider.GetRequiredService<IOptionsFactory<DatabaseOptions>>().As<DatabaseOptionsFactory>();
+                    factory.SetConnectionStringName(connectionStringName);
 
-            services.AddTransient<TDatabase>(serviceProvider =>
-            {
-                var options = serviceProvider.GetRequiredService<IOptionsFactory<DatabaseOptions>>().Create(null);
-                var database = CompanyNameDatabase<TDatabase>.Init(new SqlConnection(options.ConnectionString), options.CommandTimeout);
-                return database;
-            });
+                    var options = factory.Create(null);
+                    var database = CompanyNameDatabase<TDatabase>.Init(new SqlConnection(options.ConnectionString), options.CommandTimeout);
+                    return database;
+                });
+
+            return services;
         }
     }
 }

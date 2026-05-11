@@ -5,13 +5,14 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameAuditing(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameAuditing(this IServiceCollection services)
         {
-            services.AddCompanyNameAuditingAbstracts();
-            services.AddCompanyNameSecurity();
+            services
+                .AddCompanyNameAuditingAbstractions()
+                .AddCompanyNameSecurity()
+                .AddLazyScoped<IAuditPropertySetter, AuditPropertySetter>();
 
-            services.AddLazyScoped<IAuditPropertySetter, AuditPropertySetter>();
-
+            return services;
         }
     }
 }

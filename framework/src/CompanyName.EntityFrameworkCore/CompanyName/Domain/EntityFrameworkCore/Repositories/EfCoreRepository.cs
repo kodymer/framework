@@ -1,168 +1,202 @@
-﻿using Ardalis.GuardClauses;
-using Microsoft.EntityFrameworkCore;
-using Nito.AsyncEx;
-using System.Linq.Expressions;
+﻿using Ardalis.Specification;
+using CommunityToolkit.Diagnostics;
 using CompanyName.Ddd.Domain.Entities;
 using CompanyName.Ddd.Domain.Repositories;
-using CompanyName.EntityFrameworkCore.Abstracts;
+using Microsoft.EntityFrameworkCore;
 
-
-namespace CompanyName.Domain.EntityFrameworkCore.Repositories
+namespace CompanyName.EntityFrameworkCore.Repositories
 {
-
-    public abstract class ReadOnlyEfCoreRepository<TDbContext, TEntity, TKey> : IReadOnlyRepository<TEntity, TKey>
-        where TDbContext : IEfCoreDbContext
-        where TEntity : class, IEntity<TKey>
+    public class EfCoreRepository<TDbContext, TEntity> : EfCoreReadOnlyRepository<TDbContext, TEntity>, IRepository<TEntity>
+        where TEntity : class, IAggregateRoot
+        where TDbContext : CompanyNameDbContextBase<TDbContext>
     {
 
-        protected IDbContextProvider<TDbContext> _dbContextProvider;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context">DbContext</param>
-        public ReadOnlyEfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
+        public EfCoreRepository(TDbContext dbContext)
+            : base(dbContext)
         {
-            Guard.Against.Null(dbContextProvider, nameof(dbContextProvider));
-
-            _dbContextProvider = dbContextProvider;
         }
 
-        public virtual Task<TDbContext> GetDbContextAsync()
+        public EfCoreRepository(TDbContext dbContext, ISpecificationEvaluator specificationEvaluator)
+            : base(dbContext, specificationEvaluator)
         {
-            return _dbContextProvider.GetDbContextAsync();
         }
 
-        public virtual IQueryable<TEntity> GetQueryable()
+        /// <inheritdoc/>
+        public override Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
-            return AsyncContext.Run(async () => await GetDbSetAsync()).AsQueryable();
+            Guard.IsNotNull(entity);
+
+            return AddAsync(entity, false, cancellationToken);
         }
 
-        public async virtual Task<List<TEntity>> GetListAsync(
-                    Expression<Func<TEntity, bool>> predicate = null,
-                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                    params string[] includeProperties)
+        public virtual async Task<TEntity> AddAsync(TEntity entity, bool save, CancellationToken cancellationToken = default)
         {
-            var dbContext = await GetDbContextAsync();
-            IQueryable<TEntity> query = dbContext.Set<TEntity>();
+            Guard.IsNotNull(entity);
 
-            if (predicate != null)
+            if (save)
             {
-                query = query.Where(predicate);
+                return await base.AddAsync(entity, cancellationToken);
             }
 
-            foreach (var includeProperty in includeProperties)
+            var result = await DbContext.Set<TEntity>().AddAsync(entity, cancellationToken);
+            return result.Entity;
+        }
+
+        /// <inheritdoc/>
+        public override Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
+
+            return AddRangeAsync(entities, false, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public virtual async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities, bool save, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
+
+            if (save)
             {
-                query = query.Include(includeProperty);
+                return await base.AddRangeAsync(entities, cancellationToken);
             }
 
-            return orderBy is null ?
-                await query.ToListAsync() :
-                await orderBy(query).ToListAsync();
+            await DbContext.Set<TEntity>().AddRangeAsync(entities, cancellationToken);
 
+            return entities;
         }
 
-        public virtual Task<List<TEntity>> GetListAsync(
-            Expression<Func<TEntity, bool>> predicate = null, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        /// <inheritdoc/>
+        public override Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
-            return GetListAsync(predicate, orderBy);
+            Guard.IsNotNull(entity);
+
+            return UpdateAsync(entity, false, cancellationToken);
         }
 
-        public async virtual ValueTask<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
+        public virtual Task<int> UpdateAsync(TEntity entity, bool save, CancellationToken cancellationToken = default)
         {
-            var dbContext = await GetDbContextAsync();
-            var dbSet = dbContext.Set<TEntity>();
-            var entity = await dbSet.FindAsync(new object[] { id }, cancellationToken);
-            if (entity is null)
+            Guard.IsNotNull(entity);
+
+            if (save)
             {
-                throw new EntityNotFoundException(typeof(TEntity), id);
+                return base.UpdateAsync(entity, cancellationToken);
             }
 
-            return entity;
+            DbContext.Set<TEntity>().Update(entity);
+
+            return Task.FromResult(0);
         }
 
-        protected async Task<DbSet<TEntity>> GetDbSetAsync()
+        /// <inheritdoc/>
+        public override Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
-            return (await GetDbContextAsync()).Set<TEntity>();
-        }
-    }
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
 
-    /// <summary>
-    /// Enttity Framework repository base
-    /// </summary>
-    public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : ReadOnlyEfCoreRepository<TDbContext, TEntity, TKey>, IRepository<TEntity, TKey>
-        where TDbContext : IEfCoreDbContext
-        where TEntity : class, IEntity<TKey>
-    {
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="context">DbContext</param>
-        public EfCoreRepository(IDbContextProvider<TDbContext> dbContextProvider)
-            : base(dbContextProvider)
-        {
-
+            return UpdateRangeAsync(entities, false, cancellationToken);
         }
 
-        public virtual async Task InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        public Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, bool save, CancellationToken cancellationToken = default)
         {
-            Guard.Against.Null(entity, nameof(entity));
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
 
-            var dbContext = await GetDbContextAsync();
-            var dbSet = dbContext.Set<TEntity>();
-            await dbSet.AddAsync(entity);
-
-            if (autoSave)
+            if (save)
             {
-                await dbContext.SaveChangesAsync(cancellationToken);
-            }
-        }
-
-        public async virtual Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default)
-        {
-            var entity = await GetAsync(id , cancellationToken);
-
-            await DeleteAsync(entity, autoSave, cancellationToken);
-
-        }
-
-        public async virtual Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
-        {
-            Guard.Against.Null(entity, nameof(entity));
-
-            var dbContext = await GetDbContextAsync();
-            var dbSet = dbContext.Set<TEntity>();
-
-            if (dbContext.Entry(entity).State == EntityState.Detached)
-            {
-                dbSet.Attach(entity);
+                return base.UpdateRangeAsync(entities, cancellationToken);
             }
 
-            dbSet.Remove(entity);
+            DbContext.Set<TEntity>().UpdateRange(entities);
 
-            if (autoSave)
-            {
-                await dbContext.SaveChangesAsync(cancellationToken);
-            }
-
+            return Task.FromResult(0); ;
         }
 
-        public async virtual Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        public override Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
-            Guard.Against.Null(entity, nameof(entity));
+            Guard.IsNotNull(entity);
 
-            var dbContext = await GetDbContextAsync();
-            var dbSet = dbContext.Set<TEntity>();
-            dbSet.Attach(entity);
+            return DeleteAsync(entity, false, cancellationToken);
+        }
 
-            dbContext.Entry(entity).State = EntityState.Modified;
+        public virtual Task<int> DeleteAsync(TEntity entity, bool save, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(entity);
 
-            if (autoSave)
+            if (save)
             {
-                await dbContext.SaveChangesAsync(cancellationToken);
+                return base.DeleteAsync(entity, cancellationToken);
             }
+
+            DbContext.Set<TEntity>().Remove(entity);
+
+            return Task.FromResult(0);
+        }
+
+        public virtual Task<int> DeleteAsync<TKey>(TKey id, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(id);
+
+            return DeleteAsync(id, false, cancellationToken);
+        }
+
+        public virtual async Task<int> DeleteAsync<TKey>(TKey id, bool save, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(id);
+
+            var entity = await GetByIdAsync(id, cancellationToken);
+            return await DeleteAsync(entity, save, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public override Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
+
+            return DeleteRangeAsync(entities, false, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public virtual Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, bool save, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(entities);
+            Guard.IsNotEmpty(entities.ToList());
+
+            if (save)
+            {
+                return base.DeleteRangeAsync(entities, cancellationToken);
+            }
+
+            DbContext.Set<TEntity>().RemoveRange(entities);
+
+            return Task.FromResult(0);
+        }
+
+        /// <inheritdoc/>
+        public override Task<int> DeleteRangeAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(specification);
+
+            return DeleteRangeAsync(specification, false, cancellationToken);
+        }
+
+        public virtual Task<int> DeleteRangeAsync(ISpecification<TEntity> specification, bool save, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(specification);
+
+            if (save)
+            {
+                return base.DeleteRangeAsync(specification, cancellationToken);
+            }
+
+            var query = ApplySpecification(specification);
+            DbContext.Set<TEntity>().RemoveRange(query);
+
+            return Task.FromResult(0);
         }
     }
 }

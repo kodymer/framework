@@ -1,6 +1,6 @@
 ﻿using Autofac;
+using CompanyName.Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using CompanyName.Autofac;
 
 namespace Microsoft.Extensions.Hosting
 {

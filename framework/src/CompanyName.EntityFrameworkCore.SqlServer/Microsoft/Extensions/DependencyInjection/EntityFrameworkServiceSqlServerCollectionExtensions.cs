@@ -1,27 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CompanyName.Data;
+using CompanyName.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
-using CompanyName.Data;
-using CompanyName.EntityFrameworkCore.Abstracts;
-using CompanyName.Uow;
-using CompanyName.Uow.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class EntityFrameworkServiceCollectionExtensions
     {
-        public static void AddCompanyNameDbContext<TDbContext>(this IServiceCollection services, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
-            where TDbContext : DbContext, IEfCoreDbContext
+        public static IServiceCollection AddCompanyNameDbContext<TContext>(this IServiceCollection services, string connectionStringName = ConnectionStrings.DefaultNameConfig, Action<SqlServerDbContextOptionsBuilder> sqlServerOptionAction = null)
+            where TContext : CompanyNameDbContextBase<TContext>
         {
-            services.AddCompanyNameUow();
-            services.AddCompanyNameEntityFrameworkCore();
+            services
+                .AddCompanyNameUow()
+                .AddCompanyNameEntityFrameworkCore();
 
-            services.AddCompanyNameDbContext<TDbContext>((serviceProvider, optionsAction) =>
-            {
-                var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-                optionsAction.UseSqlServer(configuration.GetConnectionString(ConnectionStrings.DefaultNameConfig));
+            services
+                .AddDbContext<TContext>((serviceProvider, options) =>
+                {
+                    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+                    options.UseSqlServer(configuration.GetConnectionString(connectionStringName), sqlServerOptionAction);
+                })
+                .AddCompanyNameDbContextProvider<TContext>();
 
-            }, contextLifetime, optionsLifetime);
+            return services;
         }
-
     }
 }

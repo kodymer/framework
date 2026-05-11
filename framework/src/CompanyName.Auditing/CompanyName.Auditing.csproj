@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompanyName.Auditing.Abstracts\CompanyName.Auditing.Abstracts.csproj" />
+    <ProjectReference Include="..\CompanyName.Auditing.Abstractions\CompanyName.Auditing.Abstractions.csproj" />
     <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
   </ItemGroup>
 

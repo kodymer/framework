@@ -1,17 +1,15 @@
-﻿using Ardalis.GuardClauses;
-using Microsoft.EntityFrameworkCore;
-using CompanyName.EntityFrameworkCore;
-using CompanyName.EntityFrameworkCore.Abstracts;
+﻿using CommunityToolkit.Diagnostics;
+using CompanyName.EntityFrameworkCore.Abstractions;
 
 namespace CompanyName.Uow.EntityFrameworkCore
 {
     public class EfCoreDatabaseApi : IDatabaseApi, ISupportSavingChanges
     {
-        public IEfCoreDbContext DbContext { get; }
+        public IExtendedDbContext DbContext { get; }
 
-        public EfCoreDatabaseApi(IEfCoreDbContext dbContext)
+        public EfCoreDatabaseApi(IExtendedDbContext dbContext)
         {
-            Guard.Against.Null(dbContext, nameof(dbContext));
+            Guard.IsNotNull(dbContext, nameof(dbContext));
 
             DbContext = dbContext;
         }
@@ -21,9 +19,9 @@ namespace CompanyName.Uow.EntityFrameworkCore
             return DbContext.SaveChangesAsync(cancellationToken);
         }
 
-        internal static string GetKey(IEfCoreDbContext dbContext)
+        internal static string GetKey(IExtendedDbContext dbContext)
         {
-            return  $"{dbContext.GetType().FullName}_{dbContext.GetConnectionString()}";
+            return $"{dbContext.GetType().FullName}_{dbContext.GetConnectionString()}";
         }
 
     }

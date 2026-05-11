@@ -1,10 +1,10 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using CompanyName.Core.DependencyInjection;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 
 [assembly:
     InternalsVisibleTo("CompanyName.EntityFrameworkCore"),
@@ -28,7 +28,7 @@ namespace CompanyName.Uow
         public virtual bool IsReversed { get; private set; }
         public virtual IUnitOfWorkOptions Options { get; private set; }
 
-        private IUnitOfWorkEventPublishingManager _eventPublishingManager;
+        private IEventDispatcher _eventPublishingManager;
         private IDictionary<string, IDatabaseApi> _databaseApis;
         private IDictionary<string, ITransactionApi> _transactionApis;
         private Exception _exception;
@@ -38,7 +38,7 @@ namespace CompanyName.Uow
 
         public UnitOfWork(
             IServiceProvider serviceProvider,
-            IUnitOfWorkEventPublishingManager eventPublishingManager,
+            IEventDispatcher eventPublishingManager,
             IOptions<UnitOfWorkDefaultOptions> options)
         {
             IsCompleting = false;
@@ -56,7 +56,7 @@ namespace CompanyName.Uow
 
         internal void Initialize(UnitOfWorkOptions options)
         {
-            Guard.Against.Null(options, nameof(options));
+            Guard.IsNotNull(options, nameof(options));
 
             if (Options is UnitOfWorkDefaultOptions defaultOptions)
             {
@@ -162,7 +162,7 @@ namespace CompanyName.Uow
             CancellationToken cancellationToken = default)
             where TPublisher : class, IEventBus
         {
-            Guard.Against.Null(unitOfWorkEventRecord, nameof(unitOfWorkEventRecord));
+            Guard.IsNotNull(unitOfWorkEventRecord, nameof(unitOfWorkEventRecord));
 
             var publisher = ServiceProvider.GetRequiredService<TPublisher>();
             await _eventPublishingManager.CreateAndInsertAsync(publisher, unitOfWorkEventRecord, priority);
@@ -208,7 +208,7 @@ namespace CompanyName.Uow
         protected T FindApi<T>(IDictionary<string, T> apis, string key)
             where T : class
         {
-            Guard.Against.NullOrEmpty(key);
+            Guard.IsNullOrEmpty(key);
 
             if (apis.TryGetValue(key, out T api))
             {
@@ -221,8 +221,8 @@ namespace CompanyName.Uow
         protected void AddApi<T>(IDictionary<string, T> apis, string key, T api)
             where T : class
         {
-            Guard.Against.NullOrEmpty(key);
-            Guard.Against.Null(api, nameof(api));
+            Guard.IsNullOrEmpty(key);
+            Guard.IsNotNull(api, nameof(api));
 
             if (apis.ContainsKey(key))
             {

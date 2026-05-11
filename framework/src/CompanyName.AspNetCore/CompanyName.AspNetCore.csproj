@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.Core\CompanyName.Core.csproj" />
     <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
+    <ProjectReference Include="..\CompanyName.AspNetCore.Abstractions\CompanyName.AspNetCore.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

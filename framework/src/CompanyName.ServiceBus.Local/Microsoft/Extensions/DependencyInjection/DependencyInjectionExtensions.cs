@@ -5,11 +5,14 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameServiceBusLocal(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameServiceBusLocal(this IServiceCollection services)
         {
-            services.AddSingleton<LocalServiceBusQueue>();
-            services.AddSingleton<ILocalServiceBusSender, LocalServiceBusSender>();
-            services.AddSingleton<ILocalServiceBusProcessor, LocalServiceBusProcessor>();
+            services
+                .AddSingleton<LocalServiceBusQueue>()
+                .AddSingleton<ILocalServiceBusSender, LocalServiceBusSender>()
+                .AddSingleton<ILocalServiceBusProcessor, LocalServiceBusProcessor>();
+
+            return services;
         }
     }
 }

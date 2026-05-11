@@ -1,11 +1,4 @@
-﻿using Nito.AsyncEx;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyName.ServiceBus.Local
+﻿namespace CompanyName.ServiceBus.Local
 {
     public class LocalServiceBusProcessor : ILocalServiceBusProcessor
     {

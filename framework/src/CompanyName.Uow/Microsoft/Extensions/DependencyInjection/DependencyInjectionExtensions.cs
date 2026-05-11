@@ -1,24 +1,27 @@
-﻿
+﻿using CompanyName.Uow;
 using LazyProxy.ServiceProvider;
-using CompanyName.Uow;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameUow(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameUow(this IServiceCollection services)
         {
 
-            services.AddCompanyNameAutofac();
-            services.AddCompanyNameEventBusAbstracts();
+            services
+                .AddCompanyNameAutofac();
 
-            services.AddOptions<UnitOfWorkDefaultOptions>();
+            services
+                .AddOptions<UnitOfWorkDefaultOptions>();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<UnitOfWorkInterceptor>();
+            services
+                .AddScoped<IUnitOfWork, UnitOfWork>()
+                .AddSingleton<IUnitOfWorkManager, UnitOfWorkManager>()
+                .AddScoped<UnitOfWorkInterceptor>()
+                .AddLazyScoped<IEventDispatcher, UnitOfWorkEventDispatcher>()
+                .AddScoped<IEventStore, InMemoryEventStore>();
 
-            services.AddLazyScoped<IUnitOfWorkEventPublishingManager, UnitOfWorkEventPublishingManager>();
-            services.AddScoped<IUnitOfWorkEventPublishingStore, UnitOfWorkEventPublishingStore>();
+            return services;
         }
     }
 }

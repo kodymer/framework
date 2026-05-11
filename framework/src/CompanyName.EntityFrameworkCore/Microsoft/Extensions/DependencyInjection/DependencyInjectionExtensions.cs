@@ -5,15 +5,18 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameEntityFrameworkCore(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameEntityFrameworkCore(this IServiceCollection services)
         {
-            services.AddCompanyNameEntityFrameworkCoreAbstracts();
-            services.AddCompanyNameAuditing();
-            services.AddCompanyNameDddDomain();
-            services.AddCompanyNameUow();
-            services.AddCompanyNameData();
+            services
+                .AddCompanyNameDddApplication()
+                .AddCompanyNameAuditing()
+                .AddCompanyNameUow()
+                .AddCompanyNameData();
 
-            services.AddScoped<IUnitOfWorkEventRecordRegistrar, UnitOfWorkEventRecordRegistrar>();
+            services
+                .AddScoped<IUnitOfWorkEventRecordRegistrar, UnitOfWorkEventRecordRegistrar>();
+
+            return services;
         }
     }
 }

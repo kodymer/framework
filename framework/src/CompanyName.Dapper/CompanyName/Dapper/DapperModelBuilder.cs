@@ -1,8 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using CompanyName.Dapper.Metadata;
 
-[assembly: InternalsVisibleTo("CompanyName.Dapper.Tests")]
-
 namespace CompanyName.Dapper
 {
     public class DapperModelBuilder : IModelBuilder

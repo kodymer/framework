@@ -8,11 +8,19 @@ namespace CompanyName.Security.Users
 {
     public interface ICurrentUser
     {
-        public Guid? Id { get; }
-        
+
+        public object Id { get; }
+
         public string Name { get; }
+
+        public string Role { get; }
 
         public string Email { get; }
 
+        T GetId<T>() 
+            where T : struct, IParsable<T>;
+
+        bool TryGetId<T>(out T id)
+            where T : struct, IParsable<T>;
     }
 }

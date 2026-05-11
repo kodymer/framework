@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Claims;
 using CompanyName.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace CompanyName.AspNetCore.Security.Claims
 {

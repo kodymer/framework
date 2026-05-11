@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.EventBus
 {

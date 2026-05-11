@@ -1,0 +1,39 @@
+# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+# This stage is used when running from VS in fast mode (Default for Debug configuration)
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+
+# This stage is used to build the service project
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["Directory.Packages.props", "."]
+COPY ["Directory.Build.props", "."]
+COPY ["nuget.config", "."]
+COPY ["src/CompanyName.ProjectName.HttpApi.Host/CompanyName.ProjectName.HttpApi.Host.csproj", "src/CompanyName.ProjectName.HttpApi.Host/"]
+COPY ["src/CompanyName.ProjectName.Dapper/CompanyName.ProjectName.Dapper.csproj", "src/CompanyName.ProjectName.Dapper/"]
+COPY ["src/CompanyName.ProjectName.Application/CompanyName.ProjectName.Application.csproj", "src/CompanyName.ProjectName.Application/"]
+COPY ["src/CompanyName.ProjectName.Domain/CompanyName.ProjectName.Domain.csproj", "src/CompanyName.ProjectName.Domain/"]
+COPY ["src/CompanyName.ProjectName.Domain.Shared/CompanyName.ProjectName.Domain.Shared.csproj", "src/CompanyName.ProjectName.Domain.Shared/"]
+COPY ["src/CompanyName.ProjectName.EntityFrameworkCore/CompanyName.ProjectName.EntityFrameworkCore.csproj", "src/CompanyName.ProjectName.EntityFrameworkCore/"]
+COPY ["src/CompanyName.ProjectName.HttpApi/CompanyName.ProjectName.HttpApi.csproj", "src/CompanyName.ProjectName.HttpApi/"]
+RUN dotnet restore "./src/CompanyName.ProjectName.HttpApi.Host/CompanyName.ProjectName.HttpApi.Host.csproj"
+COPY . .
+WORKDIR "/src/src/CompanyName.ProjectName.HttpApi.Host"
+RUN dotnet build "./CompanyName.ProjectName.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# This stage is used to publish the service project to be copied to the final stage
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./CompanyName.ProjectName.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "CompanyName.ProjectName.HttpApi.Host.dll"]

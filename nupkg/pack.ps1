@@ -1,4 +1,14 @@
+param(
+    [switch]$template
+)
+
 . ".\common.ps1"
+
+if ($template) {
+    $solutions = @($templates)
+} else {
+    $solutions = @($framework, $modules)
+}
 
 # Delete old packages
 Remove-Item *.nupkg

@@ -1,14 +1,13 @@
-﻿using System.Collections.Immutable;
+﻿using CompanyName.Ddd.Domain.EventBus;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using CompanyName.Ddd.Domain.EventBus;
 
 namespace CompanyName.Ddd.Domain.Entities
 {
 
-
     [Serializable]
     public abstract class AggregateRoot : Entity,
-        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents
+        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents, IAggregateRoot
     {
 
         public virtual string ConcurrencyStamp { get; set; }
@@ -52,12 +51,11 @@ namespace CompanyName.Ddd.Domain.Entities
         {
             _localEvents.Add(new EventRecord(this, @event, EventRecordOrderGenerator.GetNext()));
         }
-
     }
 
     [Serializable]
     public abstract class AggregateRoot<TKey> : Entity<TKey>,
-        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents
+        IHasConcurrencyStamp, IGenerateIntegrationEvents, IGenerateDomainEvents, IAggregateRoot
     {
 
         public virtual string ConcurrencyStamp { get; set; }

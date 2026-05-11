@@ -253,7 +253,7 @@ paket-files/
 .idea/
 *.sln.iml
 
-# CompanyName
+# Donte
 docs/*.*
 app/*.*
 **/Logs/*.*

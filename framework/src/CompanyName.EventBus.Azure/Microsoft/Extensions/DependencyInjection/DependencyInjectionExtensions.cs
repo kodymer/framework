@@ -9,7 +9,7 @@ using CompanyName.Core.DependencyInjection.Extensions;
 using CompanyName.EventBus;
 using CompanyName.EventBus.Azure;
 using LazyProxy.ServiceProvider;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using static Microsoft.Extensions.Options.Options;
@@ -19,23 +19,27 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class DependencyInjectionExtensions
     {
 
-        public static void AddCompanyNameEventBusAzure(this IServiceCollection services, Action<AzureEventBusOptions> configureOptions)
+        public static IServiceCollection AddCompanyNameEventBusAzure(this IServiceCollection services, Action<AzureEventBusOptions> configureOptions)
         {
-            services.AddCompanyNameEventBus();
-            services.AddCompanyNameSecurity();
-            services.AddCompanyNameSeviceBusAzure();
+            services
+                .AddCompanyNameEventBus()
+                .AddCompanyNameSecurity()
+                .AddCompanyNameSeviceBusAzure();
 
-            services.Configure(configureOptions);
-
-            services.AddSingleton<AzureEventBus>();
-            services.AddSingleton<IDistributedEventBus, AzureEventBus>(serviceProvider =>
+            services
+                .Configure(configureOptions)
+                .AddSingleton<AzureEventBus>()
+                .AddSingleton<IDistributedEventBus, AzureEventBus>(serviceProvider =>
             {
                 var eventBus = serviceProvider.GetRequiredService<AzureEventBus>();
                 eventBus.Initialize();
                 return eventBus;
             });
 
-            services.AddSingleton<IAzureServiceBusMessageConsumer, AzureServiceBusMessageConsumer>();
+            services
+                .AddSingleton<IAzureServiceBusMessageConsumer, AzureServiceBusMessageConsumer>();
+
+            return services;
         }
 
         public static void AddCompanyNameEventBusAzure(this IServiceCollection services)

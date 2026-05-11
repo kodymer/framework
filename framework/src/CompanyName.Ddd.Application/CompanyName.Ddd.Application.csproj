@@ -18,7 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.AutoMapper\CompanyName.AutoMapper.csproj" />
+    <ProjectReference Include="..\CompanyName.Ddd.Domain\CompanyName.Ddd.Domain.csproj" />
     <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
+    <ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
     <ProjectReference Include="..\CompanyName.Uow\CompanyName.Uow.csproj" />
   </ItemGroup>
 

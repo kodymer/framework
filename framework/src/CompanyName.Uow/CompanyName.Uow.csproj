@@ -18,7 +18,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.Autofac\CompanyName.Autofac.csproj" />
-    <ProjectReference Include="..\CompanyName.EventBus.Abstracts\CompanyName.EventBus.Abstracts.csproj" />
+    <ProjectReference Include="..\CompanyName.EventBus.Abstractions\CompanyName.EventBus.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -17,12 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CompanyName\EntityFrameworkCore\SqlServer\**" />
-    <EmbeddedResource Remove="CompanyName\EntityFrameworkCore\SqlServer\**" />
-    <None Remove="CompanyName\EntityFrameworkCore\SqlServer\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftPackageVersion)" />
   </ItemGroup>
 

@@ -1,69 +1,106 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Nito.AsyncEx;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using CompanyName.Ddd.Domain.Entities;
+﻿using CompanyName.Ddd.Domain.Entities;
 using CompanyName.EntityFrameworkCore;
-using CompanyName.EntityFrameworkCore.Abstracts;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CompanyName.Data.Fixtures
 {
     public class InMemoryDbContextFixture : IDisposable
     {
-        public InMemoryCompanyNameDbContextProvider DbContextProvider { get; }
+        private bool _disposed;
 
         public InMemoryCompanyNameDbContext DbContext { get; }
 
         public InMemoryDbContextFixture()
         {
-            DbContextProvider = new InMemoryCompanyNameDbContextProvider();
-            DbContext = AsyncContext.Run(async () => await DbContextProvider.GetDbContextAsync());
+            var options = new DbContextOptionsBuilder<InMemoryCompanyNameDbContext>()
+                .UseInMemoryDatabase(databaseName: "Test")
+                .Options;
+
+            DbContext = new InMemoryCompanyNameDbContext(options);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources  
+                    DbContext?.Dispose();
+                }
+
+                // Dispose unmanaged resources if any  
+
+                _disposed = true;
+            }
         }
 
         public void Dispose()
         {
-            DbContext.Dispose();
-        }
-
-    }
-
-    public class InMemoryCompanyNameDbContextProvider : IDbContextProvider<InMemoryCompanyNameDbContext>
-    {
-        public Task<InMemoryCompanyNameDbContext> GetDbContextAsync(CancellationToken cancellationToken = default)
-        {
-            var options = new DbContextOptionsBuilder<InMemoryCompanyNameDbContext>()
-               .UseInMemoryDatabase(databaseName: "Test")
-               .Options;
-
-            return Task.FromResult(new InMemoryCompanyNameDbContext(options));
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 
-    public class InMemoryCompanyNameDbContext : CompanyNameDbContextBase<InMemoryCompanyNameDbContext>
+    public abstract class InMemoryCompanyNameDbContextBase<TContext> : CompanyNameDbContextBase<TContext>
+        where TContext : DbContext
     {
-        public InMemoryCompanyNameDbContext(DbContextOptions<InMemoryCompanyNameDbContext> options)
+        protected InMemoryCompanyNameDbContextBase(DbContextOptions<TContext> options)
             : base(options)
         {
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<CompanyNameEntity>();
+            modelBuilder.Entity<CompanyNameAggregateRoot>();
+            modelBuilder.Entity<CompanyNameNonAggregateRoot>();
         }
     }
 
-    public class CompanyNameEntity : Entity<int>
+    public class InMemoryCompanyNameDbContext : InMemoryCompanyNameDbContextBase<InMemoryCompanyNameDbContext>
     {
-        public CompanyNameEntity()
+        public InMemoryCompanyNameDbContext(DbContextOptions<InMemoryCompanyNameDbContext> options)
+            : base(options)
+        {
+        }
+    }
+
+
+    public class TwoInMemoryCompanyNameDbContext : InMemoryCompanyNameDbContextBase<TwoInMemoryCompanyNameDbContext>
+    {
+        public TwoInMemoryCompanyNameDbContext(DbContextOptions<TwoInMemoryCompanyNameDbContext> options)
+            : base(options)
+        {
+        }
+    }
+
+    public class CompanyNameAggregateRoot : AggregateRoot<int>
+    {
+        public CompanyNameAggregateRoot()
         {
 
         }
 
-        public CompanyNameEntity(int id)
+        public CompanyNameAggregateRoot(int id)
+            : base(id)
+        {
+
+        }
+    }
+
+    public class CompanyNameNonAggregateRoot : Entity<int>
+    {
+        public CompanyNameNonAggregateRoot()
+        {
+
+        }
+
+        public CompanyNameNonAggregateRoot(int id)
             : base(id)
         {
 

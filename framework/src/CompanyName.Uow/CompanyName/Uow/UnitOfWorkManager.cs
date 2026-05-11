@@ -1,10 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CompanyName.Uow;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyName.Uow
 {
@@ -34,7 +30,7 @@ namespace CompanyName.Uow
             {
                 scope = _serviceScopeFactory.CreateScope();
 
-                var eventPublishingManager = scope.ServiceProvider.GetRequiredService<IUnitOfWorkEventPublishingManager>();
+                var eventPublishingManager = scope.ServiceProvider.GetRequiredService<IEventDispatcher>();
                 var options = scope.ServiceProvider.GetRequiredService<IOptions<UnitOfWorkDefaultOptions>>();
                 unitOfWork = new UnitOfWork(scope.ServiceProvider, eventPublishingManager, options);
 
@@ -54,5 +50,3 @@ namespace CompanyName.Uow
         }
     }
 }
-
-

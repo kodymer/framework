@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using CompanyName.Security.Claims;
 using CompanyName.ServiceBus.Azure;
 

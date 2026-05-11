@@ -2,10 +2,16 @@
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameDddApplication(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameDddApplication(this IServiceCollection services)
         {
-            services.AddCompanyNameSecurity();
-            services.AddCompanyNameUow();
+            services
+                .AddCompanyNameDddDomain()
+                .AddCompanyNameAutoMapper()
+                .AddCompanyNameLocalization()
+                .AddCompanyNameSecurity()
+                .AddCompanyNameUow();
+
+            return services;
         }
     }
 }

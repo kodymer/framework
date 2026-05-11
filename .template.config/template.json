@@ -1,107 +1,115 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://json.schemastore.org/template.json",
-    "identity": "framework",
-    "author": "Kodymer Tech S.L. 24",
-    "classifications": [
-        "Code"
-    ],
-    "name": "Modular and scalable framework source code",
-    "shortName": "fwk",
-    "tags": {
-        "language": "C#",
-        "type": "item"
-    },
-    "sources": [
-        {
-            "exclude": [
-                "**/[Bb]in/**",
-                "**/[Oo]bj/**",
-                "**/*.filelist",
-                "**/*.user",
-                "**/*.lock.json"
-            ],
-            "modifiers": [
-                {
-                    "exclude": [
-                        "**/.git/**/*",
-                        ".template.config/**/*"
-                    ]
-                }
-            ]
-        }
-    ],
-    "symbols": {
-        "owner-name": {
-            "type": "parameter",
-            "dataType": "string",
-            "isEnabled": true,
-            "isRequired": true,
-            "description": "The owner name of framework",
-            "replaces": "CompanyName",
-            "fileRename": "CompanyName"
-        },
-        "target-framework": {
-            "type": "parameter",
-            "description": "The target framework for the template projects.",
-            "datatype": "choice",
-            "isEnabled": true,
-            "isRequired": false,
-            "enableQuotelessLiterals": true,
-            "allowMultipleValues": false,
-            "choices": [
-                {
-                    "choice": "net8.0",
-                    "description": ".NET 8.0 (LTS)"
-                },
-                {
-                    "choice": "net9.0",
-                    "description": ".NET 9.0 (STS)"
-                }
-            ],
-            "replaces": "NetVersion",
-            "defaultValue": "net8.0"
-        },
-        "source-link": {
-            "type": "parameter",
-            "description": "The target framework for the template projects.",
-            "datatype": "choice",
-            "isEnabled": true,
-            "isRequired": false,
-            "enableQuotelessLiterals": true,
-            "allowMultipleValues": false,
-            "choices": [
-                {
-                    "choice": "GitHub",
-                    "description": "GitHub"
-                },
-                {
-                    "choice": "AzureRepos.Git",
-                    "description": "Azure Repos"
-                }
-            ],
-            "replaces": "SourceLinkName",
-            "defaultValue": "GitHub"
-        },
-        "nuget-source": {
-            "type": "parameter",
-            "description": "The NuGet source URL to use",
-            "datatype": "string",
-            "isEnabled": true,
-            "isRequired": false,
-            "replaces": "NugetSource",
-            "fileRename": "NugetSource",
-            "defaultValue": ""
-        },
-        "owner-nameLower": {
-            "type": "generated",
-            "generator": "casing",
-            "parameters": {
-                "source": "owner-name",
-                "toLower": true
-            },
-            "replaces": "CompanyNameLower",
-            "fileRename": "CompanyNameLower"
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://json.schemastore.org/template.json",
+  "identity": "Enterprise.ModularFramework.Root",
+  "author": "Capgemini Engineering",
+  "description": "Creates the base structure for a modular and scalable enterprise framework.",
+  "classifications": ["Code"],
+  "shortName": "fwk",
+  "name": "Enterprise Modular Framework",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "constraints": {
+    "OS": {
+      "type": "os",
+      "args": ["Windows", "linux", "OSX"]
     }
+  },
+  "sourceName": "CompanyName",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/.git/**",
+        ".template.config/**"
+      ]
+    }
+  ],
+  "symbols": {
+    "targetFramework": {
+      "type": "parameter",
+      "description": "The target framework for the template projects.",
+      "datatype": "choice",
+      "isEnabled": true,
+      "isRequired": false,
+      "enableQuotelessLiterals": true,
+      "allowMultipleValues": false,
+      "choices": [
+        {
+          "choice": "net8.0",
+          "description": ".NET 8.0 (LTS)"
+        },
+        {
+          "choice": "net9.0",
+          "description": ".NET 9.0 (STS)"
+        },
+        {
+          "choice": "net10.0",
+          "description": ".NET 10.0 (LTS)"
+        }
+      ],
+      "replaces": "NetVersion",
+      "defaultValue": "net8.0"
+    },
+    "dotnetSdk": {
+      "type": "computed",
+      "value": "targetFramework == 'net8.0' ? '8.0.100' : targetFramework == 'net9.0' ? '9.0.100' : '10.0.100'",
+      "replaces": "NetSDK"
+    },
+    "sourceLink": {
+      "type": "parameter",
+      "description": "Source control provider used for SourceLink configuration.",
+      "datatype": "choice",
+      "isEnabled": true,
+      "isRequired": false,
+      "enableQuotelessLiterals": true,
+      "allowMultipleValues": false,
+      "choices": [
+        {
+          "choice": "Microsoft.SourceLink.GitHub",
+          "description": "GitHub"
+        },
+        {
+          "choice": "Microsoft.SourceLink.AzureRepos.Git",
+          "description": "Azure Repos"
+        },
+        {
+          "choice": "Microsoft.SourceLink.Bitbucket.Git",
+          "description": "Bitbucket"
+        }
+      ],
+      "replaces": "SourceLinkPackage",
+      "defaultValue": "Microsoft.SourceLink.GitHub"
+    },
+    "sourceLinkVersion": {
+      "type": "computed",
+      "value": "targetFramework == 'net8.0' ? '8.0.0' : targetFramework == 'net9.0' ? '9.0.0' : '10.0.0'",
+      "replaces": "SourceLinkVersion"
+    },
+    "nugetSource": {
+      "type": "parameter",
+      "description": "Optional custom NuGet feed URL (leave empty to skip).",
+      "datatype": "string",
+      "isEnabled": true,
+      "isRequired": false,
+      "replaces": "NugetSource",
+      "defaultValue": ""
+    },
+    "lowerName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      },
+      "replaces": "CompanyNameLower",
+      "fileRename": "CompanyNameLower"
+    }
+  }
 }

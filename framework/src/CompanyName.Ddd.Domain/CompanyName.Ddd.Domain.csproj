@@ -16,9 +16,15 @@
     <RootNamespace />
   </PropertyGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\CompanyName.Auditing.Abstracts\CompanyName.Auditing.Abstracts.csproj" />
+    <PackageReference Include="Ardalis.Specification" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyName.Auditing.Abstractions\CompanyName.Auditing.Abstractions.csproj" />
     <ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
+    <ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
     <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
   </ItemGroup>
 

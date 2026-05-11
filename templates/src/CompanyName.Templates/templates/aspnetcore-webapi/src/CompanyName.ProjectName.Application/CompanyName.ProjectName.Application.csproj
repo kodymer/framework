@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CompanyName.Messaging.MassTransit" />
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyName.ProjectName.Domain\CompanyName.ProjectName.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

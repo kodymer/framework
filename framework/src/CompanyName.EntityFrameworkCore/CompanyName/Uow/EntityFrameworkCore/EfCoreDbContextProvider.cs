@@ -1,13 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CompanyName.EntityFrameworkCore.Abstractions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System;
-using System.Threading;
-using CompanyName.EntityFrameworkCore.Abstracts;
 
 namespace CompanyName.Uow.EntityFrameworkCore
 {
     public class EfCoreDbContextProvider<TDbContext> : IDbContextProvider<TDbContext>
-        where TDbContext : class, IEfCoreDbContext
+        where TDbContext : class, IExtendedDbContext
     {
 
         private readonly IUnitOfWorkApiFactory<TDbContext> _unitOfWorkApiFactory;

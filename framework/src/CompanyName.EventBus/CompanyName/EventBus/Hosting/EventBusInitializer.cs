@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.EventBus.Hosting
 {

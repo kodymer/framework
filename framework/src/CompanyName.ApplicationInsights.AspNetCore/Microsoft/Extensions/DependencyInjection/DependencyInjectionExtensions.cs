@@ -16,7 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddCompanyNameCore();
+            services
+                .AddCompanyNameCore();
 
             services.AddApplicationInsightsTelemetry();
 
@@ -31,7 +32,8 @@ namespace Microsoft.Extensions.DependencyInjection
             IConfiguration configuration,
             Action<CompanyNameApplicationInsightsServiceOptions> options = null)
         {
-            services.AddCompanyNameCore();
+            services
+                .AddCompanyNameCore();
 
             var serviceOptions = new CompanyNameApplicationInsightsServiceOptions();
             if (!(options is null))
@@ -39,8 +41,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.Invoke(serviceOptions);
             }
 
-            services.AddApplicationInsightsTelemetry(serviceOptions);
-            services.Configure((CompanyNameApplicationInsightsServiceOptions options) => AddTelemetryConfiguration(configuration, options));
+            services
+                .AddApplicationInsightsTelemetry(serviceOptions);
+            services
+                .Configure((CompanyNameApplicationInsightsServiceOptions options) => AddTelemetryConfiguration(configuration, options));
             services.AddSingleton<ITelemetryInitializer, DomainNameRoleNameTelemetryInitializer>();
 
             return services;

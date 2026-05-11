@@ -1,28 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace System.Security.Claims
 {
     public static class ClaimsPrincipalExtensions
     {
 
-        public static Guid? FindUserId(this ClaimsPrincipal principal)
+        public static object FindUserId(this ClaimsPrincipal principal, string claimType = ClaimTypes.NameIdentifier)
         {
-            var claim = principal?.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null)
+            var value = principal?.FindFirst(claimType)?.Value;
+            if (string.IsNullOrWhiteSpace(value))
             {
                 return null;
             }
 
-            if (Guid.TryParse(claim.Value, out var id))
+            if (Guid.TryParse(value, out var g))
             {
-                return id;
+                return g;
             }
 
-            return null;
+            if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var i))
+            {
+                return i;
+            }
+
+            if (long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var l))
+            {
+                return l;
+            }
+
+            return value;
         }
+
     }
 }

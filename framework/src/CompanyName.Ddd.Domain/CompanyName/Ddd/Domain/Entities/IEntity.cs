@@ -4,7 +4,7 @@
     {
     }
 
-    public interface IEntity<TKey> : IEntity
+    public interface IEntity<out TKey> : IEntity
     {
         TKey Id { get; }
     }

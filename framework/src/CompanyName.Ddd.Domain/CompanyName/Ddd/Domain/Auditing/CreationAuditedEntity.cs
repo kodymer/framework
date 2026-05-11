@@ -1,4 +1,4 @@
-﻿using CompanyName.Auditing.Abstracts;
+﻿using CompanyName.Auditing.Abstractions;
 using CompanyName.Ddd.Domain.Entities;
 
 namespace CompanyName.Ddd.Domain.Auditing
@@ -24,6 +24,31 @@ namespace CompanyName.Ddd.Domain.Auditing
         public virtual DateTime CreationTime { get; set; }
 
         public virtual Guid? CreatorId { get; set; }
+
+        protected CreationAuditedEntity()
+        {
+
+        }
+
+        protected CreationAuditedEntity(TKey id)
+            : base(id)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// This class can be used to simplify implementing <see cref="ICreationAuditedObject{TUserId}"/> for an entity.
+    /// </summary>
+    /// <typeparam name="TKey">Type of the primary key of the entity</typeparam>
+    /// <typeparam name="TUserId">Type of the primary key of the user entity</typeparam>
+    [Serializable]
+    public abstract class CreationAuditedEntity<TKey, TUserId> : Entity<TKey>, ICreationAuditedObject<TUserId>
+         where TUserId : struct, IParsable<TUserId>
+    {
+        public virtual DateTime CreationTime { get; set; }
+
+        public virtual TUserId? CreatorId { get; set; }
 
         protected CreationAuditedEntity()
         {

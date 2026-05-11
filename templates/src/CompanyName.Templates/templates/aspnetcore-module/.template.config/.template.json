@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://json.schemastore.org/template.json",
+    "author": "Capgemini Engineering",
+    "classifications": ["Web", "Module"],
+    "name": "ASP.NET Core Module",
+    "description": "Creates an ASP.NET Core module compatible with the Enterprise Modular Framework.",
+    "identity": "CompanyName.AspNetCore.Module",
+    "shortName": "CompanyNameLower-module",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "constraints": {
+        "OS": {
+            "type": "os",
+            "args": ["Windows", "linux", "OSX"]
+        }
+    },
+    "sourceName": "ProjectName",
+    "symbols": {
+        "pathToFramework": {
+            "type": "generated",
+            "generator": "constant",
+            "parameters": {
+                "value": "..\\..\\..\\..\\"
+            },
+            "replaces": "..\\..\\..\\..\\..\\..\\..\\"
+        },
+        "lowerName": {
+            "type": "generated",
+            "generator": "casing",
+            "parameters": {
+                "source": "name",
+                "toLower": true
+            },
+            "replaces": "ProjectNameLower",
+            "fileRename": "ProjectNameLower"
+        }
+    }
+}

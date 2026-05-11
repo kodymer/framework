@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using CompanyName.Ddd.Domain.EventBus;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.Uow
 {

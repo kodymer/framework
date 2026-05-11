@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyName.Data
+﻿namespace CompanyName.Data
 {
     public static class ConnectionStrings
     {
-        public static string DefaultNameConfig { get; } = "Default";
+        public const string DefaultNameConfig = "Default";
     }
 }

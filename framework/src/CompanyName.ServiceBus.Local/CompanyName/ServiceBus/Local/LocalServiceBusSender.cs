@@ -1,9 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Diagnostics;
 
 namespace CompanyName.ServiceBus.Local
 {
@@ -18,7 +13,7 @@ namespace CompanyName.ServiceBus.Local
 
         public Task SendMessageAsync(LocalServiceBusMessage message)
         {
-            Guard.Against.Null(message, nameof(message));
+            Guard.IsNotNull(message, nameof(message));
 
             _queue.Enqueue(message);
 

@@ -1,51 +1,90 @@
-﻿using AutoMapper;
-using AutoMapper.Collection;
+﻿using System.Reflection;
+using AutoMapper;
 using AutoMapper.EquivalencyExpression;
-using System.Reflection;
 using CompanyName.AutoMapper;
+using System.Linq;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameAutoMapper(this IServiceCollection services, params Assembly[] assemblies)
+        public static IServiceCollection AddCompanyNameAutoMapper(this IServiceCollection services, params Assembly[] assemblies)
         {
-            services.AddAutoMapper(options =>
-            {
-                options.AddCollectionMappers();
+            var callingAssembly = Assembly.GetCallingAssembly();
 
-            }, assemblies);
+            services
+                .AddAutoMapper(options =>
+                {
+                    options.AddCollectionMappers();
 
-            services.AddCompanyNameAutoMapperCommon();
+                }, assemblies.DefaultIfEmpty(callingAssembly))
+                .AddCompanyNameAutoMapperCommon();
+
+            return services;
         }
 
-        public static void AddCompanyNameAutoMapper(this IServiceCollection services, Action<IMapperConfigurationExpression> configAction)
+        public static IServiceCollection AddCompanyNameAutoMapper(this IServiceCollection services, Action<IMapperConfigurationExpression> configAction)
         {
-            services.AddAutoMapper(configAction);
+            var callingAssembly = Assembly.GetCallingAssembly();
 
-            services.AddCompanyNameAutoMapperCommon();
+            services
+                .AddAutoMapper(options =>
+                {
+
+                    configAction(options);
+
+                    options.AddCollectionMappers();
+                }, callingAssembly)
+                .AddCompanyNameAutoMapperCommon();
+
+            return services;
         }
 
-        public static void AddCompanyNameAutoMapper(this IServiceCollection services, Action<IMapperConfigurationExpression> configAction, params Assembly[] assemblies)
+        public static IServiceCollection AddCompanyNameAutoMapper(this IServiceCollection services, Action<IMapperConfigurationExpression> configAction, params Assembly[] assemblies)
         {
-            services.AddAutoMapper(configAction, assemblies);
+            var callingAssembly = Assembly.GetCallingAssembly();
 
-            services.AddCompanyNameAutoMapperCommon();
+            services
+                .AddAutoMapper(options =>
+                {
+
+                    configAction(options);
+
+                    options.AddCollectionMappers();
+
+
+                }, assemblies.DefaultIfEmpty(callingAssembly))
+                .AddCompanyNameAutoMapperCommon();
+
+            return services;
         }
 
-        public static void AddCompanyNameAutoMapper(this IServiceCollection services, Action<IServiceProvider, IMapperConfigurationExpression> configAction, params Assembly[] assemblies)
+        public static IServiceCollection AddCompanyNameAutoMapper(this IServiceCollection services, Action<IServiceProvider, IMapperConfigurationExpression> configAction, params Assembly[] assemblies)
         {
-            services.AddAutoMapper(configAction, assemblies);
+            var callingAssembly = Assembly.GetCallingAssembly();
 
-            services.AddCompanyNameAutoMapperCommon();
+            services
+                .AddAutoMapper((sp, options) =>
+                {
+
+                    configAction(sp, options);
+
+                    options.AddCollectionMappers();
+
+                }, assemblies.DefaultIfEmpty(callingAssembly))
+                .AddCompanyNameAutoMapperCommon();
+
+            return services;
         }
 
-        private static void AddCompanyNameAutoMapperCommon(this IServiceCollection services)
+        private static IServiceCollection AddCompanyNameAutoMapperCommon(this IServiceCollection services)
         {
-            services.AddCompanyNameCore();
+            services
+                .AddCompanyNameCore()
+                .AddSingleton<MapperAccessor>()
+                .AddSingleton<IMapperAccessor>(serviceProvider => serviceProvider.GetRequiredService<MapperAccessor>());
 
-            services.AddSingleton<MapperAccessor>();
-            services.AddSingleton<IMapperAccessor>(serviceProvider => serviceProvider.GetRequiredService<MapperAccessor>());
+            return services;
         }
     }
 }

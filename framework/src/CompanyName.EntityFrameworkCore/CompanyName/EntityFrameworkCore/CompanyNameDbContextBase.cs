@@ -1,16 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Options;
-using CompanyName.Auditing;
+﻿using CompanyName.Auditing;
 using CompanyName.Ddd.Domain.EventBus;
-using CompanyName.EntityFrameworkCore.Abstracts;
 using CompanyName.Uow;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CompanyName.EntityFrameworkCore
 {
-    public abstract class CompanyNameDbContextBase<TDbContext> : DbContext, IStartableEfCoreDbContext
-        where TDbContext : DbContext
+    public abstract class CompanyNameDbContextBase<TContext> : DbContext, IInitializableDbContext
+        where TContext : DbContext
     {
         internal protected DbContextOptions Options { get; }
 
@@ -20,7 +17,7 @@ namespace CompanyName.EntityFrameworkCore
 
         public IUnitOfWorkEventRecordRegistrar UnitOfWorkEventRecordRegistrar { get; set; }
 
-        public CompanyNameDbContextBase(DbContextOptions<TDbContext> options)
+        protected CompanyNameDbContextBase(DbContextOptions<TContext> options)
             : base(options)
         {
             Options = options;
@@ -28,10 +25,10 @@ namespace CompanyName.EntityFrameworkCore
             UnitOfWorkEventRecordRegistrar = NullUnitOfWorkEventRecordRegistrar.Instance;
         }
 
-        void IStartableEfCoreDbContext.Initialize(EfCoreDbContextInitianlizationContext initializationContext)
+        void IInitializableDbContext.Initialize(DbContextInitializationContext initializationContext)
         {
-            if(initializationContext.UnitOfWork.Options.Timeout.HasValue && 
-                Database.IsRelational()  && 
+            if (initializationContext.UnitOfWork.Options.Timeout.HasValue &&
+                Database.IsRelational() &&
                 !Database.GetCommandTimeout().HasValue)
             {
                 Database.SetCommandTimeout(TimeSpan.FromMilliseconds(initializationContext.UnitOfWork.Options.Timeout.Value));

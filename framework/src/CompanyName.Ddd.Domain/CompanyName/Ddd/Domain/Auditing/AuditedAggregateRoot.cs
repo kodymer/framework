@@ -1,4 +1,4 @@
-﻿using CompanyName.Auditing.Abstracts;
+﻿using CompanyName.Auditing.Abstractions;
 
 namespace CompanyName.Ddd.Domain.Auditing
 {
@@ -36,4 +36,28 @@ namespace CompanyName.Ddd.Domain.Auditing
         }
     }
 
+    /// <summary>
+    /// This class can be used to simplify implementing <see cref="IAuditedObject{TUserId}"/> for an entity.
+    /// </summary>
+    /// <typeparam name="TKey">Type of the primary key of the entity</typeparam>
+    /// <typeparam name="TUserId">Type of the primary key of the user entity</typeparam>
+    [Serializable]
+    public abstract class AuditedAggregateRoot<TKey, TUserId> : CreationAuditedAggregateRoot<TKey, TUserId>, IAuditedObject<TUserId>
+         where TUserId : struct, IParsable<TUserId>
+    {
+        public virtual DateTime? LastModificationTime { get; set; }
+
+        public virtual TUserId? LastModifierId { get; set; }
+
+        protected AuditedAggregateRoot()
+        {
+
+        }
+
+        protected AuditedAggregateRoot(TKey id)
+            : base(id)
+        {
+
+        }
+    }
 }

@@ -1,4 +1,4 @@
-﻿namespace CompanyName.Ddd.Domain
+﻿namespace CompanyName.Ddd.Domain.Entities
 {
     public class ConcurrencyStampConsts
     {

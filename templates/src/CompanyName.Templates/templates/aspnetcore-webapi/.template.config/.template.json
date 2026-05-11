@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://json.schemastore.org/template.json",
+    "identity": "CompanyName.AspNetCore.WebApi",
+    "author": "Capgemini Engineering",
+    "name": "ASP.NET Core Web API",
+    "description": "Creates an ASP.NET Core Web API compatible with the Enterprise Modular Framework.",
+    "shortName": "CompanyNameLower-webapi",
+    "classifications": ["Web", "WebAPI"],
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "constraints": {
+        "OS": {
+            "type": "os",
+            "args": ["Windows", "linux", "OSX"]
+        }
+    },
+    "sourceName": "ProjectName",
+    "symbols": {
+        "lowerName": {
+            "type": "generated",
+            "generator": "casing",
+            "parameters": {
+                "source": "name",
+                "toLower": true
+            },
+            "replaces": "ProjectNameLower",
+            "fileRename": "ProjectNameLower"
+        }
+    }
+}

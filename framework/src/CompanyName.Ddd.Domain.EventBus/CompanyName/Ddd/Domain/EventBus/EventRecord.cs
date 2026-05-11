@@ -1,4 +1,4 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
 
 namespace CompanyName.Ddd.Domain.EventBus
 {
@@ -12,9 +12,9 @@ namespace CompanyName.Ddd.Domain.EventBus
 
         public EventRecord(object source, object data, long order)
         {
-            Guard.Against.Null(source, nameof(source));
-            Guard.Against.Null(data, nameof(data));
-            Guard.Against.NegativeOrZero(order, nameof(order));
+            Guard.IsNotNull(source);
+            Guard.IsNotNull(data);
+            Guard.IsGreaterThan(order, 0);
 
             Source = source;
             Data = data;

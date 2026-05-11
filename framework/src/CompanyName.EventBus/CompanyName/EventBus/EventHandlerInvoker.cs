@@ -1,5 +1,5 @@
-﻿using Ardalis.GuardClauses;
-using CompanyName.EventBus.Abstracts;
+﻿using CommunityToolkit.Diagnostics;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.EventBus
 {
@@ -7,9 +7,9 @@ namespace CompanyName.EventBus
     {
         public async Task InvokeAsync(IEventHandler eventHandler, Type @event, object eventData)
         {
-            Guard.Against.Null(eventHandler, nameof(eventHandler));
-            Guard.Against.Null(@event, nameof(@event));
-            Guard.Against.Null(eventData, nameof(eventData));
+            Guard.IsNotNull(eventHandler, nameof(eventHandler));
+            Guard.IsNotNull(@event, nameof(@event));
+            Guard.IsNotNull(eventData, nameof(eventData));
 
             IEventHandlerMethodExecutor eventHandlerExecutor = null;
 

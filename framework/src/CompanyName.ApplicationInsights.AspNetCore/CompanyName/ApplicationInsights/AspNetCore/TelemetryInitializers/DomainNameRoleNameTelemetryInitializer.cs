@@ -3,11 +3,11 @@ using System.Globalization;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading;
-using Ardalis.GuardClauses;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.Options;
 using CompanyName.ApplicationInsights.AspNetCore.Extensions;
+using CommunityToolkit.Diagnostics;
 
 namespace CompanyName.ApplicationInsights.AspNetCore.TelemetryInitializers
 {
@@ -31,7 +31,7 @@ namespace CompanyName.ApplicationInsights.AspNetCore.TelemetryInitializers
         public void Initialize(ITelemetry telemetry)
         {
 
-             Guard.Against.Null(telemetry, nameof(telemetry));
+             Guard.IsNotNull(telemetry, nameof(telemetry));
             
 
             if (string.IsNullOrEmpty(telemetry.Context.Cloud.RoleName))

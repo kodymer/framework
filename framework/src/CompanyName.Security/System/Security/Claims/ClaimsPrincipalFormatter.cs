@@ -1,9 +1,5 @@
-﻿using Ardalis.GuardClauses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using CommunityToolkit.Diagnostics;
 
 namespace System.Security.Claims
 {
@@ -11,7 +7,7 @@ namespace System.Security.Claims
     {
         public static string Serialize(ClaimsPrincipal principal)
         {
-            Guard.Against.Null(principal, nameof(principal));
+            Guard.IsNotNull(principal);
 
             using (var stream = new MemoryStream())
             {
@@ -20,13 +16,13 @@ namespace System.Security.Claims
                     principal.WriteTo(principalBinaryWriter);
                 }
 
-               return Encoding.UTF8.GetString(stream.ToArray());
+                return Encoding.UTF8.GetString(stream.ToArray());
             }
         }
 
         public static ClaimsPrincipal Deserialize(string principalSerialized)
         {
-            Guard.Against.NullOrEmpty(principalSerialized, nameof(principalSerialized));
+            Guard.IsNotNullOrEmpty(principalSerialized);
 
             var principalBinaryData = Encoding.UTF8.GetBytes(principalSerialized);
             using (var stream = new MemoryStream(principalBinaryData))

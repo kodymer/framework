@@ -2,7 +2,7 @@ using FluentAssertions;
 using Moq;
 using System;
 using System.Threading.Tasks;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using CompanyName.TestBase;
 using Xunit;
 

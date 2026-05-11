@@ -1,18 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LazyProxy.ServiceProvider;
 
 namespace CompanyName.Core.DependencyInjection.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void Replace<TServiceType, TImplemententionType>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+        public static void AddOrReplace<TServiceType, TImplemententionType>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
             where TServiceType : class
             where TImplemententionType : class, TServiceType
         {
@@ -22,11 +15,31 @@ namespace CompanyName.Core.DependencyInjection.Extensions
             }
         }
 
+        public static void AddOrReplace(this IServiceCollection services, Type serviceType, Type implemententionType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+        {
+            if (!TryReplace(services, serviceType, implemententionType, serviceLifetime))
+            {
+                services.Add(new ServiceDescriptor(serviceType, implemententionType, serviceLifetime));
+            }
+        }
+
+        public static IServiceCollection Replace<TServiceType, TImplemententionType>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+            where TServiceType : class
+            where TImplemententionType : class, TServiceType
+        {
+            if (!TryReplace<TServiceType, TImplemententionType>(services, serviceLifetime))
+            {
+                services.Add(new ServiceDescriptor(typeof(TServiceType), typeof(TImplemententionType), serviceLifetime));
+            }
+
+            return services;
+        }
+
         public static bool TryReplace<TServiceType, TImplemententionType>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
             where TServiceType : class
             where TImplemententionType : class, TServiceType
         {
-            return TryReplace(services, typeof(TServiceType), typeof(TImplemententionType));
+            return TryReplace(services, typeof(TServiceType), typeof(TImplemententionType), serviceLifetime);
         }
 
         public static bool TryReplace(this IServiceCollection services, Type serviceType, Type implemententionType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)

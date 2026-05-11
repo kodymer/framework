@@ -18,12 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.8.1" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.Core\CompanyName.Core.csproj" />
-    <ProjectReference Include="..\CompanyName.ServiceBus.Abstracts\CompanyName.ServiceBus.Abstracts.csproj" />
+    <ProjectReference Include="..\CompanyName.ServiceBus.Abstractions\CompanyName.ServiceBus.Abstractions.csproj" />
   </ItemGroup>
   
 </Project>

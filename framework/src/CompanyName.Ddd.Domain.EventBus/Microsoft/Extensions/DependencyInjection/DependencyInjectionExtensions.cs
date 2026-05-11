@@ -2,9 +2,12 @@
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameDddDomainEventBus(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameDddDomainEventBus(this IServiceCollection services)
         {
-            services.AddCompanyNameCore();
+            services
+                .AddCompanyNameCore();
+
+            return services;
         }
     }
 }

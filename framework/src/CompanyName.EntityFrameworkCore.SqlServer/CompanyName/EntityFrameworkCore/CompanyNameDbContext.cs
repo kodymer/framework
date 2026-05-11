@@ -8,10 +8,10 @@ namespace CompanyName.EntityFrameworkCore
         where TDbContext : DbContext
     {
 
-        public CompanyNameDbContext(DbContextOptions<TDbContext> options)
+        protected CompanyNameDbContext(DbContextOptions<TDbContext> options)
             : base(options)
         {
-            
+
         }
 
         [SuppressMessage("Usage", "EF1001:Internal EF Core API usage.", Justification = "<pendiente>")]

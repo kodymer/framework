@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.AspNetCore\CompanyName.AspNetCore.csproj" />
+    <ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
   </ItemGroup>
 
 </Project>

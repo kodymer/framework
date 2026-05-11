@@ -1,11 +1,7 @@
 ﻿using Dapper;
+using CompanyName.Dapper.Metadata;
 using System.Data.Common;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using CompanyName.Dapper.Metadata;
-
-
-[assembly: InternalsVisibleTo("CompanyName.Dapper.SqlServer")]
 
 namespace CompanyName.Dapper
 {
@@ -31,7 +27,8 @@ namespace CompanyName.Dapper
                 {
                     return new Table<TEntity, TKey>(this, likelyTableName);
                 }
-            };
+            }
+            ;
 
             return new Table<TEntity, TKey>(this, typeof(TEntity).Name);
         }

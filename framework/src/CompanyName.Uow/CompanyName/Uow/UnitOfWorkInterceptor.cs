@@ -1,5 +1,6 @@
 ﻿using Castle.Core.Logging;
 using Castle.DynamicProxy;
+using CompanyName.Uow;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -58,7 +59,7 @@ namespace CompanyName.Uow
                         unitOfWork.Initialize(options);
 
                         Logger.LogDebug("New options setters: {Options}", JsonSerializer.Serialize(options));
-                    } 
+                    }
                     else
                     {
                         Logger.LogWarning("The unit of work already was initialized!", JsonSerializer.Serialize(options));

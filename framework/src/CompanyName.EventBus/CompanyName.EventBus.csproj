@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
-    <ProjectReference Include="..\CompanyName.EventBus.Abstracts\CompanyName.EventBus.Abstracts.csproj" />
+    <ProjectReference Include="..\CompanyName.EventBus.Abstractions\CompanyName.EventBus.Abstractions.csproj" />
     <ProjectReference Include="..\CompanyName.Autofac\CompanyName.Autofac.csproj" />
     <ProjectReference Include="..\CompanyName.ServiceBus.Local\CompanyName.ServiceBus.Local.csproj" />
   </ItemGroup>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
   </ItemGroup>
 
 </Project>

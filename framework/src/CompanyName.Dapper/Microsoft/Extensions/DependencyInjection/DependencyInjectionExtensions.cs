@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.Options;
-using CompanyName.Dapper;
+﻿using CompanyName.Dapper;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddCompanyNameDapper(this IServiceCollection services)
+        public static IServiceCollection AddCompanyNameDapper(this IServiceCollection services)
         {
-            services.AddCompanyNameDddDomain();
-            services.AddCompanyNameData();
+            services
+                .AddCompanyNameDddDomain()
+                .AddCompanyNameData()
+                .AddSingleton<IOptionsFactory<DatabaseOptions>, DatabaseOptionsFactory>();
 
-            services.AddSingleton<IOptionsFactory<DatabaseOptions>, DatabaseOptionsFactory>();
+            return services;
         }
     }
 }

@@ -1,26 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CompanyName.EntityFrameworkCore.Abstractions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using CompanyName.EntityFrameworkCore.Abstracts;
 
 namespace CompanyName.Uow.EntityFrameworkCore
 {
     public class EfCoreTransactionApi : ITransactionApi, ISupportRollback
     {
+        private bool _disposed;
 
         internal protected IDbContextTransaction DbContextTransaction { get; }
 
-        public IEfCoreDbContext StarterDbContext { get; }
+        public IExtendedDbContext StarterDbContext { get; }
 
-        public List<IEfCoreDbContext> AttendedDbContexts { get; }
+        public List<IExtendedDbContext> AttendedDbContexts { get; }
 
         public EfCoreTransactionApi(
             IDbContextTransaction dbContextTransaction,
-            IEfCoreDbContext starterDbContext)
+            IExtendedDbContext starterDbContext)
         {
             DbContextTransaction = dbContextTransaction;
             StarterDbContext = starterDbContext;
 
-            AttendedDbContexts = new List<IEfCoreDbContext>();
+            AttendedDbContexts = new List<IExtendedDbContext>();
         }
 
         public async Task CommitAsync(CancellationToken cancellationToken)
@@ -55,12 +56,31 @@ namespace CompanyName.Uow.EntityFrameworkCore
             await DbContextTransaction.RollbackAsync(cancellationToken);
         }
 
-        public void Dispose()
+        protected virtual void Dispose(bool disposing)
         {
-            DbContextTransaction.Dispose();
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    DbContextTransaction?.Dispose();
+                }
+
+                _disposed = true;
+            }
         }
 
-        internal static string GetKey(IEfCoreDbContext dbContext)
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~EfCoreTransactionApi()
+        {
+            Dispose(disposing: false);
+        }
+
+        internal static string GetKey(IExtendedDbContext dbContext)
         {
             return $"EntityFrameworkCore_{dbContext.GetConnectionString()}";
         }

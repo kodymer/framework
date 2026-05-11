@@ -1,4 +1,4 @@
-﻿using Ardalis.GuardClauses;
+﻿using CommunityToolkit.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace CompanyName.Ddd.Domain.EventBus
 
         public EventNameAttribute(string name)
         {
-            Guard.Against.NullOrWhiteSpace(name);
+            Guard.IsNullOrWhiteSpace(name);
 
             Name = name;
         }
