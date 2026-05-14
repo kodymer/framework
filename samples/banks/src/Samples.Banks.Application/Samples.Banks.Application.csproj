@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <PackageReference Include="CompanyName.Messaging.MassTransit" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Condition="!$(Debug)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Ddd.Application\CompanyName.Ddd.Application.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Caching.StackExchangeRedis\CompanyName.Caching.StackExchangeRedis.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Messaging.MassTransit\CompanyName.Messaging.MassTransit.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\Samples.Banks.Domain\Samples.Banks.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
