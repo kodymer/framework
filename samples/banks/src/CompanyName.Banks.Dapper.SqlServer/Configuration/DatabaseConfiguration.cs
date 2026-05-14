@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CompanyName.Banks.Dapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CompanyName.Banks.Dapper;
-using CompanyName.Dapper.SqlServer;
 
 namespace CompanyName.Banks.Configuration
 {

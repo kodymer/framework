@@ -1,6 +1,6 @@
 ﻿using CompanyName.Banks;
 using CompanyName.Ddd.Domain.Services;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 
 namespace CompanyName.Banks
 {

@@ -16,7 +16,7 @@ namespace CompanyName.Ddd.Domain.EventBus
 
         public EventNameAttribute(string name)
         {
-            Guard.IsNullOrWhiteSpace(name);
+            Guard.IsNotNullOrWhiteSpace(name);
 
             Name = name;
         }

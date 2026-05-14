@@ -2,7 +2,7 @@
 
 namespace CompanyName.Banks.Traceability
 {
-    public interface IErrorRepository : IRepository<Error, Guid>
+    public interface IErrorRepository : IRepository<Error>
     {
     }
 }

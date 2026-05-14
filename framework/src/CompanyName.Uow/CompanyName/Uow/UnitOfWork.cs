@@ -208,7 +208,7 @@ namespace CompanyName.Uow
         protected T FindApi<T>(IDictionary<string, T> apis, string key)
             where T : class
         {
-            Guard.IsNullOrEmpty(key);
+            Guard.IsNotNullOrEmpty(key);
 
             if (apis.TryGetValue(key, out T api))
             {
@@ -221,7 +221,7 @@ namespace CompanyName.Uow
         protected void AddApi<T>(IDictionary<string, T> apis, string key, T api)
             where T : class
         {
-            Guard.IsNullOrEmpty(key);
+            Guard.IsNotNullOrEmpty(key);
             Guard.IsNotNull(api, nameof(api));
 
             if (apis.ContainsKey(key))

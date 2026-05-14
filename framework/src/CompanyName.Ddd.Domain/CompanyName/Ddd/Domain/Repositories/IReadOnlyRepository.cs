@@ -16,7 +16,7 @@ namespace CompanyName.Ddd.Domain.Repositories
         Task<List<TResult>> ProjectToListAsync<TResult>(
             ISpecification<T> specification, CancellationToken cancellationToken = default);
 
-        Task<TResult?> ProjectToFirstAsync<TResult>(
+        Task<TResult> ProjectToFirstAsync<TResult>(
             ISpecification<T> specification, CancellationToken cancellationToken = default);
     }
 }

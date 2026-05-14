@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="CompanyName.Dapper.SqlServer" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Dapper.SqlServer" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup>

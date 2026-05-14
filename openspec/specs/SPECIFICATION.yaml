@@ -1,0 +1,89 @@
+---
+# CompanyName Framework - Technical Specification
+# OpenSpec Format
+
+metadata:
+  title: "CompanyName Enterprise Modular Framework"
+  subtitle: "Domain-Driven Design | CQRS | Clean Architecture"
+  version: "1.0.0-rc"
+  status: "Draft"
+  lastUpdated: "2026-05-13"
+  
+project:
+  name: "CompanyName Framework"
+  company: "Verisure"
+  author: "Capgemini Engineering"
+  targetFramework: ".NET 8.0"
+  language: "C#"
+  
+architecture:
+  patterns:
+    - "Domain-Driven Design (DDD)"
+    - "CQRS (Command Query Responsibility Segregation)"
+    - "Clean Architecture"
+    - "Specification Pattern"
+    - "Unit of Work Pattern"
+    - "Event Sourcing"
+  
+  layers:
+    - "Presentation (ASP.NET Core)"
+    - "Application (DDD Application Services)"
+    - "Domain (Business Logic & Rules)"
+    - "Data Access (Repository + EF Core/Dapper)"
+    - "Infrastructure (Cross-cutting Concerns)"
+    - "Core (Utilities & Base Classes)"
+
+modules:
+  crossCutting:
+    - "Caching (Hybrid + Redis)"
+    - "EventBus (Local + Azure)"
+    - "ServiceBus (Local + Azure)"
+    - "Repository Pattern (EF Core + Dapper with Specification)"
+    - "Domain & Application Base Services"
+    - "Auditing"
+    - "Security/Claims"
+    - "Localization"
+    - "Logging/Application Insights"
+    - "Validation (FluentValidation)"
+
+templates:
+  packageBase: "CompanyName.Templates"
+  concrete:
+    - name: "aspnetcore-module"
+      shortName: "CompanyNameLower-module"
+      description: "ASP.NET Core Module without Host (for framework sharing)"
+    - name: "aspnetcore-webapi"
+      shortName: "CompanyNameLower-webapi"
+      description: "ASP.NET Core Web API with Host project"
+    - name: "vuejs"
+      shortName: "CompanyNameLower-vue"
+      description: "Vue.js 3 Frontend Application"
+
+documentation:
+  structure:
+    - section: "01_vision_arquitectura"
+      description: "Architectural foundation and principles"
+      documents: 4
+    - section: "02_modulos_transversales"
+      description: "Cross-cutting concern modules"
+      documents: 10
+    - section: "03_plantillas"
+      description: "Template installation and usage"
+      documents: 6
+    - section: "04_guias_implementacion"
+      description: "Step-by-step implementation guides"
+      documents: 4
+    - section: "05_ejemplos_practicos"
+      description: "Practical code examples"
+      documents: 4
+    - section: "06_decisiones_arquitectonicas"
+      description: "Architecture Decision Records (ADRs)"
+      documents: 5
+
+contact:
+  organization: "Capgemini Engineering"
+  email: "contact@capgemini.engineering"
+
+compliance:
+  license: "Proprietary - Verisure"
+  releaseNotes: "CHANGELOG.md"

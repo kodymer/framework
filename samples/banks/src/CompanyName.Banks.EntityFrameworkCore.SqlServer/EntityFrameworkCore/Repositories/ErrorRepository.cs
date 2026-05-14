@@ -1,13 +1,12 @@
 ﻿using CompanyName.Banks.Traceability;
-using CompanyName.Domain.EntityFrameworkCore.Repositories;
-using CompanyName.EntityFrameworkCore.Abstracts;
+using CompanyName.EntityFrameworkCore.Repositories;
 
 namespace CompanyName.Banks.EntityFrameworkCore.Repositories
 {
-    public class ErrorRepository : EfCoreRepository<TraceabilityDbContext, Error, Guid>, IErrorRepository
+    public class ErrorRepository : EfCoreRepository<TraceabilityDbContext, Error>, IErrorRepository
     {
-        public ErrorRepository(IDbContextProvider<TraceabilityDbContext> dbContextProvider)
-            : base(dbContextProvider)
+        public ErrorRepository(TraceabilityDbContext dbContext)
+            : base(dbContext)
         {
 
         }

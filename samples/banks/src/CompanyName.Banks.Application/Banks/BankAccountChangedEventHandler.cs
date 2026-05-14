@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Text.Json;
 using CompanyName.Banks.Etos;
-using CompanyName.EventBus.Abstracts;
+using CompanyName.EventBus.Abstractions;
 using CompanyName.Security.Users;
 
 namespace CompanyName.Banks

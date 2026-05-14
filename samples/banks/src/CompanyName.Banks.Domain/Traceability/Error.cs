@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using System.Runtime.InteropServices;
+﻿using CommunityToolkit.Diagnostics;
 using CompanyName.Ddd.Domain.Auditing;
 
 namespace CompanyName.Banks.Traceability
@@ -8,7 +7,7 @@ namespace CompanyName.Banks.Traceability
     {
         public const string TableName = "Errors";
         public const int TypeMaxLength = 150;
-        public const int MessageMaxLength  = 1000;
+        public const int MessageMaxLength = 1000;
         public const int StackTraceMaxLength = 10000;
 
         public string Type { get; set; }
@@ -19,7 +18,7 @@ namespace CompanyName.Banks.Traceability
 
         public static Error Create(Exception exception)
         {
-            Guard.Against.Null(exception);
+            Guard.IsNotNull(exception);
 
             return new Error()
             {

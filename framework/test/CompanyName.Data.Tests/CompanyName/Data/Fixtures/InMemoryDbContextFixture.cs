@@ -1,5 +1,6 @@
 ﻿using CompanyName.Ddd.Domain.Entities;
 using CompanyName.EntityFrameworkCore;
+using FluentAssertions.Primitives;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -14,7 +15,7 @@ namespace CompanyName.Data.Fixtures
         public InMemoryDbContextFixture()
         {
             var options = new DbContextOptionsBuilder<InMemoryCompanyNameDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
             DbContext = new InMemoryCompanyNameDbContext(options);

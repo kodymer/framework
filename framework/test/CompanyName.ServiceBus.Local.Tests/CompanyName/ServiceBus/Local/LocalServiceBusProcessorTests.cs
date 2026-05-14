@@ -43,8 +43,6 @@ namespace CompanyName.ServiceBus.Local
 
             cancellationTokenSource.Cancel();
 
-            task.Wait();
-
             _processorStub.Object.IsProcessing.Should().BeTrue();
         }
 

@@ -1,12 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CompanyName.Ddd.Domain.Services;
+using CompanyName.EventBus.Abstractions;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
-using System.Threading.Tasks;
-using CompanyName.Ddd.Domain.Services;
-using CompanyName.EventBus.Abstracts;
 
 namespace CompanyName.Banks
 {

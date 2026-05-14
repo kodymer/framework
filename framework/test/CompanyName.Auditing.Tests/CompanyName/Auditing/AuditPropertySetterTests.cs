@@ -1,6 +1,3 @@
-using CompanyName.Auditing;
-using CompanyName.Auditing.Abstractions;
-using CompanyName.Security.Users;
 using CompanyName.Auditing.Abstractions;
 using CompanyName.Security.Users;
 using CompanyName.TestBase;
@@ -8,7 +5,6 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using System;
-using System.Security.Claims;
 using Xunit;
 
 namespace CompanyName.Auditing
@@ -27,11 +23,11 @@ namespace CompanyName.Auditing
         [Fact]
         public void Given_User_When_CreateAnEntity_Then_CreationAuditPropertiesArePopulated()
         {
-            Guid? EQUAL_USER_ID = Guid.NewGuid();
+            Guid EQUAL_USER_ID = Guid.NewGuid();
             var entityMock = new FullAuditedEntity();
 
             var currentUser = new Mock<ICurrentUser>();
-            currentUser.SetupGet(u => u.Id).Returns(EQUAL_USER_ID);
+            currentUser.Setup(u => u.GetId<Guid>()).Returns(EQUAL_USER_ID);
 
             var _auditPropertySetterMock = new AuditPropertySetter(NullLogger<AuditPropertySetter>.Instance, currentUser.Object);
             _auditPropertySetterMock.SetCreationProperties(entityMock);
@@ -62,11 +58,11 @@ namespace CompanyName.Auditing
         [Fact]
         public void Given_User_When_ModifyAnEntity_Then_ModificationAuditPropertiesArePopulated()
         {
-            Guid? EQUAL_USER_ID = Guid.NewGuid();
+            Guid EQUAL_USER_ID = Guid.NewGuid();
             var entityMock = new FullAuditedEntity();
 
             var currentUser = new Mock<ICurrentUser>();
-            currentUser.SetupGet(u => u.Id).Returns(EQUAL_USER_ID);
+            currentUser.Setup(u => u.GetId<Guid>()).Returns(EQUAL_USER_ID);
 
             var _auditPropertySetterMock = new AuditPropertySetter(NullLogger<AuditPropertySetter>.Instance, currentUser.Object);
             _auditPropertySetterMock.SetModificationProperties(entityMock);
@@ -97,14 +93,14 @@ namespace CompanyName.Auditing
         [Fact]
         public void Given_User_When_DeleteAnEntity_Then_DeletionAuditPropertiesArePopulated()
         {
-            Guid? EQUAL_USER_ID = Guid.NewGuid();
+            Guid EQUAL_USER_ID = Guid.NewGuid();
             var entityMock = new FullAuditedEntity()
             {
                 IsDeleted = true
             };
 
             var currentUser = new Mock<ICurrentUser>();
-            currentUser.SetupGet(u => u.Id).Returns(EQUAL_USER_ID);
+            currentUser.Setup(u => u.GetId<Guid>()).Returns(EQUAL_USER_ID);
 
             var _auditPropertySetterMock = new AuditPropertySetter(NullLogger<AuditPropertySetter>.Instance, currentUser.Object);
             _auditPropertySetterMock.SetDeletionProperties(entityMock);

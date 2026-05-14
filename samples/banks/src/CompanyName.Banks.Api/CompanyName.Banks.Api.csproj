@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="$(MicrosoftPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MicrosoftPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    <PackageReference Include="CompanyName.AspNetCore.Mvc" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />-->
+    <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />-->
+    <!--<PackageReference Include="Swashbuckle.AspNetCore" />-->
+    <PackageReference Include="CompanyName.AspNetCore.Mvc" Condition="!$(Debug)" />
   </ItemGroup>
 
   <ItemGroup>

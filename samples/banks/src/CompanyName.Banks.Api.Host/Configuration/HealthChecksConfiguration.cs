@@ -24,7 +24,6 @@ namespace CompanyName.Banks.Configuration
                     SelfName,
                     timeout: defaultTimeout,
                     check: () => HealthCheckResult.Healthy());
-                //.AddSqlServer(configuration["SqlConnectionString"]);
 
             return services;
         }

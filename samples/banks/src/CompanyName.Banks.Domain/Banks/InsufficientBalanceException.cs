@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace CompanyName.Banks.Bank
 {
-    [Serializable]
+
     internal class InsufficientBalanceException : Exception
     {
         public InsufficientBalanceException()
@@ -15,10 +15,6 @@ namespace CompanyName.Banks.Bank
         }
 
         public InsufficientBalanceException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        protected InsufficientBalanceException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

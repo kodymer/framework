@@ -42,8 +42,6 @@ namespace CompanyName.AspNetCore.Http
 
         private bool _isProblem;
 
-        private long _contentLength;
-
 
         public DefaultHttpResponseBuilder(IHttpContextAccessor httpContextAccessor, int defaultHttpStatusCode = StatusCodes.Status500InternalServerError)
         {

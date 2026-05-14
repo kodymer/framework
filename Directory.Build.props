@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <Company>Verisure</Company>
-    <Authors>Capgemini Engineering</Authors>
+    <Company>Capgemini Engineering</Company>
+    <Authors>Keymer Léon Draganov</Authors>
     <Version>1.0.0-rc</Version>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl></RepositoryUrl>

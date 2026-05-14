@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="CompanyName.Ddd.Domain.EventBus" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Ddd.Domain.EventBus" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup>

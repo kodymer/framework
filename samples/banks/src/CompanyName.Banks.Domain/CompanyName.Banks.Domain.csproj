@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="CompanyName.Ddd.Domain" Version="$(Version)" Condition="!$(Debug)" />
-    <PackageReference Include="CompanyName.EventBus.Azure" Version="$(Version)" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.Ddd.Domain" Condition="!$(Debug)" />
+    <PackageReference Include="CompanyName.EventBus.Azure" Condition="!$(Debug)" />
   </ItemGroup>
   
   <ItemGroup> 

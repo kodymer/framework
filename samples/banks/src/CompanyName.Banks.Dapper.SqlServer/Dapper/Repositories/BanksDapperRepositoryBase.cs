@@ -1,4 +1,4 @@
-﻿using CompanyName.Dapper.Domain.Repositories;
+﻿using CompanyName.Dapper.Repositories;
 using CompanyName.Ddd.Domain.Entities;
 
 namespace CompanyName.Banks.Dapper.Repositories

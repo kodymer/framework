@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="CompanyName.Ddd.Application" Version="$(Version)" Condition="!$(Debug)"/>
-    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Version="$(Version)" Condition="!$(Debug)"/>
+    <PackageReference Include="CompanyName.Ddd.Application" Condition="!$(Debug)"/>
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Condition="!$(Debug)"/>
   </ItemGroup>
 
   <ItemGroup>

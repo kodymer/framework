@@ -62,7 +62,7 @@ namespace CompanyName.Uow
                     }
                     else
                     {
-                        Logger.LogWarning("The unit of work already was initialized!", JsonSerializer.Serialize(options));
+                        Logger.LogWarning("The unit of work already was initialized!");
                         Logger.LogDebug("Current options: {Options}", JsonSerializer.Serialize(options));
                     }
                 }
