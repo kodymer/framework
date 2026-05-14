@@ -1,12 +1,13 @@
 <Project>
 
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
-  
-  <PropertyGroup>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-    <RootNamespace>CompanyName.Banks</RootNamespace>
-    <Debug>true</Debug>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<CompanyNameVersion>1.0.0</CompanyNameVersion>
+		<Debug>True</Debug>
+		<RootNamespace>Samples.Banks</RootNamespace>
+	</PropertyGroup>
 
 </Project>

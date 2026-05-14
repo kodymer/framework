@@ -1,0 +1,6 @@
+@Samples.Banks.HttpApi.Host_HostAddress = http://localhost:5074
+
+GET {{Samples.Banks.HttpApi.Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
