@@ -1,6 +1,6 @@
 ﻿using System.Security.Principal;
 
-namespace CompanyName.ServiceBus.Abstractions
+namespace CompanyName.Messaging.Abstractions
 {
     public interface IServiceBusReceivedMessage
     {

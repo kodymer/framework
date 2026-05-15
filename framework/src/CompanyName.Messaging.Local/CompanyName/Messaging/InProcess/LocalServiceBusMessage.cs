@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CompanyName.ServiceBus.Abstractions;
+using CompanyName.Messaging.Abstractions;
 
-namespace CompanyName.ServiceBus.Local
+namespace CompanyName.Messaging.InProcess
 {
     public class LocalServiceBusMessage : IServiceBusMessage, IServiceBusReceivedMessage
     {

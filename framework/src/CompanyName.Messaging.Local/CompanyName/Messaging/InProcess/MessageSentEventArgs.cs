@@ -1,6 +1,6 @@
-﻿namespace CompanyName.ServiceBus.Local
+﻿namespace CompanyName.Messaging.InProcess
 {
-    public class MessageReceivedEventArgs : EventArgs
+    public class MessageSentEventArgs : EventArgs
     {
         public string Subject { get; }
 
@@ -8,7 +8,7 @@
 
         public object Body { get; }
 
-        internal MessageReceivedEventArgs(LocalServiceBusMessage message)
+        internal MessageSentEventArgs(LocalServiceBusMessage message)
         {
             Subject = message.Subject;
             MessageId = message.Subject;

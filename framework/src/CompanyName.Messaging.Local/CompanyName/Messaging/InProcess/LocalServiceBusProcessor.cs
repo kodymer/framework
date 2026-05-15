@@ -1,4 +1,4 @@
-﻿namespace CompanyName.ServiceBus.Local
+﻿namespace CompanyName.Messaging.InProcess
 {
     public class LocalServiceBusProcessor : ILocalServiceBusProcessor
     {

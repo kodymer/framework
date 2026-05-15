@@ -1,5 +1,5 @@
 ﻿using LazyProxy.ServiceProvider;
-using CompanyName.ServiceBus.Local;
+using CompanyName.Messaging.InProcess;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

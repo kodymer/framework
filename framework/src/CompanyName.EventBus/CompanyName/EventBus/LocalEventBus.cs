@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
 using CompanyName.EventBus.Abstractions;
-using CompanyName.ServiceBus.Local;
+using CompanyName.Messaging.InProcess;
 
 namespace CompanyName.EventBus
 {

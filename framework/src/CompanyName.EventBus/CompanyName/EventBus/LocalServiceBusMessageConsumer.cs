@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Collections.Concurrent;
 using System.Text.Json;
-using CompanyName.ServiceBus.Local;
+using CompanyName.Messaging.InProcess;
 
 namespace CompanyName.EventBus
 {

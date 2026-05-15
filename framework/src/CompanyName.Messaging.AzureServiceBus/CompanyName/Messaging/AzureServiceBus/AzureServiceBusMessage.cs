@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using CompanyName.ServiceBus.Abstractions;
+using CompanyName.Messaging.Abstractions;
 
 namespace CompanyName.Messaging.AzureServiceBus
 {

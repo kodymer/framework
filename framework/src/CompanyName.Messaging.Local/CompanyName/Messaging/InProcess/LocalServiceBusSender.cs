@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Diagnostics;
 
-namespace CompanyName.ServiceBus.Local
+namespace CompanyName.Messaging.InProcess
 {
     public class LocalServiceBusSender : ILocalServiceBusSender
     {

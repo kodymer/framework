@@ -83,7 +83,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Data.Tests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Abstractions", "src\CompanyName.Messaging.Abstractions\CompanyName.Messaging.Abstractions.csproj", "{365BA2D9-4C1B-4A26-B10C-4BC145FC197E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Local", "src\CompanyName.Messaging.Local\CompanyName.Messaging.Local.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.InProcess", "src\CompanyName.Messaging.Local\CompanyName.Messaging.InProcess.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Local.Tests", "test\CompanyName.Messaging.Local.Tests\CompanyName.Messaging.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
 EndProject

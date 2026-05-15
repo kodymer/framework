@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompanyName.ServiceBus.Local
+namespace CompanyName.Messaging.InProcess
 {
     public class LocalServiceBusQueue : IDisposable
     {

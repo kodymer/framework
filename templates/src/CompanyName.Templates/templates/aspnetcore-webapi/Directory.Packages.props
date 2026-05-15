@@ -17,9 +17,8 @@
     <PackageVersion Include="CompanyName.Dapper.SqlServer" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.Ddd.Application" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.Ddd.Domain" Version="$(CompanyNameVersion)" />
-    <PackageVersion Include="CompanyName.Ddd.Domain.Eventing" Version="$(CompanyNameVersion)" />
+    <PackageVersion Include="CompanyName.Ddd.Domain.EventBus" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.Localization" Version="$(CompanyNameVersion)" />
-    <PackageVersion Include="CompanyName.Messaging.MassTransit" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.TestBase" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="FluentResults" Version="4.0.0" />
     <PackageVersion Include="FluentResults.Extensions.AspNetCore" Version="0.2.0" />
@@ -27,7 +26,6 @@
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.7" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components" Version="8.0.22" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.22" />

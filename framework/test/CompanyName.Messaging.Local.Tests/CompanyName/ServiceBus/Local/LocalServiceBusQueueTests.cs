@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CompanyName.TestBase;
 using Xunit;
+using CompanyName.Messaging.InProcess;
 
 namespace CompanyName.ServiceBus.Local
 {

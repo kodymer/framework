@@ -14,7 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="CompanyName.Ddd.Domain" />
-    <PackageReference Include="CompanyName.Ddd.Domain.Eventing" />
+	<PackageReference Include="CompanyName.Ddd.Domain.EventBus" />
+	<PackageReference Include="CompanyName.EventBus.AzureServiceBus" />
     <PackageReference Include="CompanyName.Localization" />
   </ItemGroup>
 

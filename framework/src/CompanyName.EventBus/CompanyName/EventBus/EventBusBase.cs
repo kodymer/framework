@@ -1,6 +1,6 @@
 ﻿using CompanyName.Ddd.Domain.EventBus;
 using CompanyName.EventBus.Abstractions;
-using CompanyName.ServiceBus.Abstractions;
+using CompanyName.Messaging.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;

@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompanyName.ServiceBus.Abstractions
+namespace CompanyName.Messaging.Abstractions
 {
     public interface IServiceBusMessage
     {

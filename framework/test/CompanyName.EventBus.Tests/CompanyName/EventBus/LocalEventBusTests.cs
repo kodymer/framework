@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using Moq;
 using System.Threading.Tasks;
-using CompanyName.ServiceBus.Local;
 using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using Xunit;
+using CompanyName.Messaging.InProcess;
 
 namespace CompanyName.EventBus
 {

@@ -1,4 +1,4 @@
-﻿using CompanyName.ServiceBus.Local;
+﻿using CompanyName.Messaging.InProcess;
 
 namespace CompanyName.EventBus
 {
