@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\..\..\..\packages.props" />
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>CompanyName.ProjectName.Domain.Shared</AssemblyName>
+    <PackageId>CompanyName.ProjectName.Domain.Shared</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\framework1\src\CompanyName.Core\CompanyName.Core.csproj" />
+  </ItemGroup>
+	
+</Project>

@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="CompanyName.Core" Condition="!$(Debug)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework1\src\CompanyName.Core\CompanyName.Core.csproj" Condition="$(Debug)" />
+  </ItemGroup> 
+</Project>

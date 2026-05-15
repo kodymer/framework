@@ -4,7 +4,9 @@
   "identity": "Enterprise.ModularFramework.Root",
   "author": "Capgemini Engineering",
   "description": "Creates the base structure for a modular and scalable enterprise framework.",
-  "classifications": ["Code"],
+  "classifications": [
+    "Code"
+  ],
   "shortName": "fwk",
   "name": "Enterprise Modular Framework",
   "tags": {
@@ -14,7 +16,19 @@
   "constraints": {
     "OS": {
       "type": "os",
-      "args": ["Windows", "linux", "OSX"]
+      "args": [
+        "Windows",
+        "linux",
+        "OSX"
+      ]
+    },
+    "SDK": {
+      "type": "sdk-version",
+      "args": [
+        "8.0.*",
+        "9.0.*",
+        "10.0.*"
+      ]
     }
   },
   "sourceName": "CompanyName",
@@ -32,37 +46,7 @@
     }
   ],
   "symbols": {
-    "targetFramework": {
-      "type": "parameter",
-      "description": "The target framework for the template projects.",
-      "datatype": "choice",
-      "isEnabled": true,
-      "isRequired": false,
-      "enableQuotelessLiterals": true,
-      "allowMultipleValues": false,
-      "choices": [
-        {
-          "choice": "net8.0",
-          "description": ".NET 8.0 (LTS)"
-        },
-        {
-          "choice": "net9.0",
-          "description": ".NET 9.0 (STS)"
-        },
-        {
-          "choice": "net10.0",
-          "description": ".NET 10.0 (LTS)"
-        }
-      ],
-      "replaces": "NetVersion",
-      "defaultValue": "net8.0"
-    },
-    "dotnetSdk": {
-      "type": "computed",
-      "value": "targetFramework == 'net8.0' ? '8.0.100' : targetFramework == 'net9.0' ? '9.0.100' : '10.0.100'",
-      "replaces": "NetSDK"
-    },
-    "sourceLink": {
+    "source-link": {
       "type": "parameter",
       "description": "Source control provider used for SourceLink configuration.",
       "datatype": "choice",
@@ -87,19 +71,84 @@
       "replaces": "SourceLinkPackage",
       "defaultValue": "Microsoft.SourceLink.GitHub"
     },
-    "sourceLinkVersion": {
-      "type": "computed",
-      "value": "targetFramework == 'net8.0' ? '8.0.0' : targetFramework == 'net9.0' ? '9.0.0' : '10.0.0'",
-      "replaces": "SourceLinkVersion"
+    "framework": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Target framework",
+      "choices": [
+        {
+          "choice": "net8.0",
+          "description": "Target .NET 8 (LTS)"
+        },
+        {
+          "choice": "net9.0",
+          "description": "Target .NET 9 (STS)"
+        },
+        {
+          "choice": "net10.0",
+          "description": "Target .NET 10 (LTS)"
+        }
+      ],
+      "defaultValue": "net8.0",
+      "replaces": "TargetFrameworkOverride"
     },
-    "nugetSource": {
+    "nuget": {
       "type": "parameter",
       "description": "Optional custom NuGet feed URL (leave empty to skip).",
       "datatype": "string",
-      "isEnabled": true,
-      "isRequired": false,
       "replaces": "NugetSource",
-      "defaultValue": ""
+      "defaultValue": "",
+      "displayName": "NuGet Source URL"
+    },
+    "dotnetSdk": {
+      "type": "generated",
+      "generator": "switch",
+      "parameters": {
+        "evaluator": "C++",
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(framework == 'net8.0')",
+            "value": "8.0.100"
+          },
+                    {
+            "condition": "(framework == 'net9.0')",
+            "value": "9.0.100"
+          },
+                    {
+            "condition": "(framework == 'net10.0')",
+            "value": "10.0.100"
+          }
+        ]
+      },
+      "replaces": "NetSDK"
+    },
+    "sourceLinkVersion": {
+      "type": "generated",
+      "generator": "switch",
+      "parameters": {
+        "evaluator": "C++",
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(framework == 'net8.0')",
+            "value": "8.0.0"
+          },
+                    {
+            "condition": "(framework == 'net9.0')",
+            "value": "9.0.0"
+          },
+                    {
+            "condition": "(framework == 'net10.0')",
+            "value": "10.0.0"
+          }
+        ]
+      },
+      "replaces": "SourceLinkVersion"
+    },
+    "hasNugetCorp": {
+      "type": "computed",
+      "value": "nuget != ''"
     },
     "lowerName": {
       "type": "generated",
@@ -110,6 +159,64 @@
       },
       "replaces": "CompanyNameLower",
       "fileRename": "CompanyNameLower"
+    },
+    "templateOn": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "template"
+      },
+      "fileRename": "__template"
+    },
+    "workingDirectory": {
+      "type": "bind",
+      "binding": "host:WorkingDirectory"
+    },
+    "operationSystem": {
+      "type": "bind",
+      "binding": "env:OS"
+    },
+    "separator": {
+      "type": "generated",
+      "generator": "switch",
+      "parameters": {
+        "evaluator": "C++",
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(operationSystem == 'Windows_NT')",
+            "value": "\\"
+          },
+          {
+            "condition": "(operationSystem != 'Windows_NT')",
+            "value": "/"
+          }
+        ]
+      }
+    },
+    "localNuGet": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          {
+            "type": "ref",
+            "value": "workingDirectory"
+          },
+          {
+            "type": "ref",
+            "value": "separator"
+          },
+          {
+            "type": "const",
+            "value": "nupkg"
+          }
+        ],
+        "separator": "",
+        "removeEmptyValues": false
+      },
+      "replaces": "NugetSourceLocal",
+      "fileRename": "-o-"
     }
   }
 }

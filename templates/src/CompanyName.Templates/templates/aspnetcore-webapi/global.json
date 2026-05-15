@@ -1,7 +1,0 @@
-{
-    "sdk": {
-        "version": "NetSDK",
-        "rollForward": "latestFeature",
-        "allowPrerelease": false
-    }
-}

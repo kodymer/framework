@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="CompanyName.Dapper.SqlServer" Condition="!$(Debug)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework1\src\CompanyName.Dapper.SqlServer\CompanyName.Dapper.SqlServer.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\Samples.Banks.Application\Samples.Banks.Application.csproj" />
+  </ItemGroup>
+  
+</Project>

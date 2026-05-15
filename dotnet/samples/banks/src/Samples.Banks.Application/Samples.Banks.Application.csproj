@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Compile Remove="AccountManagement\CreateBankAccountCommandHandler.cs" />
+    <Compile Remove="AccountManagement\GetAllBankAccountsQueryHandler.cs" />
+    <Compile Remove="MoneyTransfer\CreateBankTransferCommandHandler.cs" />
+    <Compile Remove="MoneyTransfer\GetTrasnferHistoryQueryHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Condition="!$(Debug)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework1\src\CompanyName.Ddd.Application\CompanyName.Ddd.Application.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework1\src\CompanyName.Caching.StackExchangeRedis\CompanyName.Caching.StackExchangeRedis.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\..\..\..\framework\src\CompanyName.Messaging.MassTransit\CompanyName.Messaging.MassTransit.csproj" Condition="$(Debug)" />
+    <ProjectReference Include="..\Samples.Banks.Domain\Samples.Banks.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

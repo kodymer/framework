@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="FluentResults.Extensions.AspNetCore" />
+		<PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CompanyName.AspNetCore.Mvc" Condition="!$(Debug)" />
+    
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\framework1\src\CompanyName.AspNetCore.Mvc\CompanyName.AspNetCore.Mvc.csproj" Condition="$(Debug)" />
+		<ProjectReference Include="..\Samples.Banks.Application\Samples.Banks.Application.csproj" />
+	</ItemGroup>
+
+</Project>
