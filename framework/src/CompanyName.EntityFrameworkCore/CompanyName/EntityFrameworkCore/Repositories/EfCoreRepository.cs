@@ -2,6 +2,7 @@
 using CommunityToolkit.Diagnostics;
 using CompanyName.Ddd.Domain.Entities;
 using CompanyName.Ddd.Domain.Repositories;
+using CompanyName.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyName.EntityFrameworkCore.Repositories

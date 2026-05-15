@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using CompanyName.Auditing.Abstractions;
 using CompanyName.Core;
 using CompanyName.Core.Reflection;
-using CompanyName.Ddd.Domain;
 using CompanyName.Ddd.Domain.Entities;
+using CompanyName.Auditing;
 
 namespace CompanyName.EntityFrameworkCore.Modeling
 {

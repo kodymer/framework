@@ -1,14 +1,13 @@
 ﻿using CommunityToolkit.Diagnostics;
 using CompanyName.EntityFrameworkCore;
 using CompanyName.EntityFrameworkCore.Abstractions;
-using CompanyName.Uow.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace CompanyName.Uow
+namespace CompanyName.Uow.EntityFrameworkCore
 {
     public class UnitOfWorkApiFactory<TContext> : IUnitOfWorkApiFactory<TContext>
         where TContext : IExtendedDbContext

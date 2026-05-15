@@ -21,18 +21,18 @@ namespace CompanyName.Uow
 
             foreach (var entry in entries.ToList())
             {
-                if (entry.Entity is IGenerateIntegrationEvents integrationEventGenerator)
+                if (entry.Entity is IIntegrationEventSource integrationEventSource)
                 {
-                    integrationEvents.AddRange(integrationEventGenerator.GetDistributedEvents());
+                    integrationEvents.AddRange(integrationEventSource.GetIntegrationEvents());
 
-                    integrationEventGenerator.ClearDistributedEvents();
+                    integrationEventSource.ClearIntegrationEvents();
                 }
 
-                if (entry.Entity is IGenerateDomainEvents domainEventGenerator)
+                if (entry.Entity is IDomainEventSource domainEventSource)
                 {
-                    domainEvents.AddRange(domainEventGenerator.GetLocalEvents());
+                    domainEvents.AddRange(domainEventSource.GetDomainEvents());
 
-                    domainEventGenerator.ClearLocalEvents();
+                    domainEventSource.ClearDomainEvents();
                 }
             }
 

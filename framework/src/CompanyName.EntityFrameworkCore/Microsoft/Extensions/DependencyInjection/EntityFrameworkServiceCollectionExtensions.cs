@@ -2,6 +2,7 @@
 using CompanyName.EntityFrameworkCore;
 using CompanyName.EntityFrameworkCore.Abstractions;
 using CompanyName.Uow;
+using CompanyName.Uow.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection

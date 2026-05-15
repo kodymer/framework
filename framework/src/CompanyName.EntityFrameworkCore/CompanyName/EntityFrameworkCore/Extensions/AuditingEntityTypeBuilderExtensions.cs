@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using CompanyName.Core;
 using CompanyName.Core.Reflection;
 using CompanyName.Ddd.Domain.Entities;
-using CompanyName.Auditing.Abstractions;
+using CompanyName.Auditing;
 
 namespace CompanyName.EntityFrameworkCore.Extensions
 {
