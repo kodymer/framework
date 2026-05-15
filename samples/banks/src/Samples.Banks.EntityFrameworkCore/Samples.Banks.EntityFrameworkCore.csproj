@@ -3,15 +3,15 @@
 	<ItemGroup>
 		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
 	</ItemGroup>
 
 	<ItemGroup>

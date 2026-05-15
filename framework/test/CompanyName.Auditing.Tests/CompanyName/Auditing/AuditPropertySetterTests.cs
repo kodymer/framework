@@ -1,4 +1,3 @@
-using CompanyName.Auditing.Abstractions;
 using CompanyName.Security.Users;
 using CompanyName.TestBase;
 using FluentAssertions;

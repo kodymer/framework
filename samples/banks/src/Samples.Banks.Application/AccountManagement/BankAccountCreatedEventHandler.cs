@@ -1,11 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CompanyName.EventBus.Abstractions;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace Samples.Banks.AccountManagement
 {
-    public class BankAccountCreatedEventHandler : CompanyName.Messaging.Abstractions.EventHandler<BankAccountCreatedEvent>
+    public class BankAccountCreatedEventHandler : IEventHandler<BankAccountCreatedEvent>
     {
         private readonly IAccountManagementAppService _bankAppService;
+
+        public ILogger<BankAccountCreatedEventHandler> Logger { get; set; }
+
 
         public BankAccountCreatedEventHandler(IAccountManagementAppService bankAppService)
         {
@@ -14,7 +18,7 @@ namespace Samples.Banks.AccountManagement
             _bankAppService = bankAppService;
         }
 
-        public override async Task HandleAsync(BankAccountCreatedEvent args, CancellationToken cancellationToken = default)
+        public async Task HandleAsync(BankAccountCreatedEvent args, CancellationToken cancellationToken = default)
         {
             Logger.LogInformation("Message received: {Message}:", JsonSerializer.Serialize(args));
 

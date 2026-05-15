@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+	<Import Project="..\..\..\packages.props" />
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<OutputType>Library</OutputType>
+		<IsPackable>true</IsPackable>
+		<AssemblyName>CompanyName.Ddd.Domain.Abstractions</AssemblyName>
+		<PackageId>CompanyName.Ddd.Domain.Abstractions</PackageId>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<RootNamespace />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ardalis.Specification" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\CompanyName.Auditing.Abstractions\CompanyName.Auditing.Abstractions.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="CompanyName\Ddd\Domain\Abstractions\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="CompanyName.Ddd.Domain.EventBus"/>
+	</ItemGroup>
+	
+</Project>

@@ -1,9 +1,10 @@
+using CompanyName.EventBus.Abstractions;
+using CompanyName.TestBase;
 using FluentAssertions;
 using Moq;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using CompanyName.EventBus.Abstractions;
-using CompanyName.TestBase;
 using Xunit;
 
 namespace CompanyName.EventBus
@@ -94,17 +95,17 @@ namespace CompanyName.EventBus
 
         }
 
-        private class CompanyNameIntegrationEventHandler : IIntegrationEventHandler<CompanyNameEto>
+        private class CompanyNameIntegrationEventHandler : IEventHandler<CompanyNameEto>
         {
-            public Task HandleEventAsync(CompanyNameEto args)
+            public Task HandleAsync(CompanyNameEto args, CancellationToken cancellationToken = default)
             {
                 return Task.CompletedTask;
             }
         }
 
-        private class CompanyNameDomainEventHandler : IDomainEventHandler<CompanyNameEto>
+        private class CompanyNameDomainEventHandler : IEventHandler<CompanyNameEto>
         {
-            public Task HandleEventAsync(CompanyNameEto args)
+            public Task HandleAsync(CompanyNameEto args, CancellationToken cancellationToken = default)
             {
                 return Task.CompletedTask;
             }

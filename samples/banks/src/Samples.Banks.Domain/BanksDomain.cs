@@ -13,7 +13,8 @@ namespace Samples.Banks
                 .AddBanksDomainServices();
 
             services
-                .AddCompanyNameLocalization();
+                .AddCompanyNameLocalization()
+                .AddCompanyNameEventBusAzureServiceBus();
 
             return services;
         }

@@ -24,7 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\CompanyName.Uow\CompanyName.Uow.csproj" />
     <ProjectReference Include="..\CompanyName.Data.Tests\CompanyName.Data.Tests.csproj" />
-    <ProjectReference Include="..\CompanyName.EventBus.Azure.Tests\CompanyName.EventBus.Azure.Tests.csproj" />
+    <ProjectReference Include="..\CompanyName.EventBus.AzureServiceBus.Tests\CompanyName.EventBus.AzureServiceBus.Tests.csproj" />
   </ItemGroup>
 
 </Project>

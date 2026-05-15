@@ -1,12 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="MassTransit.RabbitMQ" />
+    <Compile Remove="AccountManagement\CreateBankAccountCommandHandler.cs" />
+    <Compile Remove="AccountManagement\GetAllBankAccountsQueryHandler.cs" />
+    <Compile Remove="MoneyTransfer\CreateBankTransferCommandHandler.cs" />
+    <Compile Remove="MoneyTransfer\GetTrasnferHistoryQueryHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
   </ItemGroup>
 
   <ItemGroup>    
-    <PackageReference Include="CompanyName.Messaging.MassTransit" Condition="!$(Debug)" />
     <PackageReference Include="CompanyName.Caching.StackExchangeRedis" Condition="!$(Debug)" />
   </ItemGroup>
   

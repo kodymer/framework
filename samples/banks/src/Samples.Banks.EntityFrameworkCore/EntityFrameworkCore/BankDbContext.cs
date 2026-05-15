@@ -1,11 +1,11 @@
-﻿using CompanyName.Messaging.MassTransit.EntityFrameworkCore.SqlServer;
+﻿using CompanyName.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Samples.Banks.Accounts;
 
 namespace Samples.Banks.EntityFrameworkCore
 {
 
-    public class BankDbContext : CompanyNameOutboxDbContext<BankDbContext>
+    public class BankDbContext : CompanyNameDbContext<BankDbContext>
     {
 
         // Create DbSets

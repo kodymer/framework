@@ -1,5 +1,3 @@
-using MassTransit;
-using Samples.Banks.AccountManagement;
 using Samples.Banks.EntityFrameworkCore;
 
 namespace Samples.Banks
@@ -11,45 +9,45 @@ namespace Samples.Banks
         internal static IServiceCollection AddBanksBus(this IServiceCollection services, IConfiguration configuration)
         {
 
-            Action<IBusRegistrationConfigurator> busConfigurator = options =>
-            {
-                options.AddConsumers(typeof(BanksApplication).Assembly);
+            //Action<IBusRegistrationConfigurator> busConfigurator = options =>
+            //{
+            //    options.AddConsumers(typeof(BanksApplication).Assembly);
 
-                options.UsingRabbitMq((context, config) =>
-                {
-                    config.Host("localhost", "/", h =>
-                    {
-                        h.Username("guest");
-                        h.Password("guest");
-                    });
+            //    options.UsingRabbitMq((context, config) =>
+            //    {
+            //        config.Host("localhost", "/", h =>
+            //        {
+            //            h.Username("guest");
+            //            h.Password("guest");
+            //        });
 
-                    /* To avoid duplicate messages in 
-                     * the event of a concurrency failure
-                     * See https://masstransit.io/documentation/patterns/saga/persistence#publishing-and-sending-from-sagas
-                     */
+            //        /* To avoid duplicate messages in 
+            //         * the event of a concurrency failure
+            //         * See https://masstransit.io/documentation/patterns/saga/persistence#publishing-and-sending-from-sagas
+            //         */
 
-                    config.UseInMemoryOutbox(context);
+            //        config.UseInMemoryOutbox(context);
 
-                    /*
-                     * ConfigureEndpoints should be the last method 
-                     * called after all settings and middleware 
-                     * components have been configured.
-                     */
-                    config.ConfigureEndpoints(context);
-                });
+            //        /*
+            //         * ConfigureEndpoints should be the last method 
+            //         * called after all settings and middleware 
+            //         * components have been configured.
+            //         */
+            //        config.ConfigureEndpoints(context);
+            //    });
 
-                options.AddEntityFrameworkOutbox<BankDbContext>(options =>
-                {
-                    options
-                        .UseSqlServer()
-                        .UseBusOutbox();
-                });
-            };
+            //    options.AddEntityFrameworkOutbox<BankDbContext>(options =>
+            //    {
+            //        options
+            //            .UseSqlServer()
+            //            .UseBusOutbox();
+            //    });
+            //};
 
-            Action<IMediatorRegistrationConfigurator> mediatorConfigurator = options =>
-            {
-                options.AddConsumers(typeof(BanksApplication).Assembly);
-            };
+            //Action<IMediatorRegistrationConfigurator> mediatorConfigurator = options =>
+            //{
+            //    options.AddConsumers(typeof(BanksApplication).Assembly);
+            //};
 
             // NOTE:
             // Uncomment the following line ONLY if you need to enable MassTransit for message bus integration.
@@ -57,8 +55,8 @@ namespace Samples.Banks
             // IMPORTANT: If you enable MassTransit here, also uncomment the RabbitMQ health check registration
             // in the HealthCheck configuration to ensure Kubernetes readiness probes reflect the bus status.
 
-            services
-                .AddCompanyNameBus(busConfigurator: false ? busConfigurator : null, mediatorConfigurator);
+            //services
+            //    .AddCompanyNameBus(busConfigurator: false ? busConfigurator : null, mediatorConfigurator);
 
 
             return services;

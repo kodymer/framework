@@ -20,7 +20,7 @@
     <ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
     <ProjectReference Include="..\CompanyName.EventBus.Abstractions\CompanyName.EventBus.Abstractions.csproj" />
     <ProjectReference Include="..\CompanyName.Autofac\CompanyName.Autofac.csproj" />
-    <ProjectReference Include="..\CompanyName.ServiceBus.Local\CompanyName.ServiceBus.Local.csproj" />
+    <ProjectReference Include="..\CompanyName.Messaging.Local\CompanyName.Messaging.Local.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,14 +1,11 @@
 ﻿using CompanyName.AspNetCore.Abstractions.Routing;
 using CompanyName.Ddd.Domain.Common.Pagination;
-using FluentResults;
-using MassTransit.Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Samples.Banks.AccountManagement;
-using Samples.Banks.Extensions;
 
 namespace Samples.Banks.Endpoints.AccountManagement
 {
@@ -20,7 +17,7 @@ namespace Samples.Banks.Endpoints.AccountManagement
             app
                 .MapGet(
                     "api/m/bank/{branchId}/accounts",
-                    async Task<Results<Ok<PagedResult<BankAccountDto>>, ProblemHttpResult>> (Guid branchId, [FromQuery] int? page, [FromQuery] int? pageSize, [FromServices] IScopedMediator mediator) =>
+                    async Task<Results<Ok<PagedResult<BankAccountDto>>, ProblemHttpResult>> (Guid branchId, [FromQuery] int? page, [FromQuery] int? pageSize/*, [FromServices] IScopedMediator mediator*/, CancellationToken cancellationToken = default) =>
                     {
                         var query = new GetAllBankAccountsQuery()
                         {
@@ -29,18 +26,20 @@ namespace Samples.Banks.Endpoints.AccountManagement
                             PageSize = pageSize
                         };
 
-                        var response = await mediator
-                            .CreateRequestClient<GetAllBankAccountsQuery>()
-                            .GetResponse<Result<PagedResult<BankAccountDto>>>(query);
+                        //var response = await mediator
+                        //    .CreateRequestClient<GetAllBankAccountsQuery>()
+                        //    .GetResponse<Result<PagedResult<BankAccountDto>>>(query);
 
-                        if (response.Message.IsSuccess)
-                        {
-                            return TypedResults.Ok(response.Message.Value);
-                        }
-                        else
-                        {
-                            return TypedResults.Problem(response.Message.ToProblemDetails());
-                        }
+                        //if (response.Message.IsSuccess)
+                        //{
+                        //    return TypedResults.Ok(response.Message.Value);
+                        //}
+                        //else
+                        //{
+                        //    return TypedResults.Problem(response.Message.ToProblemDetails());
+                        //}
+
+                        return TypedResults.Ok<PagedResult<BankAccountDto>>(null);
                     }
                  )
                 .WithName("GetBankAccounts")

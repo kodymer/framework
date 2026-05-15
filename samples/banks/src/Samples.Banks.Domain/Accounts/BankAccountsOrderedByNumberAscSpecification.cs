@@ -1,7 +1,4 @@
 ﻿using Ardalis.Specification;
-using Castle.Core.Resource;
-using CompanyName.Ddd.Domain.Common.Filters;
-using MassTransit.Internals.GraphValidation;
 
 namespace Samples.Banks.Accounts
 {
@@ -12,7 +9,7 @@ namespace Samples.Banks.Accounts
             Query
                 .OrderBy(bankAccount => bankAccount.Number)
                 .AsNoTracking()
-                .EnableCache($"{ nameof(BankAccountsOrderedByNumberAscSpecification)}-{branchId}");
+                .EnableCache($"{nameof(BankAccountsOrderedByNumberAscSpecification)}-{branchId}");
         }
     }
 }

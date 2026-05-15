@@ -1,12 +1,12 @@
 ﻿using CompanyName.Ddd.Domain.Auditing;
-using CompanyName.Ddd.Domain.Eventing;
+using CompanyName.Ddd.Domain.EventBus;
 using FluentResults;
 using Samples.Banks.Transfers;
 
 namespace Samples.Banks.Accounts
 {
     [EventName("CompanyName.Banks.Etos.BankAccountChangedEto")]
-    public class BankAccount : FullAuditedAggregateRoot<BankAccountId>
+    public class BankAccount : FullAuditedAggregateRoot<BankAccountId>, IDomainEventSource, IIntegrationEventSource
     {
         public const string TableName = "BankAccounts";
         public const int NameMaxLength = 80;
@@ -33,16 +33,16 @@ namespace Samples.Banks.Accounts
             }
 
             Balance = intialBalance;
-
-            AddDistributedEvent(new BankAccountCreatedEvent(Id.Value, Number, intialBalance));
+           
+            this.AddIntegrationEvent(new BankAccountCreatedEvent(Id.Value, Number, intialBalance));
         }
 
         public void Increase(decimal amount)
         {
             Balance += amount;
 
-            AddDistributedEvent(this);
-            AddLocalEvent(new BankAccountBalanceIncreasedEvent(Id.Value, Number, amount, Balance));
+            this.AddIntegrationEvent(this);
+            this.AddDomainEvent(new BankAccountBalanceIncreasedEvent(Id.Value, Number, amount, Balance));
         }
 
         public Result Decrease(decimal amount)
@@ -54,8 +54,8 @@ namespace Samples.Banks.Accounts
 
             Balance -= amount;
 
-            AddDistributedEvent(this);
-            AddLocalEvent(new BankAccountBalanceDecreasedEvent(Id.Value, Number, amount, Balance));
+            this.AddIntegrationEvent(this);
+            this.AddDomainEvent(new BankAccountBalanceDecreasedEvent(Id.Value, Number, amount, Balance));
 
             return Result.Ok();
         }

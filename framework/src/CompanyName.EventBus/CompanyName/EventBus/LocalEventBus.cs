@@ -7,7 +7,7 @@ using CompanyName.ServiceBus.Local;
 
 namespace CompanyName.EventBus
 {
-    public class LocalEventBus : EventBusBase<LocalServiceBusMessage, LocalServiceBusMessage>, ILocalEventBus
+    public class LocalEventBus : EventBusBase<LocalServiceBusMessage, LocalServiceBusMessage>, ILocalEventBus, IDistributedEventBus
     {
 
         private readonly ILocalServiceBusMessageConsumer _serviceBusMessageConsumer;

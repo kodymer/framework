@@ -19,7 +19,6 @@
     <PackageVersion Include="CompanyName.Ddd.Domain" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.Ddd.Domain.Eventing" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.Localization" Version="$(CompanyNameVersion)" />
-    <PackageVersion Include="CompanyName.Messaging.MassTransit" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="CompanyName.TestBase" Version="$(CompanyNameVersion)" />
     <PackageVersion Include="FluentResults" Version="3.16.0" />
     <PackageVersion Include="FluentResults.Extensions.AspNetCore" Version="0.1.0" />
@@ -27,19 +26,18 @@
     <PackageVersion Include="FluentValidation" Version="11.11.0" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.4.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.19" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.18" />
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.CommandLine" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.8" />
-    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.CommandLine" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.8" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.0" />
     <PackageVersion Include="Microsoft.Identity.Web" Version="3.13.2" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageVersion Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />

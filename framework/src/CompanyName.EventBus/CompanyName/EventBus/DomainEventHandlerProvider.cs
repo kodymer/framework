@@ -22,7 +22,7 @@ namespace CompanyName.EventBus
         {
             Func<Type, bool> predicate = h =>
                 EventHandlerTypeDiscoverer.TryDiscoverEventHandlerInterface(h, out var @interface) &&
-                @interface.Name == typeof(IDomainEventHandler<>).Name;
+                @interface.Name == typeof(IEventHandler<>).Name;
 
             return _eventHandlerOptions.GetAll().Where(predicate);
         }

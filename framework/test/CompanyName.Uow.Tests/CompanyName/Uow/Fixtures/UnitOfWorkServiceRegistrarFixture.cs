@@ -12,7 +12,7 @@ namespace CompanyName.Uow.Fixtures
 
             services.AddSingleton<IConfiguration>(new ConfigurationBuilder().Build());
 
-            services.AddCompanyNameEventBusAzure();
+            services.AddCompanyNameEventBusAzureServiceBus();
         }
     }
 }

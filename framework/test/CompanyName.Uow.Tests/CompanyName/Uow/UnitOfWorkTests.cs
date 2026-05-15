@@ -15,7 +15,7 @@ using CompanyName.Uow.EntityFrameworkCore;
 using CompanyName.Uow.Fixtures;
 using Xunit;
 
-namespace CompanyName.Uow.Tests
+namespace CompanyName.Uow
 {
     [TestCaseOrderer("CompanyName.TestBase.Orderers.PriorityOrderer", "CompanyName.TestBase")]
     [Collection(nameof(UnitOfWorkCollectionFixture))]

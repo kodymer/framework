@@ -1,10 +1,9 @@
-﻿
-using CompanyName.Data.Fixtures;
-using global::CompanyName.TestBase.Fixtures;
+﻿using CompanyName.Data.Fixtures;
+using CompanyName.TestBase.Fixtures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CompanyName.Uow.Fixtures
+namespace CompanyName.Domain.EntityFrameworkCore.Fixtures
 {
     public class EntityFrameworkCoreServiceRegistrarFixture : ServiceRegistrarFixture
     {

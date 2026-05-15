@@ -1,12 +1,9 @@
 ﻿using CompanyName.AspNetCore.Abstractions.Routing;
-using FluentResults;
 using FluentValidation;
-using MassTransit.Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Samples.Banks.Extensions;
 using Samples.Banks.MoneyTransfers;
 
 namespace Samples.Banks.Endpoints.MoneyTransfer
@@ -18,7 +15,7 @@ namespace Samples.Banks.Endpoints.MoneyTransfer
             app
                 .MapPost(
                     "api/m/bank/transfers",
-                    async ([FromBody] CreateBankTransferCommand command, [FromServices] IValidator<CreateBankTransferCommand> validator, [FromServices] IScopedMediator mediator, CancellationToken cancellationToken = default) =>
+                    async ([FromBody] CreateBankTransferCommand command, [FromServices] IValidator<CreateBankTransferCommand> validator,/* [FromServices] IScopedMediator mediator,*/ CancellationToken cancellationToken = default) =>
                     {
                         var validationResult = await validator.ValidateAsync(command, cancellationToken);
                         if (!validationResult.IsValid)
@@ -26,13 +23,15 @@ namespace Samples.Banks.Endpoints.MoneyTransfer
                             return Results.ValidationProblem(validationResult.ToDictionary());
                         }
 
-                        var response = await mediator
-                            .CreateRequestClient<CreateBankTransferEndpoint>()
-                            .GetResponse<Result<BankTransferDto>>(command, cancellationToken);
+                        //var response = await mediator
+                        //    .CreateRequestClient<CreateBankTransferEndpoint>()
+                        //    .GetResponse<Result<BankTransferDto>>(command, cancellationToken);
 
-                        return response.Message.IsSuccess ?
-                            Results.Ok() :
-                            Results.Problem(response.Message.ToProblemDetails());
+                        //return response.Message.IsSuccess ?
+                        //    Results.Ok() :
+                        //    Results.Problem(response.Message.ToProblemDetails());
+
+                        return Results.Ok();
 
                     }
                  )

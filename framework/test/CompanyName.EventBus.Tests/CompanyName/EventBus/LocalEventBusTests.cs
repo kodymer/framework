@@ -6,7 +6,7 @@ using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using Xunit;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus
 {
     public class LocalEventBusTests : IClassFixture<ServiceRegistrarFixture>
     {

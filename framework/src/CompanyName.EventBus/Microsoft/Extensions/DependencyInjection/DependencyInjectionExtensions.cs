@@ -1,8 +1,6 @@
 ﻿using CompanyName.Core;
 using CompanyName.EventBus;
 using CompanyName.EventBus.Abstractions;
-using CompanyName.EventBus.Azure;
-using CompanyName.ServiceBus.Local;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -12,9 +10,8 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services
                 .AddCompanyNameAutofac()
-                .AddCompanyNameEventBusAbstracts()
                 .AddCompanyNameDddDomainEventBus()
-                .AddCompanyNameServiceBusLocal()
+                .AddCompanyNameMessagingLocal()
                 .AddCompanyNameEventHandlers(Actions.Empty);
 
             services
@@ -23,14 +20,18 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddSingleton<IEventHandlerInvoker, EventHandlerInvoker>()
                 .AddSingleton<ILocalServiceBusMessageConsumer, LocalServiceBusMessageConsumer>();
 
+
+            Func<IServiceProvider, LocalEventBus> factory = (IServiceProvider serviceProvider) =>
+            {
+                var eventBus = serviceProvider.GetRequiredService<LocalEventBus>();
+                eventBus.Initialize();
+                return eventBus;
+            };
+
             services
                 .AddSingleton<LocalEventBus>()
-                .AddSingleton<ILocalEventBus, LocalEventBus>(serviceProvider =>
-                {
-                    var eventBus = serviceProvider.GetRequiredService<LocalEventBus>();
-                    eventBus.Initialize();
-                    return eventBus;
-                });
+                .AddSingleton<ILocalEventBus, LocalEventBus>(factory)
+                .AddSingleton<IDistributedEventBus, LocalEventBus>(factory);
 
             return services;
         }

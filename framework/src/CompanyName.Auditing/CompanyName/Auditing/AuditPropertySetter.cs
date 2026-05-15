@@ -1,5 +1,4 @@
-﻿using CompanyName.Auditing.Abstractions;
-using CompanyName.Security.Users;
+﻿using CompanyName.Security.Users;
 using Microsoft.Extensions.Logging;
 
 namespace CompanyName.Auditing

@@ -1,14 +1,7 @@
-<<<<<<< HEAD:samples/banks/src/CompanyName.Banks.Domain/Banks/BankAccountPublisher.cs
-﻿using CompanyName.Ddd.Domain.Services;
+using System.Text.Json;
+using CompanyName.Ddd.Domain.Services;
 using CompanyName.EventBus.Abstractions;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
-=======
-﻿using System.Text.Json;
-using CompanyName.Ddd.Domain.Services;
-using CompanyName.Eventing.Abstractions;
-using Microsoft.Extensions.Logging;
->>>>>>> develop:samples/banks/src/Samples.Banks.Domain/Accounts/BankAccountPublisher.cs
 
 namespace Samples.Banks.Accounts
 {

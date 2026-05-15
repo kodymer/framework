@@ -13,17 +13,25 @@ namespace CompanyName.EventBus
 
             IEventHandlerMethodExecutor eventHandlerExecutor = null;
 
-            if (typeof(IIntegrationEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
+            if (typeof(IEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
             {
                 eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
-                    .MakeGenericType(@event, typeof(IIntegrationEventHandler<>).MakeGenericType(@event)));
+                    .MakeGenericType(@event, typeof(IEventHandler<>).MakeGenericType(@event)));
             }
 
-            if (typeof(IDomainEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
-            {
-                eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
-                    .MakeGenericType(@event, typeof(IDomainEventHandler<>).MakeGenericType(@event)));
-            }
+            // TO-DO: Remove block
+
+            //if (typeof(IIntegrationEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
+            //{
+            //    eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
+            //        .MakeGenericType(@event, typeof(IIntegrationEventHandler<>).MakeGenericType(@event)));
+            //}
+
+            //if (typeof(IDomainEventHandler<>).MakeGenericType(@event).IsInstanceOfType(eventHandler))
+            //{
+            //    eventHandlerExecutor = (IEventHandlerMethodExecutor)Activator.CreateInstance(typeof(EventHandlerMethodExecutor<,>)
+            //        .MakeGenericType(@event, typeof(IDomainEventHandler<>).MakeGenericType(@event)));
+            //}
 
             if (eventHandlerExecutor is not null)
             {

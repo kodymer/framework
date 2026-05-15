@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using CompanyName.Ddd.Domain.Entities;
 using CompanyName.TestBase;
 using Xunit;
+using CompanyName.Dapper.Metadata;
 
-namespace CompanyName.Dapper.Metadata
+namespace CompanyName.Dapper
 {
     public class DapperModelBuilderTests
     {

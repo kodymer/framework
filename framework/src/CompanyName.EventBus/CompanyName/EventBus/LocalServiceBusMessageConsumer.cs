@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Text.Json;
 using CompanyName.ServiceBus.Local;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus
 {
     public class LocalServiceBusMessageConsumer : ILocalServiceBusMessageConsumer
     {

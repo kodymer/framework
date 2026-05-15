@@ -1,5 +1,7 @@
 ﻿using CompanyName.Data.Fixtures;
+using CompanyName.Ddd.Domain.Entities;
 using CompanyName.TestBase.Fixtures;
+using System;
 using Xunit;
 
 namespace CompanyName.Data.Fixtures

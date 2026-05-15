@@ -35,6 +35,18 @@ namespace CompanyName.Core.DependencyInjection.Extensions
             return services;
         }
 
+        public static IServiceCollection Replace<TServiceType, TImplemententionType>(this IServiceCollection services, Func<IServiceProvider, TImplemententionType> factory, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+            where TServiceType : class
+            where TImplemententionType : class, TServiceType
+        {
+            if (!TryReplace<TServiceType, TImplemententionType>(services, serviceLifetime))
+            {
+                services.Add(new ServiceDescriptor(typeof(TServiceType), factory, serviceLifetime));
+            }
+
+            return services;
+        }
+
         public static bool TryReplace<TServiceType, TImplemententionType>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
             where TServiceType : class
             where TImplemententionType : class, TServiceType

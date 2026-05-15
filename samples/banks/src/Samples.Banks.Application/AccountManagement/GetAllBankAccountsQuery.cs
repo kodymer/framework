@@ -1,12 +1,6 @@
-﻿using CompanyName.Cqrs.Abstractions;
-using CompanyName.Ddd.Domain.Common.Pagination;
-using FluentResults;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Samples.Banks.AccountManagement
+﻿namespace Samples.Banks.AccountManagement
 {
-    public record class GetAllBankAccountsQuery :
-        IQuery<Result<PagedResult<BankAccountDto>>>
+    public record class GetAllBankAccountsQuery
     {
 
         public Guid BranchId { get; set; } = Guid.NewGuid();

@@ -10,7 +10,7 @@ using CompanyName.ServiceBus.Local;
 using CompanyName.TestBase;
 using Xunit;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus
 {
     public class LocalServiceBusMessageConsumerTests
     {

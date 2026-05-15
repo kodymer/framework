@@ -7,7 +7,7 @@ namespace CompanyName.EventBus
         where TEventHandler : class, IEventHandler<TEvent>
     {
         public EventHandlerMethodExecutorAsync ExecutorAsync => 
-            (target, parameter) => target.As<TEventHandler>().HandleEventAsync(parameter.As<TEvent>());
+            (target, parameter) => target.As<TEventHandler>().HandleAsync(parameter.As<TEvent>());
 
         public void ExcuteAsync(TEventHandler target, TEvent parameter)
         {

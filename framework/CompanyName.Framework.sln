@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.3.11520.95 d18.3
+VisualStudioVersion = 18.3.11520.95
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48C9946C-9233-4F80-BEE8-F247BAAC61BC}"
 EndProject
@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.Abstractions", "src\CompanyName.EventBus.Abstractions\CompanyName.EventBus.Abstractions.csproj", "{0CEFCA99-0BDA-45DF-99BB-73031BEF04DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.Azure", "src\CompanyName.EventBus.Azure\CompanyName.EventBus.Azure.csproj", "{B17267E4-A554-405C-9D05-8F96CA836D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.AzureServiceBus", "src\CompanyName.EventBus.AzureServiceBus\CompanyName.EventBus.AzureServiceBus.csproj", "{B17267E4-A554-405C-9D05-8F96CA836D9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.ServiceBus.Azure", "src\CompanyName.ServiceBus.Azure\CompanyName.ServiceBus.Azure.csproj", "{94B0407E-7D16-4C9E-81B9-6CD214E4707F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.AzureServiceBus", "src\CompanyName.Messaging.AzureServiceBus\CompanyName.Messaging.AzureServiceBus.csproj", "{94B0407E-7D16-4C9E-81B9-6CD214E4707F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Ddd.Domain.EventBus", "src\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj", "{7D7EED4C-F19C-4794-86E6-6075B91ED32E}"
 EndProject
@@ -71,9 +71,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Dapper.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EntityFrameworkCore.Tests", "test\CompanyName.EntityFrameworkCore.Tests\CompanyName.EntityFrameworkCore.Tests.csproj", "{DFCCC4D3-A49A-4570-95F1-3E10CD29CC3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.ServiceBus.Azure.Tests", "test\CompanyName.ServiceBus.Azure.Tests\CompanyName.ServiceBus.Azure.Tests.csproj", "{EACEE235-C476-4A3A-B94E-03A233C61585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.AzureServiceBus.Tests", "test\CompanyName.Messaging.AzureServiceBus.Tests\CompanyName.Messaging.AzureServiceBus.Tests.csproj", "{EACEE235-C476-4A3A-B94E-03A233C61585}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.Azure.Tests", "test\CompanyName.EventBus.Azure.Tests\CompanyName.EventBus.Azure.Tests.csproj", "{8BA29A6F-C2B2-427F-83B4-D6F1E5E482B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.AzureServiceBus.Tests", "test\CompanyName.EventBus.AzureServiceBus.Tests\CompanyName.EventBus.AzureServiceBus.Tests.csproj", "{8BA29A6F-C2B2-427F-83B4-D6F1E5E482B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.EventBus.Tests", "test\CompanyName.EventBus.Tests\CompanyName.EventBus.Tests.csproj", "{3311D830-28B3-458B-B8C1-50190D15D54F}"
 EndProject
@@ -81,11 +81,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Uow.Tests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Data.Tests", "test\CompanyName.Data.Tests\CompanyName.Data.Tests.csproj", "{FABB5FB7-161C-4A1E-8EFA-4FF6E63E6C36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.ServiceBus.Abstractions", "src\CompanyName.ServiceBus.Abstractions\CompanyName.ServiceBus.Abstractions.csproj", "{365BA2D9-4C1B-4A26-B10C-4BC145FC197E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Abstractions", "src\CompanyName.Messaging.Abstractions\CompanyName.Messaging.Abstractions.csproj", "{365BA2D9-4C1B-4A26-B10C-4BC145FC197E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.ServiceBus.Local", "src\CompanyName.ServiceBus.Local\CompanyName.ServiceBus.Local.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Local", "src\CompanyName.Messaging.Local\CompanyName.Messaging.Local.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.ServiceBus.Local.Tests", "test\CompanyName.ServiceBus.Local.Tests\CompanyName.ServiceBus.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Local.Tests", "test\CompanyName.Messaging.Local.Tests\CompanyName.Messaging.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.AspNetCore.Abstractions", "src\CompanyName.AspNetCore.Abstractions\CompanyName.AspNetCore.Abstractions.csproj", "{B8AA33BB-B3F6-EF56-5EB1-BAF43D89022D}"
 EndProject
@@ -96,6 +96,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.Localization", "src\CompanyName.Localization\CompanyName.Localization.csproj", "{8A21A859-0998-A952-963E-E2AE7FF5261E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.ApplicationInsights.AspNetCore", "src\CompanyName.ApplicationInsights.AspNetCore\CompanyName.ApplicationInsights.AspNetCore.csproj", "{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.Ddd.Domain.Abstractions", "src\CompanyName.Ddd.Domain.Abstractions\CompanyName.Ddd.Domain.Abstractions.csproj", "{AC2E0275-1569-4836-94D9-CDCB9F089405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -267,6 +269,10 @@ Global
 		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -313,6 +319,7 @@ Global
 		{553C3099-10EA-BAF0-4091-91E89BAB2241} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{8A21A859-0998-A952-963E-E2AE7FF5261E} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
+		{AC2E0275-1569-4836-94D9-CDCB9F089405} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C560E72A-25E8-41E0-A972-0FC1CE007D5F}

@@ -1,6 +1,4 @@
-﻿using CompanyName.Ddd.Domain.Entities;
-using CompanyName.EntityFrameworkCore;
-using FluentAssertions.Primitives;
+﻿using FluentAssertions.Primitives;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -41,70 +39,6 @@ namespace CompanyName.Data.Fixtures
         {
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
-        }
-    }
-
-    public abstract class InMemoryCompanyNameDbContextBase<TContext> : CompanyNameDbContextBase<TContext>
-        where TContext : DbContext
-    {
-        protected InMemoryCompanyNameDbContextBase(DbContextOptions<TContext> options)
-            : base(options)
-        {
-        }
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-
-            modelBuilder.Entity<CompanyNameAggregateRoot>();
-            modelBuilder.Entity<CompanyNameNonAggregateRoot>();
-        }
-    }
-
-    public class InMemoryCompanyNameDbContext : InMemoryCompanyNameDbContextBase<InMemoryCompanyNameDbContext>
-    {
-        public InMemoryCompanyNameDbContext(DbContextOptions<InMemoryCompanyNameDbContext> options)
-            : base(options)
-        {
-        }
-    }
-
-
-    public class TwoInMemoryCompanyNameDbContext : InMemoryCompanyNameDbContextBase<TwoInMemoryCompanyNameDbContext>
-    {
-        public TwoInMemoryCompanyNameDbContext(DbContextOptions<TwoInMemoryCompanyNameDbContext> options)
-            : base(options)
-        {
-        }
-    }
-
-    public class CompanyNameAggregateRoot : AggregateRoot<int>
-    {
-        public CompanyNameAggregateRoot()
-        {
-
-        }
-
-        public CompanyNameAggregateRoot(int id)
-            : base(id)
-        {
-
-        }
-    }
-
-    public class CompanyNameNonAggregateRoot : Entity<int>
-    {
-        public CompanyNameNonAggregateRoot()
-        {
-
-        }
-
-        public CompanyNameNonAggregateRoot(int id)
-            : base(id)
-        {
-
         }
     }
 }

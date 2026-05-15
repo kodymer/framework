@@ -1,31 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\packages.props" />
+	<Import Project="..\..\..\packages.props" />
 
-  <PropertyGroup>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-    <OutputType>Library</OutputType>
-    <IsPackable>true</IsPackable>
-    <AssemblyName>CompanyName.Ddd.Domain</AssemblyName>
-    <PackageId>CompanyName.Ddd.Domain</PackageId>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace />
-  </PropertyGroup>
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<OutputType>Library</OutputType>
+		<IsPackable>true</IsPackable>
+		<AssemblyName>CompanyName.Ddd.Domain</AssemblyName>
+		<PackageId>CompanyName.Ddd.Domain</PackageId>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<RootNamespace />
+	</PropertyGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="Ardalis.Specification" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\CompanyName.Auditing.Abstractions\CompanyName.Auditing.Abstractions.csproj" />
-    <ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
-    <ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
-    <ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\CompanyName.Ddd.Domain.Abstractions\CompanyName.Ddd.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
+		<ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
+		<ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
+	</ItemGroup>
+	
 </Project>
