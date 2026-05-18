@@ -83,9 +83,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Data.Tests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Abstractions", "src\CompanyName.Messaging.Abstractions\CompanyName.Messaging.Abstractions.csproj", "{365BA2D9-4C1B-4A26-B10C-4BC145FC197E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.InProcess", "src\CompanyName.Messaging.Local\CompanyName.Messaging.InProcess.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.InProcess", "src\CompanyName.Messaging.InProcess\CompanyName.Messaging.InProcess.csproj", "{D1ECCE56-3814-4C1B-9309-B77FF871325A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.Local.Tests", "test\CompanyName.Messaging.Local.Tests\CompanyName.Messaging.Local.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyName.Messaging.InProcess.Tests", "test\CompanyName.Messaging.InProcess.Tests\CompanyName.Messaging.InProcess.Tests.csproj", "{B6BA3D3B-0EAA-4D91-9E44-F80BCC033962}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.AspNetCore.Abstractions", "src\CompanyName.AspNetCore.Abstractions\CompanyName.AspNetCore.Abstractions.csproj", "{B8AA33BB-B3F6-EF56-5EB1-BAF43D89022D}"
 EndProject
@@ -94,8 +94,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.Auditing.Abstractions", "src\CompanyName.Auditing.Abstractions\CompanyName.Auditing.Abstractions.csproj", "{553C3099-10EA-BAF0-4091-91E89BAB2241}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.Localization", "src\CompanyName.Localization\CompanyName.Localization.csproj", "{8A21A859-0998-A952-963E-E2AE7FF5261E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.ApplicationInsights.AspNetCore", "src\CompanyName.ApplicationInsights.AspNetCore\CompanyName.ApplicationInsights.AspNetCore.csproj", "{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyName.Ddd.Domain.Abstractions", "src\CompanyName.Ddd.Domain.Abstractions\CompanyName.Ddd.Domain.Abstractions.csproj", "{AC2E0275-1569-4836-94D9-CDCB9F089405}"
 EndProject
@@ -265,10 +263,6 @@ Global
 		{8A21A859-0998-A952-963E-E2AE7FF5261E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A21A859-0998-A952-963E-E2AE7FF5261E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A21A859-0998-A952-963E-E2AE7FF5261E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2E0275-1569-4836-94D9-CDCB9F089405}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -318,7 +312,6 @@ Global
 		{DB9FF375-992C-4732-5B63-7DA4900AD12B} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{553C3099-10EA-BAF0-4091-91E89BAB2241} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{8A21A859-0998-A952-963E-E2AE7FF5261E} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
-		{C4E1DB2A-0FC2-774E-23A6-D5BF85E43AA4} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 		{AC2E0275-1569-4836-94D9-CDCB9F089405} = {48C9946C-9233-4F80-BEE8-F247BAAC61BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

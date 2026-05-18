@@ -4,9 +4,8 @@ using Moq;
 using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using Xunit;
-using CompanyName.Messaging.AzureServiceBus;
 
-namespace CompanyName.ServiceBus.Azure
+namespace CompanyName.Messaging.AzureServiceBus
 {
     public class PublisherPoolTests : IClassFixture<ServiceRegistrarFixture>
     {

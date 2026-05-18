@@ -132,15 +132,15 @@
         "cases": [
           {
             "condition": "(framework == 'net8.0')",
-            "value": "8.0.0"
+            "value": "10.0.300"
           },
                     {
             "condition": "(framework == 'net9.0')",
-            "value": "9.0.0"
+            "value": "10.0.300"
           },
                     {
             "condition": "(framework == 'net10.0')",
-            "value": "10.0.0"
+            "value": "10.0.300"
           }
         ]
       },
@@ -200,8 +200,8 @@
       "parameters": {
         "symbols": [
           {
-            "type": "ref",
-            "value": "workingDirectory"
+            "type": "const",
+            "value": "."
           },
           {
             "type": "ref",
@@ -215,8 +215,7 @@
         "separator": "",
         "removeEmptyValues": false
       },
-      "replaces": "NugetSourceLocal",
-      "fileRename": "-o-"
+      "replaces": "NugetSourceLocal"
     }
   }
 }

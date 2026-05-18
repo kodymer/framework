@@ -8,8 +8,8 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
-    <AssemblyName>CompanyName.EventBus.Azure</AssemblyName>
-    <PackageId>CompanyName.EventBus.Azure</PackageId>
+    <AssemblyName>CompanyName.EventBus.AzureServiceBus</AssemblyName>
+    <PackageId>CompanyName.EventBus.AzureServiceBus</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>

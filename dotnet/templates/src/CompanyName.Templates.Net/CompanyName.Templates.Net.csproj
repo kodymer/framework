@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageId>CompanyName.Templates</PackageId>
+    <PackageId>CompanyName.Templates.Net</PackageId>
     <PackageType>Template</PackageType>
     <PackageTags>dotnet-new;templates;</PackageTags>
-    <Title>CompanyName Templates</Title>
-    <Authors></Authors>
+    <Title>CompanyName Templates para .NET</Title>
+    <Authors>Capgemini Engineering</Authors>
     <Description>Templates to use when creating an application for CompanyName.</Description>
 
     <IncludeContentInPack>true</IncludeContentInPack>

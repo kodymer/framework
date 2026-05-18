@@ -6,7 +6,6 @@
         {
             services
                 .AddCompanyNameAuditingAbstractions()
-                .AddCompanyNameDddDomainEventBus()
                 .AddCompanyNameSecurity();
 
             return services;

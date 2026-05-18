@@ -9,8 +9,8 @@
     <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
-    <AssemblyName>CompanyName.ServiceBus.Abstractions</AssemblyName>
-    <PackageId>CompanyName.ServiceBus.Abstractions</PackageId>
+    <AssemblyName>CompanyName.Messaging.Abstractions</AssemblyName>
+    <PackageId>CompanyName.Messaging.Abstractions</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>

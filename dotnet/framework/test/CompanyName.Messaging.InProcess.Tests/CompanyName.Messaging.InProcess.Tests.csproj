@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CompanyName.Messaging.Local\CompanyName.Messaging.InProcess.csproj" />
+    <ProjectReference Include="..\..\src\CompanyName.Messaging.InProcess\CompanyName.Messaging.InProcess.csproj" />
     <ProjectReference Include="..\..\src\CompanyName.TestBase\CompanyName.TestBase.csproj" />
   </ItemGroup>
 

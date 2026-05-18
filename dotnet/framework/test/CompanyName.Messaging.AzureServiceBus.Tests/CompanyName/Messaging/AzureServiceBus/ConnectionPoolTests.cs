@@ -8,9 +8,8 @@ using System;
 using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using Xunit;
-using CompanyName.Messaging.AzureServiceBus;
 
-namespace CompanyName.ServiceBus.Azure
+namespace CompanyName.Messaging.AzureServiceBus
 {
     public class ConnectionPoolTests : IClassFixture<ServiceRegistrarFixture>
     {

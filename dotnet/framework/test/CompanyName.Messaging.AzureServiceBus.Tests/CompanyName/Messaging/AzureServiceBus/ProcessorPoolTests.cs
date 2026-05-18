@@ -11,9 +11,8 @@ using CompanyName.Autofac;
 using Autofac;
 using CompanyName.Autofac.Extensions.DependencyInjection;
 using CompanyName.TestBase.Fixtures;
-using CompanyName.Messaging.AzureServiceBus;
 
-namespace CompanyName.ServiceBus.Azure
+namespace CompanyName.Messaging.AzureServiceBus
 {
     public class ProccessorPoolTests : IClassFixture<ServiceRegistrarFixture>
     {

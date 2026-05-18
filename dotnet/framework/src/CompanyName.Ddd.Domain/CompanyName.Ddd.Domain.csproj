@@ -18,7 +18,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CompanyName.Ddd.Domain.Abstractions\CompanyName.Ddd.Domain.Abstractions.csproj" />
-		<ProjectReference Include="..\CompanyName.Ddd.Domain.EventBus\CompanyName.Ddd.Domain.EventBus.csproj" />
 		<ProjectReference Include="..\CompanyName.Localization\CompanyName.Localization.csproj" />
 		<ProjectReference Include="..\CompanyName.Security\CompanyName.Security.csproj" />
 	</ItemGroup>

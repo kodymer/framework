@@ -5,7 +5,7 @@ $rootFolder = Join-Path $packFolder "../"
 $framework = [PSCustomObject]@{
     BasePath = "framework"
     Solution = "CompanyName.Framework"
-    Projects = (
+    Projects = @(
        "src/CompanyName.AspNetCore",
        "src/CompanyName.AspNetCore.Abstractions",
        "src/CompanyName.AspNetCore.Mvc",
@@ -42,14 +42,14 @@ $framework = [PSCustomObject]@{
 $templates = [PSCustomObject]@{
     BasePath = "templates"
     Solution = $null
-    Projects = (
-        "src/CompanyName.Templates"
+    Projects = @(
+        "src/CompanyName.Templates.Net"
     )
 }
 
 $modules = [PSCustomObject]@{
     BasePath = "modules"
     Solution = $null
-    Projects = (
+    Projects = @(
     )
 }

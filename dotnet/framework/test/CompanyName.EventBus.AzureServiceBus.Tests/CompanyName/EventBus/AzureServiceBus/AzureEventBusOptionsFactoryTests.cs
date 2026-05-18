@@ -4,9 +4,8 @@ using Moq;
 using System.IO;
 using CompanyName.TestBase;
 using Xunit;
-using CompanyName.EventBus.AzureServiceBus;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus.AzureServiceBus
 {
     public class AzureEventBusOptionsFactoryTests
     {

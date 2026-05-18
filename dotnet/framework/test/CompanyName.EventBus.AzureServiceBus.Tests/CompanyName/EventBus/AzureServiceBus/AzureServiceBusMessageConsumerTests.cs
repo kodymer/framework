@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 using CompanyName.TestBase;
 using Xunit;
 using CompanyName.Messaging.AzureServiceBus;
-using CompanyName.EventBus.AzureServiceBus;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus.AzureServiceBus
 {
     public class AzureServiceBusMessageConsumerTests
     {

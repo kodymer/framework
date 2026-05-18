@@ -10,9 +10,8 @@ using CompanyName.TestBase;
 using CompanyName.TestBase.Fixtures;
 using Xunit;
 using CompanyName.Messaging.AzureServiceBus;
-using CompanyName.EventBus.AzureServiceBus;
 
-namespace CompanyName.EventBus.Azure
+namespace CompanyName.EventBus.AzureServiceBus
 {
     public class AzureEventBusTests : IClassFixture<ServiceRegistrarFixture>
     {
